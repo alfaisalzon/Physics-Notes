@@ -6,15 +6,16 @@
 
 <title>The Risen High School Paper and Notes</title>
 
-<!-- =========================================================
-     JAMEEL NOORI NASTALEEQ WEB FONT
-     ========================================================= -->
 <style>
+
+/* =========================================================
+   JAMEEL NOORI NASTALEEQ
+   ========================================================= */
 
 @font-face{
     font-family:"Jameel Noori Nastaleeq";
     src:url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff")
-        format("woff");
+    format("woff");
     font-display:swap;
 }
 
@@ -30,7 +31,6 @@
     --white:#ffffff;
     --border:#d9e0eb;
     --bg:#f3f6fb;
-    --paper:#ffffff;
     --shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
@@ -58,27 +58,19 @@ body{
     text-rendering:optimizeLegibility;
 }
 
-/* English / numbers */
 input,
 select,
 textarea,
 button,
 .en{
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family:"Segoe UI",Arial,sans-serif;
 }
 
-/* Urdu elements */
 .urdu{
     font-family:
         "Jameel Noori Nastaleeq",
         "Noto Nastaliq Urdu",
         serif;
-
-    font-variant-ligatures:normal;
-    font-feature-settings:normal;
 }
 
 button{
@@ -90,7 +82,7 @@ button{
 }
 
 /* =========================================================
-   HEADER
+   TOP HEADER - CENTERED
    ========================================================= */
 
 .topbar{
@@ -98,35 +90,47 @@ button{
         linear-gradient(135deg,#0b3d91,#1457d9,#2879ef);
 
     color:white;
-    padding:18px 20px;
+    padding:20px 15px;
     box-shadow:0 4px 20px rgba(0,0,0,.18);
 }
 
 .topbar-inner{
     max-width:1500px;
     margin:auto;
+
     display:flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:space-between;
-    gap:20px;
+    justify-content:center;
+
+    text-align:center;
+    gap:14px;
 }
 
 .brand{
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:15px;
+    justify-content:center;
+    gap:8px;
+    width:100%;
 }
 
 .logo-box{
-    width:60px;
-    height:60px;
-    border-radius:15px;
+    width:68px;
+    height:68px;
+    border-radius:16px;
     background:white;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
-    border:3px solid rgba(255,255,255,.7);
+
+    border:3px solid rgba(255,255,255,.8);
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 .logo-box img{
@@ -137,43 +141,53 @@ button{
 
 .logo-placeholder{
     color:#1457d9;
-    font-size:26px;
+    font-size:30px;
     font-weight:900;
+}
+
+.brand-text{
+    width:100%;
+    text-align:center;
 }
 
 .brand h1{
     margin:0;
-    font-size:25px;
-    line-height:1.2;
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-size:27px;
+    line-height:1.25;
+    font-weight:900;
 }
 
 .brand p{
     margin:4px 0 0;
-    opacity:.9;
-    font-size:14px;
+    opacity:.95;
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-size:15px;
 }
 
 .header-buttons{
     display:flex;
     flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
     gap:8px;
 }
 
 .header-buttons button{
     border:none;
     border-radius:9px;
-    padding:10px 13px;
-    background:rgba(255,255,255,.16);
+    padding:10px 14px;
+    background:rgba(255,255,255,.17);
     color:white;
     font-weight:bold;
 }
 
 .header-buttons button:hover{
-    background:rgba(255,255,255,.28);
+    background:rgba(255,255,255,.30);
 }
 
 /* =========================================================
-   MAIN LAYOUT
+   MAIN
    ========================================================= */
 
 .main{
@@ -300,10 +314,13 @@ input.urdu-input{
 .section-head{
     background:#f5f8fd;
     padding:11px 13px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:10px;
+
     border-bottom:1px solid var(--border);
 }
 
@@ -385,23 +402,27 @@ input.urdu-input{
     border-radius:50%;
     background:#eaf1ff;
     color:var(--primary);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-weight:bold;
     flex:none;
 }
 
 /* =========================================================
-   TOOLBAR
+   BUTTONS
    ========================================================= */
 
 .toolbar{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
+
     margin-top:18px;
     padding-top:15px;
+
     border-top:1px solid var(--border);
 }
 
@@ -439,7 +460,7 @@ input.urdu-input{
 }
 
 /* =========================================================
-   PREVIEW AREA
+   PREVIEW
    ========================================================= */
 
 .preview-panel{
@@ -469,18 +490,25 @@ input.urdu-input{
 }
 
 /* =========================================================
-   A4 PAPER
+   A4
    ========================================================= */
 
 .a4{
     width:210mm;
     min-height:297mm;
+
     background:white;
+
     margin:0 auto;
+
     padding:14mm;
+
     color:#111;
+
     box-shadow:0 5px 25px rgba(0,0,0,.15);
+
     position:relative;
+
     direction:rtl;
 
     font-family:
@@ -516,9 +544,13 @@ input.urdu-input{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     gap:6px;
+
     font-family:"Segoe UI",Arial,sans-serif;
+
     direction:ltr;
+
     font-size:12px;
+
     margin-top:7px;
 }
 
@@ -531,16 +563,22 @@ input.urdu-input{
 .student-row{
     display:grid;
     grid-template-columns:2fr 1fr 1fr 1fr;
+
     direction:ltr;
+
     margin:8px 0;
+
     border:1px solid #111;
 }
 
 .student-cell{
     min-height:29px;
     padding:5px;
+
     border-right:1px solid #111;
+
     font-family:"Segoe UI",Arial,sans-serif;
+
     font-size:12px;
 }
 
@@ -555,7 +593,9 @@ input.urdu-input{
 .paper-section-title{
     font-size:18px;
     font-weight:bold;
+
     border-bottom:1px solid #111;
+
     padding-bottom:2px;
     margin-bottom:5px;
 }
@@ -573,10 +613,13 @@ input.urdu-input{
 .mcq-options-preview{
     display:grid;
     grid-template-columns:1fr 1fr;
+
     font-family:
         "Jameel Noori Nastaleeq",
         serif;
+
     font-size:14px;
+
     margin-top:2px;
 }
 
@@ -593,12 +636,6 @@ input.urdu-input{
     min-width:25px;
 }
 
-.lines{
-    flex:1;
-    min-height:35px;
-    border-bottom:1px dashed #888;
-}
-
 .long-answer{
     margin-bottom:12px;
     break-inside:avoid;
@@ -607,6 +644,7 @@ input.urdu-input{
 .answer-lines{
     height:65px;
     margin-top:4px;
+
     background:
         repeating-linear-gradient(
             to bottom,
@@ -635,19 +673,24 @@ input.urdu-input{
 
 .paper-footer{
     position:absolute;
+
     bottom:7mm;
     left:14mm;
     right:14mm;
+
     border-top:1px solid #555;
+
     padding-top:3px;
+
     display:flex;
     justify-content:space-between;
+
     font-family:"Segoe UI",Arial,sans-serif;
     font-size:10px;
 }
 
 /* =========================================================
-   NOTES PREVIEW
+   NOTES
    ========================================================= */
 
 .notes-page{
@@ -658,7 +701,9 @@ input.urdu-input{
     text-align:center;
     font-size:28px;
     font-weight:bold;
+
     border-bottom:2px solid #111;
+
     padding-bottom:6px;
 }
 
@@ -683,7 +728,9 @@ input.urdu-input{
 .note-heading{
     background:#eef3fb;
     border-right:5px solid #1457d9;
+
     padding:6px 9px;
+
     font-size:20px;
     font-weight:bold;
 }
@@ -748,10 +795,6 @@ input.urdu-input{
     display:block;
 }
 
-/* =========================================================
-   HIDDEN
-   ========================================================= */
-
 .hidden{
     display:none !important;
 }
@@ -776,7 +819,6 @@ input.urdu-input{
         position:relative;
         top:auto;
     }
-
 }
 
 @media(max-width:650px){
@@ -786,25 +828,29 @@ input.urdu-input{
     }
 
     .topbar{
-        padding:12px;
-    }
-
-    .topbar-inner{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .brand{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .header-buttons{
-        justify-content:center;
+        padding:15px 10px;
     }
 
     .brand h1{
-        font-size:20px;
+        font-size:21px;
+    }
+
+    .brand p{
+        font-size:13px;
+    }
+
+    .logo-box{
+        width:60px;
+        height:60px;
+    }
+
+    .header-buttons{
+        width:100%;
+    }
+
+    .header-buttons button{
+        flex:1;
+        min-width:100px;
     }
 
     .tabs{
@@ -832,14 +878,10 @@ input.urdu-input{
     .paper-stage{
         padding:10px 0;
     }
-
-    .a4{
-        transform-origin:top center;
-    }
 }
 
 /* =========================================================
-   PRINT
+   PRINT - FIXED
    ========================================================= */
 
 @page{
@@ -849,39 +891,115 @@ input.urdu-input{
 
 @media print{
 
+    html,
     body{
-        background:white;
+        background:#fff !important;
+        margin:0 !important;
+        padding:0 !important;
     }
+
+    /*
+       پہلے سب کچھ hidden
+       پھر صرف مطلوبہ print area visible
+    */
 
     body *{
         visibility:hidden !important;
     }
 
-    #printArea,
-    #printArea *{
+    /* =====================================================
+       PAPER PRINT
+       ===================================================== */
+
+    body.print-paper #printArea,
+    body.print-paper #printArea *{
         visibility:visible !important;
     }
 
-    #printArea{
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
+    body.print-paper #printArea{
+        display:block !important;
+
+        position:absolute !important;
+
+        left:0 !important;
+        top:0 !important;
+
+        width:210mm !important;
+
+        margin:0 !important;
+        padding:0 !important;
     }
 
-    .a4{
-        box-shadow:none;
-        margin:0;
-        width:210mm;
-        min-height:297mm;
+    body.print-paper #paperSection{
+        display:block !important;
     }
 
-    .no-print{
+    body.print-paper #notesSection{
         display:none !important;
     }
 
-    .page-break{
-        page-break-before:always;
+    /* =====================================================
+       NOTES PRINT
+       ===================================================== */
+
+    body.print-notes #notesPrintArea,
+    body.print-notes #notesPrintArea *{
+        visibility:visible !important;
+    }
+
+    body.print-notes #notesPrintArea{
+        display:block !important;
+
+        position:absolute !important;
+
+        left:0 !important;
+        top:0 !important;
+
+        width:210mm !important;
+
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    body.print-notes #paperSection{
+        display:none !important;
+    }
+
+    body.print-notes #notesSection{
+        display:block !important;
+    }
+
+    /* =====================================================
+       A4
+       ===================================================== */
+
+    .a4{
+        width:210mm !important;
+        min-height:297mm !important;
+
+        margin:0 !important;
+
+        padding:14mm !important;
+
+        box-shadow:none !important;
+
+        background:#fff !important;
+    }
+
+    /* =====================================================
+       HIDE UI
+       ===================================================== */
+
+    .no-print,
+    .preview-tools,
+    .toolbar,
+    .topbar,
+    .tabs{
+        display:none !important;
+    }
+
+    .paper-footer{
+        position:absolute !important;
     }
 }
 
@@ -893,7 +1011,7 @@ input.urdu-input{
 <div class="app">
 
 <!-- =========================================================
-     HEADER
+     TOP HEADER
      ========================================================= -->
 
 <header class="topbar no-print">
@@ -903,26 +1021,54 @@ input.urdu-input{
         <div class="brand">
 
             <div class="logo-box">
-                <img id="headerLogo" class="hidden" alt="School Logo">
-                <div id="logoPlaceholder" class="logo-placeholder">R</div>
+
+                <img
+                    id="headerLogo"
+                    class="hidden"
+                    alt="School Logo">
+
+                <div
+                    id="logoPlaceholder"
+                    class="logo-placeholder">
+
+                    R
+
+                </div>
+
             </div>
 
-            <div>
-                <h1>The Risen High School</h1>
-                <p>Paper & Notes Maker</p>
+            <div class="brand-text">
+
+                <h1>
+                    The Risen High School
+                </h1>
+
+                <p>
+                    Paper & Notes Maker
+                </p>
+
             </div>
 
         </div>
 
+
         <div class="header-buttons">
 
-            <button onclick="saveDraft()">💾 Save</button>
+            <button onclick="saveDraft()">
+                💾 Save
+            </button>
 
-            <button onclick="loadDraft()">📂 Load</button>
+            <button onclick="loadDraft()">
+                📂 Load
+            </button>
 
-            <button onclick="clearAll()">🗑 Clear</button>
+            <button onclick="clearAll()">
+                🗑 Clear
+            </button>
 
-            <button onclick="printDocument()">🖨 Print / PDF</button>
+            <button onclick="printDocument()">
+                🖨 Print / PDF
+            </button>
 
         </div>
 
@@ -931,11 +1077,13 @@ input.urdu-input{
 </header>
 
 
-<main class="main no-print">
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
 
-    <!-- =====================================================
-         TABS
-         ===================================================== -->
+<main class="main">
+
+    <!-- TABS -->
 
     <div class="tabs">
 
@@ -968,7 +1116,7 @@ input.urdu-input{
 
         <div class="workspace">
 
-            <!-- LEFT EDITOR -->
+            <!-- EDITOR -->
 
             <div class="panel">
 
@@ -977,13 +1125,13 @@ input.urdu-input{
                 </h2>
 
 
-                <!-- SCHOOL INFORMATION -->
-
                 <div class="form-grid">
 
                     <div class="form-group full">
 
-                        <label>School Name</label>
+                        <label>
+                            School Name
+                        </label>
 
                         <input
                             id="schoolName"
@@ -995,7 +1143,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Exam / Test</label>
+                        <label>
+                            Exam / Test
+                        </label>
 
                         <input
                             id="examName"
@@ -1007,9 +1157,13 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Class</label>
+                        <label>
+                            Class
+                        </label>
 
-                        <select id="paperClass" onchange="updatePaper()">
+                        <select
+                            id="paperClass"
+                            onchange="updatePaper()">
 
                             <option>Playgroup</option>
                             <option>Nursery</option>
@@ -1034,7 +1188,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Subject</label>
+                        <label>
+                            Subject
+                        </label>
 
                         <input
                             id="paperSubject"
@@ -1046,7 +1202,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Chapter / Unit</label>
+                        <label>
+                            Chapter / Unit
+                        </label>
 
                         <input
                             id="paperChapter"
@@ -1058,7 +1216,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Date</label>
+                        <label>
+                            Date
+                        </label>
 
                         <input
                             type="date"
@@ -1070,7 +1230,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Time</label>
+                        <label>
+                            Time
+                        </label>
 
                         <input
                             id="paperTime"
@@ -1082,7 +1244,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Total Marks</label>
+                        <label>
+                            Total Marks
+                        </label>
 
                         <input
                             type="number"
@@ -1095,13 +1259,15 @@ input.urdu-input{
                 </div>
 
 
-                <!-- STUDENT INFORMATION -->
+                <!-- STUDENT -->
 
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>👨‍🎓 Student Information</h3>
+                        <h3>
+                            👨‍🎓 Student Information
+                        </h3>
 
                     </div>
 
@@ -1111,7 +1277,9 @@ input.urdu-input{
 
                             <div class="form-group">
 
-                                <label>Student Name</label>
+                                <label>
+                                    Student Name
+                                </label>
 
                                 <input
                                     id="studentName"
@@ -1120,9 +1288,12 @@ input.urdu-input{
 
                             </div>
 
+
                             <div class="form-group">
 
-                                <label>Roll Number</label>
+                                <label>
+                                    Roll Number
+                                </label>
 
                                 <input
                                     id="rollNumber"
@@ -1130,9 +1301,12 @@ input.urdu-input{
 
                             </div>
 
+
                             <div class="form-group">
 
-                                <label>Section</label>
+                                <label>
+                                    Section
+                                </label>
 
                                 <input
                                     id="sectionName"
@@ -1140,9 +1314,12 @@ input.urdu-input{
 
                             </div>
 
+
                             <div class="form-group">
 
-                                <label>Teacher</label>
+                                <label>
+                                    Teacher
+                                </label>
 
                                 <input
                                     id="teacherName"
@@ -1164,7 +1341,9 @@ input.urdu-input{
 
                     <div class="section-head">
 
-                        <h3>🏫 School Logo</h3>
+                        <h3>
+                            🏫 School Logo
+                        </h3>
 
                     </div>
 
@@ -1181,13 +1360,15 @@ input.urdu-input{
                 </div>
 
 
-                <!-- MCQS -->
+                <!-- MCQ -->
 
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>① MCQs</h3>
+                        <h3>
+                            ① MCQs
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1202,19 +1383,20 @@ input.urdu-input{
                     <div
                         id="mcqEditor"
                         class="items">
-
                     </div>
 
                 </div>
 
 
-                <!-- SHORT QUESTIONS -->
+                <!-- SHORT -->
 
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>② Short Questions</h3>
+                        <h3>
+                            ② Short Questions
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1229,19 +1411,20 @@ input.urdu-input{
                     <div
                         id="shortEditor"
                         class="items">
-
                     </div>
 
                 </div>
 
 
-                <!-- LONG QUESTIONS -->
+                <!-- LONG -->
 
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>③ Long Questions</h3>
+                        <h3>
+                            ③ Long Questions
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1256,19 +1439,20 @@ input.urdu-input{
                     <div
                         id="longEditor"
                         class="items">
-
                     </div>
 
                 </div>
 
 
-                <!-- FILL BLANKS -->
+                <!-- FILL -->
 
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>④ Fill in the Blanks</h3>
+                        <h3>
+                            ④ Fill in the Blanks
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1283,7 +1467,6 @@ input.urdu-input{
                     <div
                         id="fillEditor"
                         class="items">
-
                     </div>
 
                 </div>
@@ -1295,7 +1478,9 @@ input.urdu-input{
 
                     <div class="section-head">
 
-                        <h3>⑤ True / False</h3>
+                        <h3>
+                            ⑤ True / False
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1310,13 +1495,10 @@ input.urdu-input{
                     <div
                         id="tfEditor"
                         class="items">
-
                     </div>
 
                 </div>
 
-
-                <!-- PAPER BUTTONS -->
 
                 <div class="toolbar">
 
@@ -1349,13 +1531,15 @@ input.urdu-input{
             </div>
 
 
-            <!-- RIGHT PREVIEW -->
+            <!-- PREVIEW -->
 
             <div class="panel preview-panel">
 
                 <div class="preview-tools">
 
-                    <h2>👁 Live Preview</h2>
+                    <h2>
+                        👁 Live Preview
+                    </h2>
 
                     <button
                         class="btn btn-primary"
@@ -1367,6 +1551,7 @@ input.urdu-input{
 
                 </div>
 
+
                 <div class="paper-stage">
 
                     <div id="printArea">
@@ -1374,7 +1559,6 @@ input.urdu-input{
                         <div
                             id="paperPreview"
                             class="a4">
-
                         </div>
 
                     </div>
@@ -1398,8 +1582,6 @@ input.urdu-input{
 
         <div class="workspace">
 
-            <!-- NOTES EDITOR -->
-
             <div class="panel">
 
                 <h2 class="panel-title">
@@ -1411,7 +1593,9 @@ input.urdu-input{
 
                     <div class="form-group full">
 
-                        <label>School Name</label>
+                        <label>
+                            School Name
+                        </label>
 
                         <input
                             id="notesSchool"
@@ -1423,7 +1607,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Class</label>
+                        <label>
+                            Class
+                        </label>
 
                         <select
                             id="notesClass"
@@ -1452,7 +1638,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Subject</label>
+                        <label>
+                            Subject
+                        </label>
 
                         <input
                             id="notesSubject"
@@ -1464,7 +1652,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Chapter</label>
+                        <label>
+                            Chapter
+                        </label>
 
                         <input
                             id="notesChapter"
@@ -1476,7 +1666,9 @@ input.urdu-input{
 
                     <div class="form-group">
 
-                        <label>Topic</label>
+                        <label>
+                            Topic
+                        </label>
 
                         <input
                             id="notesTopic"
@@ -1488,13 +1680,13 @@ input.urdu-input{
                 </div>
 
 
-                <!-- NOTE BLOCKS -->
-
                 <div class="section-box">
 
                     <div class="section-head">
 
-                        <h3>📝 Notes Content</h3>
+                        <h3>
+                            📝 Notes Content
+                        </h3>
 
                         <button
                             class="add-btn"
@@ -1509,7 +1701,6 @@ input.urdu-input{
                     <div
                         id="notesEditor"
                         class="items">
-
                     </div>
 
                 </div>
@@ -1552,7 +1743,9 @@ input.urdu-input{
 
                 <div class="preview-tools">
 
-                    <h2>👁 Notes Preview</h2>
+                    <h2>
+                        👁 Notes Preview
+                    </h2>
 
                     <button
                         class="btn btn-primary"
@@ -1564,6 +1757,7 @@ input.urdu-input{
 
                 </div>
 
+
                 <div class="paper-stage">
 
                     <div id="notesPrintArea">
@@ -1571,7 +1765,6 @@ input.urdu-input{
                         <div
                             id="notesPreview"
                             class="a4 notes-page">
-
                         </div>
 
                     </div>
@@ -1589,35 +1782,31 @@ input.urdu-input{
 </div>
 
 
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
-
 <script>
 
 /* =========================================================
    GLOBAL DATA
    ========================================================= */
 
-let mcqs = [];
-let shorts = [];
-let longs = [];
-let fills = [];
-let tfs = [];
-let noteBlocks = [];
+let mcqs=[];
+let shorts=[];
+let longs=[];
+let fills=[];
+let tfs=[];
+let noteBlocks=[];
 
-let currentTab = "paper";
+let currentTab="paper";
 
-let logoData = "";
+let logoData="";
 
 
 /* =========================================================
-   BASIC HELPERS
+   HELPERS
    ========================================================= */
 
 function escapeHTML(value){
 
-    if(value === null || value === undefined){
+    if(value===null || value===undefined){
         return "";
     }
 
@@ -1627,15 +1816,13 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
 
 
 function nl2br(value){
 
-    return escapeHTML(value || "")
+    return escapeHTML(value||"")
         .replace(/\n/g,"<br>");
-
 }
 
 
@@ -1647,20 +1834,22 @@ function get(id){
 
 
 /* =========================================================
-   TABS
+   TAB
    ========================================================= */
 
 function showTab(tab){
 
-    currentTab = tab;
+    currentTab=tab;
 
-    if(tab === "paper"){
+    if(tab==="paper"){
 
         get("paperSection").classList.remove("hidden");
         get("notesSection").classList.add("hidden");
 
         get("paperTab").classList.add("active");
         get("notesTab").classList.remove("active");
+
+        updatePaper();
 
     }else{
 
@@ -1673,7 +1862,6 @@ function showTab(tab){
         updateNotes();
 
     }
-
 }
 
 
@@ -1683,28 +1871,27 @@ function showTab(tab){
 
 function setToday(){
 
-    const today = new Date();
+    const today=new Date();
 
-    const y = today.getFullYear();
+    const y=today.getFullYear();
 
-    const m = String(today.getMonth()+1).padStart(2,"0");
+    const m=String(today.getMonth()+1).padStart(2,"0");
 
-    const d = String(today.getDate()).padStart(2,"0");
+    const d=String(today.getDate()).padStart(2,"0");
 
-    get("paperDate").value = `${y}-${m}-${d}`;
-
+    get("paperDate").value=`${y}-${m}-${d}`;
 }
 
 setToday();
 
 
 /* =========================================================
-   MCQ
+   MCQS
    ========================================================= */
 
 function addMCQ(data){
 
-    data = data || {
+    data=data||{
         question:"",
         options:["","","",""],
         answer:""
@@ -1713,9 +1900,7 @@ function addMCQ(data){
     mcqs.push(data);
 
     renderMCQs();
-
     updatePaper();
-
 }
 
 
@@ -1724,36 +1909,35 @@ function removeMCQ(index){
     mcqs.splice(index,1);
 
     renderMCQs();
-
     updatePaper();
-
 }
 
 
 function renderMCQs(){
 
-    const box = get("mcqEditor");
+    const box=get("mcqEditor");
 
-    box.innerHTML = "";
+    box.innerHTML="";
 
-    if(mcqs.length === 0){
+    if(mcqs.length===0){
 
-        box.innerHTML =
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی MCQ شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
 
     mcqs.forEach((mcq,index)=>{
 
-        const item = document.createElement("div");
+        const item=document.createElement("div");
 
-        item.className = "item";
+        item.className="item";
 
-        item.innerHTML = `
+        item.innerHTML=`
 
             <div class="item-top">
 
@@ -1771,10 +1955,12 @@ function renderMCQs(){
 
             </div>
 
+
             <textarea
                 class="urdu-input"
                 placeholder="MCQ سوال لکھیں..."
                 oninput="mcqs[${index}].question=this.value;updatePaper()">${escapeHTML(mcq.question)}</textarea>
+
 
             <div class="mcq-options">
 
@@ -1789,7 +1975,7 @@ function renderMCQs(){
                         <input
                             class="urdu-input"
                             placeholder="Option ${letter}"
-                            value="${escapeHTML(mcq.options[i] || "")}"
+                            value="${escapeHTML(mcq.options[i]||"")}"
                             oninput="mcqs[${index}].options[${i}]=this.value;updatePaper()">
 
                     </div>
@@ -1797,6 +1983,7 @@ function renderMCQs(){
                 `).join("")}
 
             </div>
+
 
             <div style="margin-top:8px">
 
@@ -1807,12 +1994,25 @@ function renderMCQs(){
                 <select
                     onchange="mcqs[${index}].answer=this.value;updatePaper()">
 
-                    <option value="">منتخب کریں</option>
+                    <option value="">
+                        منتخب کریں
+                    </option>
 
-                    <option value="A" ${mcq.answer==="A"?"selected":""}>A</option>
-                    <option value="B" ${mcq.answer==="B"?"selected":""}>B</option>
-                    <option value="C" ${mcq.answer==="C"?"selected":""}>C</option>
-                    <option value="D" ${mcq.answer==="D"?"selected":""}>D</option>
+                    <option value="A" ${mcq.answer==="A"?"selected":""}>
+                        A
+                    </option>
+
+                    <option value="B" ${mcq.answer==="B"?"selected":""}>
+                        B
+                    </option>
+
+                    <option value="C" ${mcq.answer==="C"?"selected":""}>
+                        C
+                    </option>
+
+                    <option value="D" ${mcq.answer==="D"?"selected":""}>
+                        D
+                    </option>
 
                 </select>
 
@@ -1823,7 +2023,6 @@ function renderMCQs(){
         box.appendChild(item);
 
     });
-
 }
 
 
@@ -1833,16 +2032,14 @@ function renderMCQs(){
 
 function addShort(data){
 
-    data = data || {
+    data=data||{
         question:""
     };
 
     shorts.push(data);
 
     renderShorts();
-
     updatePaper();
-
 }
 
 
@@ -1851,32 +2048,31 @@ function removeShort(index){
     shorts.splice(index,1);
 
     renderShorts();
-
     updatePaper();
-
 }
 
 
 function renderShorts(){
 
-    const box = get("shortEditor");
+    const box=get("shortEditor");
 
-    box.innerHTML = "";
+    box.innerHTML="";
 
-    if(shorts.length === 0){
+    if(shorts.length===0){
 
-        box.innerHTML =
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی مختصر سوال شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
 
     shorts.forEach((item,index)=>{
 
-        const div = document.createElement("div");
+        const div=document.createElement("div");
 
         div.className="item";
 
@@ -1898,6 +2094,7 @@ function renderShorts(){
 
             </div>
 
+
             <textarea
                 class="urdu-input"
                 placeholder="مختصر سوال لکھیں..."
@@ -1908,7 +2105,6 @@ function renderShorts(){
         box.appendChild(div);
 
     });
-
 }
 
 
@@ -1918,16 +2114,14 @@ function renderShorts(){
 
 function addLong(data){
 
-    data = data || {
+    data=data||{
         question:""
     };
 
     longs.push(data);
 
     renderLongs();
-
     updatePaper();
-
 }
 
 
@@ -1936,28 +2130,27 @@ function removeLong(index){
     longs.splice(index,1);
 
     renderLongs();
-
     updatePaper();
-
 }
 
 
 function renderLongs(){
 
-    const box = get("longEditor");
+    const box=get("longEditor");
 
     box.innerHTML="";
 
     if(longs.length===0){
 
-        box.innerHTML=
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی طویل سوال شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
 
     longs.forEach((item,index)=>{
 
@@ -1983,6 +2176,7 @@ function renderLongs(){
 
             </div>
 
+
             <textarea
                 class="urdu-input"
                 placeholder="طویل سوال لکھیں..."
@@ -1993,26 +2187,23 @@ function renderLongs(){
         box.appendChild(div);
 
     });
-
 }
 
 
 /* =========================================================
-   FILL IN BLANKS
+   FILL
    ========================================================= */
 
 function addFill(data){
 
-    data=data || {
+    data=data||{
         question:""
     };
 
     fills.push(data);
 
     renderFills();
-
     updatePaper();
-
 }
 
 
@@ -2021,9 +2212,7 @@ function removeFill(index){
     fills.splice(index,1);
 
     renderFills();
-
     updatePaper();
-
 }
 
 
@@ -2035,14 +2224,15 @@ function renderFills(){
 
     if(fills.length===0){
 
-        box.innerHTML=
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی Fill in the Blank شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
 
     fills.forEach((item,index)=>{
 
@@ -2068,6 +2258,7 @@ function renderFills(){
 
             </div>
 
+
             <textarea
                 class="urdu-input"
                 placeholder="خالی جگہ والا سوال لکھیں..."
@@ -2078,7 +2269,6 @@ function renderFills(){
         box.appendChild(div);
 
     });
-
 }
 
 
@@ -2088,7 +2278,7 @@ function renderFills(){
 
 function addTF(data){
 
-    data=data || {
+    data=data||{
         statement:"",
         answer:""
     };
@@ -2096,9 +2286,7 @@ function addTF(data){
     tfs.push(data);
 
     renderTF();
-
     updatePaper();
-
 }
 
 
@@ -2107,9 +2295,7 @@ function removeTF(index){
     tfs.splice(index,1);
 
     renderTF();
-
     updatePaper();
-
 }
 
 
@@ -2121,14 +2307,15 @@ function renderTF(){
 
     if(tfs.length===0){
 
-        box.innerHTML=
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی True / False سوال شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
 
     tfs.forEach((item,index)=>{
 
@@ -2154,16 +2341,20 @@ function renderTF(){
 
             </div>
 
+
             <textarea
                 class="urdu-input"
                 placeholder="Statement لکھیں..."
                 oninput="tfs[${index}].statement=this.value;updatePaper()">${escapeHTML(item.statement)}</textarea>
 
+
             <select
                 style="margin-top:8px"
                 onchange="tfs[${index}].answer=this.value;updatePaper()">
 
-                <option value="">جواب منتخب کریں</option>
+                <option value="">
+                    جواب منتخب کریں
+                </option>
 
                 <option value="True" ${item.answer==="True"?"selected":""}>
                     True / درست
@@ -2180,7 +2371,6 @@ function renderTF(){
         box.appendChild(div);
 
     });
-
 }
 
 
@@ -2190,61 +2380,72 @@ function renderTF(){
 
 function updatePaper(){
 
-    const school = get("schoolName").value;
-    const exam = get("examName").value;
-    const cls = get("paperClass").value;
-    const subject = get("paperSubject").value;
-    const chapter = get("paperChapter").value;
-    const date = get("paperDate").value;
-    const time = get("paperTime").value;
-    const marks = get("totalMarks").value;
+    const school=get("schoolName").value;
+    const exam=get("examName").value;
+    const cls=get("paperClass").value;
+    const subject=get("paperSubject").value;
+    const chapter=get("paperChapter").value;
+    const date=get("paperDate").value;
+    const time=get("paperTime").value;
+    const marks=get("totalMarks").value;
 
-    const student = get("studentName").value;
-    const roll = get("rollNumber").value;
-    const section = get("sectionName").value;
-    const teacher = get("teacherName").value;
+    const student=get("studentName").value;
+    const roll=get("rollNumber").value;
+    const section=get("sectionName").value;
+    const teacher=get("teacherName").value;
 
 
-    let dateText = "";
+    let dateText="";
+
 
     if(date){
 
-        const dt = new Date(date+"T00:00:00");
+        const dt=new Date(date+"T00:00:00");
 
-        dateText =
-            dt.toLocaleDateString(
-                "en-GB",
-                {
-                    day:"2-digit",
-                    month:"2-digit",
-                    year:"numeric"
-                }
-            );
-
+        dateText=dt.toLocaleDateString(
+            "en-GB",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
     }
 
 
-    let html = `
+    let html=`
 
         <div class="paper-header">
 
             <div class="preview-school">
-                ${escapeHTML(school || "The Risen High School")}
+                ${escapeHTML(
+                    school || "The Risen High School"
+                )}
             </div>
+
 
             <div class="preview-exam">
                 ${escapeHTML(exam || "Test")}
             </div>
 
+
             <div style="font-size:17px">
                 ${escapeHTML(subject || "")}
             </div>
 
-            ${chapter ? `
+
+            ${
+                chapter
+                ?
+                `
                 <div style="font-size:15px">
                     ${escapeHTML(chapter)}
                 </div>
-            ` : ""}
+                `
+                :
+                ""
+            }
+
 
             <div class="preview-meta">
 
@@ -2304,7 +2505,7 @@ function updatePaper(){
 
     if(mcqs.length){
 
-        html += `
+        html+=`
 
             <div class="paper-section">
 
@@ -2316,26 +2517,49 @@ function updatePaper(){
 
         `;
 
+
         mcqs.forEach((mcq,index)=>{
 
-            html += `
+            html+=`
 
                 <div class="mcq-preview-item">
 
                     <div>
 
-                        <strong>${index+1}۔</strong>
+                        <strong>
+                            ${index+1}۔
+                        </strong>
 
                         ${nl2br(mcq.question)}
 
                     </div>
 
+
                     <div class="mcq-options-preview">
 
-                        <div>ⓐ ${escapeHTML(mcq.options[0] || "")}</div>
-                        <div>ⓑ ${escapeHTML(mcq.options[1] || "")}</div>
-                        <div>ⓒ ${escapeHTML(mcq.options[2] || "")}</div>
-                        <div>ⓓ ${escapeHTML(mcq.options[3] || "")}</div>
+                        <div>
+                            ⓐ ${escapeHTML(
+                                mcq.options[0] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓑ ${escapeHTML(
+                                mcq.options[1] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓒ ${escapeHTML(
+                                mcq.options[2] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓓ ${escapeHTML(
+                                mcq.options[3] || ""
+                            )}
+                        </div>
 
                     </div>
 
@@ -2345,14 +2569,14 @@ function updatePaper(){
 
         });
 
-        html += `
+
+        html+=`
 
                 </div>
 
             </div>
 
         `;
-
     }
 
 
@@ -2360,7 +2584,7 @@ function updatePaper(){
 
     if(shorts.length){
 
-        html += `
+        html+=`
 
             <div class="paper-section">
 
@@ -2370,9 +2594,10 @@ function updatePaper(){
 
         `;
 
+
         shorts.forEach((item,index)=>{
 
-            html += `
+            html+=`
 
                 <div class="q-row">
 
@@ -2390,8 +2615,8 @@ function updatePaper(){
 
         });
 
-        html += `</div>`;
 
+        html+=`</div>`;
     }
 
 
@@ -2399,7 +2624,7 @@ function updatePaper(){
 
     if(longs.length){
 
-        html += `
+        html+=`
 
             <div class="paper-section">
 
@@ -2409,15 +2634,21 @@ function updatePaper(){
 
         `;
 
+
         longs.forEach((item,index)=>{
 
-            html += `
+            html+=`
 
                 <div class="long-answer">
 
                     <div>
-                        <strong>${index+1}۔</strong>
+
+                        <strong>
+                            ${index+1}۔
+                        </strong>
+
                         ${nl2br(item.question)}
+
                     </div>
 
                     <div class="answer-lines"></div>
@@ -2428,8 +2659,8 @@ function updatePaper(){
 
         });
 
-        html += `</div>`;
 
+        html+=`</div>`;
     }
 
 
@@ -2437,7 +2668,7 @@ function updatePaper(){
 
     if(fills.length){
 
-        html += `
+        html+=`
 
             <div class="paper-section">
 
@@ -2447,13 +2678,15 @@ function updatePaper(){
 
         `;
 
+
         fills.forEach((item,index)=>{
 
-            html += `
+            html+=`
 
                 <div class="fill-row">
 
-                    ${index+1}۔ ${nl2br(item.question)}
+                    ${index+1}۔
+                    ${nl2br(item.question)}
 
                 </div>
 
@@ -2461,8 +2694,8 @@ function updatePaper(){
 
         });
 
-        html += `</div>`;
 
+        html+=`</div>`;
     }
 
 
@@ -2470,7 +2703,7 @@ function updatePaper(){
 
     if(tfs.length){
 
-        html += `
+        html+=`
 
             <div class="paper-section">
 
@@ -2480,18 +2713,22 @@ function updatePaper(){
 
         `;
 
+
         tfs.forEach((item,index)=>{
 
-            html += `
+            html+=`
 
                 <div class="truefalse">
 
                     <div>
-                        ${index+1}۔ ${nl2br(item.statement)}
+                        ${index+1}۔
+                        ${nl2br(item.statement)}
                     </div>
 
                     <div class="tf-options">
-                        ☐ درست &nbsp;&nbsp; ☐ غلط
+                        ☐ درست
+                        &nbsp;&nbsp;
+                        ☐ غلط
                     </div>
 
                 </div>
@@ -2500,10 +2737,12 @@ function updatePaper(){
 
         });
 
-        html += `</div>`;
 
+        html+=`</div>`;
     }
 
+
+    /* EMPTY */
 
     if(
         !mcqs.length &&
@@ -2513,7 +2752,7 @@ function updatePaper(){
         !tfs.length
     ){
 
-        html += `
+        html+=`
 
             <div style="
                 text-align:center;
@@ -2531,20 +2770,22 @@ function updatePaper(){
             </div>
 
         `;
-
     }
 
 
-    html += `
+    html+=`
 
         <div class="paper-footer">
 
             <span>
-                ${escapeHTML(school || "The Risen High School")}
+                ${escapeHTML(
+                    school || "The Risen High School"
+                )}
             </span>
 
             <span>
-                Teacher: ${escapeHTML(teacher)}
+                Teacher:
+                ${escapeHTML(teacher)}
             </span>
 
             <span>
@@ -2556,34 +2797,36 @@ function updatePaper(){
     `;
 
 
-    get("paperPreview").innerHTML = html;
-
+    get("paperPreview").innerHTML=html;
 }
 
 
 /* =========================================================
-   NOTES BLOCK
+   NOTES
    ========================================================= */
 
 function addNoteBlock(data){
 
-    data=data || {
+    data=data||{
+
         type:"heading",
+
         heading:"",
         question:"",
         answer:"",
         definition:"",
         points:"",
         mcqQuestion:"",
+
         options:["","","",""]
+
     };
+
 
     noteBlocks.push(data);
 
     renderNotesEditor();
-
     updateNotes();
-
 }
 
 
@@ -2592,9 +2835,7 @@ function removeNoteBlock(index){
     noteBlocks.splice(index,1);
 
     renderNotesEditor();
-
     updateNotes();
-
 }
 
 
@@ -2603,9 +2844,7 @@ function changeNoteType(index,type){
     noteBlocks[index].type=type;
 
     renderNotesEditor();
-
     updateNotes();
-
 }
 
 
@@ -2615,15 +2854,16 @@ function renderNotesEditor(){
 
     box.innerHTML="";
 
+
     if(noteBlocks.length===0){
 
-        box.innerHTML=
-            `<div class="empty-message">
+        box.innerHTML=`
+            <div class="empty-message">
                 ابھی کوئی Note شامل نہیں کیا گیا۔
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
 
 
@@ -2645,10 +2885,12 @@ function renderNotesEditor(){
                     class="urdu-input"
                     placeholder="Heading / عنوان"
                     value="${escapeHTML(note.heading)}"
-                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+                    oninput="
+                        noteBlocks[${index}].heading=this.value;
+                        updateNotes()
+                    ">
 
             `;
-
         }
 
 
@@ -2659,16 +2901,22 @@ function renderNotesEditor(){
                 <textarea
                     class="urdu-input"
                     placeholder="سوال"
-                    oninput="noteBlocks[${index}].question=this.value;updateNotes()">${escapeHTML(note.question)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].question=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.question)}</textarea>
+
 
                 <textarea
                     class="urdu-input"
                     style="margin-top:8px"
                     placeholder="جواب"
-                    oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].answer=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.answer)}</textarea>
 
             `;
-
         }
 
 
@@ -2680,16 +2928,22 @@ function renderNotesEditor(){
                     class="urdu-input"
                     placeholder="اصطلاح / تعریف کا عنوان"
                     value="${escapeHTML(note.heading)}"
-                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+                    oninput="
+                        noteBlocks[${index}].heading=this.value;
+                        updateNotes()
+                    ">
+
 
                 <textarea
                     class="urdu-input"
                     style="margin-top:8px"
                     placeholder="تعریف"
-                    oninput="noteBlocks[${index}].definition=this.value;updateNotes()">${escapeHTML(note.definition)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].definition=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.definition)}</textarea>
 
             `;
-
         }
 
 
@@ -2701,16 +2955,22 @@ function renderNotesEditor(){
                     class="urdu-input"
                     placeholder="Heading"
                     value="${escapeHTML(note.heading)}"
-                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+                    oninput="
+                        noteBlocks[${index}].heading=this.value;
+                        updateNotes()
+                    ">
+
 
                 <textarea
                     class="urdu-input"
                     style="margin-top:8px"
                     placeholder="ہر اہم نکتہ نئی لائن میں لکھیں"
-                    oninput="noteBlocks[${index}].points=this.value;updateNotes()">${escapeHTML(note.points)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].points=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.points)}</textarea>
 
             `;
-
         }
 
 
@@ -2721,10 +2981,12 @@ function renderNotesEditor(){
                 <textarea
                     class="urdu-input"
                     placeholder="تفصیلی نوٹس لکھیں"
-                    oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].answer=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.answer)}</textarea>
 
             `;
-
         }
 
 
@@ -2735,7 +2997,11 @@ function renderNotesEditor(){
                 <textarea
                     class="urdu-input"
                     placeholder="MCQ سوال"
-                    oninput="noteBlocks[${index}].mcqQuestion=this.value;updateNotes()">${escapeHTML(note.mcqQuestion)}</textarea>
+                    oninput="
+                        noteBlocks[${index}].mcqQuestion=this.value;
+                        updateNotes()
+                    ">${escapeHTML(note.mcqQuestion)}</textarea>
+
 
                 <div class="mcq-options">
 
@@ -2750,8 +3016,13 @@ function renderNotesEditor(){
                             <input
                                 class="urdu-input"
                                 placeholder="Option ${letter}"
-                                value="${escapeHTML(note.options[i] || "")}"
-                                oninput="noteBlocks[${index}].options[${i}]=this.value;updateNotes()">
+                                value="${escapeHTML(
+                                    note.options[i] || ""
+                                )}"
+                                oninput="
+                                    noteBlocks[${index}].options[${i}]=this.value;
+                                    updateNotes()
+                                ">
 
                         </div>
 
@@ -2760,7 +3031,6 @@ function renderNotesEditor(){
                 </div>
 
             `;
-
         }
 
 
@@ -2782,37 +3052,75 @@ function renderNotesEditor(){
 
             </div>
 
+
             <select
-                onchange="changeNoteType(${index},this.value)">
+                onchange="
+                    changeNoteType(
+                        ${index},
+                        this.value
+                    )
+                ">
 
-                <option value="heading" ${note.type==="heading"?"selected":""}>
+                <option
+                    value="heading"
+                    ${note.type==="heading"?"selected":""}>
+
                     Heading
+
                 </option>
 
-                <option value="qa" ${note.type==="qa"?"selected":""}>
+
+                <option
+                    value="qa"
+                    ${note.type==="qa"?"selected":""}>
+
                     Question / Answer
+
                 </option>
 
-                <option value="definition" ${note.type==="definition"?"selected":""}>
+
+                <option
+                    value="definition"
+                    ${note.type==="definition"?"selected":""}>
+
                     Definition
+
                 </option>
 
-                <option value="points" ${note.type==="points"?"selected":""}>
+
+                <option
+                    value="points"
+                    ${note.type==="points"?"selected":""}>
+
                     Key Points
+
                 </option>
 
-                <option value="text" ${note.type==="text"?"selected":""}>
+
+                <option
+                    value="text"
+                    ${note.type==="text"?"selected":""}>
+
                     Detailed Text
+
                 </option>
 
-                <option value="mcq" ${note.type==="mcq"?"selected":""}>
+
+                <option
+                    value="mcq"
+                    ${note.type==="mcq"?"selected":""}>
+
                     MCQ
+
                 </option>
 
             </select>
 
+
             <div class="note-fields">
+
                 ${fields}
+
             </div>
 
         `;
@@ -2821,7 +3129,6 @@ function renderNotesEditor(){
         box.appendChild(div);
 
     });
-
 }
 
 
@@ -2842,7 +3149,9 @@ function updateNotes(){
 
         <div class="notes-title">
 
-            ${escapeHTML(school || "The Risen High School")}
+            ${escapeHTML(
+                school || "The Risen High School"
+            )}
 
             <div style="font-size:20px">
                 تعلیمی نوٹس
@@ -2854,29 +3163,41 @@ function updateNotes(){
         <div class="notes-info">
 
             <div>
-                جماعت: ${escapeHTML(cls)}
+                جماعت:
+                ${escapeHTML(cls)}
             </div>
 
             <div>
-                مضمون: ${escapeHTML(subject)}
+                مضمون:
+                ${escapeHTML(subject)}
             </div>
 
             <div>
-                باب: ${escapeHTML(chapter)}
+                باب:
+                ${escapeHTML(chapter)}
             </div>
 
         </div>
 
-        ${topic ? `
+
+        ${
+            topic
+            ?
+            `
             <div style="
                 text-align:center;
                 font-size:22px;
                 font-weight:bold;
                 margin:10px 0;
             ">
+
                 ${escapeHTML(topic)}
+
             </div>
-        ` : ""}
+            `
+            :
+            ""
+        }
 
     `;
 
@@ -2890,13 +3211,14 @@ function updateNotes(){
                 <div class="note-block">
 
                     <div class="note-heading">
+
                         ${escapeHTML(note.heading)}
+
                     </div>
 
                 </div>
 
             `;
-
         }
 
 
@@ -2909,13 +3231,17 @@ function updateNotes(){
                     <div class="note-question">
 
                         ${index+1}۔
+
                         ${nl2br(note.question)}
 
                     </div>
 
+
                     <div class="note-answer">
 
-                        <strong>جواب:</strong>
+                        <strong>
+                            جواب:
+                        </strong>
 
                         ${nl2br(note.answer)}
 
@@ -2924,7 +3250,6 @@ function updateNotes(){
                 </div>
 
             `;
-
         }
 
 
@@ -2940,6 +3265,7 @@ function updateNotes(){
 
                     </div>
 
+
                     <div class="definition">
 
                         ${nl2br(note.definition)}
@@ -2949,13 +3275,12 @@ function updateNotes(){
                 </div>
 
             `;
-
         }
 
 
         if(note.type==="points"){
 
-            const points=(note.points || "")
+            const points=(note.points||"")
                 .split("\n")
                 .filter(x=>x.trim()!=="");
 
@@ -2970,12 +3295,16 @@ function updateNotes(){
 
                     </div>
 
+
                     <div class="keypoints">
 
                         ${points.map((p,i)=>`
 
                             <div>
-                                ${i+1}۔ ${escapeHTML(p)}
+
+                                ${i+1}۔
+                                ${escapeHTML(p)}
+
                             </div>
 
                         `).join("")}
@@ -2985,7 +3314,6 @@ function updateNotes(){
                 </div>
 
             `;
-
         }
 
 
@@ -3004,7 +3332,6 @@ function updateNotes(){
                 </div>
 
             `;
-
         }
 
 
@@ -3017,23 +3344,47 @@ function updateNotes(){
                     <div class="note-question">
 
                         ${index+1}۔
+
                         ${nl2br(note.mcqQuestion)}
 
                     </div>
 
+
                     <div class="notes-mcq-options">
 
-                        <div>ⓐ ${escapeHTML(note.options[0] || "")}</div>
-                        <div>ⓑ ${escapeHTML(note.options[1] || "")}</div>
-                        <div>ⓒ ${escapeHTML(note.options[2] || "")}</div>
-                        <div>ⓓ ${escapeHTML(note.options[3] || "")}</div>
+                        <div>
+                            ⓐ
+                            ${escapeHTML(
+                                note.options[0] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓑ
+                            ${escapeHTML(
+                                note.options[1] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓒ
+                            ${escapeHTML(
+                                note.options[2] || ""
+                            )}
+                        </div>
+
+                        <div>
+                            ⓓ
+                            ${escapeHTML(
+                                note.options[3] || ""
+                            )}
+                        </div>
 
                     </div>
 
                 </div>
 
             `;
-
         }
 
     });
@@ -3059,17 +3410,15 @@ function updateNotes(){
             </div>
 
         `;
-
     }
 
 
     get("notesPreview").innerHTML=html;
-
 }
 
 
 /* =========================================================
-   LOGO UPLOAD
+   LOGO
    ========================================================= */
 
 function uploadLogo(event){
@@ -3080,7 +3429,9 @@ function uploadLogo(event){
         return;
     }
 
+
     const reader=new FileReader();
+
 
     reader.onload=function(e){
 
@@ -3094,18 +3445,18 @@ function uploadLogo(event){
 
     };
 
-    reader.readAsDataURL(file);
 
+    reader.readAsDataURL(file);
 }
 
 
 /* =========================================================
-   SAVE DRAFT
+   SAVE
    ========================================================= */
 
-function saveDraft(){
+function collectData(){
 
-    const data={
+    return {
 
         currentTab,
 
@@ -3126,6 +3477,7 @@ function saveDraft(){
 
         },
 
+
         notesInputs:{
 
             notesSchool:get("notesSchool").value,
@@ -3136,6 +3488,7 @@ function saveDraft(){
 
         },
 
+
         mcqs,
         shorts,
         longs,
@@ -3145,21 +3498,33 @@ function saveDraft(){
         logoData
 
     };
+}
 
 
-    localStorage.setItem(
-        "risenPaperNotesDraft",
-        JSON.stringify(data)
-    );
+function saveDraft(){
 
+    try{
 
-    alert("Draft محفوظ ہو گیا ہے۔");
+        localStorage.setItem(
+            "risenPaperNotesDraft",
+            JSON.stringify(collectData())
+        );
 
+        alert("Draft محفوظ ہو گیا ہے۔");
+
+    }catch(e){
+
+        alert(
+            "Draft save نہیں ہو سکا۔"
+        );
+
+        console.error(e);
+    }
 }
 
 
 /* =========================================================
-   LOAD DRAFT
+   LOAD
    ========================================================= */
 
 function loadDraft(){
@@ -3171,10 +3536,11 @@ function loadDraft(){
 
     if(!raw){
 
-        alert("کوئی محفوظ Draft نہیں ملا۔");
+        alert(
+            "کوئی محفوظ Draft نہیں ملا۔"
+        );
 
         return;
-
     }
 
 
@@ -3183,7 +3549,8 @@ function loadDraft(){
         const data=JSON.parse(raw);
 
 
-        const p=data.paperInputs || {};
+        const p=data.paperInputs||{};
+
 
         Object.keys(p).forEach(id=>{
 
@@ -3194,7 +3561,8 @@ function loadDraft(){
         });
 
 
-        const n=data.notesInputs || {};
+        const n=data.notesInputs||{};
+
 
         Object.keys(n).forEach(id=>{
 
@@ -3205,22 +3573,26 @@ function loadDraft(){
         });
 
 
-        mcqs=data.mcqs || [];
-        shorts=data.shorts || [];
-        longs=data.longs || [];
-        fills=data.fills || [];
-        tfs=data.tfs || [];
-        noteBlocks=data.noteBlocks || [];
-        logoData=data.logoData || "";
+        mcqs=data.mcqs||[];
+        shorts=data.shorts||[];
+        longs=data.longs||[];
+        fills=data.fills||[];
+        tfs=data.tfs||[];
+        noteBlocks=data.noteBlocks||[];
+        logoData=data.logoData||"";
 
 
         if(logoData){
 
             get("headerLogo").src=logoData;
 
-            get("headerLogo").classList.remove("hidden");
+            get("headerLogo")
+                .classList
+                .remove("hidden");
 
-            get("logoPlaceholder").classList.add("hidden");
+            get("logoPlaceholder")
+                .classList
+                .add("hidden");
 
         }
 
@@ -3232,27 +3604,29 @@ function loadDraft(){
         renderTF();
         renderNotesEditor();
 
+
         updatePaper();
         updateNotes();
 
 
         if(data.currentTab){
-
             showTab(data.currentTab);
-
         }
 
 
-        alert("Draft load ہو گیا ہے۔");
+        alert(
+            "Draft load ہو گیا ہے۔"
+        );
 
     }catch(error){
 
-        alert("Draft load نہیں ہو سکا۔");
+        alert(
+            "Draft load نہیں ہو سکا۔"
+        );
 
         console.error(error);
 
     }
-
 }
 
 
@@ -3265,6 +3639,7 @@ function clearAll(){
     const yes=confirm(
         "کیا آپ واقعی تمام سوالات اور نوٹس صاف کرنا چاہتے ہیں؟"
     );
+
 
     if(!yes){
         return;
@@ -3297,9 +3672,14 @@ function clearAll(){
     get("notesTopic").value="";
 
 
-    get("headerLogo").classList.add("hidden");
+    get("headerLogo")
+        .classList
+        .add("hidden");
 
-    get("logoPlaceholder").classList.remove("hidden");
+
+    get("logoPlaceholder")
+        .classList
+        .remove("hidden");
 
 
     renderMCQs();
@@ -3309,46 +3689,89 @@ function clearAll(){
     renderTF();
     renderNotesEditor();
 
+
     updatePaper();
     updateNotes();
-
 }
 
 
 /* =========================================================
-   PRINT
+   PRINT - FIXED
    ========================================================= */
 
 function printDocument(){
 
+    /*
+       پہلے دونوں print classes ختم
+    */
+
+    document.body.classList.remove(
+        "print-paper",
+        "print-notes"
+    );
+
+
+    /*
+       موجودہ tab کے مطابق print
+    */
+
     if(currentTab==="paper"){
 
-        document.title =
+        document.title=
             "The Risen High School - Paper";
+
+        document.body.classList.add(
+            "print-paper"
+        );
+
+        updatePaper();
 
     }else{
 
-        document.title =
+        document.title=
             "The Risen High School - Notes";
+
+        document.body.classList.add(
+            "print-notes"
+        );
+
+        updateNotes();
 
     }
 
-    window.print();
 
+    /*
+       Browser کو preview update کرنے کا وقت
+    */
+
+    setTimeout(function(){
+
+        window.print();
+
+    },150);
 }
 
 
-/* =========================================================
-   INITIAL SAMPLE
-   ========================================================= */
-
 /*
-   آپ چاہیں تو نیچے sample سوالات delete کر کے
-   خالی system بھی استعمال کر سکتے ہیں۔
-
-   فی الحال system خالی شروع ہوگا۔
+   Print مکمل ہونے کے بعد classes ختم
 */
 
+window.addEventListener(
+    "afterprint",
+    function(){
+
+        document.body.classList.remove(
+            "print-paper",
+            "print-notes"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
 renderMCQs();
 renderShorts();
@@ -3367,68 +3790,33 @@ updateNotes();
 
 let autoSaveTimer;
 
+
 function autoSave(){
 
     clearTimeout(autoSaveTimer);
 
-    autoSaveTimer=setTimeout(()=>{
+
+    autoSaveTimer=setTimeout(function(){
 
         try{
 
-            const data={
-
-                currentTab,
-
-                paperInputs:{
-
-                    schoolName:get("schoolName").value,
-                    examName:get("examName").value,
-                    paperClass:get("paperClass").value,
-                    paperSubject:get("paperSubject").value,
-                    paperChapter:get("paperChapter").value,
-                    paperDate:get("paperDate").value,
-                    paperTime:get("paperTime").value,
-                    totalMarks:get("totalMarks").value,
-                    studentName:get("studentName").value,
-                    rollNumber:get("rollNumber").value,
-                    sectionName:get("sectionName").value,
-                    teacherName:get("teacherName").value
-
-                },
-
-                notesInputs:{
-
-                    notesSchool:get("notesSchool").value,
-                    notesClass:get("notesClass").value,
-                    notesSubject:get("notesSubject").value,
-                    notesChapter:get("notesChapter").value,
-                    notesTopic:get("notesTopic").value
-
-                },
-
-                mcqs,
-                shorts,
-                longs,
-                fills,
-                tfs,
-                noteBlocks,
-                logoData
-
-            };
-
             localStorage.setItem(
                 "risenPaperNotesAutoSave",
-                JSON.stringify(data)
+                JSON.stringify(
+                    collectData()
+                )
             );
 
         }catch(e){
 
-            console.log("Auto save error",e);
+            console.log(
+                "Auto save error",
+                e
+            );
 
         }
 
     },700);
-
 }
 
 
@@ -3436,6 +3824,7 @@ document.addEventListener(
     "input",
     autoSave
 );
+
 
 document.addEventListener(
     "change",
@@ -3451,7 +3840,11 @@ document.addEventListener(
     "keydown",
     function(e){
 
-        if((e.ctrlKey || e.metaKey) && e.key==="s"){
+        if(
+            (e.ctrlKey || e.metaKey)
+            &&
+            e.key==="s"
+        ){
 
             e.preventDefault();
 
@@ -3459,7 +3852,12 @@ document.addEventListener(
 
         }
 
-        if((e.ctrlKey || e.metaKey) && e.key==="p"){
+
+        if(
+            (e.ctrlKey || e.metaKey)
+            &&
+            e.key==="p"
+        ){
 
             e.preventDefault();
 
