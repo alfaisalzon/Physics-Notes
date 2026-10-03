@@ -1443,6 +1443,16 @@ onclick="printDocument()">
 
 </button>
 
+<!-- NEW NOTES PNG DOWNLOAD BUTTON -->
+
+<button
+class="btn btn-warning"
+onclick="downloadNotes()">
+
+📥 Download Notes PNG
+
+</button>
+
 <button
 class="btn btn-secondary"
 onclick="saveDraft()">
@@ -1462,6 +1472,8 @@ onclick="saveDraft()">
 
 <h2>👁 Notes Preview</h2>
 
+<div>
+
 <button
 class="btn btn-primary"
 onclick="printDocument()">
@@ -1469,6 +1481,18 @@ onclick="printDocument()">
 Print A4
 
 </button>
+
+<!-- NEW NOTES PNG DOWNLOAD BUTTON -->
+
+<button
+class="btn btn-warning"
+onclick="downloadNotes()">
+
+📥 Download PNG
+
+</button>
+
+</div>
 
 </div>
 
@@ -3986,7 +4010,7 @@ updateNotes();
 
 
 /* =====================================================
-DOWNLOAD PNG
+DOWNLOAD PAPER PNG
 ===================================================== */
 
 async function downloadPaper(){
@@ -4088,6 +4112,182 @@ console.error(error);
 
 alert(
 "Paper download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
+);
+
+}
+
+}
+
+
+/* =====================================================
+DOWNLOAD NOTES PNG
+===================================================== */
+
+async function downloadNotes(){
+
+updateNotes();
+
+
+if(typeof html2canvas==="undefined"){
+
+alert(
+"Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
+);
+
+return;
+
+}
+
+
+try{
+
+if(document.fonts && document.fonts.ready){
+
+await document.fonts.ready;
+
+}
+
+
+await new Promise(
+resolve=>setTimeout(resolve,700)
+);
+
+
+const notesElement=get("notesPreview");
+
+
+const canvas=await html2canvas(
+notesElement,
+{
+scale:2,
+useCORS:true,
+allowTaint:false,
+backgroundColor:"#ffffff",
+logging:false,
+
+onclone:function(clonedDocument){
+
+const clonedNotes=
+clonedDocument.getElementById(
+"notesPreview"
+);
+
+if(clonedNotes){
+
+clonedNotes.style.width="210mm";
+
+clonedNotes.style.minHeight="297mm";
+
+clonedNotes.style.height="auto";
+
+clonedNotes.style.overflow="visible";
+
+clonedNotes.style.boxShadow="none";
+
+clonedNotes.style.margin="0 auto";
+
+}
+
+}
+
+}
+);
+
+
+canvas.toBlob(function(blob){
+
+if(!blob){
+
+alert(
+"Notes کی PNG تصویر نہیں بن سکی۔"
+);
+
+return;
+
+}
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+let subject=
+get("notesSubject").value ||
+"Notes";
+
+
+let chapter=
+get("notesChapter").value ||
+"";
+
+
+subject=subject.replace(
+/[\\/:*?"<>|]/g,
+"-"
+);
+
+chapter=chapter.replace(
+/[\\/:*?"<>|]/g,
+"-"
+);
+
+
+let fileName=
+"The Risen High School - "+
+subject;
+
+
+if(chapter){
+
+fileName+=
+" - "+
+chapter;
+
+}
+
+
+fileName+=
+" - Notes.png";
+
+
+const link=
+document.createElement("a");
+
+
+link.href=url;
+
+link.download=fileName;
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+
+setTimeout(
+function(){
+
+URL.revokeObjectURL(url);
+
+},
+3000
+);
+
+
+alert(
+"Notes کی PNG تصویر ڈاؤن لوڈ ہو گئی ہے۔"
+);
+
+},"image/png");
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Notes download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
 );
 
 }
