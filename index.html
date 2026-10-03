@@ -6,9 +6,6 @@
 
 <title>The Risen High School Paper and Notes</title>
 
-<!-- =========================================================
-     JAMEEL NOORI NASTALEEQ WEB FONT
-     ========================================================= -->
 <style>
 
 @font-face{
@@ -746,10 +743,6 @@ input.urdu-input{
     display:block;
 }
 
-/* =========================================================
-   HIDDEN
-   ========================================================= */
-
 .hidden{
     display:none !important;
 }
@@ -834,6 +827,11 @@ input.urdu-input{
     .a4{
         transform-origin:top center;
     }
+
+    .header-buttons button{
+        flex:1;
+        min-width:100px;
+    }
 }
 
 /* =========================================================
@@ -885,10 +883,6 @@ input.urdu-input{
 
 </style>
 
-<!-- =========================================================
-     HTML2CANVAS
-     صرف DOWNLOAD PAPER کے لیے
-     ========================================================= -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 </head>
@@ -896,10 +890,6 @@ input.urdu-input{
 <body>
 
 <div class="app">
-
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
 
 <header class="topbar no-print">
 
@@ -921,13 +911,37 @@ input.urdu-input{
 
         <div class="header-buttons">
 
-            <button onclick="saveDraft()">💾 Save</button>
+            <!-- =================================================
+                 NEW: SAVE PAPER
+                 ================================================= -->
 
-            <button onclick="loadDraft()">📂 Load</button>
+            <button onclick="savePaper()">
+                📄 Save Paper
+            </button>
 
-            <button onclick="clearAll()">🗑 Clear</button>
+            <!-- =================================================
+                 NEW: SAVE NOTES
+                 ================================================= -->
 
-            <button onclick="printDocument()">🖨 Print / PDF</button>
+            <button onclick="saveNotes()">
+                📚 Save Notes
+            </button>
+
+            <button onclick="saveDraft()">
+                💾 Save
+            </button>
+
+            <button onclick="loadDraft()">
+                📂 Load
+            </button>
+
+            <button onclick="clearAll()">
+                🗑 Clear
+            </button>
+
+            <button onclick="printDocument()">
+                🖨 Print / PDF
+            </button>
 
         </div>
 
@@ -937,10 +951,6 @@ input.urdu-input{
 
 
 <main class="main no-print">
-
-    <!-- =====================================================
-         TABS
-         ===================================================== -->
 
     <div class="tabs">
 
@@ -973,16 +983,11 @@ input.urdu-input{
 
         <div class="workspace">
 
-            <!-- LEFT EDITOR -->
-
             <div class="panel">
 
                 <h2 class="panel-title">
                     📄 Paper Settings
                 </h2>
-
-
-                <!-- SCHOOL INFORMATION -->
 
                 <div class="form-grid">
 
@@ -997,7 +1002,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Exam / Test</label>
@@ -1008,7 +1012,6 @@ input.urdu-input{
                             oninput="updatePaper()">
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1036,7 +1039,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Subject</label>
@@ -1047,7 +1049,6 @@ input.urdu-input{
                             oninput="updatePaper()">
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1060,7 +1061,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Date</label>
@@ -1072,7 +1072,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Time</label>
@@ -1083,7 +1082,6 @@ input.urdu-input{
                             oninput="updatePaper()">
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1100,14 +1098,10 @@ input.urdu-input{
                 </div>
 
 
-                <!-- STUDENT INFORMATION -->
-
                 <div class="section-box">
 
                     <div class="section-head">
-
                         <h3>👨‍🎓 Student Information</h3>
-
                     </div>
 
                     <div class="items">
@@ -1163,14 +1157,10 @@ input.urdu-input{
                 </div>
 
 
-                <!-- LOGO -->
-
                 <div class="section-box">
 
                     <div class="section-head">
-
                         <h3>🏫 School Logo</h3>
-
                     </div>
 
                     <div class="items">
@@ -1185,8 +1175,6 @@ input.urdu-input{
 
                 </div>
 
-
-                <!-- MCQS -->
 
                 <div class="section-box">
 
@@ -1204,16 +1192,10 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="mcqEditor"
-                        class="items">
-
-                    </div>
+                    <div id="mcqEditor" class="items"></div>
 
                 </div>
 
-
-                <!-- SHORT QUESTIONS -->
 
                 <div class="section-box">
 
@@ -1231,16 +1213,10 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="shortEditor"
-                        class="items">
-
-                    </div>
+                    <div id="shortEditor" class="items"></div>
 
                 </div>
 
-
-                <!-- LONG QUESTIONS -->
 
                 <div class="section-box">
 
@@ -1258,16 +1234,10 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="longEditor"
-                        class="items">
-
-                    </div>
+                    <div id="longEditor" class="items"></div>
 
                 </div>
 
-
-                <!-- FILL BLANKS -->
 
                 <div class="section-box">
 
@@ -1285,16 +1255,10 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="fillEditor"
-                        class="items">
-
-                    </div>
+                    <div id="fillEditor" class="items"></div>
 
                 </div>
 
-
-                <!-- TRUE FALSE -->
 
                 <div class="section-box">
 
@@ -1312,16 +1276,10 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="tfEditor"
-                        class="items">
-
-                    </div>
+                    <div id="tfEditor" class="items"></div>
 
                 </div>
 
-
-                <!-- PAPER BUTTONS -->
 
                 <div class="toolbar">
 
@@ -1340,10 +1298,6 @@ input.urdu-input{
                         🖨 Print / Save PDF
 
                     </button>
-
-                    <!-- =================================================
-                         NEW DOWNLOAD BUTTON
-                         ================================================= -->
 
                     <button
                         class="btn btn-warning"
@@ -1366,8 +1320,6 @@ input.urdu-input{
             </div>
 
 
-            <!-- RIGHT PREVIEW -->
-
             <div class="panel preview-panel">
 
                 <div class="preview-tools">
@@ -1383,8 +1335,6 @@ input.urdu-input{
                             Print A4
 
                         </button>
-
-                        <!-- NEW DOWNLOAD BUTTON -->
 
                         <button
                             class="btn btn-warning"
@@ -1405,7 +1355,6 @@ input.urdu-input{
                         <div
                             id="paperPreview"
                             class="a4">
-
                         </div>
 
                     </div>
@@ -1423,20 +1372,15 @@ input.urdu-input{
          NOTES MAKER
          ===================================================== -->
 
-    <section
-        id="notesSection"
-        class="hidden">
+    <section id="notesSection" class="hidden">
 
         <div class="workspace">
-
-            <!-- NOTES EDITOR -->
 
             <div class="panel">
 
                 <h2 class="panel-title">
                     📚 Notes Settings
                 </h2>
-
 
                 <div class="form-grid">
 
@@ -1450,7 +1394,6 @@ input.urdu-input{
                             oninput="updateNotes()">
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1480,7 +1423,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Subject</label>
@@ -1492,7 +1434,6 @@ input.urdu-input{
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>Chapter</label>
@@ -1503,7 +1444,6 @@ input.urdu-input{
                             oninput="updateNotes()">
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1518,8 +1458,6 @@ input.urdu-input{
 
                 </div>
 
-
-                <!-- NOTE BLOCKS -->
 
                 <div class="section-box">
 
@@ -1537,11 +1475,7 @@ input.urdu-input{
 
                     </div>
 
-                    <div
-                        id="notesEditor"
-                        class="items">
-
-                    </div>
+                    <div id="notesEditor" class="items"></div>
 
                 </div>
 
@@ -1577,8 +1511,6 @@ input.urdu-input{
             </div>
 
 
-            <!-- NOTES PREVIEW -->
-
             <div class="panel preview-panel">
 
                 <div class="preview-tools">
@@ -1602,7 +1534,6 @@ input.urdu-input{
                         <div
                             id="notesPreview"
                             class="a4 notes-page">
-
                         </div>
 
                     </div>
@@ -1619,10 +1550,6 @@ input.urdu-input{
 
 </div>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
 
 <script>
 
@@ -1717,9 +1644,7 @@ function setToday(){
     const today = new Date();
 
     const y = today.getFullYear();
-
     const m = String(today.getMonth()+1).padStart(2,"0");
-
     const d = String(today.getDate()).padStart(2,"0");
 
     get("paperDate").value = `${y}-${m}-${d}`;
@@ -1839,7 +1764,6 @@ function renderMCQs(){
                     onchange="mcqs[${index}].answer=this.value;updatePaper()">
 
                     <option value="">منتخب کریں</option>
-
                     <option value="A" ${mcq.answer==="A"?"selected":""}>A</option>
                     <option value="B" ${mcq.answer==="B"?"selected":""}>B</option>
                     <option value="C" ${mcq.answer==="C"?"selected":""}>C</option>
@@ -1864,9 +1788,7 @@ function renderMCQs(){
 
 function addShort(data){
 
-    data = data || {
-        question:""
-    };
+    data = data || {question:""};
 
     shorts.push(data);
 
@@ -1949,9 +1871,7 @@ function renderShorts(){
 
 function addLong(data){
 
-    data = data || {
-        question:""
-    };
+    data = data || {question:""};
 
     longs.push(data);
 
@@ -2034,9 +1954,7 @@ function renderLongs(){
 
 function addFill(data){
 
-    data=data || {
-        question:""
-    };
+    data=data || {question:""};
 
     fills.push(data);
 
@@ -2235,7 +2153,6 @@ function updatePaper(){
     const section = get("sectionName").value;
     const teacher = get("teacherName").value;
 
-
     let dateText = "";
 
     if(date){
@@ -2253,7 +2170,6 @@ function updatePaper(){
             );
 
     }
-
 
     let html = `
 
@@ -2307,7 +2223,6 @@ function updatePaper(){
 
         </div>
 
-
         <div class="student-row">
 
             <div class="student-cell">
@@ -2330,8 +2245,6 @@ function updatePaper(){
 
     `;
 
-
-    /* MCQs */
 
     if(mcqs.length){
 
@@ -2387,8 +2300,6 @@ function updatePaper(){
     }
 
 
-    /* SHORT */
-
     if(shorts.length){
 
         html += `
@@ -2426,8 +2337,6 @@ function updatePaper(){
     }
 
 
-    /* LONG */
-
     if(longs.length){
 
         html += `
@@ -2464,8 +2373,6 @@ function updatePaper(){
     }
 
 
-    /* FILL */
-
     if(fills.length){
 
         html += `
@@ -2496,8 +2403,6 @@ function updatePaper(){
 
     }
 
-
-    /* TRUE FALSE */
 
     if(tfs.length){
 
@@ -2586,7 +2491,6 @@ function updatePaper(){
 
     `;
 
-
     get("paperPreview").innerHTML = html;
 
 }
@@ -2663,7 +2567,6 @@ function renderNotesEditor(){
         const div=document.createElement("div");
 
         div.className="note-editor";
-
 
         let fields="";
 
@@ -2847,7 +2750,6 @@ function renderNotesEditor(){
             </div>
 
         `;
-
 
         box.appendChild(div);
 
@@ -3131,6 +3033,80 @@ function uploadLogo(event){
 
 
 /* =========================================================
+   SAVE PAPER ONLY
+   ========================================================= */
+
+function savePaper(){
+
+    const paperData={
+
+        schoolName:get("schoolName").value,
+        examName:get("examName").value,
+        paperClass:get("paperClass").value,
+        paperSubject:get("paperSubject").value,
+        paperChapter:get("paperChapter").value,
+        paperDate:get("paperDate").value,
+        paperTime:get("paperTime").value,
+        totalMarks:get("totalMarks").value,
+
+        studentName:get("studentName").value,
+        rollNumber:get("rollNumber").value,
+        sectionName:get("sectionName").value,
+        teacherName:get("teacherName").value,
+
+        mcqs:mcqs,
+        shorts:shorts,
+        longs:longs,
+        fills:fills,
+        tfs:tfs,
+
+        logoData:logoData
+
+    };
+
+
+    localStorage.setItem(
+        "risenSavedPaper",
+        JSON.stringify(paperData)
+    );
+
+
+    alert("Paper محفوظ ہو گیا ہے۔");
+
+}
+
+
+/* =========================================================
+   SAVE NOTES ONLY
+   ========================================================= */
+
+function saveNotes(){
+
+    const notesData={
+
+        notesSchool:get("notesSchool").value,
+        notesClass:get("notesClass").value,
+        notesSubject:get("notesSubject").value,
+        notesChapter:get("notesChapter").value,
+        notesTopic:get("notesTopic").value,
+
+        noteBlocks:noteBlocks
+
+    };
+
+
+    localStorage.setItem(
+        "risenSavedNotes",
+        JSON.stringify(notesData)
+    );
+
+
+    alert("Notes محفوظ ہو گئے ہیں۔");
+
+}
+
+
+/* =========================================================
    SAVE DRAFT
    ========================================================= */
 
@@ -3212,7 +3188,6 @@ function loadDraft(){
     try{
 
         const data=JSON.parse(raw);
-
 
         const p=data.paperInputs || {};
 
@@ -3352,7 +3327,6 @@ function clearAll(){
 
 async function downloadPaper(){
 
-    /* پہلے موجودہ preview کو update کریں */
     updatePaper();
 
     const paper = get("paperPreview");
@@ -3365,7 +3339,6 @@ async function downloadPaper(){
 
     }
 
-    /* html2canvas load ہوا ہے یا نہیں */
     if(typeof html2canvas === "undefined"){
 
         alert(
@@ -3378,19 +3351,12 @@ async function downloadPaper(){
 
     try{
 
-        /*
-         * Urdu font مکمل load ہونے کا انتظار
-         */
         if(document.fonts && document.fonts.ready){
 
             await document.fonts.ready;
 
         }
 
-
-        /*
-         * Rendering مکمل ہونے کے لیے تھوڑا وقت
-         */
         await new Promise(function(resolve){
 
             setTimeout(resolve,700);
@@ -3398,9 +3364,6 @@ async function downloadPaper(){
         });
 
 
-        /*
-         * Paper کو image میں تبدیل کریں
-         */
         const canvas = await html2canvas(
             paper,
             {
@@ -3416,9 +3379,6 @@ async function downloadPaper(){
         );
 
 
-        /*
-         * PNG بنائیں
-         */
         canvas.toBlob(
             function(blob){
 
@@ -3435,9 +3395,6 @@ async function downloadPaper(){
                     URL.createObjectURL(blob);
 
 
-                /*
-                 * File name
-                 */
                 let subject =
                     get("paperSubject").value ||
                     "Paper";
@@ -3528,16 +3485,8 @@ function printDocument(){
 
 
 /* =========================================================
-   INITIAL SAMPLE
+   INITIAL
    ========================================================= */
-
-/*
-   آپ چاہیں تو نیچے sample سوالات delete کر کے
-   خالی system بھی استعمال کر سکتے ہیں۔
-
-   فی الحال system خالی شروع ہوگا۔
-*/
-
 
 renderMCQs();
 renderShorts();
