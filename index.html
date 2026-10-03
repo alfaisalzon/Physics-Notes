@@ -3,120 +3,971 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Risen High School - Paper and Notes Maker</title>
+<title>The Risen High School - Paper & Notes Maker</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
 <style>
-@font-face {
-  font-family: "Jameel Noori Nastaleeq";
-  src: url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff") format("woff");
-  font-display: swap;
+@font-face{
+  font-family:"Jameel Noori Nastaleeq";
+  src:local("Jameel Noori Nastaleeq");
+}
+:root{
+  --blue:#123b70;
+  --blue2:#1769aa;
+  --light:#eef4fb;
+  --border:#d8e0eb;
+  --green:#13865c;
+  --red:#c0392b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#edf1f7;
+  color:#1e293b;
+  font-family:Arial,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+.topbar{
+  background:linear-gradient(120deg,#102d52,#1769aa);
+  color:white;
+  padding:18px;
+  text-align:center;
+}
+.topbar h1{font-size:23px;margin:0 0 6px}
+.topbar p{margin:0;font-size:13px}
+.container{
+  max-width:1500px;
+  margin:18px auto;
+  padding:0 12px;
+}
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:14px;
+}
+.tab-btn,.btn{
+  border:0;
+  border-radius:7px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.tab-btn{background:#dce7f5;color:#17385e}
+.tab-btn.active{background:var(--blue);color:white}
+.btn{background:var(--blue2);color:white}
+.btn.green{background:var(--green)}
+.btn.red{background:var(--red)}
+.btn.gray{background:#596579}
+.btn.small{padding:7px 10px;font-size:13px}
+.layout{
+  display:grid;
+  grid-template-columns:minmax(300px,430px) minmax(0,1fr);
+  gap:16px;
+  align-items:start;
+}
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 3px 12px #172d4610;
+}
+.panel h2{
+  color:var(--blue);
+  font-size:19px;
+  margin:0 0 15px;
+}
+.field{margin-bottom:12px}
+.field label{
+  display:block;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:5px;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:6px;
+  padding:10px;
+  background:white;
+  min-width:0;
+}
+.field textarea{
+  min-height:75px;
+  resize:vertical;
+  line-height:1.9;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 10px;
+}
+.full{grid-column:1/-1}
+.action-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.question-card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
+  margin:10px 0;
+  background:#fafcff;
+}
+.question-card strong{font-size:13px}
+.question-card textarea{margin-top:8px}
+.options-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:8px;
+}
+.options-grid input{
+  width:100%;
+  padding:8px;
+  border:1px solid #cbd5e1;
+  border-radius:5px;
+}
+.hidden{display:none!important}
+.preview-wrap{overflow:auto;background:#dce3ed;padding:14px;border-radius:8px}
+.a4{
+  width:210mm;
+  min-height:297mm;
+  background:white;
+  color:#111;
+  margin:0 auto;
+  padding:14mm;
+  position:relative;
+  box-shadow:0 4px 20px #0002;
+  direction:rtl;
+  font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif;
+  font-size:15px;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+}
+.paper-header{
+  text-align:center;
+  border-bottom:2px solid #111;
+  padding-bottom:7px;
+  margin-bottom:8px;
+}
+.preview-school{
+  font-family:Arial,sans-serif;
+  font-weight:900;
+  font-size:23px;
+  line-height:1.3;
+  direction:ltr;
+}
+.preview-exam{font-size:20px;font-weight:bold;margin-top:5px}
+.preview-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:6px;
+  font-family:Arial,sans-serif;
+  direction:ltr;
+  font-size:12px;
+  margin-top:9px;
+}
+.meta-cell{border:1px solid #111;padding:5px;min-height:27px}
+.student-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1.4fr;
+  direction:ltr;
+  margin:9px 0;
+  border:1px solid #111;
+}
+.student-cell{
+  min-height:32px;
+  padding:5px;
+  border-right:1px solid #111;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  overflow-wrap:anywhere;
+}
+.student-cell:last-child{border-right:none}
+.paper-section{margin-top:13px}
+.paper-section-title{
+  font-size:17px;
+  font-weight:bold;
+  border-bottom:1px solid #111;
+  padding-bottom:2px;
+  margin-bottom:7px;
+}
+.mcq-preview{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px 20px;
+}
+.mcq-preview-item{break-inside:avoid;line-height:1.8}
+.mcq-options-preview{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 10px;
+  font-size:13px;
+  line-height:1.9;
+}
+.q-row{
+  display:flex;
+  gap:7px;
+  margin-bottom:9px;
+  line-height:1.9;
+  break-inside:avoid;
+}
+.q-number{font-weight:bold;min-width:23px;direction:ltr}
+.long-answer{margin-bottom:12px;break-inside:avoid}
+.answer-lines{
+  height:65px;
+  margin-top:4px;
+  background:repeating-linear-gradient(
+    to bottom,transparent 0,transparent 22px,#999 23px
+  );
+}
+.fill-row{margin-bottom:8px;line-height:1.9}
+.truefalse{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  margin-bottom:7px;
+  line-height:1.9;
+}
+.tf-options{font-family:Arial,sans-serif;white-space:nowrap}
+.short-question-row{
+  display:flex;
+  gap:7px;
+  margin-bottom:9px;
+  line-height:1.9;
+  break-inside:avoid;
+}
+.urdu-question,.urdu-question *{
+  font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif!important;
+  font-weight:normal;
+  direction:rtl;
+  unicode-bidi:plaintext;
+}
+.paper-footer{
+  border-top:1px solid #555;
+  margin-top:25px;
+  padding-top:5px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+}
+.note-body{
+  font-size:16px;
+  line-height:2.2;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.note-title{
+  font-size:22px;
+  text-align:center;
+  font-weight:bold;
+  margin:12px 0;
+}
+.saved-item{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
+  margin:8px 0;
+  display:flex;
+  gap:8px;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.saved-item small{color:#64748b}
+.status{
+  font-size:13px;
+  color:var(--green);
+  margin-top:8px;
+}
+@media(max-width:950px){
+  .layout{grid-template-columns:1fr}
+  .preview-wrap{padding:6px}
+}
+@media(max-width:600px){
+  .topbar h1{font-size:19px}
+  .form-grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .panel{padding:12px}
+  .tabs{gap:5px}
+  .tab-btn{padding:9px;font-size:12px}
+}
+@page{size:A4;margin:0}
+@media print{
+  body{background:white!important}
+  .topbar,.tabs,.editor-panel,.no-print{display:none!important}
+  .container{margin:0;padding:0;max-width:none}
+  .layout{display:block}
+  .preview-panel{padding:0;border:0;box-shadow:none}
+  .preview-wrap{padding:0;background:white;overflow:visible}
+  .a4{
+    width:210mm;
+    min-height:297mm;
+    margin:0;
+    padding:14mm;
+    box-shadow:none;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <h1>THE RISEN HIGH SCHOOL</h1>
+  <p>Paper Maker • Notes Maker • Print & Save PDF</p>
+</header>
+
+<div class="container">
+  <div class="tabs no-print">
+    <button class="tab-btn active" onclick="showTab('paper',this)">پیپر بنائیں</button>
+    <button class="tab-btn" onclick="showTab('notes',this)">نوٹس بنائیں</button>
+    <button class="tab-btn" onclick="showTab('saved',this)">محفوظ شدہ مواد</button>
+  </div>
+
+  <!-- PAPER MAKER -->
+  <section id="paperTab" class="layout">
+    <div class="panel editor-panel">
+      <h2>پیپر کی معلومات</h2>
+
+      <div class="form-grid">
+        <div class="field full">
+          <label>School Name / سکول کا نام</label>
+          <input id="schoolName" value="THE RISEN HIGH SCHOOL" oninput="updatePaper()">
+        </div>
+        <div class="field full">
+          <label>Exam / Test Name</label>
+          <input id="examName" value="Monthly Test" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Class / جماعت</label>
+          <select id="className" onchange="updatePaper()">
+            <option>Playgroup</option>
+            <option>Nursery</option>
+            <option>Prep</option>
+            <option>Class 1</option><option>Class 2</option>
+            <option>Class 3</option><option>Class 4</option>
+            <option>Class 5</option><option>Class 6</option>
+            <option>Class 7</option><option>Class 8</option>
+            <option selected>9th Class</option>
+            <option>10th Class</option>
+            <option>11th Class</option>
+            <option>12th Class</option>
+            <option>FA Part 1</option><option>FA Part 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Subject / مضمون</label>
+          <input id="subject" placeholder="مثلاً طبیعیات" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Chapter / Unit</label>
+          <input id="chapter" placeholder="Chapter 1" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Date / تاریخ</label>
+          <input id="paperDate" type="date" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Time / وقت</label>
+          <input id="paperTime" value="1 Hour" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Total Marks / کل نمبر</label>
+          <input id="totalMarks" type="number" value="50" min="0" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Passing Marks / کامیابی کے نمبر</label>
+          <input id="passingMarks" type="number" value="17" min="0" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Teacher Name / استاد</label>
+          <input id="teacherName" value="Sir Rana Faisal" oninput="updatePaper()">
+        </div>
+        <div class="field">
+          <label>Section / سیکشن</label>
+          <input id="sectionName" placeholder="Morning / Evening" oninput="updatePaper()">
+        </div>
+      </div>
+
+      <hr>
+      <h2>سوالات شامل کریں</h2>
+
+      <div class="field">
+        <label>MCQs کی تعداد</label>
+        <input id="mcqCount" type="number" min="0" value="5" oninput="updatePaper()">
+      </div>
+      <div id="mcqEditor"></div>
+      <button class="btn small" onclick="addMCQ()">+ MCQ شامل کریں</button>
+
+      <hr>
+      <div class="field">
+        <label>Short Questions / مختصر سوالات</label>
+        <input id="shortMarks" type="number" min="0" value="2" placeholder="فی سوال نمبر">
+      </div>
+      <div id="shortEditor"></div>
+      <button class="btn small" onclick="addQuestion('shorts')">+ مختصر سوال شامل کریں</button>
+
+      <hr>
+      <div class="field">
+        <label>Long Questions / تفصیلی سوالات</label>
+        <input id="longMarks" type="number" min="0" value="5" placeholder="فی سوال نمبر">
+      </div>
+      <div id="longEditor"></div>
+      <button class="btn small" onclick="addQuestion('longs')">+ تفصیلی سوال شامل کریں</button>
+
+      <hr>
+      <div class="field">
+        <label>Fill in the Blanks / خالی جگہیں</label>
+        <input id="fillMarks" type="number" min="0" value="1" placeholder="فی سوال نمبر">
+      </div>
+      <div id="fillEditor"></div>
+      <button class="btn small" onclick="addQuestion('fills')">+ خالی جگہ شامل کریں</button>
+
+      <hr>
+      <div class="field">
+        <label>True / False / درست یا غلط</label>
+        <input id="tfMarks" type="number" min="0" value="1" placeholder="فی سوال نمبر">
+      </div>
+      <div id="tfEditor"></div>
+      <button class="btn small" onclick="addQuestion('tfs')">+ درست یا غلط سوال شامل کریں</button>
+
+      <div class="action-row">
+        <button class="btn green" onclick="saveCurrent('paper')">پیپر محفوظ کریں</button>
+        <button class="btn" onclick="printDocument()">Print / PDF</button>
+        <button class="btn gray" onclick="clearPaper()">نیا پیپر</button>
+      </div>
+      <div id="paperStatus" class="status"></div>
+    </div>
+
+    <div class="panel preview-panel">
+      <h2 class="no-print">پیپر کا پری ویو</h2>
+      <div class="preview-wrap">
+        <div id="paperPreview" class="a4"></div>
+      </div>
+      <div class="action-row no-print">
+        <button class="btn green" onclick="printDocument()">پرنٹ کریں / PDF محفوظ کریں</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES MAKER -->
+  <section id="notesTab" class="layout hidden">
+    <div class="panel editor-panel">
+      <h2>نوٹس بنانے کا فارم</h2>
+      <div class="field">
+        <label>School Name</label>
+        <input id="noteSchool" value="THE RISEN HIGH SCHOOL" oninput="updateNotes()">
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label>جماعت</label>
+          <select id="noteClass" onchange="updateNotes()">
+            <option>Playgroup</option><option>Nursery</option><option>Prep</option>
+            <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+            <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+            <option>Class 7</option><option>Class 8</option><option>9th Class</option>
+            <option>10th Class</option><option>11th Class</option><option>12th Class</option>
+            <option>FA Part 1</option><option>FA Part 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>مضمون</label>
+          <input id="noteSubject" placeholder="مثلاً کیمسٹری" oninput="updateNotes()">
+        </div>
+        <div class="field">
+          <label>باب / ٹاپک</label>
+          <input id="noteChapter" placeholder="باب کا نام" oninput="updateNotes()">
+        </div>
+        <div class="field">
+          <label>نوٹس کی قسم</label>
+          <select id="noteType" onchange="updateNotes()">
+            <option>سوالات و جوابات</option>
+            <option>مختصر نوٹس</option>
+            <option>اہم سوالات</option>
+            <option>تعریفات</option>
+            <option>MCQs</option>
+            <option>مکمل باب</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>عنوان</label>
+        <input id="noteTitle" placeholder="یہاں عنوان لکھیں" oninput="updateNotes()">
+      </div>
+      <div class="field">
+        <label>نوٹس کا متن (اردو یا English)</label>
+        <textarea id="noteContent" style="min-height:280px" placeholder="اپنے نوٹس یہاں لکھیں۔ نئی سطر کے لیے Enter دبائیں۔" oninput="updateNotes()"></textarea>
+      </div>
+      <div class="field">
+        <label>Teacher Name</label>
+        <input id="noteTeacher" value="Sir Rana Faisal" oninput="updateNotes()">
+      </div>
+      <div class="action-row">
+        <button class="btn green" onclick="saveCurrent('notes')">نوٹس محفوظ کریں</button>
+        <button class="btn" onclick="printDocument()">Print / PDF</button>
+        <button class="btn gray" onclick="clearNotes()">نئے نوٹس</button>
+      </div>
+      <div id="noteStatus" class="status"></div>
+    </div>
+
+    <div class="panel preview-panel">
+      <h2 class="no-print">نوٹس کا پری ویو</h2>
+      <div class="preview-wrap">
+        <div id="notesPreview" class="a4"></div>
+      </div>
+      <div class="action-row no-print">
+        <button class="btn green" onclick="printDocument()">پرنٹ کریں / PDF محفوظ کریں</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAVED ITEMS -->
+  <section id="savedTab" class="hidden">
+    <div class="panel">
+      <h2>محفوظ شدہ پیپرز اور نوٹس</h2>
+      <p>آپ کے محفوظ کیے گئے پیپرز اور نوٹس اسی براؤزر میں محفوظ رہیں گے۔</p>
+      <div class="action-row">
+        <button class="btn" onclick="renderSaved()">فہرست تازہ کریں</button>
+        <button class="btn red" onclick="deleteAllSaved()">تمام محفوظ شدہ مواد حذف کریں</button>
+      </div>
+      <div id="savedList"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let mcqs = [];
+let shorts = [];
+let longs = [];
+let fills = [];
+let tfs = [];
+let currentMode = "paper";
+
+const questionArrays = {shorts, longs, fills, tfs};
+
+const questionConfig = {
+  shorts:{editor:"shortEditor",label:"مختصر سوال"},
+  longs:{editor:"longEditor",label:"تفصیلی سوال"},
+  fills:{editor:"fillEditor",label:"خالی جگہ"},
+  tfs:{editor:"tfEditor",label:"درست یا غلط"}
+};
+
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
 }
 
-* { box-sizing: border-box; }
+function val(id){return $(id).value.trim();}
 
-body {
-  margin: 0;
-  background: #f0f2f5;
-  color: #111;
-  font-family: Arial, sans-serif;
+function showTab(tab,button){
+  currentMode = tab;
+  $("paperTab").classList.toggle("hidden",tab!=="paper");
+  $("notesTab").classList.toggle("hidden",tab!=="notes");
+  $("savedTab").classList.toggle("hidden",tab!=="saved");
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  if(button) button.classList.add("active");
+  if(tab==="saved") renderSaved();
 }
 
-button, input, select, textarea { font: inherit; }
-button { cursor: pointer; }
-
-.topbar {
-  background: #0b3d91;
-  color: white;
-  padding: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+function addMCQ(data){
+  mcqs.push(data || {q:"",a:"",b:"",c:"",d:"",correct:""});
+  renderMCQs();
+  updatePaper();
 }
 
-.topbar h2 { margin: 0; font-size: 20px; }
-.topbar button {
-  border: 0;
-  border-radius: 5px;
-  padding: 9px 12px;
-  margin: 2px;
-  background: white;
-  color: #0b3d91;
-  font-weight: bold;
+function removeMCQ(index){
+  mcqs.splice(index,1);
+  renderMCQs();
+  updatePaper();
 }
 
-.main { max-width: 1500px; margin: auto; padding: 12px; }
-
-.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-.tab {
-  padding: 10px 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: white;
-  font-weight: bold;
-}
-.tab.active { background: #0b3d91; color: white; }
-
-.layout {
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
-  gap: 12px;
-}
-
-.panel {
-  background: white;
-  border-radius: 8px;
-  padding: 14px;
-  box-shadow: 0 2px 8px #00000012;
-  min-width: 0;
-}
-
-.panel h3 { margin-top: 0; }
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 9px;
+function renderMCQs(){
+  $("mcqEditor").innerHTML = mcqs.map((q,i)=>`
+    <div class="question-card">
+      <strong>MCQ ${i+1}</strong>
+      <button class="btn red small" style="float:left" onclick="removeMCQ(${i})">حذف</button>
+      <textarea placeholder="سوال لکھیں" oninput="mcqs[${i}].q=this.value;updatePaper()">${escapeHTML(q.q)}</textarea>
+      <div class="options-grid">
+        <input placeholder="Option A" value="${escapeHTML(q.a)}" oninput="mcqs[${i}].a=this.value;updatePaper()">
+        <input placeholder="Option B" value="${escapeHTML(q.b)}" oninput="mcqs[${i}].b=this.value;updatePaper()">
+        <input placeholder="Option C" value="${escapeHTML(q.c)}" oninput="mcqs[${i}].c=this.value;updatePaper()">
+        <input placeholder="Option D" value="${escapeHTML(q.d)}" oninput="mcqs[${i}].d=this.value;updatePaper()">
+      </div>
+      <div class="field" style="margin-top:8px">
+        <label>درست جواب (اختیاری، استاد کے لیے)</label>
+        <select onchange="mcqs[${i}].correct=this.value">
+          <option value="" ${q.correct===""?"selected":""}>منتخب کریں</option>
+          <option value="A" ${q.correct==="A"?"selected":""}>A</option>
+          <option value="B" ${q.correct==="B"?"selected":""}>B</option>
+          <option value="C" ${q.correct==="C"?"selected":""}>C</option>
+          <option value="D" ${q.correct==="D"?"selected":""}>D</option>
+        </select>
+      </div>
+    </div>
+  `).join("");
 }
 
-.field { display: flex; flex-direction: column; gap: 4px; }
-.field.full { grid-column: 1 / -1; }
-.field label { font-size: 13px; font-weight: bold; }
-.field input, .field select, .field textarea {
-  width: 100%;
-  padding: 9px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-  background: white;
+function addQuestion(type,data){
+  questionArrays[type].push(data || {q:""});
+  renderQuestions(type);
+  updatePaper();
 }
 
-.urdu-input {
-  font-family: "Jameel Noori Nastaleeq", serif !important;
-  direction: rtl;
+function removeQuestion(type,index){
+  questionArrays[type].splice(index,1);
+  renderQuestions(type);
+  updatePaper();
 }
 
-.btn {
-  border: 0;
-  padding: 9px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-  margin: 3px 2px 3px 0;
-}
-.primary { background: #0b3d91; color: white; }
-.green { background: #16803c; color: white; }
-.red { background: #c62828; color: white; }
-.orange { background: #e79b00; color: white; }
-.grey { background: #e6e6e6; color: #111; }
+function renderQuestions(type){
+  const cfg = questionConfig[type];
+  const arr = questionArrays[type];
 
-.editor-section { border-top: 1px solid #ddd; margin-top: 16px; padding-top: 12px; }
-.editor-section h3 { margin-bottom: 10px; }
-
-.q-card {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 9px;
-  margin-bottom: 9px;
-  background: #fafafa;
+  $(cfg.editor).innerHTML = arr.map((q,i)=>`
+    <div class="question-card">
+      <strong>${cfg.label} ${i+1}</strong>
+      <button class="btn red small" style="float:left" onclick="removeQuestion('${type}',${i})">حذف</button>
+      <textarea placeholder="${cfg.label} لکھیں"
+        oninput="questionArrays['${type}'][${i}].q=this.value;updatePaper()">${escapeHTML(q.q)}</textarea>
+    </div>
+  `).join("");
 }
-.q
+
+function sectionTitle(title,marks){
+  const m = Number(marks) || 0;
+  return `<div class="paper-section">
+    <div class="paper-section-title">${title} <span style="font-size:12px;font-family:Arial,sans-serif;direction:ltr">(${m} marks each)</span></div>`;
+}
+
+function updatePaper(){
+  const school = val("schoolName") || "THE RISEN HIGH SCHOOL";
+  const exam = val("examName") || "Test";
+  const cls = val("className");
+  const subject = val("subject") || "________";
+  const chapter = val("chapter") || "________";
+  const date = val("paperDate") || "________";
+  const time = val("paperTime") || "________";
+  const total = val("totalMarks") || "0";
+  const passing = val("passingMarks") || "0";
+  const teacher = val("teacherName") || "Sir Rana Faisal";
+  const section = val("sectionName") || "________";
+  const mcqCount = Number(val("mcqCount")) || 0;
+
+  let html = `
+    <div class="paper-header">
+      <div class="preview-school">${escapeHTML(school)}</div>
+      <div class="preview-exam urdu-question">${escapeHTML(exam)}</div>
+      <div class="preview-meta">
+        <div class="meta-cell">Class: ${escapeHTML(cls)}</div>
+        <div class="meta-cell">Subject: ${escapeHTML(subject)}</div>
+        <div class="meta-cell">Chapter: ${escapeHTML(chapter)}</div>
+        <div class="meta-cell">Date: ${escapeHTML(date)}</div>
+        <div class="meta-cell">Time: ${escapeHTML(time)}</div>
+        <div class="meta-cell">Total Marks: ${escapeHTML(total)}</div>
+      </div>
+    </div>
+    <div class="student-row">
+      <div class="student-cell">Student Name: __________________</div>
+      <div class="student-cell">Roll No: ______</div>
+      <div class="student-cell">Section: ${escapeHTML(section)}</div>
+      <div class="student-cell">Obtained Marks: ______</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:10px;font-size:12px">
+      <span>Passing Marks: ${escapeHTML(passing)}</span>
+      <span>Teacher: ${escapeHTML(teacher)}</span>
+    </div>
+  `;
+
+  if(mcqCount > 0){
+    html += sectionTitle("حصہ اوّل: کثیر الانتخابی سوالات",0);
+    html += `<div class="mcq-preview">`;
+    for(let i=0;i<mcqCount;i++){
+      const q = mcqs[i] || {q:"",a:"",b:"",c:"",d:""};
+      html += `<div class="mcq-preview-item">
+        <div><b>${i+1}.</b> <span class="urdu-question">${escapeHTML(q.q)}</span></div>
+        <div class="mcq-options-preview">
+          <div>(A) <span class="urdu-question">${escapeHTML(q.a)}</span></div>
+          <div>(B) <span class="urdu-question">${escapeHTML(q.b)}</span></div>
+          <div>(C) <span class="urdu-question">${escapeHTML(q.c)}</span></div>
+          <div>(D) <span class="urdu-question">${escapeHTML(q.d)}</span></div>
+        </div>
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  if(shorts.length){
+    html += sectionTitle("حصہ دوم: مختصر سوالات",val("shortMarks"));
+    shorts.forEach((q,i)=>{
+      html += `<div class="short-question-row">
+        <div class="q-number">${i+1}.</div>
+        <div class="urdu-question">${escapeHTML(q.q)}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  if(longs.length){
+    html += sectionTitle("حصہ سوم: تفصیلی سوالات",val("longMarks"));
+    longs.forEach((q,i)=>{
+      html += `<div class="long-answer">
+        <div class="q-row">
+          <div class="q-number">${i+1}.</div>
+          <div class="urdu-question">${escapeHTML(q.q)}</div>
+        </div>
+        <div class="answer-lines"></div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  if(fills.length){
+    html += sectionTitle("خالی جگہیں پُر کریں",val("fillMarks"));
+    fills.forEach((q,i)=>{
+      html += `<div class="fill-row">
+        <b>${i+1}.</b> <span class="urdu-question">${escapeHTML(q.q)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  if(tfs.length){
+    html += sectionTitle("درست یا غلط کی نشاندہی کریں",val("tfMarks"));
+    tfs.forEach((q,i)=>{
+      html += `<div class="truefalse">
+        <div><b>${i+1}.</b> <span class="urdu-question">${escapeHTML(q.q)}</span></div>
+        <div class="tf-options">□ درست &nbsp; □ غلط</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `<div class="paper-footer">
+    <span>${escapeHTML(school)}</span>
+    <span>Good Luck!</span>
+    <span>Teacher: ${escapeHTML(teacher)}</span>
+  </div>`;
+
+  $("paperPreview").innerHTML = html;
+}
+
+function updateNotes(){
+  const school = val("noteSchool") || "THE RISEN HIGH SCHOOL";
+  const cls = val("noteClass");
+  const subject = val("noteSubject") || "________";
+  const chapter = val("noteChapter") || "________";
+  const type = val("noteType");
+  const title = val("noteTitle") || chapter;
+  const content = val("noteContent");
+  const teacher = val("noteTeacher") || "Sir Rana Faisal";
+
+  $("notesPreview").innerHTML = `
+    <div class="paper-header">
+      <div class="preview-school">${escapeHTML(school)}</div>
+      <div class="preview-exam urdu-question">تعلیمی نوٹس</div>
+      <div class="preview-meta">
+        <div class="meta-cell">Class: ${escapeHTML(cls)}</div>
+        <div class="meta-cell">Subject: ${escapeHTML(subject)}</div>
+        <div class="meta-cell">Chapter: ${escapeHTML(chapter)}</div>
+      </div>
+    </div>
+    <div class="note-title urdu-question">${escapeHTML(title)}</div>
+    <div style="text-align:center;font-weight:bold;margin-bottom:12px" class="urdu-question">${escapeHTML(type)}</div>
+    <div class="note-body urdu-question">${escapeHTML(content)}</div>
+    <div class="paper-footer">
+      <span>${escapeHTML(school)}</span>
+      <span>${escapeHTML(cls)} — ${escapeHTML(subject)}</span>
+      <span>Teacher: ${escapeHTML(teacher)}</span>
+    </div>
+  `;
+}
+
+function printDocument(){
+  window.print();
+}
+
+function clearPaper(){
+  if(!confirm("کیا آپ موجودہ پیپر صاف کرنا چاہتے ہیں؟")) return;
+  mcqs = [];
+  shorts.length = 0;
+  longs.length = 0;
+  fills.length = 0;
+  tfs.length = 0;
+
+  $("mcqCount").value = 0;
+  ["subject","chapter","paperDate","sectionName"].forEach(id=>$(id).value="");
+  $("examName").value = "Monthly Test";
+  $("paperTime").value = "1 Hour";
+  $("totalMarks").value = 50;
+  $("passingMarks").value = 17;
+
+  renderMCQs();
+  Object.keys(questionConfig).forEach(renderQuestions);
+  updatePaper();
+  $("paperStatus").textContent = "نیا پیپر تیار ہے۔";
+}
+
+function clearNotes(){
+  if(!confirm("کیا آپ موجودہ نوٹس صاف کرنا چاہتے ہیں؟")) return;
+  ["noteSubject","noteChapter","noteTitle","noteContent"].forEach(id=>$(id).value="");
+  updateNotes();
+  $("noteStatus").textContent = "نئے نوٹس کے لیے فارم صاف کر دیا گیا ہے۔";
+}
+
+function getCurrentData(type){
+  if(type==="paper"){
+    return {
+      type:"paper",
+      title:val("examName") || "پیپر",
+      date:new Date().toISOString(),
+      fields:{
+        schoolName:val("schoolName"),examName:val("examName"),
+        className:val("className"),subject:val("subject"),
+        chapter:val("chapter"),paperDate:val("paperDate"),
+        paperTime:val("paperTime"),totalMarks:val("totalMarks"),
+        passingMarks:val("passingMarks"),teacherName:val("teacherName"),
+        sectionName:val("sectionName"),mcqCount:val("mcqCount"),
+        shortMarks:val("shortMarks"),longMarks:val("longMarks"),
+        fillMarks:val("fillMarks"),tfMarks:val("tfMarks")
+      },
+      mcqs:JSON.parse(JSON.stringify(mcqs)),
+      shorts:JSON.parse(JSON.stringify(shorts)),
+      longs:JSON.parse(JSON.stringify(longs)),
+      fills:JSON.parse(JSON.stringify(fills)),
+      tfs:JSON.parse(JSON.stringify(tfs))
+    };
+  }
+
+  return {
+    type:"notes",
+    title:val("noteTitle") || val("noteChapter") || "نوٹس",
+    date:new Date().toISOString(),
+    fields:{
+      noteSchool:val("noteSchool"),noteClass:val("noteClass"),
+      noteSubject:val("noteSubject"),noteChapter:val("noteChapter"),
+      noteType:val("noteType"),noteTitle:val("noteTitle"),
+      noteContent:val("noteContent"),noteTeacher:val("noteTeacher")
+    }
+  };
+}
+
+function readSaved(){
+  try{return JSON.parse(localStorage.getItem("risenSavedItems") || "[]")}
+  catch(e){return []}
+}
+
+function saveCurrent(type){
+  const item = getCurrentData(type);
+  if(type==="paper" && !item.fields.subject){
+    if(!confirm("مضمون درج نہیں کیا گیا۔ پھر بھی محفوظ کرنا چاہتے ہیں؟")) return;
+  }
+  const saved = readSaved();
+  item.id = Date.now().toString();
+  saved.unshift(item);
+
+  try{
+    localStorage.setItem("risenSavedItems",JSON.stringify(saved));
+    $(type==="paper"?"paperStatus":"noteStatus").textContent =
+      "محفوظ ہو گیا۔ محفوظ شدہ مواد والے حصے میں اسے کھول سکتے ہیں۔";
+  }catch(e){
+    alert("محفوظ کرنے کے لیے براؤزر میں جگہ دستیاب نہیں۔");
+  }
+}
+
+function renderSaved(){
+  const saved = readSaved();
+  if(!saved.length){
+    $("savedList").innerHTML = "<p>ابھی کوئی پیپر یا نوٹس محفوظ نہیں۔</p>";
+    return;
+  }
+
+  $("savedList").innerHTML = saved.map(item=>`
+    <div class="saved-item">
+      <div>
+        <strong>${escapeHTML(item.title)}</strong><br>
+        <small>${item.type==="paper"?"پیپر":"نوٹس"} • ${escapeHTML(item.fields.className || item.fields.noteClass || "")} • ${escapeHTML(item.fields.subject || item.fields.noteSubject || "")}</small>
+      </div>
+      <div class="action-row">
+        <button class="btn small" onclick="loadSaved('${item.id}')">کھولیں</button>
+        <button class="btn red small" onclick="deleteSaved('${item.id}')">حذف کریں</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function loadSaved(id){
+  const item = readSaved().find(x=>x.id===id);
+  if(!item) return;
+
+  if(item.type==="paper"){
+    showTab("paper",document.querySelectorAll(".tab-btn")[0]);
+    Object.entries(item.fields).forEach(([key,value])=>{
+      if($(key)) $(key).value = value ?? "";
+    });
+    mcqs = item.mcqs || [];
+    shorts.splice(0,shorts.length,...(item.shorts || []));
+    longs.splice(0,longs.length,...(item.longs || []));
+    fills.splice(0,fills.length,...(item.fills || []));
+    tfs.splice(0,tfs.length,...(item.tfs || []));
+    renderMCQs();
+    Object.keys(questionConfig).forEach(renderQuestions);
+    updatePaper();
+  }else{
+    showTab("notes",document.querySelectorAll(".tab-btn")[1]);
+    Object.entries(item.fields).forEach(([key,value])=>{
+      if($(key)) $(key).value = value ?? "";
+    });
+    updateNotes();
+  }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function deleteSaved(id){
+  if(!confirm("کیا یہ محفوظ شدہ مواد حذف کرنا چاہتے ہیں؟")) return;
+  const saved = readSaved().filter(item=>item.id!==id);
+  localStorage.setItem("risenSavedItems",JSON.stringify(saved));
+  renderSaved();
+}
+
+function deleteAllSaved(){
+  if(!confirm("کیا تمام محفوظ شدہ پیپرز اور نوٹس حذف کرنا چاہتے ہیں؟")) return;
+  localStorage.removeItem("risenSavedItems");
+  renderSaved();
+}
+
+/* ابتدائی سوالات اور پری ویو */
+addMCQ();
+addMCQ();
+addMCQ();
+addMCQ();
+addMCQ();
+
+addQuestion("shorts");
+addQuestion("shorts");
+addQuestion("shorts");
+
+addQuestion("longs");
+addQuestion("longs");
+
+addQuestion("fills");
+addQuestion("fills");
+
+addQuestion("tfs");
+addQuestion("tfs");
+
+updatePaper();
+updateNotes();
+</script>
+</body>
+</html>
