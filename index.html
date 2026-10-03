@@ -2,1393 +2,3473 @@
 <html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>نویں جماعت طبیعیات کے نوٹس - The Risen High School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>The Risen High School Paper and Notes</title>
+
+<!-- =========================================================
+     JAMEEL NOORI NASTALEEQ WEB FONT
+     ========================================================= -->
 <style>
+
 @font-face{
-  font-family:'Jameel Noori Nastaleeq';
-  src:url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');
-  font-display:swap;
+    font-family:"Jameel Noori Nastaleeq";
+    src:url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff")
+        format("woff");
+    font-display:swap;
+}
+
+:root{
+    --primary:#1457d9;
+    --primary2:#0b3d91;
+    --secondary:#eef4ff;
+    --success:#138a4b;
+    --danger:#d93636;
+    --warning:#e69b00;
+    --dark:#172033;
+    --muted:#6b7280;
+    --white:#ffffff;
+    --border:#d9e0eb;
+    --bg:#f3f6fb;
+    --paper:#ffffff;
+    --shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
-html,body{
-  margin:0;
-  padding:0;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#eef1f5;
-  color:#111;
-  font-family:'Jameel Noori Nastaleeq','Noto Nastaliq Urdu',serif;
-  direction:rtl;
+    margin:0;
+    background:var(--bg);
+    color:var(--dark);
+    font-family:
+        "Jameel Noori Nastaleeq",
+        "Noto Nastaliq Urdu",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-variant-ligatures:normal;
+    font-feature-settings:normal;
+    text-rendering:optimizeLegibility;
 }
 
-.control{
-  max-width:950px;
-  margin:15px auto;
-  padding:20px;
-  background:white;
-  border-radius:12px;
-  box-shadow:0 2px 12px #0002;
-  text-align:center;
+/* English / numbers */
+input,
+select,
+textarea,
+button,
+.en{
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
 }
 
-.school-title{
-  color:#174a7c;
-  font-size:30px;
-  font-weight:bold;
-  margin:0;
-}
+/* Urdu elements */
+.urdu{
+    font-family:
+        "Jameel Noori Nastaleeq",
+        "Noto Nastaliq Urdu",
+        serif;
 
-.main-title{
-  font-size:24px;
-  font-weight:bold;
-  margin:3px 0;
-}
-
-.sub-title{
-  font-size:17px;
-  color:#555;
-  margin:5px 0 15px;
-}
-
-label{
-  display:block;
-  font-size:19px;
-  font-weight:bold;
-  margin:8px 0;
-}
-
-select,button{
-  font-family:inherit;
-  font-size:17px;
-  border-radius:7px;
-  padding:9px 13px;
-}
-
-select{
-  width:100%;
-  border:1px solid #aaa;
-  background:white;
-  direction:rtl;
-  text-align:right;
+    font-variant-ligatures:normal;
+    font-feature-settings:normal;
 }
 
 button{
-  background:#174a7c;
-  color:white;
-  border:0;
-  cursor:pointer;
-  margin:5px;
+    cursor:pointer;
 }
 
-button:hover{
-  opacity:.9;
+.app{
+    min-height:100vh;
 }
 
-#pages{
-  width:100%;
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.topbar{
+    background:
+        linear-gradient(135deg,#0b3d91,#1457d9,#2879ef);
+
+    color:white;
+    padding:18px 20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.18);
 }
 
-.page{
-  width:210mm;
-  height:297mm;
-  background:white;
-  margin:20px auto;
-  padding:12mm 14mm 17mm;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 2px 12px #0003;
-  page-break-after:always;
+.topbar-inner{
+    max-width:1500px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.page-content{
-  height:252mm;
-  overflow:hidden;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.page-header{
-  text-align:center;
-  border-bottom:2px solid #174a7c;
-  padding-bottom:7px;
-  margin-bottom:10px;
+.logo-box{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border:3px solid rgba(255,255,255,.7);
 }
 
-.school{
-  font-size:25px;
-  color:#174a7c;
-  font-weight:bold;
+.logo-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
-.subject{
-  font-size:20px;
-  font-weight:bold;
+.logo-placeholder{
+    color:#1457d9;
+    font-size:26px;
+    font-weight:900;
 }
 
-.chapter{
-  font-size:23px;
-  font-weight:bold;
-  margin-top:2px;
+.brand h1{
+    margin:0;
+    font-size:25px;
+    line-height:1.2;
 }
 
-.section-title{
-  background:#174a7c;
-  color:white;
-  padding:5px 12px;
-  border-radius:5px;
-  font-size:20px;
-  font-weight:bold;
-  margin:10px 0 8px;
+.brand p{
+    margin:4px 0 0;
+    opacity:.9;
+    font-size:14px;
 }
 
-.question{
-  border:1px solid #bbb;
-  border-radius:6px;
-  padding:7px 10px;
-  margin:7px 0;
-  background:#fff;
-  page-break-inside:avoid;
+.header-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
-.q{
-  font-size:18px;
-  font-weight:bold;
-  line-height:1.8;
+.header-buttons button{
+    border:none;
+    border-radius:9px;
+    padding:10px 13px;
+    background:rgba(255,255,255,.16);
+    color:white;
+    font-weight:bold;
 }
 
-.a{
-  font-size:17px;
-  line-height:2;
-  margin-top:2px;
+.header-buttons button:hover{
+    background:rgba(255,255,255,.28);
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.main{
+    max-width:1500px;
+    margin:auto;
+    padding:20px;
+}
+
+.tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+    background:white;
+    padding:8px;
+    border-radius:14px;
+    box-shadow:var(--shadow);
+}
+
+.tab{
+    flex:1;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    background:#f1f4f9;
+    color:#394150;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.tab.active{
+    background:var(--primary);
+    color:white;
+}
+
+.workspace{
+    display:grid;
+    grid-template-columns:minmax(330px,520px) minmax(500px,1fr);
+    gap:20px;
+    align-items:start;
+}
+
+.panel{
+    background:white;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    padding:18px;
+}
+
+.panel-title{
+    margin:0 0 15px;
+    font-size:22px;
+    color:var(--primary2);
+    border-bottom:2px solid var(--secondary);
+    padding-bottom:10px;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.form-group{
+    margin-bottom:12px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+    color:#334155;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:10px 12px;
+    font-size:15px;
+    outline:none;
+    background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(20,87,217,.10);
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+textarea.urdu-input,
+input.urdu-input{
+    direction:rtl;
+    text-align:right;
+    font-family:
+        "Jameel Noori Nastaleeq",
+        "Noto Nastaliq Urdu",
+        serif;
+    font-size:18px;
+}
+
+.section-box{
+    margin-top:18px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.section-head{
+    background:#f5f8fd;
+    padding:11px 13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    border-bottom:1px solid var(--border);
+}
+
+.section-head h3{
+    margin:0;
+    color:var(--primary2);
+    font-size:18px;
+}
+
+.add-btn{
+    background:var(--success);
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:8px 12px;
+    font-weight:bold;
+}
+
+.items{
+    padding:10px;
+}
+
+.item{
+    border:1px solid #e1e6ef;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+    background:#fff;
+}
+
+.item:last-child{
+    margin-bottom:0;
+}
+
+.item-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+    gap:10px;
+}
+
+.item-number{
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.remove-btn{
+    border:none;
+    background:#fff0f0;
+    color:var(--danger);
+    padding:6px 9px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+.small-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.mcq-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:8px;
+}
+
+.option-wrap{
+    display:flex;
+    gap:6px;
+    align-items:center;
+}
+
+.option-letter{
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    background:#eaf1ff;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    flex:none;
+}
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:18px;
+    padding-top:15px;
+    border-top:1px solid var(--border);
+}
+
+.btn{
+    border:none;
+    border-radius:9px;
+    padding:10px 14px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-success{
+    background:var(--success);
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-secondary{
+    background:#e9eef6;
+    color:#273449;
+}
+
+.btn-warning{
+    background:#fff2cc;
+    color:#825f00;
+}
+
+/* =========================================================
+   PREVIEW AREA
+   ========================================================= */
+
+.preview-panel{
+    position:sticky;
+    top:10px;
+}
+
+.preview-tools{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.preview-tools h2{
+    margin:0;
+    color:var(--primary2);
+}
+
+.paper-stage{
+    background:#dce2eb;
+    padding:25px 10px;
+    border-radius:12px;
+    overflow:auto;
+    min-height:500px;
+}
+
+/* =========================================================
+   A4 PAPER
+   ========================================================= */
+
+.a4{
+    width:210mm;
+    min-height:297mm;
+    background:white;
+    margin:0 auto;
+    padding:14mm;
+    color:#111;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    position:relative;
+    direction:rtl;
+
+    font-family:
+        "Jameel Noori Nastaleeq",
+        "Noto Nastaliq Urdu",
+        serif;
+
+    font-variant-ligatures:normal;
+    font-feature-settings:normal;
+}
+
+.paper-header{
+    text-align:center;
+    border-bottom:2px solid #111;
+    padding-bottom:7px;
+    margin-bottom:8px;
+}
+
+.preview-school{
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-weight:900;
+    font-size:22px;
+    direction:ltr;
+}
+
+.preview-exam{
+    font-size:21px;
+    font-weight:bold;
+    margin-top:3px;
+}
+
+.preview-meta{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:6px;
+    font-family:"Segoe UI",Arial,sans-serif;
+    direction:ltr;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.meta-cell{
+    border:1px solid #111;
+    padding:4px 5px;
+    min-height:25px;
+}
+
+.student-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    direction:ltr;
+    margin:8px 0;
+    border:1px solid #111;
+}
+
+.student-cell{
+    min-height:29px;
+    padding:5px;
+    border-right:1px solid #111;
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-size:12px;
+}
+
+.student-cell:last-child{
+    border-right:none;
+}
+
+.paper-section{
+    margin-top:13px;
+}
+
+.paper-section-title{
+    font-size:18px;
+    font-weight:bold;
+    border-bottom:1px solid #111;
+    padding-bottom:2px;
+    margin-bottom:5px;
+}
+
+.mcq-preview{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px 20px;
+}
+
+.mcq-preview-item{
+    break-inside:avoid;
+}
+
+.mcq-options-preview{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    font-family:
+        "Jameel Noori Nastaleeq",
+        serif;
+    font-size:14px;
+    margin-top:2px;
+}
+
+.q-row{
+    display:flex;
+    gap:7px;
+    margin-bottom:8px;
+    line-height:1.8;
+    break-inside:avoid;
+}
+
+.q-number{
+    font-weight:bold;
+    min-width:25px;
+}
+
+.lines{
+    flex:1;
+    min-height:35px;
+    border-bottom:1px dashed #888;
 }
 
 .long-answer{
-  border-right:4px solid #174a7c;
-  padding-right:9px;
+    margin-bottom:12px;
+    break-inside:avoid;
 }
 
-.mcq{
-  border:1px solid #ccc;
-  padding:7px;
-  margin:6px 0;
-  border-radius:5px;
+.answer-lines{
+    height:65px;
+    margin-top:4px;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 22px,
+            #999 23px
+        );
 }
 
-.options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5px;
-  margin-top:5px;
+.fill-row{
+    margin-bottom:8px;
+    line-height:1.8;
 }
 
-.option{
-  padding:4px 7px;
-  border:1px solid #ddd;
-  border-radius:4px;
-  font-size:16px;
+.truefalse{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    margin-bottom:7px;
 }
 
-.correct{
-  background:#e4f5e7;
-  border:2px solid #26843b;
-  font-weight:bold;
+.tf-options{
+    font-family:"Segoe UI",Arial,sans-serif;
+    white-space:nowrap;
 }
 
-.correct::before{
-  content:"✓ ";
-  color:#16852c;
+.paper-footer{
+    position:absolute;
+    bottom:7mm;
+    left:14mm;
+    right:14mm;
+    border-top:1px solid #555;
+    padding-top:3px;
+    display:flex;
+    justify-content:space-between;
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-size:10px;
 }
 
-.footer{
-  position:absolute;
-  bottom:6mm;
-  left:14mm;
-  right:14mm;
-  text-align:center;
-  border-top:1px solid #ccc;
-  padding-top:3px;
-  font-size:13px;
-  color:#555;
+/* =========================================================
+   NOTES PREVIEW
+   ========================================================= */
+
+.notes-page{
+    min-height:297mm;
 }
 
-.note{
-  text-align:center;
-  font-size:20px;
-  padding:30px;
+.notes-title{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    border-bottom:2px solid #111;
+    padding-bottom:6px;
+}
+
+.notes-info{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:5px;
+    margin:10px 0;
+}
+
+.notes-info div{
+    border:1px solid #222;
+    padding:5px;
+    font-size:13px;
+}
+
+.note-block{
+    margin:15px 0;
+    break-inside:avoid;
+}
+
+.note-heading{
+    background:#eef3fb;
+    border-right:5px solid #1457d9;
+    padding:6px 9px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.note-question{
+    font-size:19px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.note-answer{
+    font-size:18px;
+    line-height:2.05;
+    margin-top:4px;
+}
+
+.definition{
+    border:1px solid #555;
+    padding:8px;
+    margin-top:8px;
+    font-size:18px;
+    line-height:2;
+}
+
+.keypoints{
+    font-size:18px;
+    line-height:2;
+}
+
+.keypoints div{
+    margin-bottom:2px;
+}
+
+.notes-mcq{
+    margin-top:7px;
+    font-size:17px;
+}
+
+.notes-mcq-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px 15px;
+    margin-top:3px;
+}
+
+/* =========================================================
+   NOTES EDITOR
+   ========================================================= */
+
+.note-editor{
+    border:1px solid #e1e6ef;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.note-editor select{
+    margin-bottom:8px;
+}
+
+.note-fields{
+    display:block;
+}
+
+/* =========================================================
+   HIDDEN
+   ========================================================= */
+
+.hidden{
+    display:none !important;
+}
+
+.empty-message{
+    text-align:center;
+    color:#888;
+    padding:20px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:1000px){
+
+    .workspace{
+        grid-template-columns:1fr;
+    }
+
+    .preview-panel{
+        position:relative;
+        top:auto;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .main{
+        padding:10px;
+    }
+
+    .topbar{
+        padding:12px;
+    }
+
+    .topbar-inner{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .brand{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .header-buttons{
+        justify-content:center;
+    }
+
+    .brand h1{
+        font-size:20px;
+    }
+
+    .tabs{
+        flex-direction:column;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .small-grid,
+    .mcq-options{
+        grid-template-columns:1fr;
+    }
+
+    .preview-tools{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .paper-stage{
+        padding:10px 0;
+    }
+
+    .a4{
+        transform-origin:top center;
+    }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@page{
+    size:A4;
+    margin:0;
 }
 
 @media print{
-  body{
-    background:white;
-  }
 
-  .control{
-    display:none;
-  }
+    body{
+        background:white;
+    }
 
-  .page{
-    margin:0;
-    box-shadow:none;
-  }
+    body *{
+        visibility:hidden !important;
+    }
+
+    #printArea,
+    #printArea *{
+        visibility:visible !important;
+    }
+
+    #printArea{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+
+    .a4{
+        box-shadow:none;
+        margin:0;
+        width:210mm;
+        min-height:297mm;
+    }
+
+    .no-print{
+        display:none !important;
+    }
+
+    .page-break{
+        page-break-before:always;
+    }
 }
 
-@media(max-width:700px){
-
-  .control{
-    margin:5px;
-    padding:12px;
-  }
-
-  .school-title{
-    font-size:24px;
-  }
-
-  .main-title{
-    font-size:20px;
-  }
-
-  .page{
-    transform-origin:top center;
-  }
-
-}
 </style>
 </head>
 
 <body>
 
-<div class="control">
+<div class="app">
 
-  <div class="school-title">
-    دی رائزن ہائی سکول
-  </div>
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
-  <div class="main-title">
-    نویں جماعت — طبیعیات کے مکمل نوٹس
-  </div>
+<header class="topbar no-print">
 
-  <div class="sub-title">
-    مختصر سوالات، تفصیلی سوالات اور کثیر الانتخابی سوالات
-  </div>
+    <div class="topbar-inner">
 
-  <label for="chapterSelect">
-    باب منتخب کریں:
-  </label>
+        <div class="brand">
 
-  <select id="chapterSelect"></select>
+            <div class="logo-box">
+                <img id="headerLogo" class="hidden" alt="School Logo">
+                <div id="logoPlaceholder" class="logo-placeholder">R</div>
+            </div>
 
-  <div>
+            <div>
+                <h1>The Risen High School</h1>
+                <p>Paper & Notes Maker</p>
+            </div>
 
-    <button onclick="generateNotes()">
-      📘 نوٹس تیار کریں
-    </button>
+        </div>
 
-    <button onclick="window.print()">
-      🖨️ A4 پرنٹ کریں
-    </button>
+        <div class="header-buttons">
 
-    <button onclick="downloadCurrent()">
-      🖼️ موجودہ باب PNG
-    </button>
+            <button onclick="saveDraft()">💾 Save</button>
 
-    <button onclick="downloadAll()">
-      📚 تمام ابواب PNG
-    </button>
+            <button onclick="loadDraft()">📂 Load</button>
 
-  </div>
+            <button onclick="clearAll()">🗑 Clear</button>
+
+            <button onclick="printDocument()">🖨 Print / PDF</button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="main no-print">
+
+    <!-- =====================================================
+         TABS
+         ===================================================== -->
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            id="paperTab"
+            onclick="showTab('paper')">
+
+            📄 Paper Maker
+
+        </button>
+
+        <button
+            class="tab"
+            id="notesTab"
+            onclick="showTab('notes')">
+
+            📚 Notes Maker
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAPER MAKER
+         ===================================================== -->
+
+    <section id="paperSection">
+
+        <div class="workspace">
+
+            <!-- LEFT EDITOR -->
+
+            <div class="panel">
+
+                <h2 class="panel-title">
+                    📄 Paper Settings
+                </h2>
+
+
+                <!-- SCHOOL INFORMATION -->
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label>School Name</label>
+
+                        <input
+                            id="schoolName"
+                            value="The Risen High School"
+                            oninput="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Exam / Test</label>
+
+                        <input
+                            id="examName"
+                            value="Monthly Test"
+                            oninput="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Class</label>
+
+                        <select id="paperClass" onchange="updatePaper()">
+
+                            <option>Playgroup</option>
+                            <option>Nursery</option>
+                            <option>Prep</option>
+                            <option>1st</option>
+                            <option>2nd</option>
+                            <option>3rd</option>
+                            <option>4th</option>
+                            <option>5th</option>
+                            <option>6th</option>
+                            <option>7th</option>
+                            <option>8th</option>
+                            <option selected>9th</option>
+                            <option>10th</option>
+                            <option>11th / FA Part 1</option>
+                            <option>12th / FA Part 2</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Subject</label>
+
+                        <input
+                            id="paperSubject"
+                            placeholder="مثلاً طبیعیات"
+                            oninput="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Chapter / Unit</label>
+
+                        <input
+                            id="paperChapter"
+                            placeholder="Chapter 1"
+                            oninput="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            id="paperDate"
+                            onchange="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Time</label>
+
+                        <input
+                            id="paperTime"
+                            value="2 Hours"
+                            oninput="updatePaper()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Total Marks</label>
+
+                        <input
+                            type="number"
+                            id="totalMarks"
+                            value="50"
+                            oninput="updatePaper()">
+
+                    </div>
+
+                </div>
+
+
+                <!-- STUDENT INFORMATION -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>👨‍🎓 Student Information</h3>
+
+                    </div>
+
+                    <div class="items">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label>Student Name</label>
+
+                                <input
+                                    id="studentName"
+                                    placeholder="نام طالب علم"
+                                    oninput="updatePaper()">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Roll Number</label>
+
+                                <input
+                                    id="rollNumber"
+                                    oninput="updatePaper()">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Section</label>
+
+                                <input
+                                    id="sectionName"
+                                    oninput="updatePaper()">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Teacher</label>
+
+                                <input
+                                    id="teacherName"
+                                    value="Sir Rana Faisal"
+                                    oninput="updatePaper()">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGO -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>🏫 School Logo</h3>
+
+                    </div>
+
+                    <div class="items">
+
+                        <input
+                            type="file"
+                            id="logoUpload"
+                            accept="image/*"
+                            onchange="uploadLogo(event)">
+
+                    </div>
+
+                </div>
+
+
+                <!-- MCQS -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>① MCQs</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addMCQ()">
+
+                            + Add MCQ
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="mcqEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHORT QUESTIONS -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>② Short Questions</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addShort()">
+
+                            + Add Question
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="shortEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <!-- LONG QUESTIONS -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>③ Long Questions</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addLong()">
+
+                            + Add Question
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="longEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILL BLANKS -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>④ Fill in the Blanks</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addFill()">
+
+                            + Add
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="fillEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <!-- TRUE FALSE -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>⑤ True / False</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addTF()">
+
+                            + Add
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="tfEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAPER BUTTONS -->
+
+                <div class="toolbar">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="updatePaper()">
+
+                        🔄 Update Preview
+
+                    </button>
+
+                    <button
+                        class="btn btn-success"
+                        onclick="printDocument()">
+
+                        🖨 Print / Save PDF
+
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="saveDraft()">
+
+                        💾 Save Draft
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT PREVIEW -->
+
+            <div class="panel preview-panel">
+
+                <div class="preview-tools">
+
+                    <h2>👁 Live Preview</h2>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="printDocument()">
+
+                        Print A4
+
+                    </button>
+
+                </div>
+
+                <div class="paper-stage">
+
+                    <div id="printArea">
+
+                        <div
+                            id="paperPreview"
+                            class="a4">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NOTES MAKER
+         ===================================================== -->
+
+    <section
+        id="notesSection"
+        class="hidden">
+
+        <div class="workspace">
+
+            <!-- NOTES EDITOR -->
+
+            <div class="panel">
+
+                <h2 class="panel-title">
+                    📚 Notes Settings
+                </h2>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label>School Name</label>
+
+                        <input
+                            id="notesSchool"
+                            value="The Risen High School"
+                            oninput="updateNotes()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Class</label>
+
+                        <select
+                            id="notesClass"
+                            onchange="updateNotes()">
+
+                            <option>Playgroup</option>
+                            <option>Nursery</option>
+                            <option>Prep</option>
+                            <option>1st</option>
+                            <option>2nd</option>
+                            <option>3rd</option>
+                            <option>4th</option>
+                            <option>5th</option>
+                            <option>6th</option>
+                            <option>7th</option>
+                            <option>8th</option>
+                            <option selected>9th</option>
+                            <option>10th</option>
+                            <option>11th / FA Part 1</option>
+                            <option>12th / FA Part 2</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Subject</label>
+
+                        <input
+                            id="notesSubject"
+                            placeholder="مثلاً حیاتیات"
+                            oninput="updateNotes()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Chapter</label>
+
+                        <input
+                            id="notesChapter"
+                            placeholder="باب نمبر"
+                            oninput="updateNotes()">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Topic</label>
+
+                        <input
+                            id="notesTopic"
+                            placeholder="Topic"
+                            oninput="updateNotes()">
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTE BLOCKS -->
+
+                <div class="section-box">
+
+                    <div class="section-head">
+
+                        <h3>📝 Notes Content</h3>
+
+                        <button
+                            class="add-btn"
+                            onclick="addNoteBlock()">
+
+                            + Add Note
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="notesEditor"
+                        class="items">
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="updateNotes()">
+
+                        🔄 Update Notes
+
+                    </button>
+
+                    <button
+                        class="btn btn-success"
+                        onclick="printDocument()">
+
+                        🖨 Print / PDF
+
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="saveDraft()">
+
+                        💾 Save Draft
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTES PREVIEW -->
+
+            <div class="panel preview-panel">
+
+                <div class="preview-tools">
+
+                    <h2>👁 Notes Preview</h2>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="printDocument()">
+
+                        Print A4
+
+                    </button>
+
+                </div>
+
+                <div class="paper-stage">
+
+                    <div id="notesPrintArea">
+
+                        <div
+                            id="notesPreview"
+                            class="a4 notes-page">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 </div>
 
-<div id="pages">
 
-  <div class="note">
-    اوپر سے باب منتخب کریں اور نوٹس تیار کریں۔
-  </div>
-
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
 
 <script>
 
-/* =====================================================
-   نویں جماعت طبیعیات — باب 1 تا 9
-===================================================== */
+/* =========================================================
+   GLOBAL DATA
+   ========================================================= */
 
-const data = [
+let mcqs = [];
+let shorts = [];
+let longs = [];
+let fills = [];
+let tfs = [];
+let noteBlocks = [];
 
-/* =====================================================
-   باب 1
-===================================================== */
+let currentTab = "paper";
 
-{
-title:"باب 1: طبیعی مقداریں اور پیمائشیں",
+let logoData = "";
 
-short:[
 
-["طبیعی مقدار کی تعریف کریں۔",
-"جواب: وہ مقدار جسے پیمائش کیا جا سکے اور جس کا اظہار عدد اور اکائی کے ذریعے کیا جائے، طبیعی مقدار کہلاتی ہے، مثلاً لمبائی، کمیت اور وقت۔"],
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
 
-["بنیادی اور مشتق مقداروں میں فرق بیان کریں۔",
-"جواب: بنیادی مقداریں وہ ہیں جو آزادانہ طور پر موجود ہیں اور دیگر مقداروں پر منحصر نہیں، مثلاً لمبائی، کمیت، وقت۔ مشتق مقداریں بنیادی مقداروں کے امتزاج سے بنتی ہیں، مثلاً رقبہ، حجم اور رفتار۔"],
+function escapeHTML(value){
 
-["بین الاقوامی نظام اکائیات (SI Units) کیا ہے؟",
-"جواب: SI اکائیوں کا وہ عالمی نظام ہے جو سائنسی پیمائشوں میں یکسانیت پیدا کرنے کے لیے استعمال ہوتا ہے، جیسے میٹر (لمبائی)، کلوگرام (کمیت) اور سیکنڈ (وقت)۔"],
+    if(value === null || value === undefined){
+        return "";
+    }
 
-["ویرنیئر کیلیپر کس کام آتا ہے؟",
-"جواب: ویرنیئر کیلیپر چھوٹی لمبائیوں، جیسے کسی جسم کی موٹائی یا قطر، کو درستگی سے ناپنے کے لیے استعمال ہوتا ہے۔ اس کی کم از کم پیمائش 0.01 سینٹی میٹر ہوتی ہے۔"],
-
-["درست ہندسوں (Significant Figures) کی اہمیت بیان کریں۔",
-"جواب: درست ہندسے پیمائش کی درستگی ظاہر کرتے ہیں اور بتاتے ہیں کہ کسی پیمائش میں کتنے ہندسے قابلِ اعتماد ہیں، جس سے نتائج کی درستگی کا اندازہ لگایا جا سکتا ہے۔"]
-
-],
-
-long:[
-
-["بنیادی اور مشتق مقداریں مثالوں کے ساتھ تفصیل سے بیان کریں۔",[
-
-"جواب: بنیادی مقداریں وہ طبیعی مقداریں ہیں جو دیگر مقداروں پر منحصر نہیں ہوتیں۔ ان کی سات اقسام ہیں: لمبائی (میٹر)، کمیت (کلوگرام)، وقت (سیکنڈ)، برقی رو (ایمپیئر)، درجہ حرارت (کیلون)، مادے کی مقدار (مول) اور نوری شدت (کینڈیلا)۔",
-
-"مشتق مقداریں بنیادی مقداروں کے امتزاج سے حاصل ہوتی ہیں۔ مثلاً رقبہ (لمبائی × لمبائی) کی اکائی m² ہے، حجم (لمبائی³) کی اکائی m³ ہے، اور رفتار (فاصلہ/وقت) کی اکائی m/s ہے۔",
-
-"اس طرح تمام طبیعی مقداریں انہی سات بنیادی مقداروں سے مشتق ہوتی ہیں، جو طبیعیات میں پیمائش کا بنیادی ڈھانچہ فراہم کرتی ہیں۔"
-
-]],
-
-["ویرنیئر کیلیپر اور مائیکرومیٹر اسکرو گیج کی ساخت اور استعمال تفصیل سے بیان کریں۔",[
-
-"جواب: ویرنیئر کیلیپر ایک آلہ ہے جو کسی جسم کی لمبائی، موٹائی، اندرونی اور بیرونی قطر کو درست پیمائش کرنے کے لیے استعمال ہوتا ہے۔ اس میں مین اسکیل اور ویرنیئر اسکیل ہوتے ہیں، اور اس کی کم از کم پیمائش 0.01 سینٹی میٹر ہوتی ہے۔",
-
-"مائیکرومیٹر اسکرو گیج نہایت چھوٹی لمبائیوں، جیسے تار یا پتلی شیٹ کی موٹائی، کو ناپنے کے لیے استعمال ہوتا ہے۔ اس میں ایک پیچ دار اسکرو اور ایک گھومنے والا سلیو ہوتا ہے، اور اس کی کم از کم پیمائش عموماً 0.01 ملی میٹر ہوتی ہے۔",
-
-"دونوں آلات روزمرہ اور تجرباتی سائنس میں چھوٹی مقداروں کی درست پیمائش کے لیے نہایت اہم ہیں۔"
-
-]]
-
-],
-
-mcq:[
-
-["SI میں لمبائی کی اکائی ہے:",["سینٹی میٹر","میٹر","فٹ","انچ"],1],
-
-["کمیت کی SI اکائی ہے:",["گرام","کلوگرام","پونڈ","ٹن"],1],
-
-["وقت کی SI اکائی ہے:",["منٹ","گھنٹہ","سیکنڈ","دن"],2],
-
-["مشتق مقدار کی مثال ہے:",["لمبائی","وقت","رفتار","کمیت"],2],
-
-["ویرنیئر کیلیپر کی کم از کم پیمائش ہے:",["0.01 سینٹی میٹر","0.1 سینٹی میٹر","1 سینٹی میٹر","0.001 سینٹی میٹر"],0],
-
-["مائیکرومیٹر اسکرو گیج کی کم از کم پیمائش ہے:",["0.01 ملی میٹر","0.01 سینٹی میٹر","1 ملی میٹر","0.1 ملی میٹر"],0],
-
-["بنیادی مقداروں کی کل تعداد ہے:",["5","6","7","8"],2],
-
-["روشنی کی شدت کی SI اکائی ہے:",["لکس","کینڈیلا","لیومن","واٹ"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 2
-===================================================== */
-
-{
-title:"باب 2: حرکیات",
-
-short:[
-
-["فاصلہ اور نقل مکانی میں فرق بیان کریں۔",
-"جواب: فاصلہ کسی جسم کے طے کردہ راستے کی کل لمبائی ہے جو صرف قدر رکھتا ہے، جبکہ نقل مکانی ابتدائی اور آخری مقام کے درمیان کم سے کم فاصلہ ہے جس کی سمت بھی ہوتی ہے۔"],
-
-["رفتار اور تیزی میں فرق بیان کریں۔",
-"جواب: تیزی کسی جسم کی حرکت کی شرح ہے جس کی صرف قدر ہوتی ہے، جبکہ رفتار میں قدر کے ساتھ سمت بھی شامل ہوتی ہے۔"],
-
-["ایکسلریشن (اسراع) کی تعریف کریں۔",
-"جواب: وقت کے ساتھ رفتار میں تبدیلی کی شرح کو ایکسلریشن کہتے ہیں۔ اس کی اکائی میٹر فی سیکنڈ مربع (m/s²) ہے۔"],
-
-["یکساں رفتار اور غیر یکساں رفتار میں فرق بیان کریں۔",
-"جواب: اگر جسم مساوی وقفوں میں مساوی فاصلہ طے کرے تو اسے یکساں رفتار کہتے ہیں، جبکہ اگر فاصلہ ہر وقفے میں مختلف ہو تو یہ غیر یکساں رفتار کہلاتی ہے۔"],
-
-["آزاد نزول کیا ہے؟",
-"جواب: جب کوئی جسم صرف کششِ ثقل کے زیرِ اثر نیچے گرتا ہے اور ہوا کی مزاحمت نظر انداز کی جائے تو اسے آزاد نزول کہتے ہیں۔"]
-
-],
-
-long:[
-
-["حرکت کی مساواتیں تفصیل سے بیان کریں اور ان کا اطلاق کسی مثال پر کریں۔",[
-
-"جواب: یکساں ایکسلریشن کے تحت حرکت کرنے والے جسم کے لیے تین بنیادی مساواتیں استعمال ہوتی ہیں: v = u + at، s = ut + ½at²، اور v² = u² + 2as، جہاں u ابتدائی رفتار، v آخری رفتار، a ایکسلریشن، t وقت اور s طے شدہ فاصلہ ہے۔",
-
-"مثال کے طور پر اگر کوئی گاڑی 0 رفتار سے چلنا شروع کرے اور 5 سیکنڈ میں 2 m/s² کی ایکسلریشن سے چلے، تو v = u + at سے v = 0 + 2×5 = 10 m/s حاصل ہوتی ہے۔",
-
-"اسی طرح طے شدہ فاصلہ s = ut + ½at² سے s = 0 + ½×2×25 = 25 میٹر نکلتا ہے۔ یہ مساواتیں روزمرہ حرکت کے مسائل حل کرنے میں بنیادی کردار ادا کرتی ہیں۔"
-
-]],
-
-["فاصلہ-وقت اور رفتار-وقت گراف کی مدد سے حرکت کی اقسام بیان کریں۔",[
-
-"جواب: فاصلہ-وقت گراف میں اگر لکیر سیدھی اور یکساں ڈھلاؤ والی ہو تو جسم یکساں رفتار سے حرکت کر رہا ہے۔ اگر لکیر خم دار ہو تو رفتار تبدیل ہو رہی ہے۔ افقی لکیر جسم کے سکون میں ہونے کو ظاہر کرتی ہے۔",
-
-"رفتار-وقت گراف میں لکیر کا ڈھلاؤ ایکسلریشن کو ظاہر کرتا ہے۔ اگر لکیر افقی ہو تو ایکسلریشن صفر ہے یعنی رفتار یکساں ہے۔ گراف کے نیچے کا رقبہ طے شدہ فاصلہ ظاہر کرتا ہے۔",
-
-"ان گراف کی مدد سے کسی بھی حرکت کی نوعیت — یکساں، غیر یکساں یا سکون کی حالت — کو بآسانی سمجھا جا سکتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["فاصلہ ہے:",["ویکٹر مقدار","اسکیلر مقدار","نہ ویکٹر نہ اسکیلر","اکائی کے بغیر"],1],
-
-["نقل مکانی ہے:",["اسکیلر","ویکٹر","مستقل","صفر"],1],
-
-["ایکسلریشن کی SI اکائی ہے:",["m/s","m/s²","m","s"],1],
-
-["اگر جسم مساوی وقفوں میں مساوی فاصلہ طے کرے تو اسے کہتے ہیں:",["غیر یکساں رفتار","یکساں رفتار","ایکسلریشن","نقل مکانی"],1],
-
-["آزاد نزول میں ایکسلریشن کو کہتے ہیں:",["g","a","v","s"],0],
-
-["زمین پر کششِ ثقل کی قدر تقریباً ہے:",["8.9 m/s²","9.8 m/s²","10.8 m/s²","6.8 m/s²"],1],
-
-["معادلہ v = u + at میں a ظاہر کرتا ہے:",["فاصلہ","رفتار","ایکسلریشن","وقت"],2],
-
-["رفتار-وقت گراف کا ڈھلاؤ ظاہر کرتا ہے:",["فاصلہ","ایکسلریشن","نقل مکانی","وقت"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 3
-===================================================== */
-
-{
-title:"باب 3: حرکیاتِ قوت",
-
-short:[
-
-["قوت کی تعریف کریں۔",
-"جواب: وہ اثر جو کسی جسم کی حالتِ سکون یا حرکت کو تبدیل کرے، یا تبدیل کرنے کی کوشش کرے، قوت کہلاتا ہے۔"],
-
-["نیوٹن کا پہلا قانونِ حرکت بیان کریں۔",
-"جواب: ہر جسم اپنی حالتِ سکون یا یکساں سیدھی حرکت میں رہتا ہے جب تک کوئی خارجی قوت اس پر عمل نہ کرے۔ اسے قانونِ عطالت بھی کہا جاتا ہے۔"],
-
-["مومینٹم (مقدارِ حرکت) کی تعریف کریں۔",
-"جواب: کسی جسم کی کمیت اور رفتار کے حاصل ضرب کو مومینٹم کہتے ہیں۔ یہ ایک ویکٹر مقدار ہے۔ p = mv"],
-
-["نیوٹن کا تیسرا قانونِ حرکت بیان کریں۔",
-"جواب: ہر عمل کا ردعمل برابر اور مخالف سمت میں ہوتا ہے۔"],
-
-["رگڑ کی تعریف کریں اور اس کی ایک افادیت بیان کریں۔",
-"جواب: دو سطحوں کے درمیان حرکت کی مخالفت کرنے والی قوت رگڑ کہلاتی ہے۔ یہ چلنے اور گاڑیوں کے بریک لگانے میں مدد دیتی ہے۔"]
-
-],
-
-long:[
-
-["نیوٹن کے تینوں قوانینِ حرکت تفصیل سے مثالوں کے ساتھ بیان کریں۔",[
-
-"جواب: نیوٹن کا پہلا قانون (قانونِ عطالت) بیان کرتا ہے کہ ہر جسم اپنی حالتِ سکون یا یکساں حرکت میں رہتا ہے جب تک کوئی خارجی قوت اس پر عمل نہ کرے، مثلاً گاڑی میں بیٹھا شخص اچانک بریک لگنے پر آگے کی طرف جھک جاتا ہے۔",
-
-"دوسرا قانون بتاتا ہے کہ کسی جسم پر لگنے والی قوت اس کی کمیت اور ایکسلریشن کے حاصل ضرب کے برابر ہوتی ہے (F = ma)، یعنی زیادہ کمیت والے جسم کو حرکت دینے کے لیے زیادہ قوت درکار ہوتی ہے۔",
-
-"تیسرا قانون بیان کرتا ہے کہ ہر عمل کا ردعمل برابر اور مخالف سمت میں ہوتا ہے، مثلاً تیراک پانی کو پیچھے کی طرف دھکیلتا ہے اور پانی اسے آگے کی طرف دھکیلتا ہے۔"
-
-]],
-
-["مومینٹم کے تحفظ کے قانون کی وضاحت کریں اور اس کا اطلاق بیان کریں۔",[
-
-"جواب: مومینٹم کے تحفظ کا قانون بیان کرتا ہے کہ کسی بند نظام میں، جہاں کوئی خارجی قوت عمل نہ کر رہی ہو، تصادم سے پہلے اور بعد کا کُل مومینٹم ہمیشہ یکساں رہتا ہے۔",
-
-"مثال کے طور پر جب دو گاڑیاں ٹکراتی ہیں تو تصادم سے پہلے دونوں کا مجموعی مومینٹم، تصادم کے بعد دونوں کے مجموعی مومینٹم کے برابر رہتا ہے، چاہے انفرادی رفتار تبدیل ہو جائے۔",
-
-"یہ قانون راکٹ کے چلنے، بندوق کی گولی چلنے اور کھیلوں میں اشیاء کے تصادم جیسے عملی مظاہر کی وضاحت میں بنیادی کردار ادا کرتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["نیوٹن کا پہلا قانون کہلاتا ہے:",["قانونِ عطالت","قانونِ کشش","قانونِ مومینٹم","قانونِ توانائی"],0],
-
-["قوت = کمیت ×",["رفتار","ایکسلریشن","وقت","فاصلہ"],1],
-
-["مومینٹم کی اکائی ہے:",["kg.m/s","kg/m","N","m/s²"],0],
-
-["نیوٹن کا تیسرا قانون بیان کرتا ہے:",["عطالت","عمل اور ردعمل","کمیت","رفتار"],1],
-
-["رگڑ کی قوت ہمیشہ حرکت کی:",["سمت میں ہوتی ہے","مخالف سمت میں ہوتی ہے","عمود ہوتی ہے","غیر متعلق ہوتی ہے"],1],
-
-["قوت کی SI اکائی ہے:",["کلوگرام","نیوٹن","جول","واٹ"],1],
-
-["کسی بند نظام میں کُل مومینٹم:",["بڑھتا ہے","کم ہوتا ہے","محفوظ رہتا ہے","صفر ہو جاتا ہے"],2],
-
-["ایک نیوٹن قوت اس قوت کے برابر ہے جو:",["1kg کمیت کو 1m/s² ایکسلریشن دے","1g کمیت کو 1m/s² دے","10kg کو 1m/s² دے","1kg کو 10m/s² دے"],0]
-
-]
-
-},
-
-/* =====================================================
-   باب 4
-===================================================== */
-
-{
-title:"باب 4: قوت کے گردشی اثرات",
-
-short:[
-
-["ٹارک کی تعریف کریں۔",
-"جواب: کسی قوت کا وہ اثر جو کسی جسم کو کسی محور کے گرد گھمانے کا باعث بنے، ٹارک یا قوت کا گردشی اثر کہلاتا ہے۔ Torque = Force × moment arm"],
-
-["مرکزِ ثقل کی تعریف کریں۔",
-"جواب: کسی جسم کا وہ نقطہ جہاں اس کا تمام وزن مرتکز سمجھا جاتا ہے، مرکزِ ثقل کہلاتا ہے۔"],
-
-["توازن کی شرائط بیان کریں۔",
-"جواب: کسی جسم کے توازن میں رہنے کے لیے اس پر لگنے والی کُل قوت صفر ہونی چاہیے اور اس پر لگنے والا کُل ٹارک بھی صفر ہونا چاہیے۔"],
-
-["جوڑا قوت کیا ہے؟",
-"جواب: دو مساوی، متوازی اور مخالف سمت میں کام کرنے والی قوتوں کا جوڑا جو کسی جسم کو گھماتا ہے، جوڑا قوت کہلاتا ہے۔"],
-
-["مستحکم اور غیر مستحکم توازن میں فرق بیان کریں۔",
-"جواب: مستحکم توازن میں جسم کو ہلکا سا دھکا دینے پر وہ اپنی اصل پوزیشن پر واپس آ جاتا ہے، جبکہ غیر مستحکم توازن میں وہ گر جاتا ہے یا نئی پوزیشن اختیار کر لیتا ہے۔"]
-
-],
-
-long:[
-
-["مرکزِ ثقل اور توازن کی اقسام کو تفصیل سے بیان کریں۔",[
-
-"جواب: مرکزِ ثقل کسی جسم کا وہ نقطہ ہے جہاں اس کا پورا وزن مرتکز سمجھا جاتا ہے۔ باقاعدہ شکل والے جسموں کا مرکزِ ثقل ان کے مرکز میں ہوتا ہے، جبکہ بے قاعدہ جسموں کا مرکزِ ثقل سیسا بم (plumb line) کی مدد سے تلاش کیا جاتا ہے۔",
-
-"توازن کی تین اقسام ہیں: مستحکم توازن، جس میں مرکزِ ثقل نیچا ہوتا ہے اور جسم ہلکے دھکے کے بعد واپس اپنی جگہ آ جاتا ہے؛ غیر مستحکم توازن، جس میں مرکزِ ثقل بلند ہوتا ہے اور جسم آسانی سے گر جاتا ہے؛ اور غیر جانبدار توازن، جس میں مرکزِ ثقل کی اونچائی تبدیل نہیں ہوتی۔",
-
-"ان اصولوں کا اطلاق عمارتوں، گاڑیوں اور روزمرہ اشیاء کے ڈیزائن میں استحکام یقینی بنانے کے لیے کیا جاتا ہے۔"
-
-]],
-
-["ٹارک کے اصول اور اس کے عملی استعمالات تفصیل سے بیان کریں۔",[
-
-"جواب: ٹارک کسی قوت کا وہ اثر ہے جو جسم کو کسی محور کے گرد گھمانے کا باعث بنتا ہے۔ اس کی قدر قوت اور محور سے قوت کے عمل کی لکیر تک کھینچے گئے عمود (moment arm) کے حاصل ضرب سے حاصل ہوتی ہے۔",
-
-"اگر کسی جسم پر لگنے والے تمام ٹارک کا مجموعہ صفر ہو تو وہ جسم گردشی توازن میں ہوتا ہے، چاہے اس پر کئی قوتیں عمل کر رہی ہوں۔",
-
-"ٹارک کا اصول دروازہ کھولنے، اسپینر سے نٹ کھولنے، اور ترازو جیسے روزمرہ آلات کے کام میں بنیادی کردار ادا کرتا ہے — دستے کے سرے پر قوت لگانے سے کم قوت کے ساتھ زیادہ ٹارک حاصل ہوتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["ٹارک کی اکائی ہے:",["نیوٹن","نیوٹن میٹر","جول","واٹ"],1],
-
-["توازن کی پہلی شرط ہے:",["کُل قوت صفر","کُل ٹارک صفر","دونوں","کوئی نہیں"],0],
-
-["کسی جسم کا وہ نقطہ جہاں پورا وزن مرتکز سمجھا جائے:",["مرکزِ کمیت","مرکزِ ثقل","محور","نقطہ استناد"],1],
-
-["جوڑا قوت پیدا کرنے کے لیے کتنی قوتیں درکار ہیں:",["ایک","دو","تین","چار"],1],
-
-["مستحکم توازن میں مرکزِ ثقل:",["بلند ہوتا ہے","نیچا ہوتا ہے","غیر متعلق ہے","صفر ہوتا ہے"],1],
-
-["ٹارک کا انحصار ہے:",["صرف قوت پر","صرف فاصلے پر","قوت اور بازوئے محور پر","وزن پر"],2],
-
-["سیسا بم استعمال ہوتی ہے:",["وزن ناپنے","مرکزِ ثقل تلاش کرنے","رفتار ناپنے","وقت ناپنے"],1],
-
-["اگر کُل ٹارک صفر ہو تو جسم:",["گھومتا رہے گا","گردشی توازن میں ہوگا","ٹوٹ جائے گا","تیز ہوگا"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 5
-===================================================== */
-
-{
-title:"باب 5: کام، توانائی اور طاقت",
-
-short:[
-
-["کام کی تعریف کریں۔",
-"جواب: جب کسی قوت کے زیرِ اثر جسم اپنی سمت میں حرکت کرے تو انجام پانے والے کام کو قوت اور نقل مکانی کے حاصل ضرب سے ظاہر کیا جاتا ہے۔ W = F × d"],
-
-["توانائی کی تعریف کریں اور اس کی اقسام بتائیں۔",
-"جواب: کام کرنے کی صلاحیت توانائی کہلاتی ہے۔ اس کی دو بنیادی اقسام حرکی توانائی اور وضعی توانائی ہیں۔"],
-
-["طاقت کی تعریف کریں۔",
-"جواب: کام کرنے کی شرح کو طاقت کہتے ہیں۔ Power = Work/Time، اس کی SI اکائی واٹ ہے۔"],
-
-["توانائی کے تحفظ کا قانون بیان کریں۔",
-"جواب: توانائی کو نہ پیدا کیا جا سکتا ہے نہ ختم کیا جا سکتا ہے، صرف ایک شکل سے دوسری شکل میں تبدیل کیا جا سکتا ہے۔"],
-
-["حرکی توانائی کا فارمولا لکھیں اور اس کی اکائی بتائیں۔",
-"جواب: KE = ½mv²، اس کی SI اکائی جول ہے۔"]
-
-],
-
-long:[
-
-["حرکی اور وضعی توانائی کی تفصیل مثالوں کے ساتھ بیان کریں اور ایک سے دوسری میں تبدیلی کی وضاحت کریں۔",[
-
-"جواب: حرکی توانائی وہ توانائی ہے جو کسی جسم کو اس کی حرکت کی وجہ سے حاصل ہوتی ہے، اور اس کا فارمولا KE = ½mv² ہے، جیسے دوڑتی ہوئی گاڑی یا اڑتی ہوئی گیند میں۔",
-
-"وضعی توانائی وہ توانائی ہے جو کسی جسم کو اس کی پوزیشن یا حالت کی وجہ سے حاصل ہوتی ہے، جیسے بلندی پر رکھی ہوئی کتاب میں PE = mgh کے مطابق توانائی موجود ہوتی ہے۔",
-
-"جب کوئی گیند بلندی سے گرتی ہے تو اس کی وضعی توانائی بتدریج حرکی توانائی میں تبدیل ہوتی جاتی ہے، اور زمین کے قریب پہنچتے ہی وضعی توانائی تقریباً صفر اور حرکی توانائی زیادہ سے زیادہ ہو جاتی ہے۔"
-
-]],
-
-["توانائی کے تحفظ کے قانون کو کسی عملی مثال سے ثابت کریں۔",[
-
-"جواب: توانائی کے تحفظ کا قانون بیان کرتا ہے کہ توانائی کو نہ پیدا کیا جا سکتا ہے نہ ختم کیا جا سکتا ہے، بلکہ یہ صرف ایک شکل سے دوسری شکل میں تبدیل ہوتی ہے۔",
-
-"پینڈولم کی مثال سے یہ قانون واضح ہوتا ہے: جب پینڈولم کو سب سے اونچے مقام سے چھوڑا جاتا ہے تو وہاں اس کی تمام توانائی وضعی ہوتی ہے۔ نیچے کی طرف حرکت کرتے ہوئے یہ توانائی حرکی توانائی میں بدلتی جاتی ہے، اور سب سے نیچے مقام پر تمام توانائی حرکی ہوتی ہے۔",
-
-"دوسری طرف حرکت کرتے ہوئے حرکی توانائی دوبارہ وضعی توانائی میں بدل جاتی ہے، اور رگڑ اور ہوا کی مزاحمت نظر انداز کرتے ہوئے کُل توانائی ہر لحظہ یکساں رہتی ہے، جو توانائی کے تحفظ کے قانون کی تصدیق کرتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["کام کی SI اکائی ہے:",["نیوٹن","جول","واٹ","کلوگرام"],1],
-
-["طاقت کی SI اکائی ہے:",["جول","واٹ","نیوٹن","پاسکل"],1],
-
-["حرکی توانائی کا فارمولا ہے:",["mgh","½mv²","Fd","W/t"],1],
-
-["وضعی توانائی کا فارمولا ہے:",["½mv²","mgh","Fd","W/t"],1],
-
-["توانائی کو:",["پیدا کیا جا سکتا ہے","ختم کیا جا سکتا ہے","ایک شکل سے دوسری میں بدلا جا سکتا ہے","بڑھایا جا سکتا ہے"],2],
-
-["1 واٹ برابر ہے:",["1 جول/سیکنڈ","1 نیوٹن/سیکنڈ","1 جول×سیکنڈ","1 کلوگرام/سیکنڈ"],0],
-
-["اگر قوت اور نقل مکانی ایک ہی سمت میں ہوں تو کام ہوگا:",["منفی","صفر","مثبت","غیر متعین"],2],
-
-["گرتی ہوئی گیند کی وضعی توانائی زمین کے قریب پہنچتے ہوئے تبدیل ہوتی ہے:",["حرارت میں","حرکی توانائی میں","آواز میں","روشنی میں"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 6
-===================================================== */
-
-{
-title:"باب 6: مادے کی میکانی خصوصیات",
-
-short:[
-
-["لچک (Elasticity) کی تعریف کریں۔",
-"جواب: کسی مادے کی وہ خاصیت جس کی بنا پر وہ قوت ہٹانے کے بعد اپنی اصل شکل اور حجم کی طرف واپس آ جاتا ہے، لچک کہلاتی ہے۔"],
-
-["ہُک کا قانون بیان کریں۔",
-"جواب: لچکدار حد کے اندر کسی جسم میں پیدا ہونے والا طول اس پر لگائی گئی قوت کے راست متناسب ہوتا ہے۔ F ∝ x"],
-
-["دباؤ (Stress) اور خمیدگی (Strain) کی تعریف کریں۔",
-"جواب: دباؤ کسی سطح پر لگنے والی قوت فی اکائی رقبہ ہے (Stress = F/A)، جبکہ خمیدگی اصل طول میں تبدیلی کی نسبت ہے (Strain = ΔL/L)۔"],
-
-["ینگ کا جدید (Young's Modulus) کیا ظاہر کرتا ہے؟",
-"جواب: یہ کسی مادے کی سختی یا لچک کی پیمائش ہے؛ یہ دباؤ اور خمیدگی کی نسبت ہے۔ زیادہ قدر مادے کی زیادہ سختی ظاہر کرتی ہے۔"],
-
-["لچکدار حد (Elastic Limit) کیا ہے؟",
-"جواب: وہ زیادہ سے زیادہ قوت یا دباؤ جس تک کسی مادے میں قوت ہٹانے کے بعد اصل شکل میں واپس آنے کی صلاحیت برقرار رہے، لچکدار حد کہلاتی ہے۔"]
-
-],
-
-long:[
-
-["ہُک کے قانون کی تفصیل، تجربے اور گراف کے ساتھ وضاحت کریں۔",[
-
-"جواب: ہُک کا قانون بیان کرتا ہے کہ لچکدار حد کے اندر کسی مادے میں پیدا ہونے والا طول اس پر لگائی گئی قوت کے راست متناسب ہوتا ہے، یعنی F = kx، جہاں k لچکدار مستقل ہے۔",
-
-"اس قانون کو جانچنے کے لیے کسی اسپرنگ پر بتدریج وزن لٹکا کر طول میں اضافہ ریکارڈ کیا جاتا ہے۔ قوت کو طول کے خلاف گراف پر دکھانے سے ایک سیدھی لکیر حاصل ہوتی ہے، جو لچکدار حد تک برقرار رہتی ہے۔",
-
-"لچکدار حد سے آگے گراف سیدھی لکیر نہیں رہتا، اور مادے میں مستقل بگاڑ پیدا ہو جاتا ہے، یعنی وہ قوت ہٹانے کے بعد بھی اصل حالت میں واپس نہیں آتا۔"
-
-]],
-
-["دباؤ، خمیدگی اور ینگ کے جدید کی تفصیل مثالوں کے ساتھ بیان کریں۔",[
-
-"جواب: دباؤ (Stress) کسی مادے کی سطح پر لگنے والی قوت فی اکائی رقبہ ہے، یعنی Stress = F/A، اور اس کی اکائی پاسکل ہے۔",
-
-"خمیدگی (Strain) مادے کی اصل لمبائی میں تبدیلی کی نسبت ہے، یعنی Strain = ΔL/L، اور یہ ایک بے اکائی مقدار ہے۔",
-
-"ینگ کا جدید دباؤ اور خمیدگی کا تناسب ہے (Y = Stress/Strain)، جو کسی مادے کی سختی ظاہر کرتا ہے۔ فولاد کا ینگ جدید ربڑ کی نسبت کہیں زیادہ ہوتا ہے، اس لیے فولاد سخت اور کم لچکدار جبکہ ربڑ نرم اور زیادہ لچکدار سمجھا جاتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["ہُک کا قانون کس حد تک لاگو ہوتا ہے:",["ہمیشہ","لچکدار حد تک","کبھی نہیں","صرف دھاتوں پر"],1],
-
-["دباؤ کی اکائی ہے:",["نیوٹن","پاسکل","جول","واٹ"],1],
-
-["خمیدگی (Strain) کی اکائی ہے:",["میٹر","نیوٹن","کوئی اکائی نہیں","پاسکل"],2],
-
-["ینگ کا جدید زیادہ ہونے کا مطلب ہے مادہ:",["زیادہ لچکدار ہے","زیادہ سخت ہے","زیادہ ہلکا ہے","زیادہ گرم ہے"],1],
-
-["ربڑ کی خاصیت ہے:",["زیادہ سختی","زیادہ لچک","کوئی لچک نہیں","زیادہ کثافت"],1],
-
-["لچکدار حد سے زیادہ قوت لگانے پر مادہ:",["اصل شکل میں واپس آتا ہے","مستقل طور پر بگڑ جاتا ہے","ٹھنڈا ہو جاتا ہے","کچھ نہیں ہوتا"],1],
-
-["Stress =",["F×A","F/A","A/F","F+A"],1],
-
-["Strain =",["ΔL×L","ΔL/L","L/ΔL","L+ΔL"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 7
-===================================================== */
-
-{
-title:"باب 7: حرارتی خصوصیاتِ مادہ",
-
-short:[
-
-["درجہ حرارت اور حرارت میں فرق بیان کریں۔",
-"جواب: درجہ حرارت کسی جسم کی گرمی یا سردی کی سطح ظاہر کرتا ہے جبکہ حرارت توانائی کی وہ شکل ہے جو ایک جسم سے دوسرے جسم میں درجہ حرارت کے فرق کی بنا پر منتقل ہوتی ہے۔"],
-
-["حرارتی توسیع (Thermal Expansion) کیا ہے؟",
-"جواب: درجہ حرارت بڑھنے پر مادوں کے حجم یا لمبائی میں اضافہ حرارتی توسیع کہلاتا ہے۔"],
-
-["مخصوص حرارتی گنجائش (Specific Heat Capacity) کی تعریف کریں۔",
-"جواب: کسی مادے کی اکائی کمیت کا درجہ حرارت ایک ڈگری سیلسیس بڑھانے کے لیے درکار حرارت کی مقدار کو مخصوص حرارتی گنجائش کہتے ہیں۔"],
-
-["تبدیلیِ حالت (Change of State) کی تین اقسام بیان کریں۔",
-"جواب: پگھلنا (Melting)، بخارات بننا (Vaporization) اور انجماد/ٹھوس بننا (Freezing/Solidification)۔"],
-
-["پوشیدہ حرارت (Latent Heat) کیا ہے؟",
-"جواب: وہ حرارت جو کسی مادے کی حالت تبدیل کرنے کے لیے استعمال ہوتی ہے، جبکہ اس کا درجہ حرارت تبدیل نہیں ہوتا، پوشیدہ حرارت کہلاتی ہے۔"]
-
-],
-
-long:[
-
-["مخصوص حرارتی گنجائش کی تعریف، فارمولا اور اس سے متعلق ایک عملی مسئلہ بیان کریں۔",[
-
-"جواب: مخصوص حرارتی گنجائش کسی مادے کی اکائی کمیت کا درجہ حرارت ایک ڈگری سیلسیس (یا کیلون) بڑھانے کے لیے درکار حرارت کی مقدار ہے۔ اس کا فارمولا ہے: Q = mcΔT، جہاں Q حرارت، m کمیت، c مخصوص حرارتی گنجائش اور ΔT درجہ حرارت میں تبدیلی ہے۔",
-
-"مثال کے طور پر اگر 2 کلوگرام پانی (c = 4200 J/kg°C) کا درجہ حرارت 20°C سے 40°C تک بڑھانا ہو تو Q = 2 × 4200 × 20 = 168000 جول حرارت درکار ہوگی۔",
-
-"اسی فارمولے کی مدد سے مختلف مادوں کو گرم یا ٹھنڈا کرنے کے لیے درکار توانائی کا حساب لگایا جاتا ہے، جو انجینئرنگ اور روزمرہ زندگی میں نہایت اہم ہے۔"
-
-]],
-
-["حرارتی توسیع کی اقسام مثالوں کے ساتھ تفصیل سے بیان کریں۔",[
-
-"جواب: حرارتی توسیع کی تین بنیادی اقسام ہیں: خطی توسیع، سطحی توسیع اور حجمی توسیع۔",
-
-"خطی توسیع میں درجہ حرارت بڑھنے پر مادے کی لمبائی میں اضافہ ہوتا ہے، مثلاً دھاتی تار کا گرم ہونے پر لمبا ہو جانا۔ سطحی توسیع میں مادے کے رقبے میں اضافہ ہوتا ہے، جبکہ حجمی توسیع میں مادے کے کُل حجم میں اضافہ ہوتا ہے۔",
-
-"یہی وجہ ہے کہ ریل کی پٹڑیوں اور پلوں کے درمیان خالی جگہ (gap) چھوڑی جاتی ہے، تاکہ گرمی میں پھیلنے کی وجہ سے ساخت کو نقصان نہ پہنچے۔"
-
-]]
-
-],
-
-mcq:[
-
-["درجہ حرارت کی SI اکائی ہے:",["سیلسیس","فارن ہائیٹ","کیلون","جول"],2],
-
-["حرارت کی SI اکائی ہے:",["کیلون","جول","واٹ","پاسکل"],1],
-
-["مخصوص حرارتی گنجائش کی اکائی ہے:",["J/kg","J/kg°C","J/°C","J"],1],
-
-["پانی کا ابلاؤ نقطہ (نارمل حالات میں) ہے:",["0°C","50°C","100°C","373°C"],2],
-
-["برف پگھلنے کے عمل کو کہتے ہیں:",["انجماد","پگھلاؤ","بخارات بننا","تکثیف"],1],
-
-["پوشیدہ حرارت کے دوران درجہ حرارت:",["بڑھتا ہے","کم ہوتا ہے","تبدیل نہیں ہوتا","تیزی سے بڑھتا ہے"],2],
-
-["دھاتوں میں حرارتی توسیع عموماً:",["زیادہ ہوتی ہے","کم ہوتی ہے","نہیں ہوتی","منفی ہوتی ہے"],0],
-
-["پانی کا نقطہ انجماد ہے:",["100°C","0°C","-10°C","50°C"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 8
-===================================================== */
-
-{
-title:"باب 8: مقناطیسیت",
-
-short:[
-
-["مقناطیس کے قطب (Poles) کی خصوصیت بیان کریں۔",
-"جواب: ہم جنس قطب ایک دوسرے کو دفع کرتے ہیں جبکہ غیر ہم جنس قطب ایک دوسرے کو کشش کرتے ہیں۔"],
-
-["مقناطیسی میدان (Magnetic Field) کی تعریف کریں۔",
-"جواب: مقناطیس کے گرد وہ خطہ جہاں اس کا مقناطیسی اثر محسوس کیا جا سکے، مقناطیسی میدان کہلاتا ہے۔"],
-
-["برقی مقناطیس (Electromagnet) کیسے بنایا جاتا ہے؟",
-"جواب: کسی نرم لوہے کی سلاخ کے گرد تار کا کنڈلی لپیٹ کر اس میں برقی رو گزارنے سے عارضی مقناطیس بنتا ہے جسے برقی مقناطیس کہتے ہیں۔"],
-
-["مقناطیسی مادوں کی اقسام بیان کریں۔",
-"جواب: فیرو مقناطیسی (لوہا، نکل، کوبالٹ)، پیرا مقناطیسی اور ڈایا مقناطیسی مادے۔"],
-
-["زمین کا مقناطیسی میدان کیسے کام کرتا ہے؟",
-"جواب: زمین خود ایک بڑے مقناطیس کی طرح کام کرتی ہے جس کے قطب شمالی اور جنوبی مقناطیسی قطبوں کے قریب واقع ہیں، جو قطب نما کی سوئی کو سمت دکھانے میں مدد دیتے ہیں۔"]
-
-],
-
-long:[
-
-["برقی مقناطیس کی ساخت، عمل اور عملی استعمالات تفصیل سے بیان کریں۔",[
-
-"جواب: برقی مقناطیس بنانے کے لیے نرم لوہے کی سلاخ کے گرد موصل تار کی کنڈلی لپیٹی جاتی ہے۔ جب اس کنڈلی میں برقی رو گزاری جاتی ہے تو لوہے کی سلاخ عارضی طور پر مقناطیس بن جاتی ہے۔",
-
-"برقی رو بند کرنے پر سلاخ اپنی مقناطیسیت کھو دیتی ہے، جو اسے مستقل مقناطیس سے ممتاز کرتا ہے۔ اس کی طاقت کنڈلی کے پھیروں کی تعداد اور برقی رو کی شدت بڑھانے سے بڑھائی جا سکتی ہے۔",
-
-"برقی مقناطیس کا استعمال برقی موٹروں، گھنٹیوں، بڑے کرینوں میں بھاری لوہے کے ٹکڑے اٹھانے، اور ٹیلیفون و لاؤڈ اسپیکر جیسے آلات میں کیا جاتا ہے۔"
-
-]],
-
-["مقناطیسی میدان کی خطوط (field lines) کی خصوصیات اور انہیں ظاہر کرنے کا طریقہ بیان کریں۔",[
-
-"جواب: مقناطیسی میدان کی خطوط شمالی قطب سے نکل کر جنوبی قطب میں داخل ہوتی ہیں، اور مقناطیس کے اندر جنوبی سے شمالی قطب کی طرف جاری رہتی ہیں تاکہ ایک مکمل حلقہ بنے۔",
-
-"یہ خطوط کبھی ایک دوسرے کو نہیں کاٹتیں؛ جہاں خطوط گھنی ہوں وہاں میدان مضبوط ہوتا ہے اور جہاں وہ پھیلی ہوئی ہوں وہاں میدان کمزور ہوتا ہے۔",
-
-"مقناطیسی میدان کی خطوط کو لوہے کے برادے (iron filings) مقناطیس کے گرد کاغذ پر بکھیر کر یا قطب نما کی مدد سے مختلف مقامات پر سمت نوٹ کر کے ظاہر کیا جا سکتا ہے۔"
-
-]]
-
-],
-
-mcq:[
-
-["ہم جنس مقناطیسی قطب ایک دوسرے کو:",["کشش کرتے ہیں","دفع کرتے ہیں","بے اثر رہتے ہیں","جوڑتے ہیں"],1],
-
-["برقی مقناطیس بنانے کے لیے استعمال ہوتا ہے:",["تانبے کی سلاخ","نرم لوہے کی سلاخ","لکڑی کی سلاخ","پلاسٹک کی سلاخ"],1],
-
-["مقناطیسی میدان کی اکائی ہے:",["ٹیسلا","نیوٹن","جول","واٹ"],0],
-
-["فیرو مقناطیسی مادے کی مثال ہے:",["لوہا","لکڑی","شیشہ","پلاسٹک"],0],
-
-["قطب نما کی سوئی ہمیشہ اشارہ کرتی ہے:",["مشرق کی طرف","شمال-جنوب کی طرف","مغرب کی طرف","اوپر کی طرف"],1],
-
-["برقی مقناطیس کی طاقت کا انحصار ہے:",["کنڈلی کے پھیروں کی تعداد پر","رنگ پر","وزن پر","درجہ حرارت پر"],0],
-
-["مقناطیسی میدان کے خطوط ہمیشہ:",["ایک دوسرے کو کاٹتے ہیں","ایک دوسرے کو نہیں کاٹتے","سیدھے ہوتے ہیں","غیر متعین ہوتے ہیں"],1],
-
-["ڈایا مقناطیسی مادہ مقناطیس کی طرف:",["شدید کشش کرتا ہے","ہلکا سا دفع ہوتا ہے","غیر متعلق رہتا ہے","پگھل جاتا ہے"],1]
-
-]
-
-},
-
-/* =====================================================
-   باب 9
-===================================================== */
-
-{
-title:"باب 9: سائنس کی نوعیت",
-
-short:[
-
-["طبیعیات (Physics) کی تعریف کریں۔",
-"جواب: طبیعیات سائنس کی وہ شاخ ہے جو مادے، توانائی اور ان کے باہمی تعلق کا مطالعہ کرتی ہے۔"],
-
-["سائنس کی نوعیت میں مشاہدہ کی اہمیت بیان کریں۔",
-"جواب: مشاہدہ سائنسی تحقیق کا پہلا مرحلہ ہے جس سے کسی مظہر یا مسئلے کی نشاندہی ہوتی ہے، جو بعد میں مفروضے اور تجربے کی بنیاد بنتا ہے۔"],
-
-["طبیعیات کی کوئی تین شاخیں بیان کریں۔",
-"جواب: میکانیات (Mechanics)، حرارت (Heat) اور برقیات (Electricity) طبیعیات کی اہم شاخیں ہیں۔"],
-
-["سائنسی طریقہ کار کیا ہے؟",
-"جواب: مشاہدہ، مسئلے کا تعین، مفروضہ، تجربہ، نتیجہ اور نظریہ جیسے مراحل پر مشتمل منظم اور منطقی طریقہ سائنسی طریقہ کار کہلاتا ہے۔"],
-
-["طبیعیات کا روزمرہ زندگی میں ایک استعمال بیان کریں۔",
-"جواب: موبائل فون، بجلی کے آلات اور نقل و حمل کے ذرائع (گاڑیاں، ہوائی جہاز) سب طبیعیات کے اصولوں پر کام کرتے ہیں۔"]
-
-],
-
-long:[
-
-["طبیعیات کی مختلف شاخوں اور ان کے روزمرہ زندگی میں استعمال کو تفصیل سے بیان کریں۔",[
-
-"جواب: طبیعیات کی کئی اہم شاخیں ہیں جن میں میکانیات (حرکت اور قوت کا مطالعہ)، حرارت (حرارتی توانائی کا مطالعہ)، برقیات (بجلی کا مطالعہ)، مقناطیسیت، اور نوری طبیعیات (روشنی کا مطالعہ) شامل ہیں۔",
-
-"میکانیات کے اصول گاڑیوں اور مشینوں کے ڈیزائن میں استعمال ہوتے ہیں، برقیات موبائل فون اور گھریلو آلات کو چلانے میں مدد دیتی ہے، جبکہ نوری طبیعیات کیمرے اور خوردبین جیسے آلات کی بنیاد ہے۔",
-
-"اس طرح طبیعیات کا علم تقریباً ہر جدید ٹیکنالوجی اور روزمرہ آلے کے پیچھے کارفرما ہے، اور یہ انجینئرنگ، طب اور خلائی تحقیق جیسے شعبوں کی بنیاد فراہم کرتا ہے۔"
-
-]],
-
-["سائنسی طریقہ کار کے مراحل کو کسی مثال کے ساتھ تفصیل سے بیان کریں۔",[
-
-"جواب: سائنسی طریقہ کار ایک منظم طریقہ ہے جس کے مراحل یہ ہیں: مشاہدہ، مسئلے کا تعین، مفروضہ، تجربہ، ڈیٹا کا تجزیہ، نتیجہ اور بالآخر نظریہ۔",
-
-"مثال کے طور پر اگر کسی طالب علم نے مشاہدہ کیا کہ دھوپ میں رکھی دھاتی چیز لکڑی کی چیز سے زیادہ گرم ہو جاتی ہے، تو وہ مفروضہ قائم کر سکتا ہے کہ دھاتیں حرارت کو لکڑی سے زیادہ تیزی سے جذب کرتی ہیں۔",
-
-"اس مفروضے کو جانچنے کے لیے وہ ایک کنٹرول شدہ تجربہ کرے گا جس میں دھات اور لکڑی کے یکساں ٹکڑے ایک ہی وقت کے لیے دھوپ میں رکھے جائیں گے، اور دونوں کے درجہ حرارت کا موازنہ کر کے نتیجہ اخذ کیا جائے گا۔"
-
-]]
-
-],
-
-mcq:[
-
-["طبیعیات کس کا مطالعہ کرتی ہے:",["صرف مادہ","صرف توانائی","مادہ اور توانائی","صرف جاندار"],2],
-
-["میکانیات کس چیز کا مطالعہ ہے:",["حرکت اور قوت","حرارت","روشنی","آواز"],0],
-
-["سائنسی طریقہ کار کا پہلا مرحلہ ہے:",["تجربہ","مشاہدہ","نتیجہ","مفروضہ"],1],
-
-["طبیعیات کی وہ شاخ جو بجلی کا مطالعہ کرتی ہے:",["حرکیات","برقیات","حرارت","مقناطیسیت"],1],
-
-["ایک آزمودہ اور تسلیم شدہ وضاحت کہلاتی ہے:",["مفروضہ","نظریہ","مشاہدہ","تجربہ"],1],
-
-["موبائل فون کا کام کرنا بنیادی طور پر کس شاخ پر مبنی ہے:",["صرف حرارت","الیکٹرانکس اور برقیات","صرف میکانیات","صرف نوری طبیعیات"],1],
-
-["طبیعیات کا دوسرے علوم سے تعلق:",["نہیں ہے","ہے، مثلاً انجینئرنگ اور طب میں","صرف ریاضی سے ہے","صرف کیمسٹری سے ہے"],1],
-
-["درست نتیجے تک پہنچنے کے لیے تجربہ کس طرح کیا جانا چاہیے:",["بے ترتیب","کنٹرول شدہ انداز میں","بغیر ریکارڈ کے","صرف ایک بار"],1]
-
-]
-
-}
-
-];
-
-
-/* =====================================================
-   باب منتخب کرنے کی فہرست
-===================================================== */
-
-const select=document.getElementById("chapterSelect");
-
-data.forEach((chapter,index)=>{
-
-  const option=document.createElement("option");
-
-  option.value=index;
-
-  option.textContent=chapter.title;
-
-  select.appendChild(option);
-
-});
-
-
-/* =====================================================
-   HTML محفوظ بنانے کا فنکشن
-===================================================== */
-
-function esc(text){
-
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================================
-   نیا صفحہ
-===================================================== */
+function nl2br(value){
 
-function createPage(chapter){
-
-  const page=document.createElement("div");
-
-  page.className="page";
-
-  page.innerHTML=`
-
-    <div class="page-content">
-
-      <div class="page-header">
-
-        <div class="school">
-          دی رائزن ہائی سکول
-        </div>
-
-        <div class="subject">
-          نویں جماعت — طبیعیات
-        </div>
-
-        <div class="chapter">
-          ${esc(chapter.title)}
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="footer">
-      The Risen High School — 9th Class Physics Notes
-    </div>
-
-  `;
-
-  document.getElementById("pages").appendChild(page);
-
-  return page.querySelector(".page-content");
+    return escapeHTML(value || "")
+        .replace(/\n/g,"<br>");
 
 }
 
 
-/* =====================================================
-   مختصر سوال
-===================================================== */
+function get(id){
 
-function makeShort(item){
-
-  const div=document.createElement("div");
-
-  div.className="question";
-
-  div.innerHTML=`
-
-    <div class="q">
-      سوال: ${esc(item[0])}
-    </div>
-
-    <div class="a">
-      ${esc(item[1])}
-    </div>
-
-  `;
-
-  return div;
+    return document.getElementById(id);
 
 }
 
 
-/* =====================================================
-   تفصیلی سوال
-===================================================== */
+/* =========================================================
+   TABS
+   ========================================================= */
 
-function makeLong(item){
+function showTab(tab){
 
-  const div=document.createElement("div");
+    currentTab = tab;
 
-  div.className="question long-answer";
+    if(tab === "paper"){
 
-  let html=`
+        get("paperSection").classList.remove("hidden");
+        get("notesSection").classList.add("hidden");
 
-    <div class="q">
-      سوال: ${esc(item[0])}
-    </div>
+        get("paperTab").classList.add("active");
+        get("notesTab").classList.remove("active");
 
-  `;
+    }else{
 
-  item[1].forEach(answer=>{
+        get("paperSection").classList.add("hidden");
+        get("notesSection").classList.remove("hidden");
 
-    html+=`
+        get("paperTab").classList.remove("active");
+        get("notesTab").classList.add("active");
 
-      <div class="a">
-        ${esc(answer)}
-      </div>
-
-    `;
-
-  });
-
-  div.innerHTML=html;
-
-  return div;
-
-}
-
-
-/* =====================================================
-   MCQ
-===================================================== */
-
-function makeMcq(item,index){
-
-  const div=document.createElement("div");
-
-  div.className="mcq";
-
-  let html=`
-
-    <div class="q">
-      ${index+1}. ${esc(item[0])}
-    </div>
-
-    <div class="options">
-
-  `;
-
-  item[1].forEach((option,i)=>{
-
-    html+=`
-
-      <div class="option ${i===item[2]?'correct':''}">
-        ${String.fromCharCode(65+i)}۔ ${esc(option)}
-      </div>
-
-    `;
-
-  });
-
-  html+=`</div>`;
-
-  div.innerHTML=html;
-
-  return div;
-
-}
-
-
-/* =====================================================
-   سیکشن کا عنوان
-===================================================== */
-
-function makeSection(title){
-
-  const div=document.createElement("div");
-
-  div.className="section-title";
-
-  div.textContent=title;
-
-  return div;
-
-}
-
-
-/* =====================================================
-   عنصر کو صفحے میں شامل کرنا
-===================================================== */
-
-function addToPages(chapter,element,current){
-
-  current.appendChild(element);
-
-  if(current.scrollHeight > current.clientHeight){
-
-    current.removeChild(element);
-
-    current=createPage(chapter);
-
-    current.appendChild(element);
-
-  }
-
-  return current;
-
-}
-
-
-/* =====================================================
-   نوٹس تیار کریں
-===================================================== */
-
-function generateNotes(){
-
-  const chapter=data[Number(select.value)];
-
-  const pages=document.getElementById("pages");
-
-  pages.innerHTML="";
-
-  let current=createPage(chapter);
-
-
-  /* -------------------------
-     مختصر سوالات
-  ------------------------- */
-
-  current=addToPages(
-    chapter,
-    makeSection("مختصر سوالات اور جوابات"),
-    current
-  );
-
-  chapter.short.forEach(item=>{
-
-    current=addToPages(
-      chapter,
-      makeShort(item),
-      current
-    );
-
-  });
-
-
-  /* -------------------------
-     تفصیلی سوالات
-  ------------------------- */
-
-  current=addToPages(
-    chapter,
-    makeSection("تفصیلی سوالات اور جوابات"),
-    current
-  );
-
-  chapter.long.forEach(item=>{
-
-    current=addToPages(
-      chapter,
-      makeLong(item),
-      current
-    );
-
-  });
-
-
-  /* -------------------------
-     MCQs
-  ------------------------- */
-
-  current=addToPages(
-    chapter,
-    makeSection("کثیر الانتخابی سوالات (MCQs)"),
-    current
-  );
-
-  chapter.mcq.forEach((item,index)=>{
-
-    current=addToPages(
-      chapter,
-      makeMcq(item,index),
-      current
-    );
-
-  });
-
-}
-
-
-/* =====================================================
-   موجودہ باب PNG
-===================================================== */
-
-async function downloadCurrent(){
-
-  if(typeof html2canvas==="undefined"){
-
-    alert("PNG بنانے کے لیے براہِ کرم انٹرنیٹ آن کریں۔");
-
-    return;
-
-  }
-
-  if(!document.querySelector(".page")){
-
-    generateNotes();
-
-  }
-
-  const pages=document.querySelectorAll(".page");
-
-  for(let i=0;i<pages.length;i++){
-
-    const canvas=await html2canvas(pages[i],{
-
-      scale:2,
-
-      backgroundColor:"#ffffff",
-
-      useCORS:true
-
-    });
-
-    const link=document.createElement("a");
-
-    link.download=
-      "Physics-Chapter-"+(Number(select.value)+1)+"-Page-"+(i+1)+".png";
-
-    link.href=canvas.toDataURL("image/png");
-
-    link.click();
-
-    await new Promise(resolve=>setTimeout(resolve,500));
-
-  }
-
-}
-
-
-/* =====================================================
-   تمام ابواب PNG
-===================================================== */
-
-async function downloadAll(){
-
-  if(typeof html2canvas==="undefined"){
-
-    alert("PNG بنانے کے لیے براہِ کرم انٹرنیٹ آن کریں۔");
-
-    return;
-
-  }
-
-  for(let chapterIndex=0;chapterIndex<data.length;chapterIndex++){
-
-    select.value=chapterIndex;
-
-    generateNotes();
-
-    await new Promise(resolve=>setTimeout(resolve,500));
-
-    const pages=document.querySelectorAll(".page");
-
-    for(let pageIndex=0;pageIndex<pages.length;pageIndex++){
-
-      const canvas=await html2canvas(pages[pageIndex],{
-
-        scale:2,
-
-        backgroundColor:"#ffffff",
-
-        useCORS:true
-
-      });
-
-      const link=document.createElement("a");
-
-      link.download=
-        "Physics-Chapter-"+(chapterIndex+1)+"-Page-"+(pageIndex+1)+".png";
-
-      link.href=canvas.toDataURL("image/png");
-
-      link.click();
-
-      await new Promise(resolve=>setTimeout(resolve,500));
+        updateNotes();
 
     }
 
-  }
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+function setToday(){
+
+    const today = new Date();
+
+    const y = today.getFullYear();
+
+    const m = String(today.getMonth()+1).padStart(2,"0");
+
+    const d = String(today.getDate()).padStart(2,"0");
+
+    get("paperDate").value = `${y}-${m}-${d}`;
+
+}
+
+setToday();
+
+
+/* =========================================================
+   MCQ
+   ========================================================= */
+
+function addMCQ(data){
+
+    data = data || {
+        question:"",
+        options:["","","",""],
+        answer:""
+    };
+
+    mcqs.push(data);
+
+    renderMCQs();
+
+    updatePaper();
 
 }
 
 
-/* =====================================================
-   شروع میں باب 1 دکھائیں
-===================================================== */
+function removeMCQ(index){
 
-select.value=0;
+    mcqs.splice(index,1);
 
-generateNotes();
+    renderMCQs();
+
+    updatePaper();
+
+}
+
+
+function renderMCQs(){
+
+    const box = get("mcqEditor");
+
+    box.innerHTML = "";
+
+    if(mcqs.length === 0){
+
+        box.innerHTML =
+            `<div class="empty-message">
+                ابھی کوئی MCQ شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+    mcqs.forEach((mcq,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "item";
+
+        item.innerHTML = `
+
+            <div class="item-top">
+
+                <span class="item-number">
+                    MCQ ${index+1}
+                </span>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeMCQ(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <textarea
+                class="urdu-input"
+                placeholder="MCQ سوال لکھیں..."
+                oninput="mcqs[${index}].question=this.value;updatePaper()">${escapeHTML(mcq.question)}</textarea>
+
+            <div class="mcq-options">
+
+                ${["A","B","C","D"].map((letter,i)=>`
+
+                    <div class="option-wrap">
+
+                        <span class="option-letter">
+                            ${letter}
+                        </span>
+
+                        <input
+                            class="urdu-input"
+                            placeholder="Option ${letter}"
+                            value="${escapeHTML(mcq.options[i] || "")}"
+                            oninput="mcqs[${index}].options[${i}]=this.value;updatePaper()">
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+            <div style="margin-top:8px">
+
+                <label>
+                    درست جواب
+                </label>
+
+                <select
+                    onchange="mcqs[${index}].answer=this.value;updatePaper()">
+
+                    <option value="">منتخب کریں</option>
+
+                    <option value="A" ${mcq.answer==="A"?"selected":""}>A</option>
+                    <option value="B" ${mcq.answer==="B"?"selected":""}>B</option>
+                    <option value="C" ${mcq.answer==="C"?"selected":""}>C</option>
+                    <option value="D" ${mcq.answer==="D"?"selected":""}>D</option>
+
+                </select>
+
+            </div>
+
+        `;
+
+        box.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   SHORT QUESTIONS
+   ========================================================= */
+
+function addShort(data){
+
+    data = data || {
+        question:""
+    };
+
+    shorts.push(data);
+
+    renderShorts();
+
+    updatePaper();
+
+}
+
+
+function removeShort(index){
+
+    shorts.splice(index,1);
+
+    renderShorts();
+
+    updatePaper();
+
+}
+
+
+function renderShorts(){
+
+    const box = get("shortEditor");
+
+    box.innerHTML = "";
+
+    if(shorts.length === 0){
+
+        box.innerHTML =
+            `<div class="empty-message">
+                ابھی کوئی مختصر سوال شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+    shorts.forEach((item,index)=>{
+
+        const div = document.createElement("div");
+
+        div.className="item";
+
+        div.innerHTML=`
+
+            <div class="item-top">
+
+                <span class="item-number">
+                    سوال ${index+1}
+                </span>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeShort(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <textarea
+                class="urdu-input"
+                placeholder="مختصر سوال لکھیں..."
+                oninput="shorts[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
+
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   LONG QUESTIONS
+   ========================================================= */
+
+function addLong(data){
+
+    data = data || {
+        question:""
+    };
+
+    longs.push(data);
+
+    renderLongs();
+
+    updatePaper();
+
+}
+
+
+function removeLong(index){
+
+    longs.splice(index,1);
+
+    renderLongs();
+
+    updatePaper();
+
+}
+
+
+function renderLongs(){
+
+    const box = get("longEditor");
+
+    box.innerHTML="";
+
+    if(longs.length===0){
+
+        box.innerHTML=
+            `<div class="empty-message">
+                ابھی کوئی طویل سوال شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+    longs.forEach((item,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="item";
+
+        div.innerHTML=`
+
+            <div class="item-top">
+
+                <span class="item-number">
+                    سوال ${index+1}
+                </span>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeLong(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <textarea
+                class="urdu-input"
+                placeholder="طویل سوال لکھیں..."
+                oninput="longs[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
+
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   FILL IN BLANKS
+   ========================================================= */
+
+function addFill(data){
+
+    data=data || {
+        question:""
+    };
+
+    fills.push(data);
+
+    renderFills();
+
+    updatePaper();
+
+}
+
+
+function removeFill(index){
+
+    fills.splice(index,1);
+
+    renderFills();
+
+    updatePaper();
+
+}
+
+
+function renderFills(){
+
+    const box=get("fillEditor");
+
+    box.innerHTML="";
+
+    if(fills.length===0){
+
+        box.innerHTML=
+            `<div class="empty-message">
+                ابھی کوئی Fill in the Blank شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+    fills.forEach((item,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="item";
+
+        div.innerHTML=`
+
+            <div class="item-top">
+
+                <span class="item-number">
+                    ${index+1}
+                </span>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeFill(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <textarea
+                class="urdu-input"
+                placeholder="خالی جگہ والا سوال لکھیں..."
+                oninput="fills[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
+
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   TRUE FALSE
+   ========================================================= */
+
+function addTF(data){
+
+    data=data || {
+        statement:"",
+        answer:""
+    };
+
+    tfs.push(data);
+
+    renderTF();
+
+    updatePaper();
+
+}
+
+
+function removeTF(index){
+
+    tfs.splice(index,1);
+
+    renderTF();
+
+    updatePaper();
+
+}
+
+
+function renderTF(){
+
+    const box=get("tfEditor");
+
+    box.innerHTML="";
+
+    if(tfs.length===0){
+
+        box.innerHTML=
+            `<div class="empty-message">
+                ابھی کوئی True / False سوال شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+    tfs.forEach((item,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="item";
+
+        div.innerHTML=`
+
+            <div class="item-top">
+
+                <span class="item-number">
+                    ${index+1}
+                </span>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeTF(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <textarea
+                class="urdu-input"
+                placeholder="Statement لکھیں..."
+                oninput="tfs[${index}].statement=this.value;updatePaper()">${escapeHTML(item.statement)}</textarea>
+
+            <select
+                style="margin-top:8px"
+                onchange="tfs[${index}].answer=this.value;updatePaper()">
+
+                <option value="">جواب منتخب کریں</option>
+
+                <option value="True" ${item.answer==="True"?"selected":""}>
+                    True / درست
+                </option>
+
+                <option value="False" ${item.answer==="False"?"selected":""}>
+                    False / غلط
+                </option>
+
+            </select>
+
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   PAPER PREVIEW
+   ========================================================= */
+
+function updatePaper(){
+
+    const school = get("schoolName").value;
+    const exam = get("examName").value;
+    const cls = get("paperClass").value;
+    const subject = get("paperSubject").value;
+    const chapter = get("paperChapter").value;
+    const date = get("paperDate").value;
+    const time = get("paperTime").value;
+    const marks = get("totalMarks").value;
+
+    const student = get("studentName").value;
+    const roll = get("rollNumber").value;
+    const section = get("sectionName").value;
+    const teacher = get("teacherName").value;
+
+
+    let dateText = "";
+
+    if(date){
+
+        const dt = new Date(date+"T00:00:00");
+
+        dateText =
+            dt.toLocaleDateString(
+                "en-GB",
+                {
+                    day:"2-digit",
+                    month:"2-digit",
+                    year:"numeric"
+                }
+            );
+
+    }
+
+
+    let html = `
+
+        <div class="paper-header">
+
+            <div class="preview-school">
+                ${escapeHTML(school || "The Risen High School")}
+            </div>
+
+            <div class="preview-exam">
+                ${escapeHTML(exam || "Test")}
+            </div>
+
+            <div style="font-size:17px">
+                ${escapeHTML(subject || "")}
+            </div>
+
+            ${chapter ? `
+                <div style="font-size:15px">
+                    ${escapeHTML(chapter)}
+                </div>
+            ` : ""}
+
+            <div class="preview-meta">
+
+                <div class="meta-cell">
+                    Class: ${escapeHTML(cls)}
+                </div>
+
+                <div class="meta-cell">
+                    Time: ${escapeHTML(time)}
+                </div>
+
+                <div class="meta-cell">
+                    Total Marks: ${escapeHTML(marks)}
+                </div>
+
+                <div class="meta-cell">
+                    Date: ${escapeHTML(dateText)}
+                </div>
+
+                <div class="meta-cell">
+                    Teacher: ${escapeHTML(teacher)}
+                </div>
+
+                <div class="meta-cell">
+                    The Risen High School
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="student-row">
+
+            <div class="student-cell">
+                Name: ${escapeHTML(student)}
+            </div>
+
+            <div class="student-cell">
+                Roll No: ${escapeHTML(roll)}
+            </div>
+
+            <div class="student-cell">
+                Section: ${escapeHTML(section)}
+            </div>
+
+            <div class="student-cell">
+                Marks: ______
+            </div>
+
+        </div>
+
+    `;
+
+
+    /* MCQs */
+
+    if(mcqs.length){
+
+        html += `
+
+            <div class="paper-section">
+
+                <div class="paper-section-title">
+                    حصہ اوّل: کثیر الانتخابی سوالات (MCQs)
+                </div>
+
+                <div class="mcq-preview">
+
+        `;
+
+        mcqs.forEach((mcq,index)=>{
+
+            html += `
+
+                <div class="mcq-preview-item">
+
+                    <div>
+
+                        <strong>${index+1}۔</strong>
+
+                        ${nl2br(mcq.question)}
+
+                    </div>
+
+                    <div class="mcq-options-preview">
+
+                        <div>ⓐ ${escapeHTML(mcq.options[0] || "")}</div>
+                        <div>ⓑ ${escapeHTML(mcq.options[1] || "")}</div>
+                        <div>ⓒ ${escapeHTML(mcq.options[2] || "")}</div>
+                        <div>ⓓ ${escapeHTML(mcq.options[3] || "")}</div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* SHORT */
+
+    if(shorts.length){
+
+        html += `
+
+            <div class="paper-section">
+
+                <div class="paper-section-title">
+                    حصہ دوم: مختصر سوالات
+                </div>
+
+        `;
+
+        shorts.forEach((item,index)=>{
+
+            html += `
+
+                <div class="q-row">
+
+                    <div class="q-number">
+                        ${index+1}.
+                    </div>
+
+                    <div>
+                        ${nl2br(item.question)}
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+
+    /* LONG */
+
+    if(longs.length){
+
+        html += `
+
+            <div class="paper-section">
+
+                <div class="paper-section-title">
+                    حصہ سوم: تفصیلی سوالات
+                </div>
+
+        `;
+
+        longs.forEach((item,index)=>{
+
+            html += `
+
+                <div class="long-answer">
+
+                    <div>
+                        <strong>${index+1}۔</strong>
+                        ${nl2br(item.question)}
+                    </div>
+
+                    <div class="answer-lines"></div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+
+    /* FILL */
+
+    if(fills.length){
+
+        html += `
+
+            <div class="paper-section">
+
+                <div class="paper-section-title">
+                    خالی جگہیں پُر کریں
+                </div>
+
+        `;
+
+        fills.forEach((item,index)=>{
+
+            html += `
+
+                <div class="fill-row">
+
+                    ${index+1}۔ ${nl2br(item.question)}
+
+                </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+
+    /* TRUE FALSE */
+
+    if(tfs.length){
+
+        html += `
+
+            <div class="paper-section">
+
+                <div class="paper-section-title">
+                    درست / غلط
+                </div>
+
+        `;
+
+        tfs.forEach((item,index)=>{
+
+            html += `
+
+                <div class="truefalse">
+
+                    <div>
+                        ${index+1}۔ ${nl2br(item.statement)}
+                    </div>
+
+                    <div class="tf-options">
+                        ☐ درست &nbsp;&nbsp; ☐ غلط
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+
+    if(
+        !mcqs.length &&
+        !shorts.length &&
+        !longs.length &&
+        !fills.length &&
+        !tfs.length
+    ){
+
+        html += `
+
+            <div style="
+                text-align:center;
+                padding:50px 20px;
+                font-size:20px;
+                color:#777;
+            ">
+
+                یہاں آپ کے سوالات کا پرچہ ظاہر ہوگا۔
+
+                <br>
+
+                بائیں طرف سے MCQs یا سوالات شامل کریں۔
+
+            </div>
+
+        `;
+
+    }
+
+
+    html += `
+
+        <div class="paper-footer">
+
+            <span>
+                ${escapeHTML(school || "The Risen High School")}
+            </span>
+
+            <span>
+                Teacher: ${escapeHTML(teacher)}
+            </span>
+
+            <span>
+                Signature: __________
+            </span>
+
+        </div>
+
+    `;
+
+
+    get("paperPreview").innerHTML = html;
+
+}
+
+
+/* =========================================================
+   NOTES BLOCK
+   ========================================================= */
+
+function addNoteBlock(data){
+
+    data=data || {
+        type:"heading",
+        heading:"",
+        question:"",
+        answer:"",
+        definition:"",
+        points:"",
+        mcqQuestion:"",
+        options:["","","",""]
+    };
+
+    noteBlocks.push(data);
+
+    renderNotesEditor();
+
+    updateNotes();
+
+}
+
+
+function removeNoteBlock(index){
+
+    noteBlocks.splice(index,1);
+
+    renderNotesEditor();
+
+    updateNotes();
+
+}
+
+
+function changeNoteType(index,type){
+
+    noteBlocks[index].type=type;
+
+    renderNotesEditor();
+
+    updateNotes();
+
+}
+
+
+function renderNotesEditor(){
+
+    const box=get("notesEditor");
+
+    box.innerHTML="";
+
+    if(noteBlocks.length===0){
+
+        box.innerHTML=
+            `<div class="empty-message">
+                ابھی کوئی Note شامل نہیں کیا گیا۔
+            </div>`;
+
+        return;
+
+    }
+
+
+    noteBlocks.forEach((note,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="note-editor";
+
+
+        let fields="";
+
+
+        if(note.type==="heading"){
+
+            fields=`
+
+                <input
+                    class="urdu-input"
+                    placeholder="Heading / عنوان"
+                    value="${escapeHTML(note.heading)}"
+                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+
+            `;
+
+        }
+
+
+        if(note.type==="qa"){
+
+            fields=`
+
+                <textarea
+                    class="urdu-input"
+                    placeholder="سوال"
+                    oninput="noteBlocks[${index}].question=this.value;updateNotes()">${escapeHTML(note.question)}</textarea>
+
+                <textarea
+                    class="urdu-input"
+                    style="margin-top:8px"
+                    placeholder="جواب"
+                    oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+
+            `;
+
+        }
+
+
+        if(note.type==="definition"){
+
+            fields=`
+
+                <input
+                    class="urdu-input"
+                    placeholder="اصطلاح / تعریف کا عنوان"
+                    value="${escapeHTML(note.heading)}"
+                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+
+                <textarea
+                    class="urdu-input"
+                    style="margin-top:8px"
+                    placeholder="تعریف"
+                    oninput="noteBlocks[${index}].definition=this.value;updateNotes()">${escapeHTML(note.definition)}</textarea>
+
+            `;
+
+        }
+
+
+        if(note.type==="points"){
+
+            fields=`
+
+                <input
+                    class="urdu-input"
+                    placeholder="Heading"
+                    value="${escapeHTML(note.heading)}"
+                    oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+
+                <textarea
+                    class="urdu-input"
+                    style="margin-top:8px"
+                    placeholder="ہر اہم نکتہ نئی لائن میں لکھیں"
+                    oninput="noteBlocks[${index}].points=this.value;updateNotes()">${escapeHTML(note.points)}</textarea>
+
+            `;
+
+        }
+
+
+        if(note.type==="text"){
+
+            fields=`
+
+                <textarea
+                    class="urdu-input"
+                    placeholder="تفصیلی نوٹس لکھیں"
+                    oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+
+            `;
+
+        }
+
+
+        if(note.type==="mcq"){
+
+            fields=`
+
+                <textarea
+                    class="urdu-input"
+                    placeholder="MCQ سوال"
+                    oninput="noteBlocks[${index}].mcqQuestion=this.value;updateNotes()">${escapeHTML(note.mcqQuestion)}</textarea>
+
+                <div class="mcq-options">
+
+                    ${["A","B","C","D"].map((letter,i)=>`
+
+                        <div class="option-wrap">
+
+                            <span class="option-letter">
+                                ${letter}
+                            </span>
+
+                            <input
+                                class="urdu-input"
+                                placeholder="Option ${letter}"
+                                value="${escapeHTML(note.options[i] || "")}"
+                                oninput="noteBlocks[${index}].options[${i}]=this.value;updateNotes()">
+
+                        </div>
+
+                    `).join("")}
+
+                </div>
+
+            `;
+
+        }
+
+
+        div.innerHTML=`
+
+            <div class="item-top">
+
+                <strong>
+                    Note ${index+1}
+                </strong>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeNoteBlock(${index})">
+
+                    حذف کریں
+
+                </button>
+
+            </div>
+
+            <select
+                onchange="changeNoteType(${index},this.value)">
+
+                <option value="heading" ${note.type==="heading"?"selected":""}>
+                    Heading
+                </option>
+
+                <option value="qa" ${note.type==="qa"?"selected":""}>
+                    Question / Answer
+                </option>
+
+                <option value="definition" ${note.type==="definition"?"selected":""}>
+                    Definition
+                </option>
+
+                <option value="points" ${note.type==="points"?"selected":""}>
+                    Key Points
+                </option>
+
+                <option value="text" ${note.type==="text"?"selected":""}>
+                    Detailed Text
+                </option>
+
+                <option value="mcq" ${note.type==="mcq"?"selected":""}>
+                    MCQ
+                </option>
+
+            </select>
+
+            <div class="note-fields">
+                ${fields}
+            </div>
+
+        `;
+
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   NOTES PREVIEW
+   ========================================================= */
+
+function updateNotes(){
+
+    const school=get("notesSchool").value;
+    const cls=get("notesClass").value;
+    const subject=get("notesSubject").value;
+    const chapter=get("notesChapter").value;
+    const topic=get("notesTopic").value;
+
+
+    let html=`
+
+        <div class="notes-title">
+
+            ${escapeHTML(school || "The Risen High School")}
+
+            <div style="font-size:20px">
+                تعلیمی نوٹس
+            </div>
+
+        </div>
+
+
+        <div class="notes-info">
+
+            <div>
+                جماعت: ${escapeHTML(cls)}
+            </div>
+
+            <div>
+                مضمون: ${escapeHTML(subject)}
+            </div>
+
+            <div>
+                باب: ${escapeHTML(chapter)}
+            </div>
+
+        </div>
+
+        ${topic ? `
+            <div style="
+                text-align:center;
+                font-size:22px;
+                font-weight:bold;
+                margin:10px 0;
+            ">
+                ${escapeHTML(topic)}
+            </div>
+        ` : ""}
+
+    `;
+
+
+    noteBlocks.forEach((note,index)=>{
+
+        if(note.type==="heading"){
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-heading">
+                        ${escapeHTML(note.heading)}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(note.type==="qa"){
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-question">
+
+                        ${index+1}۔
+                        ${nl2br(note.question)}
+
+                    </div>
+
+                    <div class="note-answer">
+
+                        <strong>جواب:</strong>
+
+                        ${nl2br(note.answer)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(note.type==="definition"){
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-heading">
+
+                        ${escapeHTML(note.heading)}
+
+                    </div>
+
+                    <div class="definition">
+
+                        ${nl2br(note.definition)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(note.type==="points"){
+
+            const points=(note.points || "")
+                .split("\n")
+                .filter(x=>x.trim()!=="");
+
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-heading">
+
+                        ${escapeHTML(note.heading)}
+
+                    </div>
+
+                    <div class="keypoints">
+
+                        ${points.map((p,i)=>`
+
+                            <div>
+                                ${i+1}۔ ${escapeHTML(p)}
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(note.type==="text"){
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-answer">
+
+                        ${nl2br(note.answer)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(note.type==="mcq"){
+
+            html+=`
+
+                <div class="note-block">
+
+                    <div class="note-question">
+
+                        ${index+1}۔
+                        ${nl2br(note.mcqQuestion)}
+
+                    </div>
+
+                    <div class="notes-mcq-options">
+
+                        <div>ⓐ ${escapeHTML(note.options[0] || "")}</div>
+                        <div>ⓑ ${escapeHTML(note.options[1] || "")}</div>
+                        <div>ⓒ ${escapeHTML(note.options[2] || "")}</div>
+                        <div>ⓓ ${escapeHTML(note.options[3] || "")}</div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+    });
+
+
+    if(noteBlocks.length===0){
+
+        html+=`
+
+            <div style="
+                text-align:center;
+                padding:70px 20px;
+                color:#777;
+                font-size:21px;
+            ">
+
+                یہاں آپ کے نوٹس نظر آئیں گے۔
+
+                <br>
+
+                بائیں طرف سے + Add Note دبائیں۔
+
+            </div>
+
+        `;
+
+    }
+
+
+    get("notesPreview").innerHTML=html;
+
+}
+
+
+/* =========================================================
+   LOGO UPLOAD
+   ========================================================= */
+
+function uploadLogo(event){
+
+    const file=event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+
+        logoData=e.target.result;
+
+        get("headerLogo").src=logoData;
+
+        get("headerLogo").classList.remove("hidden");
+
+        get("logoPlaceholder").classList.add("hidden");
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   SAVE DRAFT
+   ========================================================= */
+
+function saveDraft(){
+
+    const data={
+
+        currentTab,
+
+        paperInputs:{
+
+            schoolName:get("schoolName").value,
+            examName:get("examName").value,
+            paperClass:get("paperClass").value,
+            paperSubject:get("paperSubject").value,
+            paperChapter:get("paperChapter").value,
+            paperDate:get("paperDate").value,
+            paperTime:get("paperTime").value,
+            totalMarks:get("totalMarks").value,
+            studentName:get("studentName").value,
+            rollNumber:get("rollNumber").value,
+            sectionName:get("sectionName").value,
+            teacherName:get("teacherName").value
+
+        },
+
+        notesInputs:{
+
+            notesSchool:get("notesSchool").value,
+            notesClass:get("notesClass").value,
+            notesSubject:get("notesSubject").value,
+            notesChapter:get("notesChapter").value,
+            notesTopic:get("notesTopic").value
+
+        },
+
+        mcqs,
+        shorts,
+        longs,
+        fills,
+        tfs,
+        noteBlocks,
+        logoData
+
+    };
+
+
+    localStorage.setItem(
+        "risenPaperNotesDraft",
+        JSON.stringify(data)
+    );
+
+
+    alert("Draft محفوظ ہو گیا ہے۔");
+
+}
+
+
+/* =========================================================
+   LOAD DRAFT
+   ========================================================= */
+
+function loadDraft(){
+
+    const raw=localStorage.getItem(
+        "risenPaperNotesDraft"
+    );
+
+
+    if(!raw){
+
+        alert("کوئی محفوظ Draft نہیں ملا۔");
+
+        return;
+
+    }
+
+
+    try{
+
+        const data=JSON.parse(raw);
+
+
+        const p=data.paperInputs || {};
+
+        Object.keys(p).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=p[id];
+            }
+
+        });
+
+
+        const n=data.notesInputs || {};
+
+        Object.keys(n).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=n[id];
+            }
+
+        });
+
+
+        mcqs=data.mcqs || [];
+        shorts=data.shorts || [];
+        longs=data.longs || [];
+        fills=data.fills || [];
+        tfs=data.tfs || [];
+        noteBlocks=data.noteBlocks || [];
+        logoData=data.logoData || "";
+
+
+        if(logoData){
+
+            get("headerLogo").src=logoData;
+
+            get("headerLogo").classList.remove("hidden");
+
+            get("logoPlaceholder").classList.add("hidden");
+
+        }
+
+
+        renderMCQs();
+        renderShorts();
+        renderLongs();
+        renderFills();
+        renderTF();
+        renderNotesEditor();
+
+        updatePaper();
+        updateNotes();
+
+
+        if(data.currentTab){
+
+            showTab(data.currentTab);
+
+        }
+
+
+        alert("Draft load ہو گیا ہے۔");
+
+    }catch(error){
+
+        alert("Draft load نہیں ہو سکا۔");
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLEAR
+   ========================================================= */
+
+function clearAll(){
+
+    const yes=confirm(
+        "کیا آپ واقعی تمام سوالات اور نوٹس صاف کرنا چاہتے ہیں؟"
+    );
+
+    if(!yes){
+        return;
+    }
+
+
+    mcqs=[];
+    shorts=[];
+    longs=[];
+    fills=[];
+    tfs=[];
+    noteBlocks=[];
+
+    logoData="";
+
+
+    get("examName").value="Monthly Test";
+    get("paperSubject").value="";
+    get("paperChapter").value="";
+    get("paperTime").value="2 Hours";
+    get("totalMarks").value="50";
+    get("studentName").value="";
+    get("rollNumber").value="";
+    get("sectionName").value="";
+    get("teacherName").value="Sir Rana Faisal";
+
+
+    get("notesSubject").value="";
+    get("notesChapter").value="";
+    get("notesTopic").value="";
+
+
+    get("headerLogo").classList.add("hidden");
+
+    get("logoPlaceholder").classList.remove("hidden");
+
+
+    renderMCQs();
+    renderShorts();
+    renderLongs();
+    renderFills();
+    renderTF();
+    renderNotesEditor();
+
+    updatePaper();
+    updateNotes();
+
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+function printDocument(){
+
+    if(currentTab==="paper"){
+
+        document.title =
+            "The Risen High School - Paper";
+
+    }else{
+
+        document.title =
+            "The Risen High School - Notes";
+
+    }
+
+    window.print();
+
+}
+
+
+/* =========================================================
+   INITIAL SAMPLE
+   ========================================================= */
+
+/*
+   آپ چاہیں تو نیچے sample سوالات delete کر کے
+   خالی system بھی استعمال کر سکتے ہیں۔
+
+   فی الحال system خالی شروع ہوگا۔
+*/
+
+
+renderMCQs();
+renderShorts();
+renderLongs();
+renderFills();
+renderTF();
+renderNotesEditor();
+
+updatePaper();
+updateNotes();
+
+
+/* =========================================================
+   AUTO SAVE
+   ========================================================= */
+
+let autoSaveTimer;
+
+function autoSave(){
+
+    clearTimeout(autoSaveTimer);
+
+    autoSaveTimer=setTimeout(()=>{
+
+        try{
+
+            const data={
+
+                currentTab,
+
+                paperInputs:{
+
+                    schoolName:get("schoolName").value,
+                    examName:get("examName").value,
+                    paperClass:get("paperClass").value,
+                    paperSubject:get("paperSubject").value,
+                    paperChapter:get("paperChapter").value,
+                    paperDate:get("paperDate").value,
+                    paperTime:get("paperTime").value,
+                    totalMarks:get("totalMarks").value,
+                    studentName:get("studentName").value,
+                    rollNumber:get("rollNumber").value,
+                    sectionName:get("sectionName").value,
+                    teacherName:get("teacherName").value
+
+                },
+
+                notesInputs:{
+
+                    notesSchool:get("notesSchool").value,
+                    notesClass:get("notesClass").value,
+                    notesSubject:get("notesSubject").value,
+                    notesChapter:get("notesChapter").value,
+                    notesTopic:get("notesTopic").value
+
+                },
+
+                mcqs,
+                shorts,
+                longs,
+                fills,
+                tfs,
+                noteBlocks,
+                logoData
+
+            };
+
+            localStorage.setItem(
+                "risenPaperNotesAutoSave",
+                JSON.stringify(data)
+            );
+
+        }catch(e){
+
+            console.log("Auto save error",e);
+
+        }
+
+    },700);
+
+}
+
+
+document.addEventListener(
+    "input",
+    autoSave
+);
+
+document.addEventListener(
+    "change",
+    autoSave
+);
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if((e.ctrlKey || e.metaKey) && e.key==="s"){
+
+            e.preventDefault();
+
+            saveDraft();
+
+        }
+
+        if((e.ctrlKey || e.metaKey) && e.key==="p"){
+
+            e.preventDefault();
+
+            printDocument();
+
+        }
+
+    }
+);
 
 </script>
 
