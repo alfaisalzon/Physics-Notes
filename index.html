@@ -778,28 +778,50 @@ textarea{
 
 @media print{
 
+    /* Main container must remain available for printing */
+    main.no-print{
+        display:block !important;
+    }
+
+    /* Hide everything first */
     body *{
         visibility:hidden !important;
     }
 
+    /* PAPER PRINT AREA */
     #printArea,
     #printArea *{
         visibility:visible !important;
     }
 
     #printArea{
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
+        position:absolute !important;
+        left:0 !important;
+        top:0 !important;
+        width:100% !important;
+        display:block !important;
+    }
+
+    /* NOTES PRINT AREA */
+    #notesPrintArea,
+    #notesPrintArea *{
+        visibility:visible !important;
+    }
+
+    #notesPrintArea{
+        position:absolute !important;
+        left:0 !important;
+        top:0 !important;
+        width:100% !important;
+        display:block !important;
     }
 
     .a4{
-        box-shadow:none;
-        margin:0;
+        box-shadow:none !important;
+        margin:0 auto !important;
     }
 
-    .no-print{
+    .topbar.no-print{
         display:none !important;
     }
 }
@@ -4352,17 +4374,25 @@ function printDocument(){
 
 if(currentTab==="paper"){
 
+updatePaper();
+
 document.title=
 "The Risen High School - Paper";
 
-}else{
+}else if(currentTab==="notes"){
+
+updateNotes();
 
 document.title=
 "The Risen High School - Notes";
 
 }
 
+setTimeout(function(){
+
 window.print();
+
+},300);
 
 }
 
