@@ -3,14 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Risen High School Paper and Notes</title>
 
 <style>
 @font-face{
     font-family:"Jameel Noori Nastaleeq";
-    src:url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff")
-    format("woff");
+    src:url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff") format("woff");
     font-display:swap;
 }
 
@@ -23,55 +21,38 @@
     --warning:#e69b00;
     --dark:#172033;
     --muted:#6b7280;
-    --white:#ffffff;
+    --white:#fff;
     --border:#d9e0eb;
     --bg:#f3f6fb;
-    --paper:#ffffff;
+    --paper:#fff;
     --shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
     background:var(--bg);
     color:var(--dark);
-    font-family:
-        "Jameel Noori Nastaleeq",
-        "Noto Nastaliq Urdu",
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu","Segoe UI",Arial,sans-serif;
 }
 
-input,
-select,
-textarea,
-button{
+input,select,textarea,button{
     font-family:"Segoe UI",Arial,sans-serif;
 }
 
 .urdu-input{
-    font-family:
-        "Jameel Noori Nastaleeq",
-        "Noto Nastaliq Urdu",
-        serif !important;
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif!important;
     direction:rtl;
     text-align:right;
     font-size:18px;
 }
 
-button{
-    cursor:pointer;
-}
-
-/* ================= HEADER ================= */
+button{cursor:pointer}
 
 .topbar{
     background:linear-gradient(135deg,#0b3d91,#1457d9,#2879ef);
-    color:white;
+    color:#fff;
     padding:18px 20px;
     box-shadow:0 4px 20px rgba(0,0,0,.18);
 }
@@ -95,7 +76,7 @@ button{
     width:60px;
     height:60px;
     border-radius:15px;
-    background:white;
+    background:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -115,16 +96,8 @@ button{
     font-weight:900;
 }
 
-.brand h1{
-    margin:0;
-    font-size:25px;
-}
-
-.brand p{
-    margin:4px 0 0;
-    opacity:.9;
-    font-size:14px;
-}
+.brand h1{margin:0;font-size:25px}
+.brand p{margin:4px 0 0;opacity:.9;font-size:14px}
 
 .header-buttons{
     display:flex;
@@ -137,11 +110,9 @@ button{
     border-radius:9px;
     padding:10px 13px;
     background:rgba(255,255,255,.16);
-    color:white;
+    color:#fff;
     font-weight:bold;
 }
-
-/* ================= MAIN ================= */
 
 .main{
     max-width:1500px;
@@ -153,7 +124,7 @@ button{
     display:flex;
     gap:10px;
     margin-bottom:20px;
-    background:white;
+    background:#fff;
     padding:8px;
     border-radius:14px;
     box-shadow:var(--shadow);
@@ -172,7 +143,7 @@ button{
 
 .tab.active{
     background:var(--primary);
-    color:white;
+    color:#fff;
 }
 
 .workspace{
@@ -183,7 +154,7 @@ button{
 }
 
 .panel{
-    background:white;
+    background:#fff;
     border-radius:16px;
     box-shadow:var(--shadow);
     padding:18px;
@@ -197,21 +168,14 @@ button{
     padding-bottom:10px;
 }
 
-/* ================= FORMS ================= */
-
 .form-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
 }
 
-.form-group{
-    margin-bottom:12px;
-}
-
-.form-group.full{
-    grid-column:1/-1;
-}
+.form-group{margin-bottom:12px}
+.form-group.full{grid-column:1/-1}
 
 .form-group label{
     display:block;
@@ -219,24 +183,20 @@ button{
     margin-bottom:5px;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
     width:100%;
     border:1px solid var(--border);
     border-radius:9px;
     padding:10px 12px;
     font-size:15px;
     outline:none;
-    background:white;
+    background:#fff;
 }
 
 textarea{
     min-height:80px;
     resize:vertical;
 }
-
-/* ================= SECTIONS ================= */
 
 .section-box{
     margin-top:18px;
@@ -263,16 +223,14 @@ textarea{
 
 .add-btn{
     background:var(--success);
-    color:white;
+    color:#fff;
     border:none;
     border-radius:8px;
     padding:8px 12px;
     font-weight:bold;
 }
 
-.items{
-    padding:10px;
-}
+.items{padding:10px}
 
 .item{
     border:1px solid #e1e6ef;
@@ -330,8 +288,6 @@ textarea{
     flex:none;
 }
 
-/* ================= TOOLBAR ================= */
-
 .toolbar{
     display:flex;
     flex-wrap:wrap;
@@ -349,32 +305,11 @@ textarea{
     font-size:14px;
 }
 
-.btn-primary{
-    background:var(--primary);
-    color:white;
-}
-
-.btn-success{
-    background:var(--success);
-    color:white;
-}
-
-.btn-danger{
-    background:var(--danger);
-    color:white;
-}
-
-.btn-secondary{
-    background:#e9eef6;
-    color:#273449;
-}
-
-.btn-warning{
-    background:#fff2cc;
-    color:#825f00;
-}
-
-/* ================= PREVIEW ================= */
+.btn-primary{background:var(--primary);color:#fff}
+.btn-success{background:var(--success);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-secondary{background:#e9eef6;color:#273449}
+.btn-warning{background:#fff2cc;color:#825f00}
 
 .preview-panel{
     position:sticky;
@@ -402,22 +337,16 @@ textarea{
     min-height:500px;
 }
 
-/* ================= A4 ================= */
-
 .a4{
     width:210mm;
     min-height:297mm;
-    background:white;
+    background:#fff;
     margin:0 auto;
     padding:14mm;
     color:#111;
     box-shadow:0 5px 25px rgba(0,0,0,.15);
     position:relative;
-
-    font-family:
-        "Jameel Noori Nastaleeq",
-        "Noto Nastaliq Urdu",
-        serif;
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif;
 }
 
 .paper-header{
@@ -471,13 +400,9 @@ textarea{
     font-size:12px;
 }
 
-.student-cell:last-child{
-    border-right:none;
-}
+.student-cell:last-child{border-right:none}
 
-.paper-section{
-    margin-top:13px;
-}
+.paper-section{margin-top:13px}
 
 .paper-section-title{
     font-size:18px;
@@ -495,6 +420,7 @@ textarea{
 
 .mcq-preview-item{
     break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .mcq-options-preview{
@@ -510,6 +436,7 @@ textarea{
     margin-bottom:8px;
     line-height:1.8;
     break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .q-number{
@@ -520,18 +447,18 @@ textarea{
 .long-answer{
     margin-bottom:12px;
     break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .answer-lines{
     height:65px;
     margin-top:4px;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0,
-            transparent 22px,
-            #999 23px
-        );
+    background:repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 22px,
+        #999 23px
+    );
 }
 
 .fill-row{
@@ -544,6 +471,8 @@ textarea{
     grid-template-columns:1fr auto;
     gap:10px;
     margin-bottom:7px;
+    break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .tf-options{
@@ -552,23 +481,16 @@ textarea{
 }
 
 .paper-footer{
-    position:absolute;
-    bottom:7mm;
-    left:14mm;
-    right:14mm;
+    margin-top:18px;
     border-top:1px solid #555;
-    padding-top:3px;
+    padding-top:5px;
     display:flex;
     justify-content:space-between;
     font-family:"Segoe UI",Arial,sans-serif;
     font-size:10px;
 }
 
-/* ================= NOTES ================= */
-
-.notes-page{
-    min-height:297mm;
-}
+.notes-page{min-height:297mm}
 
 .notes-title{
     text-align:center;
@@ -591,9 +513,18 @@ textarea{
     font-size:13px;
 }
 
+.note-editor{
+    border:1px solid #dfe5ef;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+    background:#fafcff;
+}
+
 .note-block{
     margin:15px 0;
     break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 .note-heading{
@@ -636,17 +567,13 @@ textarea{
     margin-top:3px;
 }
 
-.hidden{
-    display:none !important;
-}
+.hidden{display:none!important}
 
 .empty-message{
     text-align:center;
     color:#888;
     padding:20px;
 }
-
-/* ================= SAVED ================= */
 
 .saved-card{
     border:1px solid var(--border);
@@ -677,83 +604,30 @@ textarea{
     gap:8px;
 }
 
-.saved-card-actions .btn{
-    min-width:120px;
-}
-
-/* ================= MOBILE ================= */
+.saved-card-actions .btn{min-width:120px}
 
 @media(max-width:1000px){
-
-    .workspace{
-        grid-template-columns:1fr;
-    }
-
-    .preview-panel{
-        position:relative;
-        top:auto;
-    }
+    .workspace{grid-template-columns:1fr}
+    .preview-panel{position:relative;top:auto}
 }
 
 @media(max-width:650px){
-
-    .main{
-        padding:10px;
-    }
-
-    .topbar-inner{
-        flex-direction:column;
-    }
-
-    .brand{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .tabs{
-        flex-direction:column;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
-
-    .mcq-options{
-        grid-template-columns:1fr;
-    }
-
-    .preview-tools{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .paper-stage{
-        padding:10px 0;
-    }
-
-    .header-buttons{
-        justify-content:center;
-    }
-
-    .header-buttons button{
-        flex:1;
-        min-width:100px;
-    }
-
-    .saved-card-actions{
-        flex-direction:column;
-    }
-
-    .saved-card-actions .btn{
-        width:100%;
-    }
+    .main{padding:10px}
+    .topbar-inner{flex-direction:column}
+    .brand{justify-content:center;text-align:center}
+    .tabs{flex-direction:column}
+    .form-grid{grid-template-columns:1fr}
+    .form-group.full{grid-column:auto}
+    .mcq-options{grid-template-columns:1fr}
+    .preview-tools{flex-direction:column;align-items:stretch}
+    .paper-stage{padding:10px 0}
+    .header-buttons{justify-content:center}
+    .header-buttons button{flex:1;min-width:100px}
+    .saved-card-actions{flex-direction:column}
+    .saved-card-actions .btn{width:100%}
 }
 
-/* ================= PRINT ================= */
+/* ================= PRINT FIX ================= */
 
 @page{
     size:A4;
@@ -762,36 +636,64 @@ textarea{
 
 @media print{
 
+    html,body{
+        margin:0!important;
+        padding:0!important;
+        background:#fff!important;
+    }
+
     body *{
-        visibility:hidden !important;
+        visibility:hidden!important;
     }
 
-    #printArea,
-    #printArea *{
-        visibility:visible !important;
+    body.print-paper #printArea,
+    body.print-paper #printArea *{
+        visibility:visible!important;
     }
 
-    #printArea{
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
+    body.print-notes #notesPrintArea,
+    body.print-notes #notesPrintArea *{
+        visibility:visible!important;
+    }
+
+    body.print-paper #printArea,
+    body.print-notes #notesPrintArea{
+        position:absolute!important;
+        left:0!important;
+        top:0!important;
+        width:100%!important;
+        margin:0!important;
+        padding:0!important;
+        background:#fff!important;
+    }
+
+    body.print-paper #paperPreview,
+    body.print-notes #notesPreview{
+        box-shadow:none!important;
+        margin:0!important;
     }
 
     .a4{
-        box-shadow:none;
-        margin:0;
+        box-shadow:none!important;
+    }
+
+    .paper-footer{
+        position:static!important;
+        margin-top:18px!important;
     }
 
     .no-print{
-        display:none !important;
+        display:none!important;
+    }
+
+    .page-break{
+        page-break-before:always;
+        break-before:page;
     }
 }
-
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 </head>
 
 <body>
@@ -799,97 +701,55 @@ textarea{
 <div class="app">
 
 <header class="topbar no-print">
-
 <div class="topbar-inner">
 
 <div class="brand">
-
 <div class="logo-box">
-
 <img id="headerLogo" class="hidden" alt="School Logo">
-
-<div id="logoPlaceholder" class="logo-placeholder">
-R
-</div>
-
+<div id="logoPlaceholder" class="logo-placeholder">R</div>
 </div>
 
 <div>
 <h1>The Risen High School</h1>
 <p>Paper & Notes Maker</p>
 </div>
-
 </div>
 
 <div class="header-buttons">
-
 <button onclick="savePaper()">📄 Save Paper</button>
-
 <button onclick="saveNotes()">📚 Save Notes</button>
-
 <button onclick="saveDraft()">💾 Save</button>
-
 <button onclick="loadDraft()">📂 Load</button>
-
 <button onclick="clearAll()">🗑 Clear</button>
-
 <button onclick="printDocument()">🖨 Print / PDF</button>
-
 </div>
 
 </div>
-
 </header>
-
 
 <main class="main no-print">
 
-<!-- ================= TABS ================= -->
-
 <div class="tabs">
 
-<button
-class="tab active"
-id="paperTab"
-onclick="showTab('paper')">
-
+<button class="tab active" id="paperTab" onclick="showTab('paper')">
 📄 Paper Maker
-
 </button>
 
-<button
-class="tab"
-id="notesTab"
-onclick="showTab('notes')">
-
+<button class="tab" id="notesTab" onclick="showTab('notes')">
 📚 Notes Maker
-
 </button>
 
-<button
-class="tab"
-id="savedPapersTab"
-onclick="showTab('savedPapers')">
-
+<button class="tab" id="savedPapersTab" onclick="showTab('savedPapers')">
 💾 Saved Papers
-
 </button>
 
-<button
-class="tab"
-id="savedNotesTab"
-onclick="showTab('savedNotes')">
-
+<button class="tab" id="savedNotesTab" onclick="showTab('savedNotes')">
 📝 Saved Notes
-
 </button>
 
 </div>
 
-
-<!-- =====================================================
-     PAPER MAKER
-===================================================== -->
+<!-- ================= PAPER ================= -->
 
 <section id="paperSection">
 
@@ -897,42 +757,23 @@ onclick="showTab('savedNotes')">
 
 <div class="panel">
 
-<h2 class="panel-title">
-📄 Paper Settings
-</h2>
+<h2 class="panel-title">📄 Paper Settings</h2>
 
 <div class="form-grid">
 
 <div class="form-group full">
-
 <label>School Name</label>
-
-<input
-id="schoolName"
-value="The Risen High School"
-oninput="updatePaper()">
-
+<input id="schoolName" value="The Risen High School" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Exam / Test</label>
-
-<input
-id="examName"
-value="Monthly Test"
-oninput="updatePaper()">
-
+<input id="examName" value="Monthly Test" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Class</label>
-
 <select id="paperClass" onchange="updatePaper()">
-
 <option>Playgroup</option>
 <option>Nursery</option>
 <option>Prep</option>
@@ -948,369 +789,150 @@ oninput="updatePaper()">
 <option>10th</option>
 <option>11th / FA Part 1</option>
 <option>12th / FA Part 2</option>
-
 </select>
-
 </div>
 
-
 <div class="form-group">
-
 <label>Subject</label>
-
-<input
-id="paperSubject"
-placeholder="مثلاً طبیعیات"
-oninput="updatePaper()">
-
+<input id="paperSubject" placeholder="مثلاً طبیعیات" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Chapter / Unit</label>
-
-<input
-id="paperChapter"
-placeholder="Chapter 1"
-oninput="updatePaper()">
-
+<input id="paperChapter" placeholder="Chapter 1" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Date</label>
-
-<input
-type="date"
-id="paperDate"
-onchange="updatePaper()">
-
+<input type="date" id="paperDate" onchange="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Time</label>
-
-<input
-id="paperTime"
-value="2 Hours"
-oninput="updatePaper()">
-
+<input id="paperTime" value="2 Hours" oninput="updatePaper()">
 </div>
-
 
 <div class="form-group">
-
 <label>Total Marks</label>
-
-<input
-type="number"
-id="totalMarks"
-value="50"
-oninput="updatePaper()">
-
+<input type="number" id="totalMarks" value="50" oninput="updatePaper()">
 </div>
 
 </div>
-
-
-<!-- STUDENT -->
 
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>👨‍🎓 Student Information</h3>
-
 </div>
 
 <div class="items">
-
 <div class="form-grid">
 
 <div class="form-group">
-
 <label>Student Name</label>
-
-<input
-id="studentName"
-placeholder="نام طالب علم"
-oninput="updatePaper()">
-
+<input id="studentName" placeholder="نام طالب علم" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Roll Number</label>
-
-<input
-id="rollNumber"
-oninput="updatePaper()">
-
+<input id="rollNumber" oninput="updatePaper()">
 </div>
 
-
 <div class="form-group">
-
 <label>Section</label>
-
-<input
-id="sectionName"
-oninput="updatePaper()">
-
+<input id="sectionName" oninput="updatePaper()">
 </div>
-
 
 <div class="form-group">
-
 <label>Teacher</label>
-
-<input
-id="teacherName"
-value="Sir Rana Faisal"
-oninput="updatePaper()">
-
+<input id="teacherName" value="Sir Rana Faisal" oninput="updatePaper()">
 </div>
 
 </div>
-
 </div>
-
 </div>
-
-
-<!-- LOGO -->
 
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>🏫 School Logo</h3>
-
 </div>
-
 <div class="items">
-
-<input
-type="file"
-id="logoUpload"
-accept="image/*"
-onchange="uploadLogo(event)">
-
+<input type="file" id="logoUpload" accept="image/*" onchange="uploadLogo(event)">
 </div>
-
 </div>
-
-
-<!-- MCQS -->
 
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>① MCQs</h3>
-
-<button
-class="add-btn"
-onclick="addMCQ()">
-
-+ Add MCQ
-
-</button>
-
+<button class="add-btn" onclick="addMCQ()">+ Add MCQ</button>
 </div>
-
 <div id="mcqEditor" class="items"></div>
-
 </div>
 
-
-<!-- SHORT -->
-
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>② Short Questions</h3>
-
-<button
-class="add-btn"
-onclick="addShort()">
-
-+ Add Question
-
-</button>
-
+<button class="add-btn" onclick="addShort()">+ Add Question</button>
 </div>
-
 <div id="shortEditor" class="items"></div>
-
 </div>
 
-
-<!-- LONG -->
-
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>③ Long Questions</h3>
-
-<button
-class="add-btn"
-onclick="addLong()">
-
-+ Add Question
-
-</button>
-
+<button class="add-btn" onclick="addLong()">+ Add Question</button>
 </div>
-
 <div id="longEditor" class="items"></div>
-
 </div>
 
-
-<!-- FILL -->
-
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>④ Fill in the Blanks</h3>
-
-<button
-class="add-btn"
-onclick="addFill()">
-
-+ Add
-
-</button>
-
+<button class="add-btn" onclick="addFill()">+ Add</button>
 </div>
-
 <div id="fillEditor" class="items"></div>
-
 </div>
-
-
-<!-- TRUE FALSE -->
 
 <div class="section-box">
-
 <div class="section-head">
-
 <h3>⑤ True / False</h3>
-
-<button
-class="add-btn"
-onclick="addTF()">
-
-+ Add
-
-</button>
-
+<button class="add-btn" onclick="addTF()">+ Add</button>
 </div>
-
 <div id="tfEditor" class="items"></div>
-
 </div>
-
 
 <div class="toolbar">
-
-<button
-class="btn btn-primary"
-onclick="updatePaper()">
-
-🔄 Update Preview
-
-</button>
-
-<button
-class="btn btn-success"
-onclick="printDocument()">
-
-🖨 Print / Save PDF
-
-</button>
-
-<button
-class="btn btn-warning"
-onclick="downloadPaper()">
-
-📥 Download Paper
-
-</button>
-
-<button
-class="btn btn-secondary"
-onclick="saveDraft()">
-
-💾 Save Draft
-
-</button>
-
+<button class="btn btn-primary" onclick="updatePaper()">🔄 Update Preview</button>
+<button class="btn btn-success" onclick="printDocument()">🖨 Print / Save PDF</button>
+<button class="btn btn-warning" onclick="downloadPaper()">📥 Download Paper</button>
+<button class="btn btn-secondary" onclick="saveDraft()">💾 Save Draft</button>
 </div>
 
 </div>
-
-
-<!-- PREVIEW -->
 
 <div class="panel preview-panel">
 
 <div class="preview-tools">
-
 <h2>👁 Live Preview</h2>
 
 <div>
-
-<button
-class="btn btn-primary"
-onclick="printDocument()">
-
-Print A4
-
-</button>
-
-<button
-class="btn btn-warning"
-onclick="downloadPaper()">
-
-📥 Download
-
-</button>
-
+<button class="btn btn-primary" onclick="printDocument()">Print A4</button>
+<button class="btn btn-warning" onclick="downloadPaper()">📥 Download</button>
 </div>
 
 </div>
-
 
 <div class="paper-stage">
-
 <div id="printArea">
-
 <div id="paperPreview" class="a4"></div>
-
+</div>
 </div>
 
 </div>
 
 </div>
-
-</div>
-
 </section>
 
-
-<!-- =====================================================
-     NOTES MAKER
-===================================================== -->
+<!-- ================= NOTES ================= -->
 
 <section id="notesSection" class="hidden">
 
@@ -1318,33 +940,18 @@ onclick="downloadPaper()">
 
 <div class="panel">
 
-<h2 class="panel-title">
-📚 Notes Settings
-</h2>
-
+<h2 class="panel-title">📚 Notes Settings</h2>
 
 <div class="form-grid">
 
 <div class="form-group full">
-
 <label>School Name</label>
-
-<input
-id="notesSchool"
-value="The Risen High School"
-oninput="updateNotes()">
-
+<input id="notesSchool" value="The Risen High School" oninput="updateNotes()">
 </div>
 
-
 <div class="form-group">
-
 <label>Class</label>
-
-<select
-id="notesClass"
-onchange="updateNotes()">
-
+<select id="notesClass" onchange="updateNotes()">
 <option>Playgroup</option>
 <option>Nursery</option>
 <option>Prep</option>
@@ -1360,111 +967,70 @@ onchange="updateNotes()">
 <option>10th</option>
 <option>11th / FA Part 1</option>
 <option>12th / FA Part 2</option>
-
 </select>
-
 </div>
 
-
 <div class="form-group">
-
 <label>Subject</label>
-
-<input
-id="notesSubject"
-placeholder="مثلاً حیاتیات"
-oninput="updateNotes()">
-
+<input id="notesSubject" placeholder="مثلاً حیاتیات" oninput="updateNotes()">
 </div>
 
-
 <div class="form-group">
-
 <label>Chapter</label>
-
-<input
-id="notesChapter"
-placeholder="باب نمبر"
-oninput="updateNotes()">
-
+<input id="notesChapter" placeholder="باب نمبر" oninput="updateNotes()">
 </div>
-
 
 <div class="form-group">
-
 <label>Topic</label>
-
-<input
-id="notesTopic"
-placeholder="Topic"
-oninput="updateNotes()">
-
+<input id="notesTopic" placeholder="Topic" oninput="updateNotes()">
 </div>
 
 </div>
-
 
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>📝 Notes Content</h3>
 
-<button
-class="add-btn"
-onclick="addNoteBlock()">
-
+<button class="add-btn" onclick="addNoteBlock()">
 + Add Note
-
 </button>
-
 </div>
 
 <div id="notesEditor" class="items"></div>
 
 </div>
 
-
 <div class="toolbar">
 
-<button
-class="btn btn-primary"
-onclick="updateNotes()">
+<!-- FIX: DIRECT SAVE NOTES BUTTON -->
+<button class="btn btn-success" onclick="saveNotes()">
+💾 Save Notes
+</button>
 
+<button class="btn btn-primary" onclick="updateNotes()">
 🔄 Update Notes
-
 </button>
 
-<button
-class="btn btn-success"
-onclick="printDocument()">
+<button class="btn btn-secondary" onclick="startNewNotes()">
+🆕 New Notes
+</button>
 
+<button class="btn btn-success" onclick="printDocument()">
 🖨 Print / PDF
-
 </button>
 
-<!-- NEW NOTES PNG DOWNLOAD BUTTON -->
-
-<button
-class="btn btn-warning"
-onclick="downloadNotes()">
-
+<button class="btn btn-warning" onclick="downloadNotes()">
 📥 Download Notes PNG
-
 </button>
 
-<button
-class="btn btn-secondary"
-onclick="saveDraft()">
-
+<button class="btn btn-secondary" onclick="saveDraft()">
 💾 Save Draft
-
 </button>
 
 </div>
 
 </div>
-
 
 <div class="panel preview-panel">
 
@@ -1474,35 +1040,22 @@ onclick="saveDraft()">
 
 <div>
 
-<button
-class="btn btn-primary"
-onclick="printDocument()">
-
+<button class="btn btn-primary" onclick="printDocument()">
 Print A4
-
 </button>
 
-<!-- NEW NOTES PNG DOWNLOAD BUTTON -->
-
-<button
-class="btn btn-warning"
-onclick="downloadNotes()">
-
+<button class="btn btn-warning" onclick="downloadNotes()">
 📥 Download PNG
-
 </button>
 
 </div>
 
 </div>
-
 
 <div class="paper-stage">
 
 <div id="notesPrintArea">
-
 <div id="notesPreview" class="a4 notes-page"></div>
-
 </div>
 
 </div>
@@ -1510,21 +1063,15 @@ onclick="downloadNotes()">
 </div>
 
 </div>
-
 </section>
 
-
-<!-- =====================================================
-     SAVED PAPERS
-===================================================== -->
+<!-- ================= SAVED PAPERS ================= -->
 
 <section id="savedPapersSection" class="hidden">
 
 <div class="panel">
 
-<h2 class="panel-title">
-💾 Saved Papers
-</h2>
+<h2 class="panel-title">💾 Saved Papers</h2>
 
 <div id="savedPapersList"></div>
 
@@ -1532,18 +1079,13 @@ onclick="downloadNotes()">
 
 </section>
 
-
-<!-- =====================================================
-     SAVED NOTES
-===================================================== -->
+<!-- ================= SAVED NOTES ================= -->
 
 <section id="savedNotesSection" class="hidden">
 
 <div class="panel">
 
-<h2 class="panel-title">
-📝 Saved Notes
-</h2>
+<h2 class="panel-title">📝 Saved Notes</h2>
 
 <div id="savedNotesList"></div>
 
@@ -1552,9 +1094,7 @@ onclick="downloadNotes()">
 </section>
 
 </main>
-
 </div>
-
 
 <script>
 
@@ -1570,45 +1110,53 @@ let tfs=[];
 let noteBlocks=[];
 
 let currentTab="paper";
-
 let logoData="";
 
 let editingPaperId=null;
 let editingNotesId=null;
+
+let autoSaveTimer;
 
 
 /* =====================================================
 HELPERS
 ===================================================== */
 
+function get(id){
+    return document.getElementById(id);
+}
+
 function escapeHTML(value){
-
-if(value===null || value===undefined){
-return "";
+    if(value===null || value===undefined) return "";
+    return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
-
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
 
 function nl2br(value){
-
-return escapeHTML(value || "")
-.replace(/\n/g,"<br>");
-
+    return escapeHTML(value || "").replace(/\n/g,"<br>");
 }
 
+function safeJSON(value){
+    try{
+        return JSON.parse(value);
+    }catch(e){
+        return null;
+    }
+}
 
-function get(id){
-
-return document.getElementById(id);
-
+function safeSet(key,value){
+    try{
+        localStorage.setItem(key,JSON.stringify(value));
+        return true;
+    }catch(e){
+        console.error(e);
+        alert("Data save نہیں ہو سکا۔ ممکن ہے browser storage بھر گئی ہو۔");
+        return false;
+    }
 }
 
 
@@ -1618,58 +1166,41 @@ TABS
 
 function showTab(tab){
 
-currentTab=tab;
+    currentTab=tab;
 
-get("paperSection").classList.add("hidden");
-get("notesSection").classList.add("hidden");
-get("savedPapersSection").classList.add("hidden");
-get("savedNotesSection").classList.add("hidden");
+    get("paperSection").classList.add("hidden");
+    get("notesSection").classList.add("hidden");
+    get("savedPapersSection").classList.add("hidden");
+    get("savedNotesSection").classList.add("hidden");
 
-get("paperTab").classList.remove("active");
-get("notesTab").classList.remove("active");
-get("savedPapersTab").classList.remove("active");
-get("savedNotesTab").classList.remove("active");
+    get("paperTab").classList.remove("active");
+    get("notesTab").classList.remove("active");
+    get("savedPapersTab").classList.remove("active");
+    get("savedNotesTab").classList.remove("active");
 
+    if(tab==="paper"){
+        get("paperSection").classList.remove("hidden");
+        get("paperTab").classList.add("active");
+        updatePaper();
+    }
 
-if(tab==="paper"){
+    if(tab==="notes"){
+        get("notesSection").classList.remove("hidden");
+        get("notesTab").classList.add("active");
+        updateNotes();
+    }
 
-get("paperSection").classList.remove("hidden");
-get("paperTab").classList.add("active");
+    if(tab==="savedPapers"){
+        get("savedPapersSection").classList.remove("hidden");
+        get("savedPapersTab").classList.add("active");
+        renderSavedPapers();
+    }
 
-updatePaper();
-
-}
-
-
-if(tab==="notes"){
-
-get("notesSection").classList.remove("hidden");
-get("notesTab").classList.add("active");
-
-updateNotes();
-
-}
-
-
-if(tab==="savedPapers"){
-
-get("savedPapersSection").classList.remove("hidden");
-get("savedPapersTab").classList.add("active");
-
-renderSavedPapers();
-
-}
-
-
-if(tab==="savedNotes"){
-
-get("savedNotesSection").classList.remove("hidden");
-get("savedNotesTab").classList.add("active");
-
-renderSavedNotes();
-
-}
-
+    if(tab==="savedNotes"){
+        get("savedNotesSection").classList.remove("hidden");
+        get("savedNotesTab").classList.add("active");
+        renderSavedNotes();
+    }
 }
 
 
@@ -1679,148 +1210,109 @@ DATE
 
 function setToday(){
 
-const today=new Date();
+    const today=new Date();
 
-const y=today.getFullYear();
-const m=String(today.getMonth()+1).padStart(2,"0");
-const d=String(today.getDate()).padStart(2,"0");
+    const y=today.getFullYear();
+    const m=String(today.getMonth()+1).padStart(2,"0");
+    const d=String(today.getDate()).padStart(2,"0");
 
-get("paperDate").value=`${y}-${m}-${d}`;
-
+    get("paperDate").value=`${y}-${m}-${d}`;
 }
-
-setToday();
 
 
 /* =====================================================
-MCQ
+MCQS
 ===================================================== */
 
 function addMCQ(data){
 
-data=data || {
-question:"",
-options:["","","",""],
-answer:""
-};
+    data=data || {
+        question:"",
+        options:["","","",""],
+        answer:""
+    };
 
-mcqs.push(data);
+    if(!Array.isArray(data.options)){
+        data.options=["","","",""];
+    }
 
-renderMCQs();
+    while(data.options.length<4){
+        data.options.push("");
+    }
 
-updatePaper();
+    mcqs.push(data);
 
+    renderMCQs();
+    updatePaper();
+    autoSave();
 }
-
 
 function removeMCQ(index){
-
-mcqs.splice(index,1);
-
-renderMCQs();
-
-updatePaper();
-
+    mcqs.splice(index,1);
+    renderMCQs();
+    updatePaper();
+    autoSave();
 }
-
 
 function renderMCQs(){
 
-const box=get("mcqEditor");
+    const box=get("mcqEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(mcqs.length===0){
+        box.innerHTML=`<div class="empty-message">ابھی کوئی MCQ شامل نہیں کیا گیا۔</div>`;
+        return;
+    }
 
+    mcqs.forEach((mcq,index)=>{
 
-if(mcqs.length===0){
+        const item=document.createElement("div");
+        item.className="item";
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی MCQ شامل نہیں کیا گیا۔
-</div>`;
+        item.innerHTML=`
+        <div class="item-top">
+            <span class="item-number">MCQ ${index+1}</span>
+            <button class="remove-btn" onclick="removeMCQ(${index})">حذف کریں</button>
+        </div>
 
-return;
+        <textarea class="urdu-input"
+        placeholder="MCQ سوال لکھیں..."
+        oninput="mcqs[${index}].question=this.value;updatePaper();autoSave()">${escapeHTML(mcq.question)}</textarea>
 
-}
+        <div class="mcq-options">
 
+        ${["A","B","C","D"].map((letter,i)=>`
 
-mcqs.forEach((mcq,index)=>{
+        <div class="option-wrap">
+            <span class="option-letter">${letter}</span>
 
-const item=document.createElement("div");
+            <input class="urdu-input"
+            placeholder="Option ${letter}"
+            value="${escapeHTML(mcq.options[i] || "")}"
+            oninput="mcqs[${index}].options[${i}]=this.value;updatePaper();autoSave()">
+        </div>
 
-item.className="item";
+        `).join("")}
 
-item.innerHTML=`
+        </div>
 
-<div class="item-top">
+        <div style="margin-top:8px">
+        <label>درست جواب</label>
 
-<span class="item-number">
-MCQ ${index+1}
-</span>
+        <select onchange="mcqs[${index}].answer=this.value;updatePaper();autoSave()">
 
-<button
-class="remove-btn"
-onclick="removeMCQ(${index})">
+        <option value="">منتخب کریں</option>
+        <option value="A" ${mcq.answer==="A"?"selected":""}>A</option>
+        <option value="B" ${mcq.answer==="B"?"selected":""}>B</option>
+        <option value="C" ${mcq.answer==="C"?"selected":""}>C</option>
+        <option value="D" ${mcq.answer==="D"?"selected":""}>D</option>
 
-حذف کریں
+        </select>
+        </div>
+        `;
 
-</button>
-
-</div>
-
-
-<textarea
-class="urdu-input"
-placeholder="MCQ سوال لکھیں..."
-oninput="mcqs[${index}].question=this.value;updatePaper()">${escapeHTML(mcq.question)}</textarea>
-
-
-<div class="mcq-options">
-
-${["A","B","C","D"].map((letter,i)=>`
-
-<div class="option-wrap">
-
-<span class="option-letter">
-${letter}
-</span>
-
-<input
-class="urdu-input"
-placeholder="Option ${letter}"
-value="${escapeHTML(mcq.options[i] || "")}"
-oninput="mcqs[${index}].options[${i}]=this.value;updatePaper()">
-
-</div>
-
-`).join("")}
-
-</div>
-
-
-<div style="margin-top:8px">
-
-<label>درست جواب</label>
-
-<select
-onchange="mcqs[${index}].answer=this.value;updatePaper()">
-
-<option value="">منتخب کریں</option>
-
-<option value="A" ${mcq.answer==="A"?"selected":""}>A</option>
-<option value="B" ${mcq.answer==="B"?"selected":""}>B</option>
-<option value="C" ${mcq.answer==="C"?"selected":""}>C</option>
-<option value="D" ${mcq.answer==="D"?"selected":""}>D</option>
-
-</select>
-
-</div>
-
-`;
-
-box.appendChild(item);
-
-});
-
+        box.appendChild(item);
+    });
 }
 
 
@@ -1830,82 +1322,47 @@ SHORT
 
 function addShort(data){
 
-data=data || {question:""};
-
-shorts.push(data);
-
-renderShorts();
-
-updatePaper();
-
+    shorts.push(data || {question:""});
+    renderShorts();
+    updatePaper();
+    autoSave();
 }
-
 
 function removeShort(index){
-
-shorts.splice(index,1);
-
-renderShorts();
-
-updatePaper();
-
+    shorts.splice(index,1);
+    renderShorts();
+    updatePaper();
+    autoSave();
 }
-
 
 function renderShorts(){
 
-const box=get("shortEditor");
+    const box=get("shortEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(shorts.length===0){
+        box.innerHTML=`<div class="empty-message">ابھی کوئی مختصر سوال شامل نہیں کیا گیا۔</div>`;
+        return;
+    }
 
+    shorts.forEach((item,index)=>{
 
-if(shorts.length===0){
+        const div=document.createElement("div");
+        div.className="item";
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی مختصر سوال شامل نہیں کیا گیا۔
-</div>`;
+        div.innerHTML=`
+        <div class="item-top">
+            <span class="item-number">سوال ${index+1}</span>
+            <button class="remove-btn" onclick="removeShort(${index})">حذف کریں</button>
+        </div>
 
-return;
+        <textarea class="urdu-input"
+        placeholder="مختصر سوال لکھیں..."
+        oninput="shorts[${index}].question=this.value;updatePaper();autoSave()">${escapeHTML(item.question)}</textarea>
+        `;
 
-}
-
-
-shorts.forEach((item,index)=>{
-
-const div=document.createElement("div");
-
-div.className="item";
-
-div.innerHTML=`
-
-<div class="item-top">
-
-<span class="item-number">
-سوال ${index+1}
-</span>
-
-<button
-class="remove-btn"
-onclick="removeShort(${index})">
-
-حذف کریں
-
-</button>
-
-</div>
-
-<textarea
-class="urdu-input"
-placeholder="مختصر سوال لکھیں..."
-oninput="shorts[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
-
-`;
-
-box.appendChild(div);
-
-});
-
+        box.appendChild(div);
+    });
 }
 
 
@@ -1915,82 +1372,47 @@ LONG
 
 function addLong(data){
 
-data=data || {question:""};
-
-longs.push(data);
-
-renderLongs();
-
-updatePaper();
-
+    longs.push(data || {question:""});
+    renderLongs();
+    updatePaper();
+    autoSave();
 }
-
 
 function removeLong(index){
-
-longs.splice(index,1);
-
-renderLongs();
-
-updatePaper();
-
+    longs.splice(index,1);
+    renderLongs();
+    updatePaper();
+    autoSave();
 }
-
 
 function renderLongs(){
 
-const box=get("longEditor");
+    const box=get("longEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(longs.length===0){
+        box.innerHTML=`<div class="empty-message">ابھی کوئی طویل سوال شامل نہیں کیا گیا۔</div>`;
+        return;
+    }
 
+    longs.forEach((item,index)=>{
 
-if(longs.length===0){
+        const div=document.createElement("div");
+        div.className="item";
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی طویل سوال شامل نہیں کیا گیا۔
-</div>`;
+        div.innerHTML=`
+        <div class="item-top">
+            <span class="item-number">سوال ${index+1}</span>
+            <button class="remove-btn" onclick="removeLong(${index})">حذف کریں</button>
+        </div>
 
-return;
+        <textarea class="urdu-input"
+        placeholder="طویل سوال لکھیں..."
+        oninput="longs[${index}].question=this.value;updatePaper();autoSave()">${escapeHTML(item.question)}</textarea>
+        `;
 
-}
-
-
-longs.forEach((item,index)=>{
-
-const div=document.createElement("div");
-
-div.className="item";
-
-div.innerHTML=`
-
-<div class="item-top">
-
-<span class="item-number">
-سوال ${index+1}
-</span>
-
-<button
-class="remove-btn"
-onclick="removeLong(${index})">
-
-حذف کریں
-
-</button>
-
-</div>
-
-<textarea
-class="urdu-input"
-placeholder="طویل سوال لکھیں..."
-oninput="longs[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
-
-`;
-
-box.appendChild(div);
-
-});
-
+        box.appendChild(div);
+    });
 }
 
 
@@ -2000,82 +1422,47 @@ FILL
 
 function addFill(data){
 
-data=data || {question:""};
-
-fills.push(data);
-
-renderFills();
-
-updatePaper();
-
+    fills.push(data || {question:""});
+    renderFills();
+    updatePaper();
+    autoSave();
 }
-
 
 function removeFill(index){
-
-fills.splice(index,1);
-
-renderFills();
-
-updatePaper();
-
+    fills.splice(index,1);
+    renderFills();
+    updatePaper();
+    autoSave();
 }
-
 
 function renderFills(){
 
-const box=get("fillEditor");
+    const box=get("fillEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(fills.length===0){
+        box.innerHTML=`<div class="empty-message">ابھی کوئی Fill in the Blank شامل نہیں کیا گیا۔</div>`;
+        return;
+    }
 
+    fills.forEach((item,index)=>{
 
-if(fills.length===0){
+        const div=document.createElement("div");
+        div.className="item";
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی Fill in the Blank شامل نہیں کیا گیا۔
-</div>`;
+        div.innerHTML=`
+        <div class="item-top">
+            <span class="item-number">${index+1}</span>
+            <button class="remove-btn" onclick="removeFill(${index})">حذف کریں</button>
+        </div>
 
-return;
+        <textarea class="urdu-input"
+        placeholder="خالی جگہ والا سوال لکھیں..."
+        oninput="fills[${index}].question=this.value;updatePaper();autoSave()">${escapeHTML(item.question)}</textarea>
+        `;
 
-}
-
-
-fills.forEach((item,index)=>{
-
-const div=document.createElement("div");
-
-div.className="item";
-
-div.innerHTML=`
-
-<div class="item-top">
-
-<span class="item-number">
-${index+1}
-</span>
-
-<button
-class="remove-btn"
-onclick="removeFill(${index})">
-
-حذف کریں
-
-</button>
-
-</div>
-
-<textarea
-class="urdu-input"
-placeholder="خالی جگہ والا سوال لکھیں..."
-oninput="fills[${index}].question=this.value;updatePaper()">${escapeHTML(item.question)}</textarea>
-
-`;
-
-box.appendChild(div);
-
-});
-
+        box.appendChild(div);
+    });
 }
 
 
@@ -2085,101 +1472,66 @@ TRUE FALSE
 
 function addTF(data){
 
-data=data || {
-statement:"",
-answer:""
-};
+    tfs.push(data || {
+        statement:"",
+        answer:""
+    });
 
-tfs.push(data);
-
-renderTF();
-
-updatePaper();
-
+    renderTF();
+    updatePaper();
+    autoSave();
 }
-
 
 function removeTF(index){
-
-tfs.splice(index,1);
-
-renderTF();
-
-updatePaper();
-
+    tfs.splice(index,1);
+    renderTF();
+    updatePaper();
+    autoSave();
 }
-
 
 function renderTF(){
 
-const box=get("tfEditor");
+    const box=get("tfEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(tfs.length===0){
+        box.innerHTML=`<div class="empty-message">ابھی کوئی True / False سوال شامل نہیں کیا گیا۔</div>`;
+        return;
+    }
 
+    tfs.forEach((item,index)=>{
 
-if(tfs.length===0){
+        const div=document.createElement("div");
+        div.className="item";
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی True / False سوال شامل نہیں کیا گیا۔
-</div>`;
+        div.innerHTML=`
+        <div class="item-top">
+            <span class="item-number">${index+1}</span>
+            <button class="remove-btn" onclick="removeTF(${index})">حذف کریں</button>
+        </div>
 
-return;
+        <textarea class="urdu-input"
+        placeholder="Statement لکھیں..."
+        oninput="tfs[${index}].statement=this.value;updatePaper();autoSave()">${escapeHTML(item.statement)}</textarea>
 
-}
+        <select style="margin-top:8px"
+        onchange="tfs[${index}].answer=this.value;updatePaper();autoSave()">
 
+        <option value="">جواب منتخب کریں</option>
 
-tfs.forEach((item,index)=>{
+        <option value="True" ${item.answer==="True"?"selected":""}>
+        True / درست
+        </option>
 
-const div=document.createElement("div");
+        <option value="False" ${item.answer==="False"?"selected":""}>
+        False / غلط
+        </option>
 
-div.className="item";
+        </select>
+        `;
 
-div.innerHTML=`
-
-<div class="item-top">
-
-<span class="item-number">
-${index+1}
-</span>
-
-<button
-class="remove-btn"
-onclick="removeTF(${index})">
-
-حذف کریں
-
-</button>
-
-</div>
-
-<textarea
-class="urdu-input"
-placeholder="Statement لکھیں..."
-oninput="tfs[${index}].statement=this.value;updatePaper()">${escapeHTML(item.statement)}</textarea>
-
-<select
-style="margin-top:8px"
-onchange="tfs[${index}].answer=this.value;updatePaper()">
-
-<option value="">جواب منتخب کریں</option>
-
-<option value="True" ${item.answer==="True"?"selected":""}>
-True / درست
-</option>
-
-<option value="False" ${item.answer==="False"?"selected":""}>
-False / غلط
-</option>
-
-</select>
-
-`;
-
-box.appendChild(div);
-
-});
-
+        box.appendChild(div);
+    });
 }
 
 
@@ -2189,360 +1541,241 @@ PAPER PREVIEW
 
 function updatePaper(){
 
-const school=get("schoolName").value;
-const exam=get("examName").value;
-const cls=get("paperClass").value;
-const subject=get("paperSubject").value;
-const chapter=get("paperChapter").value;
-const date=get("paperDate").value;
-const time=get("paperTime").value;
-const marks=get("totalMarks").value;
+    const school=get("schoolName").value;
+    const exam=get("examName").value;
+    const cls=get("paperClass").value;
+    const subject=get("paperSubject").value;
+    const chapter=get("paperChapter").value;
+    const date=get("paperDate").value;
+    const time=get("paperTime").value;
+    const marks=get("totalMarks").value;
+    const student=get("studentName").value;
+    const roll=get("rollNumber").value;
+    const section=get("sectionName").value;
+    const teacher=get("teacherName").value;
 
-const student=get("studentName").value;
-const roll=get("rollNumber").value;
-const section=get("sectionName").value;
-const teacher=get("teacherName").value;
+    let dateText="";
 
+    if(date){
 
-let dateText="";
+        const dt=new Date(date+"T00:00:00");
 
-if(date){
+        dateText=dt.toLocaleDateString(
+            "en-GB",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
+    }
 
-const dt=new Date(date+"T00:00:00");
+    let html=`
 
-dateText=dt.toLocaleDateString(
-"en-GB",
-{
-day:"2-digit",
-month:"2-digit",
-year:"numeric"
-}
-);
+    <div class="paper-header">
 
-}
+    <div class="preview-school">
+    ${escapeHTML(school || "The Risen High School")}
+    </div>
 
+    <div class="preview-exam">
+    ${escapeHTML(exam || "Test")}
+    </div>
 
-let html=`
+    <div style="font-size:17px">
+    ${escapeHTML(subject || "")}
+    </div>
 
-<div class="paper-header">
+    ${chapter ? `
+    <div style="font-size:15px">
+    ${escapeHTML(chapter)}
+    </div>` : ""}
 
-<div class="preview-school">
-${escapeHTML(school || "The Risen High School")}
-</div>
+    <div class="preview-meta">
 
-<div class="preview-exam">
-${escapeHTML(exam || "Test")}
-</div>
+    <div class="meta-cell">Class: ${escapeHTML(cls)}</div>
+    <div class="meta-cell">Time: ${escapeHTML(time)}</div>
+    <div class="meta-cell">Total Marks: ${escapeHTML(marks)}</div>
+    <div class="meta-cell">Date: ${escapeHTML(dateText)}</div>
+    <div class="meta-cell">Teacher: ${escapeHTML(teacher)}</div>
+    <div class="meta-cell">The Risen High School</div>
 
-<div style="font-size:17px">
-${escapeHTML(subject || "")}
-</div>
+    </div>
+    </div>
 
-${chapter ? `
-<div style="font-size:15px">
-${escapeHTML(chapter)}
-</div>
-`:""}
+    <div class="student-row">
 
-<div class="preview-meta">
+    <div class="student-cell">Name: ${escapeHTML(student)}</div>
+    <div class="student-cell">Roll No: ${escapeHTML(roll)}</div>
+    <div class="student-cell">Section: ${escapeHTML(section)}</div>
+    <div class="student-cell">Marks: ______</div>
 
-<div class="meta-cell">
-Class: ${escapeHTML(cls)}
-</div>
+    </div>
+    `;
 
-<div class="meta-cell">
-Time: ${escapeHTML(time)}
-</div>
+    if(mcqs.length){
 
-<div class="meta-cell">
-Total Marks: ${escapeHTML(marks)}
-</div>
+        html+=`
+        <div class="paper-section">
 
-<div class="meta-cell">
-Date: ${escapeHTML(dateText)}
-</div>
+        <div class="paper-section-title">
+        حصہ اوّل: کثیر الانتخابی سوالات (MCQs)
+        </div>
 
-<div class="meta-cell">
-Teacher: ${escapeHTML(teacher)}
-</div>
+        <div class="mcq-preview">
+        `;
 
-<div class="meta-cell">
-The Risen High School
-</div>
+        mcqs.forEach((mcq,index)=>{
 
-</div>
+            html+=`
+            <div class="mcq-preview-item">
 
-</div>
+            <div>
+            <strong>${index+1}۔</strong>
+            ${nl2br(mcq.question)}
+            </div>
 
+            <div class="mcq-options-preview">
 
-<div class="student-row">
+            <div>ⓐ ${escapeHTML(mcq.options[0] || "")}</div>
+            <div>ⓑ ${escapeHTML(mcq.options[1] || "")}</div>
+            <div>ⓒ ${escapeHTML(mcq.options[2] || "")}</div>
+            <div>ⓓ ${escapeHTML(mcq.options[3] || "")}</div>
 
-<div class="student-cell">
-Name: ${escapeHTML(student)}
-</div>
+            </div>
+            </div>
+            `;
+        });
 
-<div class="student-cell">
-Roll No: ${escapeHTML(roll)}
-</div>
+        html+=`</div></div>`;
+    }
 
-<div class="student-cell">
-Section: ${escapeHTML(section)}
-</div>
+    if(shorts.length){
 
-<div class="student-cell">
-Marks: ______
-</div>
+        html+=`
+        <div class="paper-section">
+        <div class="paper-section-title">حصہ دوم: مختصر سوالات</div>
+        `;
 
-</div>
+        shorts.forEach((item,index)=>{
 
-`;
+            html+=`
+            <div class="q-row">
+            <div class="q-number">${index+1}.</div>
+            <div>${nl2br(item.question)}</div>
+            </div>
+            `;
+        });
 
+        html+=`</div>`;
+    }
 
-if(mcqs.length){
+    if(longs.length){
 
-html+=`
+        html+=`
+        <div class="paper-section">
+        <div class="paper-section-title">حصہ سوم: تفصیلی سوالات</div>
+        `;
 
-<div class="paper-section">
+        longs.forEach((item,index)=>{
 
-<div class="paper-section-title">
-حصہ اوّل: کثیر الانتخابی سوالات (MCQs)
-</div>
+            html+=`
+            <div class="long-answer">
 
-<div class="mcq-preview">
+            <div>
+            <strong>${index+1}۔</strong>
+            ${nl2br(item.question)}
+            </div>
 
-`;
+            <div class="answer-lines"></div>
 
-mcqs.forEach((mcq,index)=>{
+            </div>
+            `;
+        });
 
-html+=`
+        html+=`</div>`;
+    }
 
-<div class="mcq-preview-item">
+    if(fills.length){
 
-<div>
+        html+=`
+        <div class="paper-section">
+        <div class="paper-section-title">خالی جگہیں پُر کریں</div>
+        `;
 
-<strong>${index+1}۔</strong>
+        fills.forEach((item,index)=>{
 
-${nl2br(mcq.question)}
+            html+=`
+            <div class="fill-row">
+            ${index+1}۔ ${nl2br(item.question)}
+            </div>
+            `;
+        });
 
-</div>
+        html+=`</div>`;
+    }
 
-<div class="mcq-options-preview">
+    if(tfs.length){
 
-<div>ⓐ ${escapeHTML(mcq.options[0] || "")}</div>
-<div>ⓑ ${escapeHTML(mcq.options[1] || "")}</div>
-<div>ⓒ ${escapeHTML(mcq.options[2] || "")}</div>
-<div>ⓓ ${escapeHTML(mcq.options[3] || "")}</div>
+        html+=`
+        <div class="paper-section">
+        <div class="paper-section-title">درست / غلط</div>
+        `;
 
-</div>
+        tfs.forEach((item,index)=>{
 
-</div>
+            html+=`
+            <div class="truefalse">
 
-`;
+            <div>
+            ${index+1}۔ ${nl2br(item.statement)}
+            </div>
 
-});
+            <div class="tf-options">
+            ☐ درست &nbsp;&nbsp; ☐ غلط
+            </div>
 
-html+=`
+            </div>
+            `;
+        });
 
-</div>
+        html+=`</div>`;
+    }
 
-</div>
+    if(
+        !mcqs.length &&
+        !shorts.length &&
+        !longs.length &&
+        !fills.length &&
+        !tfs.length
+    ){
 
-`;
+        html+=`
+        <div style="text-align:center;padding:50px 20px;font-size:20px;color:#777">
 
-}
+        یہاں آپ کے سوالات کا پرچہ ظاہر ہوگا۔
 
+        <br>
 
-if(shorts.length){
+        بائیں طرف سے MCQs یا سوالات شامل کریں۔
 
-html+=`
+        </div>
+        `;
+    }
 
-<div class="paper-section">
+    html+=`
+    <div class="paper-footer">
 
-<div class="paper-section-title">
-حصہ دوم: مختصر سوالات
-</div>
+    <span>${escapeHTML(school || "The Risen High School")}</span>
 
-`;
+    <span>Teacher: ${escapeHTML(teacher)}</span>
 
-shorts.forEach((item,index)=>{
+    <span>Signature: __________</span>
 
-html+=`
+    </div>
+    `;
 
-<div class="q-row">
-
-<div class="q-number">
-${index+1}.
-</div>
-
-<div>
-${nl2br(item.question)}
-</div>
-
-</div>
-
-`;
-
-});
-
-html+=`</div>`;
-
-}
-
-
-if(longs.length){
-
-html+=`
-
-<div class="paper-section">
-
-<div class="paper-section-title">
-حصہ سوم: تفصیلی سوالات
-</div>
-
-`;
-
-longs.forEach((item,index)=>{
-
-html+=`
-
-<div class="long-answer">
-
-<div>
-<strong>${index+1}۔</strong>
-${nl2br(item.question)}
-</div>
-
-<div class="answer-lines"></div>
-
-</div>
-
-`;
-
-});
-
-html+=`</div>`;
-
-}
-
-
-if(fills.length){
-
-html+=`
-
-<div class="paper-section">
-
-<div class="paper-section-title">
-خالی جگہیں پُر کریں
-</div>
-
-`;
-
-fills.forEach((item,index)=>{
-
-html+=`
-
-<div class="fill-row">
-${index+1}۔ ${nl2br(item.question)}
-</div>
-
-`;
-
-});
-
-html+=`</div>`;
-
-}
-
-
-if(tfs.length){
-
-html+=`
-
-<div class="paper-section">
-
-<div class="paper-section-title">
-درست / غلط
-</div>
-
-`;
-
-tfs.forEach((item,index)=>{
-
-html+=`
-
-<div class="truefalse">
-
-<div>
-${index+1}۔ ${nl2br(item.statement)}
-</div>
-
-<div class="tf-options">
-☐ درست &nbsp;&nbsp; ☐ غلط
-</div>
-
-</div>
-
-`;
-
-});
-
-html+=`</div>`;
-
-}
-
-
-if(
-!mcqs.length &&
-!shorts.length &&
-!longs.length &&
-!fills.length &&
-!tfs.length
-){
-
-html+=`
-
-<div style="
-text-align:center;
-padding:50px 20px;
-font-size:20px;
-color:#777;
-">
-
-یہاں آپ کے سوالات کا پرچہ ظاہر ہوگا۔
-
-<br>
-
-بائیں طرف سے MCQs یا سوالات شامل کریں۔
-
-</div>
-
-`;
-
-}
-
-
-html+=`
-
-<div class="paper-footer">
-
-<span>
-${escapeHTML(school || "The Risen High School")}
-</span>
-
-<span>
-Teacher: ${escapeHTML(teacher)}
-</span>
-
-<span>
-Signature: __________
-</span>
-
-</div>
-
-`;
-
-get("paperPreview").innerHTML=html;
-
+    get("paperPreview").innerHTML=html;
 }
 
 
@@ -2552,262 +1785,220 @@ NOTES
 
 function addNoteBlock(data){
 
-data=data || {
-type:"heading",
-heading:"",
-question:"",
-answer:"",
-definition:"",
-points:"",
-mcqQuestion:"",
-options:["","","",""]
-};
+    data=data || {
+        type:"heading",
+        heading:"",
+        question:"",
+        answer:"",
+        definition:"",
+        points:"",
+        mcqQuestion:"",
+        options:["","","",""]
+    };
 
-noteBlocks.push(data);
+    if(!Array.isArray(data.options)){
+        data.options=["","","",""];
+    }
 
-renderNotesEditor();
+    while(data.options.length<4){
+        data.options.push("");
+    }
 
-updateNotes();
+    noteBlocks.push(data);
 
+    renderNotesEditor();
+    updateNotes();
+    autoSave();
 }
-
 
 function removeNoteBlock(index){
 
-noteBlocks.splice(index,1);
+    noteBlocks.splice(index,1);
 
-renderNotesEditor();
-
-updateNotes();
-
+    renderNotesEditor();
+    updateNotes();
+    autoSave();
 }
-
 
 function changeNoteType(index,type){
 
-noteBlocks[index].type=type;
+    noteBlocks[index].type=type;
 
-renderNotesEditor();
-
-updateNotes();
-
+    renderNotesEditor();
+    updateNotes();
+    autoSave();
 }
-
 
 function renderNotesEditor(){
 
-const box=get("notesEditor");
+    const box=get("notesEditor");
+    box.innerHTML="";
 
-box.innerHTML="";
+    if(noteBlocks.length===0){
 
+        box.innerHTML=`
+        <div class="empty-message">
+        ابھی کوئی Note شامل نہیں کیا گیا۔
+        </div>`;
 
-if(noteBlocks.length===0){
+        return;
+    }
 
-box.innerHTML=
-`<div class="empty-message">
-ابھی کوئی Note شامل نہیں کیا گیا۔
-</div>`;
+    noteBlocks.forEach((note,index)=>{
 
-return;
+        if(!Array.isArray(note.options)){
+            note.options=["","","",""];
+        }
 
-}
+        while(note.options.length<4){
+            note.options.push("");
+        }
 
+        const div=document.createElement("div");
+        div.className="note-editor";
 
-noteBlocks.forEach((note,index)=>{
+        let fields="";
 
-const div=document.createElement("div");
+        if(note.type==="heading"){
 
-div.className="note-editor";
+            fields=`
+            <input class="urdu-input"
+            placeholder="Heading / عنوان"
+            value="${escapeHTML(note.heading)}"
+            oninput="noteBlocks[${index}].heading=this.value;updateNotes();autoSave()">
+            `;
+        }
 
+        if(note.type==="qa"){
 
-let fields="";
+            fields=`
+            <textarea class="urdu-input"
+            placeholder="سوال"
+            oninput="noteBlocks[${index}].question=this.value;updateNotes();autoSave()">${escapeHTML(note.question)}</textarea>
 
+            <textarea class="urdu-input"
+            style="margin-top:8px"
+            placeholder="جواب"
+            oninput="noteBlocks[${index}].answer=this.value;updateNotes();autoSave()">${escapeHTML(note.answer)}</textarea>
+            `;
+        }
 
-if(note.type==="heading"){
+        if(note.type==="definition"){
 
-fields=`
+            fields=`
+            <input class="urdu-input"
+            placeholder="اصطلاح / تعریف کا عنوان"
+            value="${escapeHTML(note.heading)}"
+            oninput="noteBlocks[${index}].heading=this.value;updateNotes();autoSave()">
 
-<input
-class="urdu-input"
-placeholder="Heading / عنوان"
-value="${escapeHTML(note.heading)}"
-oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+            <textarea class="urdu-input"
+            style="margin-top:8px"
+            placeholder="تعریف"
+            oninput="noteBlocks[${index}].definition=this.value;updateNotes();autoSave()">${escapeHTML(note.definition)}</textarea>
+            `;
+        }
 
-`;
+        if(note.type==="points"){
 
-}
+            fields=`
+            <input class="urdu-input"
+            placeholder="Heading"
+            value="${escapeHTML(note.heading)}"
+            oninput="noteBlocks[${index}].heading=this.value;updateNotes();autoSave()">
 
+            <textarea class="urdu-input"
+            style="margin-top:8px"
+            placeholder="ہر اہم نکتہ نئی لائن میں لکھیں"
+            oninput="noteBlocks[${index}].points=this.value;updateNotes();autoSave()">${escapeHTML(note.points)}</textarea>
+            `;
+        }
 
-if(note.type==="qa"){
+        if(note.type==="text"){
 
-fields=`
+            fields=`
+            <textarea class="urdu-input"
+            placeholder="تفصیلی نوٹس لکھیں"
+            oninput="noteBlocks[${index}].answer=this.value;updateNotes();autoSave()">${escapeHTML(note.answer)}</textarea>
+            `;
+        }
 
-<textarea
-class="urdu-input"
-placeholder="سوال"
-oninput="noteBlocks[${index}].question=this.value;updateNotes()">${escapeHTML(note.question)}</textarea>
+        if(note.type==="mcq"){
 
-<textarea
-class="urdu-input"
-style="margin-top:8px"
-placeholder="جواب"
-oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+            fields=`
 
-`;
+            <textarea class="urdu-input"
+            placeholder="MCQ سوال"
+            oninput="noteBlocks[${index}].mcqQuestion=this.value;updateNotes();autoSave()">${escapeHTML(note.mcqQuestion)}</textarea>
 
-}
+            <div class="mcq-options">
 
+            ${["A","B","C","D"].map((letter,i)=>`
 
-if(note.type==="definition"){
+            <div class="option-wrap">
 
-fields=`
+            <span class="option-letter">${letter}</span>
 
-<input
-class="urdu-input"
-placeholder="اصطلاح / تعریف کا عنوان"
-value="${escapeHTML(note.heading)}"
-oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+            <input class="urdu-input"
+            placeholder="Option ${letter}"
+            value="${escapeHTML(note.options[i] || "")}"
+            oninput="noteBlocks[${index}].options[${i}]=this.value;updateNotes();autoSave()">
 
-<textarea
-class="urdu-input"
-style="margin-top:8px"
-placeholder="تعریف"
-oninput="noteBlocks[${index}].definition=this.value;updateNotes()">${escapeHTML(note.definition)}</textarea>
+            </div>
 
-`;
+            `).join("")}
 
-}
+            </div>
+            `;
+        }
 
+        div.innerHTML=`
 
-if(note.type==="points"){
+        <div class="item-top">
 
-fields=`
+        <strong>Note ${index+1}</strong>
 
-<input
-class="urdu-input"
-placeholder="Heading"
-value="${escapeHTML(note.heading)}"
-oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
+        <button class="remove-btn"
+        onclick="removeNoteBlock(${index})">
+        حذف کریں
+        </button>
 
-<textarea
-class="urdu-input"
-style="margin-top:8px"
-placeholder="ہر اہم نکتہ نئی لائن میں لکھیں"
-oninput="noteBlocks[${index}].points=this.value;updateNotes()">${escapeHTML(note.points)}</textarea>
+        </div>
 
-`;
+        <select onchange="changeNoteType(${index},this.value)">
 
-}
+        <option value="heading" ${note.type==="heading"?"selected":""}>
+        Heading
+        </option>
 
+        <option value="qa" ${note.type==="qa"?"selected":""}>
+        Question / Answer
+        </option>
 
-if(note.type==="text"){
+        <option value="definition" ${note.type==="definition"?"selected":""}>
+        Definition
+        </option>
 
-fields=`
+        <option value="points" ${note.type==="points"?"selected":""}>
+        Key Points
+        </option>
 
-<textarea
-class="urdu-input"
-placeholder="تفصیلی نوٹس لکھیں"
-oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note.answer)}</textarea>
+        <option value="text" ${note.type==="text"?"selected":""}>
+        Detailed Text
+        </option>
 
-`;
+        <option value="mcq" ${note.type==="mcq"?"selected":""}>
+        MCQ
+        </option>
 
-}
+        </select>
 
+        <div style="margin-top:8px">
+        ${fields}
+        </div>
+        `;
 
-if(note.type==="mcq"){
-
-fields=`
-
-<textarea
-class="urdu-input"
-placeholder="MCQ سوال"
-oninput="noteBlocks[${index}].mcqQuestion=this.value;updateNotes()">${escapeHTML(note.mcqQuestion)}</textarea>
-
-<div class="mcq-options">
-
-${["A","B","C","D"].map((letter,i)=>`
-
-<div class="option-wrap">
-
-<span class="option-letter">
-${letter}
-</span>
-
-<input
-class="urdu-input"
-placeholder="Option ${letter}"
-value="${escapeHTML(note.options[i] || "")}"
-oninput="noteBlocks[${index}].options[${i}]=this.value;updateNotes()">
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
-
-}
-
-
-div.innerHTML=`
-
-<div class="item-top">
-
-<strong>
-Note ${index+1}
-</strong>
-
-<button
-class="remove-btn"
-onclick="removeNoteBlock(${index})">
-
-حذف کریں
-
-</button>
-
-</div>
-
-
-<select
-onchange="changeNoteType(${index},this.value)">
-
-<option value="heading" ${note.type==="heading"?"selected":""}>
-Heading
-</option>
-
-<option value="qa" ${note.type==="qa"?"selected":""}>
-Question / Answer
-</option>
-
-<option value="definition" ${note.type==="definition"?"selected":""}>
-Definition
-</option>
-
-<option value="points" ${note.type==="points"?"selected":""}>
-Key Points
-</option>
-
-<option value="text" ${note.type==="text"?"selected":""}>
-Detailed Text
-</option>
-
-<option value="mcq" ${note.type==="mcq"?"selected":""}>
-MCQ
-</option>
-
-</select>
-
-<div style="margin-top:8px">
-${fields}
-</div>
-
-`;
-
-box.appendChild(div);
-
-});
-
+        box.appendChild(div);
+    });
 }
 
 
@@ -2817,241 +2008,173 @@ NOTES PREVIEW
 
 function updateNotes(){
 
-const school=get("notesSchool").value;
-const cls=get("notesClass").value;
-const subject=get("notesSubject").value;
-const chapter=get("notesChapter").value;
-const topic=get("notesTopic").value;
+    const school=get("notesSchool").value;
+    const cls=get("notesClass").value;
+    const subject=get("notesSubject").value;
+    const chapter=get("notesChapter").value;
+    const topic=get("notesTopic").value;
 
+    let html=`
 
-let html=`
+    <div class="notes-title">
 
-<div class="notes-title">
+    ${escapeHTML(school || "The Risen High School")}
 
-${escapeHTML(school || "The Risen High School")}
+    <div style="font-size:20px">
+    تعلیمی نوٹس
+    </div>
 
-<div style="font-size:20px">
-تعلیمی نوٹس
-</div>
+    </div>
 
-</div>
+    <div class="notes-info">
 
+    <div>جماعت: ${escapeHTML(cls)}</div>
+    <div>مضمون: ${escapeHTML(subject)}</div>
+    <div>باب: ${escapeHTML(chapter)}</div>
 
-<div class="notes-info">
+    </div>
 
-<div>
-جماعت: ${escapeHTML(cls)}
-</div>
+    ${topic ? `
+    <div style="
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin:10px 0;
+    ">
+    ${escapeHTML(topic)}
+    </div>
+    `:""}
+    `;
 
-<div>
-مضمون: ${escapeHTML(subject)}
-</div>
+    noteBlocks.forEach((note,index)=>{
 
-<div>
-باب: ${escapeHTML(chapter)}
-</div>
+        if(note.type==="heading"){
 
-</div>
+            html+=`
+            <div class="note-block">
+            <div class="note-heading">
+            ${escapeHTML(note.heading)}
+            </div>
+            </div>
+            `;
+        }
 
-${topic ? `
+        if(note.type==="qa"){
 
-<div style="
-text-align:center;
-font-size:22px;
-font-weight:bold;
-margin:10px 0;
-">
+            html+=`
+            <div class="note-block">
 
-${escapeHTML(topic)}
+            <div class="note-question">
+            ${index+1}۔ ${nl2br(note.question)}
+            </div>
 
-</div>
+            <div class="note-answer">
+            <strong>جواب:</strong>
+            ${nl2br(note.answer)}
+            </div>
 
-`:""}
+            </div>
+            `;
+        }
 
-`;
+        if(note.type==="definition"){
 
+            html+=`
+            <div class="note-block">
 
-noteBlocks.forEach((note,index)=>{
+            <div class="note-heading">
+            ${escapeHTML(note.heading)}
+            </div>
 
+            <div class="definition">
+            ${nl2br(note.definition)}
+            </div>
 
-if(note.type==="heading"){
+            </div>
+            `;
+        }
 
-html+=`
+        if(note.type==="points"){
 
-<div class="note-block">
+            const points=(note.points || "")
+            .split("\n")
+            .filter(x=>x.trim()!=="");
 
-<div class="note-heading">
-${escapeHTML(note.heading)}
-</div>
+            html+=`
+            <div class="note-block">
 
-</div>
+            <div class="note-heading">
+            ${escapeHTML(note.heading)}
+            </div>
 
-`;
+            <div class="keypoints">
 
-}
+            ${points.map((p,i)=>`
+            <div>${i+1}۔ ${escapeHTML(p)}</div>
+            `).join("")}
 
+            </div>
+            </div>
+            `;
+        }
 
-if(note.type==="qa"){
+        if(note.type==="text"){
 
-html+=`
+            html+=`
+            <div class="note-block">
 
-<div class="note-block">
+            <div class="note-answer">
+            ${nl2br(note.answer)}
+            </div>
 
-<div class="note-question">
+            </div>
+            `;
+        }
 
-${index+1}۔
-${nl2br(note.question)}
+        if(note.type==="mcq"){
 
-</div>
+            html+=`
+            <div class="note-block">
 
-<div class="note-answer">
+            <div class="note-question">
+            ${index+1}۔ ${nl2br(note.mcqQuestion)}
+            </div>
 
-<strong>جواب:</strong>
+            <div class="notes-mcq-options">
 
-${nl2br(note.answer)}
+            <div>ⓐ ${escapeHTML(note.options[0] || "")}</div>
+            <div>ⓑ ${escapeHTML(note.options[1] || "")}</div>
+            <div>ⓒ ${escapeHTML(note.options[2] || "")}</div>
+            <div>ⓓ ${escapeHTML(note.options[3] || "")}</div>
 
-</div>
+            </div>
+            </div>
+            `;
+        }
 
-</div>
+    });
 
-`;
+    if(noteBlocks.length===0){
 
-}
+        html+=`
+        <div style="
+        text-align:center;
+        padding:70px 20px;
+        color:#777;
+        font-size:21px;
+        ">
 
+        یہاں آپ کے نوٹس نظر آئیں گے۔
 
-if(note.type==="definition"){
+        <br>
 
-html+=`
+        بائیں طرف سے + Add Note دبائیں۔
 
-<div class="note-block">
+        </div>
+        `;
+    }
 
-<div class="note-heading">
-${escapeHTML(note.heading)}
-</div>
-
-<div class="definition">
-
-${nl2br(note.definition)}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-if(note.type==="points"){
-
-const points=(note.points || "")
-.split("\n")
-.filter(x=>x.trim()!=="");
-
-
-html+=`
-
-<div class="note-block">
-
-<div class="note-heading">
-${escapeHTML(note.heading)}
-</div>
-
-<div class="keypoints">
-
-${points.map((p,i)=>`
-
-<div>
-${i+1}۔ ${escapeHTML(p)}
-</div>
-
-`).join("")}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-if(note.type==="text"){
-
-html+=`
-
-<div class="note-block">
-
-<div class="note-answer">
-
-${nl2br(note.answer)}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-if(note.type==="mcq"){
-
-html+=`
-
-<div class="note-block">
-
-<div class="note-question">
-
-${index+1}۔
-${nl2br(note.mcqQuestion)}
-
-</div>
-
-<div class="notes-mcq-options">
-
-<div>ⓐ ${escapeHTML(note.options[0] || "")}</div>
-<div>ⓑ ${escapeHTML(note.options[1] || "")}</div>
-<div>ⓒ ${escapeHTML(note.options[2] || "")}</div>
-<div>ⓓ ${escapeHTML(note.options[3] || "")}</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-});
-
-
-if(noteBlocks.length===0){
-
-html+=`
-
-<div style="
-text-align:center;
-padding:70px 20px;
-color:#777;
-font-size:21px;
-">
-
-یہاں آپ کے نوٹس نظر آئیں گے۔
-
-<br>
-
-بائیں طرف سے + Add Note دبائیں۔
-
-</div>
-
-`;
-
-}
-
-
-get("notesPreview").innerHTML=html;
-
+    get("notesPreview").innerHTML=html;
 }
 
 
@@ -3061,28 +2184,24 @@ LOGO
 
 function uploadLogo(event){
 
-const file=event.target.files[0];
+    const file=event.target.files[0];
 
-if(!file){
-return;
-}
+    if(!file) return;
 
-const reader=new FileReader();
+    const reader=new FileReader();
 
-reader.onload=function(e){
+    reader.onload=function(e){
 
-logoData=e.target.result;
+        logoData=e.target.result;
 
-get("headerLogo").src=logoData;
+        get("headerLogo").src=logoData;
+        get("headerLogo").classList.remove("hidden");
+        get("logoPlaceholder").classList.add("hidden");
 
-get("headerLogo").classList.remove("hidden");
+        autoSave();
+    };
 
-get("logoPlaceholder").classList.add("hidden");
-
-};
-
-reader.readAsDataURL(file);
-
+    reader.readAsDataURL(file);
 }
 
 
@@ -3092,688 +2211,597 @@ SAVED PAPERS
 
 function getSavedPapers(){
 
-try{
-
-return JSON.parse(
-localStorage.getItem("risenSavedPapers") || "[]"
-);
-
-}catch(e){
-
-return [];
-
+    try{
+        return JSON.parse(localStorage.getItem("risenSavedPapers") || "[]");
+    }catch(e){
+        return [];
+    }
 }
-
-}
-
 
 function savePaper(){
 
-let oldTitle="";
+    let oldTitle="";
 
-if(editingPaperId){
+    if(editingPaperId){
 
-const old=getSavedPapers().find(
-x=>String(x.id)===String(editingPaperId)
-);
+        const old=getSavedPapers().find(
+            x=>String(x.id)===String(editingPaperId)
+        );
 
-if(old){
-oldTitle=old.title;
+        if(old) oldTitle=old.title;
+    }
+
+    const title=prompt(
+        "Paper کا نام لکھیں:",
+        oldTitle ||
+        get("paperSubject").value ||
+        get("examName").value ||
+        "New Paper"
+    );
+
+    if(title===null) return;
+
+    const paperData={
+
+        schoolName:get("schoolName").value,
+        examName:get("examName").value,
+        paperClass:get("paperClass").value,
+        paperSubject:get("paperSubject").value,
+        paperChapter:get("paperChapter").value,
+        paperDate:get("paperDate").value,
+        paperTime:get("paperTime").value,
+        totalMarks:get("totalMarks").value,
+
+        studentName:get("studentName").value,
+        rollNumber:get("rollNumber").value,
+        sectionName:get("sectionName").value,
+        teacherName:get("teacherName").value,
+
+        mcqs:JSON.parse(JSON.stringify(mcqs)),
+        shorts:JSON.parse(JSON.stringify(shorts)),
+        longs:JSON.parse(JSON.stringify(longs)),
+        fills:JSON.parse(JSON.stringify(fills)),
+        tfs:JSON.parse(JSON.stringify(tfs)),
+
+        logoData:logoData
+    };
+
+    let saved=getSavedPapers();
+
+    if(editingPaperId){
+
+        const index=saved.findIndex(
+            x=>String(x.id)===String(editingPaperId)
+        );
+
+        if(index!==-1){
+
+            saved[index].title=title;
+            saved[index].data=paperData;
+            saved[index].savedAt=new Date().toLocaleString();
+
+            if(safeSet("risenSavedPapers",saved)){
+
+                alert("Paper update ہو گیا ہے۔");
+                renderSavedPapers();
+            }
+
+            return;
+        }
+    }
+
+    const newPaper={
+        id:Date.now().toString()+Math.random().toString(36).slice(2),
+        title:title,
+        savedAt:new Date().toLocaleString(),
+        data:paperData
+    };
+
+    saved.unshift(newPaper);
+
+    if(safeSet("risenSavedPapers",saved)){
+
+        editingPaperId=newPaper.id;
+
+        alert("Paper محفوظ ہو گیا ہے۔");
+
+        renderSavedPapers();
+    }
 }
-
-}
-
-
-const title=prompt(
-"Paper کا نام لکھیں:",
-oldTitle ||
-get("paperSubject").value ||
-get("examName").value ||
-"New Paper"
-);
-
-
-if(title===null){
-return;
-}
-
-
-const paperData={
-
-schoolName:get("schoolName").value,
-examName:get("examName").value,
-paperClass:get("paperClass").value,
-paperSubject:get("paperSubject").value,
-paperChapter:get("paperChapter").value,
-paperDate:get("paperDate").value,
-paperTime:get("paperTime").value,
-totalMarks:get("totalMarks").value,
-
-studentName:get("studentName").value,
-rollNumber:get("rollNumber").value,
-sectionName:get("sectionName").value,
-teacherName:get("teacherName").value,
-
-mcqs:JSON.parse(JSON.stringify(mcqs)),
-shorts:JSON.parse(JSON.stringify(shorts)),
-longs:JSON.parse(JSON.stringify(longs)),
-fills:JSON.parse(JSON.stringify(fills)),
-tfs:JSON.parse(JSON.stringify(tfs)),
-
-logoData:logoData
-
-};
-
-
-let saved=getSavedPapers();
-
-
-if(editingPaperId){
-
-const index=saved.findIndex(
-x=>String(x.id)===String(editingPaperId)
-);
-
-
-if(index!==-1){
-
-saved[index].title=title;
-saved[index].data=paperData;
-saved[index].savedAt=new Date().toLocaleString();
-
-localStorage.setItem(
-"risenSavedPapers",
-JSON.stringify(saved)
-);
-
-alert("Paper update ہو گیا ہے۔");
-
-renderSavedPapers();
-
-return;
-
-}
-
-}
-
-
-const newPaper={
-
-id:
-Date.now().toString()+
-Math.random().toString(36).slice(2),
-
-title:title,
-
-savedAt:new Date().toLocaleString(),
-
-data:paperData
-
-};
-
-
-saved.unshift(newPaper);
-
-
-localStorage.setItem(
-"risenSavedPapers",
-JSON.stringify(saved)
-);
-
-
-editingPaperId=newPaper.id;
-
-
-alert("Paper محفوظ ہو گیا ہے۔");
-
-renderSavedPapers();
-
-}
-
-
-/* =====================================================
-OPEN SAVED PAPER
-===================================================== */
 
 function openSavedPaper(id){
 
-const saved=getSavedPapers();
+    const item=getSavedPapers().find(
+        x=>String(x.id)===String(id)
+    );
 
-const item=saved.find(
-x=>String(x.id)===String(id)
-);
+    if(!item){
+        alert("Paper نہیں ملا۔");
+        return;
+    }
 
+    const p=item.data || {};
 
-if(!item){
+    [
+        "schoolName",
+        "examName",
+        "paperClass",
+        "paperSubject",
+        "paperChapter",
+        "paperDate",
+        "paperTime",
+        "totalMarks",
+        "studentName",
+        "rollNumber",
+        "sectionName",
+        "teacherName"
+    ].forEach(id=>{
 
-alert("Paper نہیں ملا۔");
-return;
+        if(get(id)){
+            get(id).value=p[id] || "";
+        }
+    });
 
+    mcqs=Array.isArray(p.mcqs)?p.mcqs:[];
+    shorts=Array.isArray(p.shorts)?p.shorts:[];
+    longs=Array.isArray(p.longs)?p.longs:[];
+    fills=Array.isArray(p.fills)?p.fills:[];
+    tfs=Array.isArray(p.tfs)?p.tfs:[];
+
+    logoData=p.logoData || "";
+
+    if(logoData){
+
+        get("headerLogo").src=logoData;
+        get("headerLogo").classList.remove("hidden");
+        get("logoPlaceholder").classList.add("hidden");
+
+    }else{
+
+        get("headerLogo").classList.add("hidden");
+        get("logoPlaceholder").classList.remove("hidden");
+    }
+
+    editingPaperId=item.id;
+
+    renderMCQs();
+    renderShorts();
+    renderLongs();
+    renderFills();
+    renderTF();
+
+    updatePaper();
+    showTab("paper");
+
+    alert("Paper کھل گیا ہے۔ Edit کرکے دوبارہ Save Paper دبائیں۔");
 }
-
-
-const p=item.data || {};
-
-
-[
-"schoolName",
-"examName",
-"paperClass",
-"paperSubject",
-"paperChapter",
-"paperDate",
-"paperTime",
-"totalMarks",
-"studentName",
-"rollNumber",
-"sectionName",
-"teacherName"
-].forEach(id=>{
-
-if(get(id)){
-get(id).value=p[id] || "";
-}
-
-});
-
-
-mcqs=p.mcqs || [];
-shorts=p.shorts || [];
-longs=p.longs || [];
-fills=p.fills || [];
-tfs=p.tfs || [];
-
-logoData=p.logoData || "";
-
-
-if(logoData){
-
-get("headerLogo").src=logoData;
-
-get("headerLogo").classList.remove("hidden");
-
-get("logoPlaceholder").classList.add("hidden");
-
-}else{
-
-get("headerLogo").classList.add("hidden");
-
-get("logoPlaceholder").classList.remove("hidden");
-
-}
-
-
-editingPaperId=item.id;
-
-
-renderMCQs();
-renderShorts();
-renderLongs();
-renderFills();
-renderTF();
-
-updatePaper();
-
-showTab("paper");
-
-
-alert(
-"Paper کھل گیا ہے۔ Edit کرکے دوبارہ Save Paper دبائیں۔"
-);
-
-}
-
-
-/* =====================================================
-DELETE PAPER
-===================================================== */
 
 function deleteSavedPaper(id){
 
-if(!confirm("کیا آپ یہ محفوظ Paper حذف کرنا چاہتے ہیں؟")){
-return;
+    if(!confirm("کیا آپ یہ محفوظ Paper حذف کرنا چاہتے ہیں؟")) return;
+
+    let saved=getSavedPapers();
+
+    saved=saved.filter(
+        x=>String(x.id)!==String(id)
+    );
+
+    safeSet("risenSavedPapers",saved);
+
+    if(String(editingPaperId)===String(id)){
+        editingPaperId=null;
+    }
+
+    renderSavedPapers();
 }
-
-
-let saved=getSavedPapers();
-
-saved=saved.filter(
-x=>String(x.id)!==String(id)
-);
-
-
-localStorage.setItem(
-"risenSavedPapers",
-JSON.stringify(saved)
-);
-
-
-if(String(editingPaperId)===String(id)){
-editingPaperId=null;
-}
-
-
-renderSavedPapers();
-
-}
-
-
-/* =====================================================
-RENDER PAPERS
-===================================================== */
 
 function renderSavedPapers(){
 
-const box=get("savedPapersList");
+    const box=get("savedPapersList");
+    const saved=getSavedPapers();
 
-const saved=getSavedPapers();
+    if(saved.length===0){
 
+        box.innerHTML=`
+        <div class="empty-message">
 
-if(saved.length===0){
+        ابھی کوئی Paper محفوظ نہیں ہے۔
 
-box.innerHTML=`
+        <br>
 
-<div class="empty-message">
+        Paper Maker میں Paper بنائیں اور
+        <b>Save Paper</b> دبائیں۔
 
-ابھی کوئی Paper محفوظ نہیں ہے۔
+        </div>`;
 
-<br>
+        return;
+    }
 
-Paper Maker میں Paper بنائیں اور
-<b>Save Paper</b> دبائیں۔
+    box.innerHTML=saved.map(item=>{
 
-</div>
+        const d=item.data || {};
 
-`;
+        return `
 
-return;
+        <div class="saved-card">
 
-}
+        <div class="saved-card-title">
+        📄 ${escapeHTML(item.title)}
+        </div>
 
+        <div class="saved-card-info">
 
-box.innerHTML=saved.map(item=>{
+        جماعت:
+        ${escapeHTML(d.paperClass || "")}
 
-const d=item.data || {};
+        &nbsp; | &nbsp;
 
+        مضمون:
+        ${escapeHTML(d.paperSubject || "")}
 
-return `
+        <br>
 
-<div class="saved-card">
+        محفوظ کیا گیا:
+        ${escapeHTML(item.savedAt || "")}
 
-<div class="saved-card-title">
+        </div>
 
-📄 ${escapeHTML(item.title)}
+        <div class="saved-card-actions">
 
-</div>
+        <button class="btn btn-primary"
+        onclick="openSavedPaper('${item.id}')">
+        ✏️ Open & Edit
+        </button>
 
+        <button class="btn btn-danger"
+        onclick="deleteSavedPaper('${item.id}')">
+        🗑 Delete
+        </button>
 
-<div class="saved-card-info">
+        </div>
 
-جماعت:
-${escapeHTML(d.paperClass || "")}
+        </div>
+        `;
 
-&nbsp; | &nbsp;
-
-مضمون:
-${escapeHTML(d.paperSubject || "")}
-
-<br>
-
-محفوظ کیا گیا:
-${escapeHTML(item.savedAt || "")}
-
-</div>
-
-
-<div class="saved-card-actions">
-
-<button
-class="btn btn-primary"
-onclick="openSavedPaper('${item.id}')">
-
-✏️ Open & Edit
-
-</button>
-
-
-<button
-class="btn btn-danger"
-onclick="deleteSavedPaper('${item.id}')">
-
-🗑 Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
+    }).join("");
 }
 
 
 /* =====================================================
-SAVED NOTES
+SAVED NOTES - FIXED
 ===================================================== */
 
 function getSavedNotes(){
 
-try{
-
-return JSON.parse(
-localStorage.getItem("risenSavedNotes") || "[]"
-);
-
-}catch(e){
-
-return [];
-
-}
-
+    try{
+        return JSON.parse(
+            localStorage.getItem("risenSavedNotes") || "[]"
+        );
+    }catch(e){
+        return [];
+    }
 }
 
 
 function saveNotes(){
 
-let oldTitle="";
+    /*
+       IMPORTANT:
+       اگر پہلے سے کوئی Saved Note open/edit ہو رہا ہے
+       تو نیا record نہیں بنے گا بلکہ وہی update ہوگا۔
+    */
 
-if(editingNotesId){
+    let saved=getSavedNotes();
 
-const old=getSavedNotes().find(
-x=>String(x.id)===String(editingNotesId)
-);
+    let oldTitle="";
 
-if(old){
-oldTitle=old.title;
-}
+    if(editingNotesId){
 
-}
+        const old=saved.find(
+            x=>String(x.id)===String(editingNotesId)
+        );
 
+        if(old){
+            oldTitle=old.title || "";
+        }
+    }
 
-const title=prompt(
-"Notes کا نام لکھیں:",
-oldTitle ||
-get("notesSubject").value ||
-get("notesTopic").value ||
-"New Notes"
-);
+    const title=prompt(
+        "Notes کا نام لکھیں:",
+        oldTitle ||
+        get("notesSubject").value ||
+        get("notesTopic").value ||
+        "New Notes"
+    );
 
+    if(title===null) return;
 
-if(title===null){
-return;
-}
+    /*
+       Deep copy:
+       Notes editor کی موجودہ data محفوظ ہوگی۔
+    */
 
+    const notesData={
 
-const notesData={
+        notesSchool:get("notesSchool").value,
+        notesClass:get("notesClass").value,
+        notesSubject:get("notesSubject").value,
+        notesChapter:get("notesChapter").value,
+        notesTopic:get("notesTopic").value,
 
-notesSchool:get("notesSchool").value,
-notesClass:get("notesClass").value,
-notesSubject:get("notesSubject").value,
-notesChapter:get("notesChapter").value,
-notesTopic:get("notesTopic").value,
-
-noteBlocks:
-JSON.parse(JSON.stringify(noteBlocks))
-
-};
-
-
-let saved=getSavedNotes();
-
-
-if(editingNotesId){
-
-const index=saved.findIndex(
-x=>String(x.id)===String(editingNotesId)
-);
+        noteBlocks:JSON.parse(
+            JSON.stringify(noteBlocks)
+        )
+    };
 
 
-if(index!==-1){
+    /* ================= UPDATE EXISTING ================= */
 
-saved[index].title=title;
-saved[index].data=notesData;
-saved[index].savedAt=new Date().toLocaleString();
+    if(editingNotesId){
 
-localStorage.setItem(
-"risenSavedNotes",
-JSON.stringify(saved)
-);
+        const index=saved.findIndex(
+            x=>String(x.id)===String(editingNotesId)
+        );
 
-alert("Notes update ہو گئے ہیں۔");
+        if(index!==-1){
 
-renderSavedNotes();
+            saved[index]={
+                ...saved[index],
+                title:title,
+                data:notesData,
+                savedAt:new Date().toLocaleString()
+            };
 
-return;
+            if(safeSet("risenSavedNotes",saved)){
 
-}
+                alert("Notes update ہو گئے ہیں۔");
 
-}
+                renderSavedNotes();
 
+                /*
+                   Current saved ID برقرار رہے گی۔
+                */
 
-const newNotes={
+                return;
+            }
 
-id:
-Date.now().toString()+
-Math.random().toString(36).slice(2),
+            return;
+        }
 
-title:title,
-
-savedAt:new Date().toLocaleString(),
-
-data:notesData
-
-};
-
-
-saved.unshift(newNotes);
-
-
-localStorage.setItem(
-"risenSavedNotes",
-JSON.stringify(saved)
-);
+        /*
+           اگر ID موجود نہیں رہی تو نیا record بنے گا۔
+        */
+        editingNotesId=null;
+    }
 
 
-editingNotesId=newNotes.id;
+    /* ================= CREATE NEW NOTES ================= */
 
+    const newNotes={
 
-alert("Notes محفوظ ہو گئے ہیں۔");
+        id:
+        Date.now().toString()+
+        Math.random().toString(36).slice(2),
 
-renderSavedNotes();
+        title:title,
 
+        savedAt:new Date().toLocaleString(),
+
+        data:notesData
+    };
+
+    saved.unshift(newNotes);
+
+    if(safeSet("risenSavedNotes",saved)){
+
+        editingNotesId=newNotes.id;
+
+        alert("Notes محفوظ ہو گئے ہیں۔");
+
+        renderSavedNotes();
+    }
 }
 
 
 /* =====================================================
-OPEN NOTES
+NEW NOTES - FIX
+===================================================== */
+
+function startNewNotes(){
+
+    /*
+       سب سے اہم fix:
+       نیا Notes شروع کرتے وقت editingNotesId ختم۔
+       ورنہ Save Notes پر نیا Notes بنانے کے بجائے
+       پرانا Notes update ہو جاتا تھا۔
+    */
+
+    if(
+        noteBlocks.length ||
+        get("notesSubject").value ||
+        get("notesChapter").value ||
+        get("notesTopic").value
+    ){
+
+        if(!confirm("نئے Notes شروع کریں؟ موجودہ unsaved Notes editor میں رہیں گے مگر نیا Save record بنے گا۔")){
+            return;
+        }
+    }
+
+    editingNotesId=null;
+
+    get("notesSchool").value="The Risen High School";
+    get("notesClass").value="9th";
+    get("notesSubject").value="";
+    get("notesChapter").value="";
+    get("notesTopic").value="";
+
+    noteBlocks=[];
+
+    renderNotesEditor();
+    updateNotes();
+
+    autoSave();
+
+    showTab("notes");
+}
+
+
+/* =====================================================
+OPEN SAVED NOTES - FIX
 ===================================================== */
 
 function openSavedNotes(id){
 
-const saved=getSavedNotes();
+    const saved=getSavedNotes();
 
-const item=saved.find(
-x=>String(x.id)===String(id)
-);
+    const item=saved.find(
+        x=>String(x.id)===String(id)
+    );
 
+    if(!item){
 
-if(!item){
+        alert("Notes نہیں ملے۔");
+        return;
+    }
 
-alert("Notes نہیں ملے۔");
-return;
+    const n=item.data || {};
 
+    [
+        "notesSchool",
+        "notesClass",
+        "notesSubject",
+        "notesChapter",
+        "notesTopic"
+    ].forEach(id=>{
+
+        if(get(id)){
+            get(id).value=n[id] || "";
+        }
+    });
+
+    noteBlocks=Array.isArray(n.noteBlocks)
+        ? JSON.parse(JSON.stringify(n.noteBlocks))
+        : [];
+
+    /*
+       IMPORTANT:
+       Open کرتے وقت Saved Notes کی ID یاد رکھی جائے گی۔
+       Save Notes اب اسی record کو update کرے گا۔
+    */
+
+    editingNotesId=item.id;
+
+    renderNotesEditor();
+    updateNotes();
+
+    showTab("notes");
+
+    alert("Notes کھل گئے ہیں۔ Edit کرکے دوبارہ Save Notes دبائیں۔");
 }
 
-
-const n=item.data || {};
-
-
-[
-"notesSchool",
-"notesClass",
-"notesSubject",
-"notesChapter",
-"notesTopic"
-].forEach(id=>{
-
-if(get(id)){
-get(id).value=n[id] || "";
-}
-
-});
-
-
-noteBlocks=n.noteBlocks || [];
-
-
-editingNotesId=item.id;
-
-
-renderNotesEditor();
-
-updateNotes();
-
-showTab("notes");
-
-
-alert(
-"Notes کھل گئے ہیں۔ Edit کرکے دوبارہ Save Notes دبائیں۔"
-);
-
-}
-
-
-/* =====================================================
-DELETE NOTES
-===================================================== */
 
 function deleteSavedNotes(id){
 
-if(!confirm("کیا آپ یہ محفوظ Notes حذف کرنا چاہتے ہیں؟")){
-return;
+    if(!confirm("کیا آپ یہ محفوظ Notes حذف کرنا چاہتے ہیں؟")){
+        return;
+    }
+
+    let saved=getSavedNotes();
+
+    saved=saved.filter(
+        x=>String(x.id)!==String(id)
+    );
+
+    safeSet("risenSavedNotes",saved);
+
+    if(String(editingNotesId)===String(id)){
+        editingNotesId=null;
+    }
+
+    renderSavedNotes();
 }
 
-
-let saved=getSavedNotes();
-
-saved=saved.filter(
-x=>String(x.id)!==String(id)
-);
-
-
-localStorage.setItem(
-"risenSavedNotes",
-JSON.stringify(saved)
-);
-
-
-if(String(editingNotesId)===String(id)){
-editingNotesId=null;
-}
-
-
-renderSavedNotes();
-
-}
-
-
-/* =====================================================
-RENDER NOTES
-===================================================== */
 
 function renderSavedNotes(){
 
-const box=get("savedNotesList");
+    const box=get("savedNotesList");
+    const saved=getSavedNotes();
 
-const saved=getSavedNotes();
+    if(saved.length===0){
 
+        box.innerHTML=`
 
-if(saved.length===0){
+        <div class="empty-message">
 
-box.innerHTML=`
+        ابھی کوئی Notes محفوظ نہیں ہیں۔
 
-<div class="empty-message">
+        <br>
 
-ابھی کوئی Notes محفوظ نہیں ہیں۔
+        Notes Maker میں Notes بنائیں اور
+        <b>Save Notes</b> دبائیں۔
 
-<br>
+        </div>
 
-Notes Maker میں Notes بنائیں اور
-<b>Save Notes</b> دبائیں۔
+        `;
 
-</div>
+        return;
+    }
 
-`;
+    box.innerHTML=saved.map(item=>{
 
-return;
+        const d=item.data || {};
 
-}
+        return `
 
+        <div class="saved-card">
 
-box.innerHTML=saved.map(item=>{
+        <div class="saved-card-title">
 
-const d=item.data || {};
+        📝 ${escapeHTML(item.title)}
 
+        </div>
 
-return `
+        <div class="saved-card-info">
 
-<div class="saved-card">
+        جماعت:
+        ${escapeHTML(d.notesClass || "")}
 
-<div class="saved-card-title">
+        &nbsp; | &nbsp;
 
-📝 ${escapeHTML(item.title)}
+        مضمون:
+        ${escapeHTML(d.notesSubject || "")}
 
-</div>
+        <br>
 
+        محفوظ کیا گیا:
+        ${escapeHTML(item.savedAt || "")}
 
-<div class="saved-card-info">
+        </div>
 
-جماعت:
-${escapeHTML(d.notesClass || "")}
+        <div class="saved-card-actions">
 
-&nbsp; | &nbsp;
+        <button class="btn btn-primary"
+        onclick="openSavedNotes('${item.id}')">
 
-مضمون:
-${escapeHTML(d.notesSubject || "")}
+        ✏️ Open & Edit
 
-<br>
+        </button>
 
-محفوظ کیا گیا:
-${escapeHTML(item.savedAt || "")}
+        <button class="btn btn-danger"
+        onclick="deleteSavedNotes('${item.id}')">
 
-</div>
+        🗑 Delete
 
+        </button>
 
-<div class="saved-card-actions">
+        </div>
 
-<button
-class="btn btn-primary"
-onclick="openSavedNotes('${item.id}')">
+        </div>
 
-✏️ Open & Edit
+        `;
 
-</button>
-
-
-<button
-class="btn btn-danger"
-onclick="deleteSavedNotes('${item.id}')">
-
-🗑 Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
+    }).join("");
 }
 
 
@@ -3781,172 +2809,262 @@ onclick="deleteSavedNotes('${item.id}')">
 DRAFT
 ===================================================== */
 
+function collectDraftData(){
+
+    return {
+
+        currentTab,
+
+        editingPaperId,
+        editingNotesId,
+
+        paperInputs:{
+
+            schoolName:get("schoolName").value,
+            examName:get("examName").value,
+            paperClass:get("paperClass").value,
+            paperSubject:get("paperSubject").value,
+            paperChapter:get("paperChapter").value,
+            paperDate:get("paperDate").value,
+            paperTime:get("paperTime").value,
+            totalMarks:get("totalMarks").value,
+            studentName:get("studentName").value,
+            rollNumber:get("rollNumber").value,
+            sectionName:get("sectionName").value,
+            teacherName:get("teacherName").value
+
+        },
+
+        notesInputs:{
+
+            notesSchool:get("notesSchool").value,
+            notesClass:get("notesClass").value,
+            notesSubject:get("notesSubject").value,
+            notesChapter:get("notesChapter").value,
+            notesTopic:get("notesTopic").value
+
+        },
+
+        mcqs,
+        shorts,
+        longs,
+        fills,
+        tfs,
+        noteBlocks,
+        logoData
+    };
+}
+
+
 function saveDraft(){
 
-const data={
+    const data=collectDraftData();
 
-currentTab,
-
-paperInputs:{
-
-schoolName:get("schoolName").value,
-examName:get("examName").value,
-paperClass:get("paperClass").value,
-paperSubject:get("paperSubject").value,
-paperChapter:get("paperChapter").value,
-paperDate:get("paperDate").value,
-paperTime:get("paperTime").value,
-totalMarks:get("totalMarks").value,
-studentName:get("studentName").value,
-rollNumber:get("rollNumber").value,
-sectionName:get("sectionName").value,
-teacherName:get("teacherName").value
-
-},
-
-notesInputs:{
-
-notesSchool:get("notesSchool").value,
-notesClass:get("notesClass").value,
-notesSubject:get("notesSubject").value,
-notesChapter:get("notesChapter").value,
-notesTopic:get("notesTopic").value
-
-},
-
-mcqs,
-shorts,
-longs,
-fills,
-tfs,
-noteBlocks,
-logoData
-
-};
+    if(safeSet("risenPaperNotesDraft",data)){
+        alert("Draft محفوظ ہو گیا ہے۔");
+    }
+}
 
 
-localStorage.setItem(
-"risenPaperNotesDraft",
-JSON.stringify(data)
-);
+function loadDraft(){
 
-alert("Draft محفوظ ہو گیا ہے۔");
+    const raw=localStorage.getItem("risenPaperNotesDraft");
 
+    if(!raw){
+
+        alert("کوئی محفوظ Draft نہیں ملا۔");
+        return;
+    }
+
+    try{
+
+        const data=JSON.parse(raw);
+
+        const p=data.paperInputs || {};
+
+        Object.keys(p).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=p[id] || "";
+            }
+        });
+
+        const n=data.notesInputs || {};
+
+        Object.keys(n).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=n[id] || "";
+            }
+        });
+
+        mcqs=Array.isArray(data.mcqs)?data.mcqs:[];
+        shorts=Array.isArray(data.shorts)?data.shorts:[];
+        longs=Array.isArray(data.longs)?data.longs:[];
+        fills=Array.isArray(data.fills)?data.fills:[];
+        tfs=Array.isArray(data.tfs)?data.tfs:[];
+        noteBlocks=Array.isArray(data.noteBlocks)?data.noteBlocks:[];
+        logoData=data.logoData || "";
+
+        editingPaperId=data.editingPaperId || null;
+        editingNotesId=data.editingNotesId || null;
+
+        setLogoUI();
+
+        renderMCQs();
+        renderShorts();
+        renderLongs();
+        renderFills();
+        renderTF();
+        renderNotesEditor();
+
+        updatePaper();
+        updateNotes();
+
+        if(data.currentTab==="notes"){
+            showTab("notes");
+        }else{
+            showTab("paper");
+        }
+
+        alert("Draft load ہو گیا ہے۔");
+
+    }catch(e){
+
+        console.error(e);
+
+        alert("Draft load نہیں ہو سکا۔");
+    }
 }
 
 
 /* =====================================================
-LOAD DRAFT
+AUTO SAVE
 ===================================================== */
 
-function loadDraft(){
+function autoSave(){
 
-const raw=localStorage.getItem(
-"risenPaperNotesDraft"
-);
+    clearTimeout(autoSaveTimer);
 
+    autoSaveTimer=setTimeout(()=>{
 
-if(!raw){
+        try{
 
-alert("کوئی محفوظ Draft نہیں ملا۔");
-return;
+            const data=collectDraftData();
 
+            localStorage.setItem(
+                "risenPaperNotesAutoSave",
+                JSON.stringify(data)
+            );
+
+        }catch(e){
+
+            console.log("Auto save error",e);
+        }
+
+    },700);
 }
 
 
-try{
+/* =====================================================
+RESTORE AUTO SAVE
+===================================================== */
 
-const data=JSON.parse(raw);
+function restoreAutoSave(){
 
+    const raw=localStorage.getItem(
+        "risenPaperNotesAutoSave"
+    );
 
-const p=data.paperInputs || {};
+    if(!raw) return;
 
-Object.keys(p).forEach(id=>{
+    try{
 
-if(get(id)){
-get(id).value=p[id];
+        const data=JSON.parse(raw);
+
+        if(!data) return;
+
+        /*
+           Auto-save silently restore ہوگا۔
+           User کا Saved Papers / Saved Notes data touch نہیں ہوگا۔
+        */
+
+        const p=data.paperInputs || {};
+
+        Object.keys(p).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=p[id] ?? get(id).value;
+            }
+        });
+
+        const n=data.notesInputs || {};
+
+        Object.keys(n).forEach(id=>{
+
+            if(get(id)){
+                get(id).value=n[id] ?? get(id).value;
+            }
+        });
+
+        mcqs=Array.isArray(data.mcqs)?data.mcqs:[];
+        shorts=Array.isArray(data.shorts)?data.shorts:[];
+        longs=Array.isArray(data.longs)?data.longs:[];
+        fills=Array.isArray(data.fills)?data.fills:[];
+        tfs=Array.isArray(data.tfs)?data.tfs:[];
+        noteBlocks=Array.isArray(data.noteBlocks)?data.noteBlocks:[];
+        logoData=data.logoData || "";
+
+        /*
+           Auto-save میں editing ID بھی محفوظ ہے۔
+           اس سے accidentally پرانا Saved Notes update نہیں ہوگا۔
+        */
+
+        editingPaperId=data.editingPaperId || null;
+        editingNotesId=data.editingNotesId || null;
+
+        setLogoUI();
+
+        renderMCQs();
+        renderShorts();
+        renderLongs();
+        renderFills();
+        renderTF();
+        renderNotesEditor();
+
+        updatePaper();
+        updateNotes();
+
+        if(data.currentTab==="notes"){
+            currentTab="notes";
+        }else{
+            currentTab="paper";
+        }
+
+    }catch(e){
+
+        console.log("Auto restore error",e);
+    }
 }
 
-});
 
+/* =====================================================
+LOGO UI
+===================================================== */
 
-const n=data.notesInputs || {};
+function setLogoUI(){
 
-Object.keys(n).forEach(id=>{
+    if(logoData){
 
-if(get(id)){
-get(id).value=n[id];
-}
+        get("headerLogo").src=logoData;
+        get("headerLogo").classList.remove("hidden");
+        get("logoPlaceholder").classList.add("hidden");
 
-});
+    }else{
 
-
-mcqs=data.mcqs || [];
-shorts=data.shorts || [];
-longs=data.longs || [];
-fills=data.fills || [];
-tfs=data.tfs || [];
-noteBlocks=data.noteBlocks || [];
-logoData=data.logoData || "";
-
-
-editingPaperId=null;
-editingNotesId=null;
-
-
-if(logoData){
-
-get("headerLogo").src=logoData;
-
-get("headerLogo").classList.remove("hidden");
-
-get("logoPlaceholder").classList.add("hidden");
-
-}else{
-
-get("headerLogo").classList.add("hidden");
-
-get("logoPlaceholder").classList.remove("hidden");
-
-}
-
-
-renderMCQs();
-renderShorts();
-renderLongs();
-renderFills();
-renderTF();
-renderNotesEditor();
-
-updatePaper();
-updateNotes();
-
-
-if(
-data.currentTab==="paper" ||
-data.currentTab==="notes"
-){
-
-showTab(data.currentTab);
-
-}else{
-
-showTab("paper");
-
-}
-
-
-alert("Draft load ہو گیا ہے۔");
-
-
-}catch(e){
-
-alert("Draft load نہیں ہو سکا۔");
-
-console.error(e);
-
-}
-
+        get("headerLogo").classList.add("hidden");
+        get("logoPlaceholder").classList.remove("hidden");
+    }
 }
 
 
@@ -3956,371 +3074,383 @@ CLEAR
 
 function clearAll(){
 
-if(!confirm(
-"کیا آپ واقعی تمام سوالات اور نوٹس صاف کرنا چاہتے ہیں؟"
-)){
-return;
-}
+    if(!confirm(
+        "کیا آپ واقعی تمام سوالات اور نوٹس صاف کرنا چاہتے ہیں؟"
+    )){
+        return;
+    }
 
+    mcqs=[];
+    shorts=[];
+    longs=[];
+    fills=[];
+    tfs=[];
+    noteBlocks=[];
 
-mcqs=[];
-shorts=[];
-longs=[];
-fills=[];
-tfs=[];
-noteBlocks=[];
+    logoData="";
 
-logoData="";
+    editingPaperId=null;
+    editingNotesId=null;
 
-editingPaperId=null;
-editingNotesId=null;
+    get("examName").value="Monthly Test";
+    get("paperSubject").value="";
+    get("paperChapter").value="";
+    get("paperTime").value="2 Hours";
+    get("totalMarks").value="50";
+    get("studentName").value="";
+    get("rollNumber").value="";
+    get("sectionName").value="";
+    get("teacherName").value="Sir Rana Faisal";
 
+    get("notesSchool").value="The Risen High School";
+    get("notesClass").value="9th";
+    get("notesSubject").value="";
+    get("notesChapter").value="";
+    get("notesTopic").value="";
 
-get("examName").value="Monthly Test";
-get("paperSubject").value="";
-get("paperChapter").value="";
-get("paperTime").value="2 Hours";
-get("totalMarks").value="50";
-get("studentName").value="";
-get("rollNumber").value="";
-get("sectionName").value="";
-get("teacherName").value="Sir Rana Faisal";
+    get("logoUpload").value="";
 
+    setLogoUI();
 
-get("notesSubject").value="";
-get("notesChapter").value="";
-get("notesTopic").value="";
+    renderMCQs();
+    renderShorts();
+    renderLongs();
+    renderFills();
+    renderTF();
+    renderNotesEditor();
 
+    updatePaper();
+    updateNotes();
 
-get("headerLogo").classList.add("hidden");
-get("logoPlaceholder").classList.remove("hidden");
-
-
-renderMCQs();
-renderShorts();
-renderLongs();
-renderFills();
-renderTF();
-renderNotesEditor();
-
-updatePaper();
-updateNotes();
-
+    autoSave();
 }
 
 
 /* =====================================================
-DOWNLOAD PAPER PNG
+DOWNLOAD PAPER
 ===================================================== */
 
 async function downloadPaper(){
 
-updatePaper();
+    updatePaper();
 
+    if(typeof html2canvas==="undefined"){
 
-if(typeof html2canvas==="undefined"){
+        alert(
+            "Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
+        );
 
-alert(
-"Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
-);
+        return;
+    }
 
-return;
+    try{
 
-}
+        if(document.fonts && document.fonts.ready){
+            await document.fonts.ready;
+        }
 
+        await new Promise(resolve=>setTimeout(resolve,700));
 
-try{
+        const canvas=await html2canvas(
+            get("paperPreview"),
+            {
+                scale:2,
+                useCORS:true,
+                allowTaint:false,
+                backgroundColor:"#ffffff",
+                logging:false
+            }
+        );
 
-if(document.fonts && document.fonts.ready){
+        canvas.toBlob(function(blob){
 
-await document.fonts.ready;
+            if(!blob){
 
-}
+                alert("Paper image نہیں بن سکی۔");
+                return;
+            }
 
+            const url=URL.createObjectURL(blob);
 
-await new Promise(
-resolve=>setTimeout(resolve,700)
-);
+            let subject=get("paperSubject").value || "Paper";
 
+            subject=subject.replace(
+                /[\\/:*?"<>|]/g,
+                "-"
+            );
 
-const canvas=await html2canvas(
-get("paperPreview"),
-{
-scale:2,
-useCORS:true,
-allowTaint:false,
-backgroundColor:"#ffffff",
-logging:false
-}
-);
+            const link=document.createElement("a");
 
+            link.href=url;
 
-canvas.toBlob(function(blob){
+            link.download=
+            "The Risen High School - "+
+            subject+
+            ".png";
 
-if(!blob){
+            document.body.appendChild(link);
 
-alert("Paper image نہیں بن سکی۔");
-return;
+            link.click();
 
-}
+            link.remove();
 
+            setTimeout(
+                ()=>URL.revokeObjectURL(url),
+                3000
+            );
 
-const url=URL.createObjectURL(blob);
+        },"image/png");
 
-let subject=
-get("paperSubject").value ||
-"Paper";
+    }catch(error){
 
+        console.error(error);
 
-subject=subject.replace(
-/[\\/:*?"<>|]/g,
-"-"
-);
-
-
-const link=document.createElement("a");
-
-link.href=url;
-
-link.download=
-"The Risen High School - "+
-subject+
-".png";
-
-
-document.body.appendChild(link);
-
-link.click();
-
-link.remove();
-
-
-setTimeout(
-()=>URL.revokeObjectURL(url),
-3000
-);
-
-
-alert("Paper PNG download ہو گیا ہے۔");
-
-},"image/png");
-
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Paper download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
-);
-
-}
-
+        alert(
+            "Paper download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
+        );
+    }
 }
 
 
 /* =====================================================
-DOWNLOAD NOTES PNG
+DOWNLOAD NOTES
 ===================================================== */
 
 async function downloadNotes(){
 
-updateNotes();
+    updateNotes();
 
+    if(typeof html2canvas==="undefined"){
 
-if(typeof html2canvas==="undefined"){
+        alert(
+            "Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
+        );
 
-alert(
-"Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
-);
+        return;
+    }
 
-return;
+    try{
 
-}
+        if(document.fonts && document.fonts.ready){
+            await document.fonts.ready;
+        }
 
+        await new Promise(resolve=>setTimeout(resolve,700));
 
-try{
+        const notesElement=get("notesPreview");
 
-if(document.fonts && document.fonts.ready){
+        const canvas=await html2canvas(
+            notesElement,
+            {
+                scale:2,
+                useCORS:true,
+                allowTaint:false,
+                backgroundColor:"#ffffff",
+                logging:false,
 
-await document.fonts.ready;
+                onclone:function(clonedDocument){
 
-}
+                    const clonedNotes=
+                    clonedDocument.getElementById(
+                        "notesPreview"
+                    );
 
+                    if(clonedNotes){
 
-await new Promise(
-resolve=>setTimeout(resolve,700)
-);
+                        clonedNotes.style.width="210mm";
+                        clonedNotes.style.minHeight="297mm";
+                        clonedNotes.style.height="auto";
+                        clonedNotes.style.overflow="visible";
+                        clonedNotes.style.boxShadow="none";
+                        clonedNotes.style.margin="0 auto";
+                    }
+                }
+            }
+        );
 
+        canvas.toBlob(function(blob){
 
-const notesElement=get("notesPreview");
+            if(!blob){
 
+                alert("Notes کی PNG تصویر نہیں بن سکی۔");
+                return;
+            }
 
-const canvas=await html2canvas(
-notesElement,
-{
-scale:2,
-useCORS:true,
-allowTaint:false,
-backgroundColor:"#ffffff",
-logging:false,
+            const url=URL.createObjectURL(blob);
 
-onclone:function(clonedDocument){
+            let subject=
+            get("notesSubject").value ||
+            "Notes";
 
-const clonedNotes=
-clonedDocument.getElementById(
-"notesPreview"
-);
+            let chapter=
+            get("notesChapter").value ||
+            "";
 
-if(clonedNotes){
+            subject=subject.replace(
+                /[\\/:*?"<>|]/g,
+                "-"
+            );
 
-clonedNotes.style.width="210mm";
+            chapter=chapter.replace(
+                /[\\/:*?"<>|]/g,
+                "-"
+            );
 
-clonedNotes.style.minHeight="297mm";
+            let fileName=
+            "The Risen High School - "+
+            subject;
 
-clonedNotes.style.height="auto";
+            if(chapter){
+                fileName+=" - "+chapter;
+            }
 
-clonedNotes.style.overflow="visible";
+            fileName+=" - Notes.png";
 
-clonedNotes.style.boxShadow="none";
+            const link=document.createElement("a");
 
-clonedNotes.style.margin="0 auto";
+            link.href=url;
+            link.download=fileName;
 
-}
+            document.body.appendChild(link);
 
-}
+            link.click();
 
-}
-);
+            link.remove();
 
+            setTimeout(
+                ()=>URL.revokeObjectURL(url),
+                3000
+            );
 
-canvas.toBlob(function(blob){
+            alert("Notes کی PNG تصویر ڈاؤن لوڈ ہو گئی ہے۔");
 
-if(!blob){
+        },"image/png");
 
-alert(
-"Notes کی PNG تصویر نہیں بن سکی۔"
-);
+    }catch(error){
 
-return;
+        console.error(error);
 
-}
-
-
-const url=
-URL.createObjectURL(blob);
-
-
-let subject=
-get("notesSubject").value ||
-"Notes";
-
-
-let chapter=
-get("notesChapter").value ||
-"";
-
-
-subject=subject.replace(
-/[\\/:*?"<>|]/g,
-"-"
-);
-
-chapter=chapter.replace(
-/[\\/:*?"<>|]/g,
-"-"
-);
-
-
-let fileName=
-"The Risen High School - "+
-subject;
-
-
-if(chapter){
-
-fileName+=
-" - "+
-chapter;
-
-}
-
-
-fileName+=
-" - Notes.png";
-
-
-const link=
-document.createElement("a");
-
-
-link.href=url;
-
-link.download=fileName;
-
-document.body.appendChild(link);
-
-link.click();
-
-link.remove();
-
-
-setTimeout(
-function(){
-
-URL.revokeObjectURL(url);
-
-},
-3000
-);
-
-
-alert(
-"Notes کی PNG تصویر ڈاؤن لوڈ ہو گئی ہے۔"
-);
-
-},"image/png");
-
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Notes download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
-);
-
-}
-
+        alert(
+            "Notes download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
+        );
+    }
 }
 
 
 /* =====================================================
-PRINT
+PRINT - FIXED
 ===================================================== */
 
 function printDocument(){
 
-if(currentTab==="paper"){
+    /*
+       پرانے print system میں صرف #printArea visible تھا،
+       اس لیے Notes print نہیں ہوتے تھے۔
 
-document.title=
-"The Risen High School - Paper";
+       اب body class کے ذریعے Paper یا Notes منتخب ہوتا ہے۔
+    */
 
-}else{
+    document.body.classList.remove(
+        "print-paper",
+        "print-notes"
+    );
 
-document.title=
-"The Risen High School - Notes";
+    if(currentTab==="notes"){
 
+        updateNotes();
+
+        document.body.classList.add("print-notes");
+
+        document.title=
+        "The Risen High School - Notes";
+
+    }else{
+
+        updatePaper();
+
+        document.body.classList.add("print-paper");
+
+        document.title=
+        "The Risen High School - Paper";
+    }
+
+    setTimeout(()=>{
+        window.print();
+    },100);
 }
 
-window.print();
 
-}
+/*
+   Print مکمل ہونے کے بعد screen دوبارہ normal۔
+*/
+
+window.addEventListener("afterprint",function(){
+
+    document.body.classList.remove(
+        "print-paper",
+        "print-notes"
+    );
+
+    document.title=
+    "The Risen High School Paper and Notes";
+});
 
 
 /* =====================================================
-INITIAL
+INPUT / CHANGE AUTO SAVE
 ===================================================== */
+
+document.addEventListener("input",function(){
+    autoSave();
+});
+
+document.addEventListener("change",function(){
+    autoSave();
+});
+
+
+/* =====================================================
+KEYBOARD SHORTCUTS
+===================================================== */
+
+document.addEventListener("keydown",function(e){
+
+    if(
+        (e.ctrlKey || e.metaKey) &&
+        e.key.toLowerCase()==="s"
+    ){
+
+        e.preventDefault();
+
+        /*
+           Ctrl+S current tab کے مطابق Save کرے گا۔
+        */
+
+        if(currentTab==="notes"){
+            saveNotes();
+        }else{
+            saveDraft();
+        }
+    }
+
+    if(
+        (e.ctrlKey || e.metaKey) &&
+        e.key.toLowerCase()==="p"
+    ){
+
+        e.preventDefault();
+
+        printDocument();
+    }
+
+});
+
+
+/* =====================================================
+INITIALIZE
+===================================================== */
+
+setToday();
 
 renderMCQs();
 renderShorts();
@@ -4335,130 +3465,15 @@ updateNotes();
 renderSavedPapers();
 renderSavedNotes();
 
+/*
+   Page open ہونے پر AutoSave restore۔
+   Saved Papers/Notes پہلے سے محفوظ data کو delete نہیں کرتا۔
+*/
 
-/* =====================================================
-AUTO SAVE
-===================================================== */
+restoreAutoSave();
 
-let autoSaveTimer;
-
-
-function autoSave(){
-
-clearTimeout(autoSaveTimer);
-
-
-autoSaveTimer=setTimeout(()=>{
-
-try{
-
-const data={
-
-currentTab,
-
-paperInputs:{
-
-schoolName:get("schoolName").value,
-examName:get("examName").value,
-paperClass:get("paperClass").value,
-paperSubject:get("paperSubject").value,
-paperChapter:get("paperChapter").value,
-paperDate:get("paperDate").value,
-paperTime:get("paperTime").value,
-totalMarks:get("totalMarks").value,
-studentName:get("studentName").value,
-rollNumber:get("rollNumber").value,
-sectionName:get("sectionName").value,
-teacherName:get("teacherName").value
-
-},
-
-notesInputs:{
-
-notesSchool:get("notesSchool").value,
-notesClass:get("notesClass").value,
-notesSubject:get("notesSubject").value,
-notesChapter:get("notesChapter").value,
-notesTopic:get("notesTopic").value
-
-},
-
-mcqs,
-shorts,
-longs,
-fills,
-tfs,
-noteBlocks,
-logoData
-
-};
-
-
-localStorage.setItem(
-"risenPaperNotesAutoSave",
-JSON.stringify(data)
-);
-
-
-}catch(e){
-
-console.log(
-"Auto save error",
-e
-);
-
-}
-
-},700);
-
-}
-
-
-document.addEventListener(
-"input",
-autoSave
-);
-
-
-document.addEventListener(
-"change",
-autoSave
-);
-
-
-/* =====================================================
-KEYBOARD SHORTCUTS
-===================================================== */
-
-document.addEventListener(
-"keydown",
-function(e){
-
-if(
-(e.ctrlKey || e.metaKey) &&
-e.key==="s"
-){
-
-e.preventDefault();
-
-saveDraft();
-
-}
-
-
-if(
-(e.ctrlKey || e.metaKey) &&
-e.key==="p"
-){
-
-e.preventDefault();
-
-printDocument();
-
-}
-
-}
-);
+renderSavedPapers();
+renderSavedNotes();
 
 </script>
 
