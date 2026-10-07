@@ -137,10 +137,12 @@ button{cursor:pointer}
     padding:8px;
     border-radius:14px;
     box-shadow:var(--shadow);
+    overflow-x:auto;
 }
 
 .tab{
     flex:1;
+    min-width:150px;
     border:none;
     padding:14px;
     border-radius:10px;
@@ -148,6 +150,7 @@ button{cursor:pointer}
     color:#394150;
     font-size:17px;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .tab.active{
@@ -628,7 +631,7 @@ textarea{
 
 .saved-card-actions .btn{min-width:120px}
 
-/* ================= TABLE EDITOR ================= */
+/* TABLE */
 
 .table-editor{
     overflow:auto;
@@ -708,7 +711,162 @@ textarea{
     background:#f1f1f1;
 }
 
-/* ================= MOBILE ================= */
+/* ================= PARAGRAPH MAKER ================= */
+
+.paragraph-editor{
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.paragraph-mode{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    background:#f5f8fd;
+    border-bottom:1px solid var(--border);
+}
+
+.mode-btn{
+    border:none;
+    border-radius:8px;
+    padding:9px 16px;
+    font-weight:bold;
+    background:#e8edf5;
+    color:#273449;
+}
+
+.mode-btn.active{
+    background:var(--primary);
+    color:white;
+}
+
+.paragraph-toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:7px;
+    padding:10px;
+    border-bottom:1px solid var(--border);
+    background:#fff;
+}
+
+.format-btn{
+    min-width:38px;
+    height:36px;
+    border:1px solid #d5dce8;
+    border-radius:7px;
+    background:#f5f7fa;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.format-btn:hover{
+    background:#eaf1ff;
+}
+
+.font-select{
+    width:auto;
+    min-width:150px;
+    padding:8px;
+}
+
+.size-select{
+    width:auto;
+    min-width:90px;
+    padding:8px;
+}
+
+.paragraph-heading-input{
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+.paragraph-writing{
+    min-height:300px;
+    padding:18px;
+    outline:none;
+    border:none;
+    line-height:2.1;
+    font-size:22px;
+    background:white;
+    overflow:auto;
+}
+
+.paragraph-writing:empty:before{
+    content:"یہاں Paragraph لکھیں...";
+    color:#aaa;
+}
+
+.paragraph-writing.english-mode{
+    direction:ltr;
+    text-align:left;
+    font-family:"Segoe UI",Arial,sans-serif;
+    line-height:1.8;
+}
+
+.paragraph-writing.urdu-mode{
+    direction:rtl;
+    text-align:right;
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif;
+}
+
+.paragraph-preview{
+    min-height:297mm;
+    direction:rtl;
+}
+
+.paragraph-preview.english{
+    direction:ltr;
+    text-align:left;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+.paragraph-preview.urdu{
+    direction:rtl;
+    text-align:right;
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif;
+}
+
+.paragraph-preview-heading{
+    text-align:center;
+    font-size:27px;
+    font-weight:bold;
+    margin-bottom:25px;
+    border-bottom:2px solid #222;
+    padding-bottom:8px;
+}
+
+.paragraph-preview-content{
+    font-size:22px;
+    line-height:2.1;
+    white-space:normal;
+    word-wrap:break-word;
+}
+
+.paragraph-preview.english .paragraph-preview-content{
+    line-height:1.8;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+.paragraph-preview.urdu .paragraph-preview-content{
+    font-family:"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif;
+}
+
+.paragraph-footer{
+    position:absolute;
+    bottom:7mm;
+    left:14mm;
+    right:14mm;
+    border-top:1px solid #555;
+    padding-top:4px;
+    text-align:center;
+    font-family:"Segoe UI",Arial,sans-serif;
+    font-size:10px;
+}
+
+/* MOBILE */
 
 @media(max-width:1000px){
     .workspace{grid-template-columns:1fr}
@@ -729,9 +887,12 @@ textarea{
     .header-buttons button{flex:1;min-width:100px}
     .saved-card-actions{flex-direction:column}
     .saved-card-actions .btn{width:100%}
+    .paragraph-toolbar{
+        justify-content:center;
+    }
 }
 
-/* ================= PRINT ================= */
+/* PRINT */
 
 @page{
     size:A4;
@@ -739,42 +900,60 @@ textarea{
 }
 
 @media print{
-    main.no-print{display:block !important}
 
-    body *{visibility:hidden !important}
+body *{
+    visibility:hidden !important;
+}
 
-    #printArea,
-    #printArea *{
-        visibility:visible !important;
-    }
+#printArea,
+#printArea *{
+    visibility:visible !important;
+}
 
-    #printArea{
-        position:absolute !important;
-        left:0 !important;
-        top:0 !important;
-        width:100% !important;
-        display:block !important;
-    }
+#notesPrintArea,
+#notesPrintArea *{
+    visibility:visible !important;
+}
 
-    #notesPrintArea,
-    #notesPrintArea *{
-        visibility:visible !important;
-    }
+#paragraphPrintArea,
+#paragraphPrintArea *{
+    visibility:visible !important;
+}
 
-    #notesPrintArea{
-        position:absolute !important;
-        left:0 !important;
-        top:0 !important;
-        width:100% !important;
-        display:block !important;
-    }
+#printArea{
+    position:absolute !important;
+    left:0 !important;
+    top:0 !important;
+    width:100% !important;
+}
 
-    .a4{
-        box-shadow:none !important;
-        margin:0 auto !important;
-    }
+#notesPrintArea{
+    position:absolute !important;
+    left:0 !important;
+    top:0 !important;
+    width:100% !important;
+}
 
-    .topbar.no-print{display:none !important}
+#paragraphPrintArea{
+    position:absolute !important;
+    left:0 !important;
+    top:0 !important;
+    width:100% !important;
+}
+
+.a4{
+    box-shadow:none !important;
+    margin:0 auto !important;
+}
+
+.topbar{
+    display:none !important;
+}
+
+.paragraph-editor{
+    display:none !important;
+}
+
 }
 </style>
 
@@ -811,6 +990,7 @@ textarea{
 
 <button onclick="savePaper()">📄 Save Paper</button>
 <button onclick="saveNotes()">📚 Save Notes</button>
+<button onclick="saveParagraph()">📝 Save Paragraph</button>
 <button onclick="saveDraft()">💾 Save</button>
 <button onclick="loadDraft()">📂 Load</button>
 <button onclick="clearAll()">🗑 Clear</button>
@@ -835,12 +1015,20 @@ textarea{
 📚 Notes Maker
 </button>
 
+<button class="tab" id="paragraphTab" onclick="showTab('paragraph')">
+📝 Paragraph Maker
+</button>
+
 <button class="tab" id="savedPapersTab" onclick="showTab('savedPapers')">
 💾 Saved Papers
 </button>
 
 <button class="tab" id="savedNotesTab" onclick="showTab('savedNotes')">
 📝 Saved Notes
+</button>
+
+<button class="tab" id="savedParagraphsTab" onclick="showTab('savedParagraphs')">
+📚 Saved Paragraphs
 </button>
 
 </div>
@@ -967,16 +1155,11 @@ textarea{
 </div>
 
 
-<!-- MCQS -->
-
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>① MCQs</h3>
-
 <button class="add-btn" onclick="addMCQ()">+ Add MCQ</button>
-
 </div>
 
 <div id="mcqEditor" class="items"></div>
@@ -984,16 +1167,11 @@ textarea{
 </div>
 
 
-<!-- SHORT -->
-
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>② Short Questions</h3>
-
 <button class="add-btn" onclick="addShort()">+ Add Question</button>
-
 </div>
 
 <div id="shortEditor" class="items"></div>
@@ -1001,16 +1179,11 @@ textarea{
 </div>
 
 
-<!-- LONG -->
-
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>③ Long Questions</h3>
-
 <button class="add-btn" onclick="addLong()">+ Add Question</button>
-
 </div>
 
 <div id="longEditor" class="items"></div>
@@ -1018,16 +1191,11 @@ textarea{
 </div>
 
 
-<!-- FILL -->
-
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>④ Fill in the Blanks</h3>
-
 <button class="add-btn" onclick="addFill()">+ Add</button>
-
 </div>
 
 <div id="fillEditor" class="items"></div>
@@ -1035,16 +1203,11 @@ textarea{
 </div>
 
 
-<!-- TRUE FALSE -->
-
 <div class="section-box">
 
 <div class="section-head">
-
 <h3>⑤ True / False</h3>
-
 <button class="add-btn" onclick="addTF()">+ Add</button>
-
 </div>
 
 <div id="tfEditor" class="items"></div>
@@ -1055,19 +1218,14 @@ textarea{
 <div class="toolbar">
 
 <button class="btn btn-primary" onclick="updatePaper()">🔄 Update Preview</button>
-
 <button class="btn btn-success" onclick="printDocument()">🖨 Print / Save PDF</button>
-
 <button class="btn btn-warning" onclick="downloadPaper()">📥 Download Paper</button>
-
 <button class="btn btn-secondary" onclick="saveDraft()">💾 Save Draft</button>
 
 </div>
 
 </div>
 
-
-<!-- PAPER PREVIEW -->
 
 <div class="panel preview-panel">
 
@@ -1078,7 +1236,6 @@ textarea{
 <div>
 
 <button class="btn btn-primary" onclick="printDocument()">Print A4</button>
-
 <button class="btn btn-warning" onclick="downloadPaper()">📥 Download</button>
 
 </div>
@@ -1176,11 +1333,8 @@ textarea{
 <div class="toolbar">
 
 <button class="btn btn-primary" onclick="updateNotes()">🔄 Update Notes</button>
-
 <button class="btn btn-success" onclick="printDocument()">🖨 Print / PDF</button>
-
 <button class="btn btn-warning" onclick="downloadNotes()">📥 Download Notes PNG</button>
-
 <button class="btn btn-secondary" onclick="saveDraft()">💾 Save Draft</button>
 
 </div>
@@ -1197,7 +1351,6 @@ textarea{
 <div>
 
 <button class="btn btn-primary" onclick="printDocument()">Print A4</button>
-
 <button class="btn btn-warning" onclick="downloadNotes()">📥 Download PNG</button>
 
 </div>
@@ -1209,6 +1362,266 @@ textarea{
 <div id="notesPrintArea">
 
 <div id="notesPreview" class="a4 notes-page"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PARAGRAPH MAKER ================= -->
+
+<section id="paragraphSection" class="hidden">
+
+<div class="workspace">
+
+<div class="panel">
+
+<h2 class="panel-title">📝 Paragraph Maker</h2>
+
+<div class="form-group">
+
+<label>Paragraph Title / Heading</label>
+
+<input
+id="paragraphTitle"
+class="paragraph-heading-input"
+placeholder="مثلاً My School / میرا سکول"
+oninput="updateParagraph()">
+
+</div>
+
+
+<div class="paragraph-editor">
+
+<div class="paragraph-mode">
+
+<button
+id="urduModeBtn"
+class="mode-btn active"
+onclick="setParagraphMode('urdu')">
+
+🇵🇰 Urdu Paragraph
+
+</button>
+
+<button
+id="englishModeBtn"
+class="mode-btn"
+onclick="setParagraphMode('english')">
+
+🇬🇧 English Paragraph
+
+</button>
+
+</div>
+
+
+<div class="paragraph-toolbar">
+
+<button
+class="format-btn"
+title="Bold"
+onclick="formatParagraph('bold')">
+
+<b>B</b>
+
+</button>
+
+<button
+class="format-btn"
+title="Italic"
+onclick="formatParagraph('italic')">
+
+<i>I</i>
+
+</button>
+
+<button
+class="format-btn"
+title="Underline"
+onclick="formatParagraph('underline')">
+
+<u>U</u>
+
+</button>
+
+
+<select
+id="paragraphFont"
+class="font-select"
+onchange="changeParagraphFont(this.value)">
+
+<option value="Jameel Noori Nastaleeq">
+Jameel Noori Nastaleeq
+</option>
+
+<option value="Arial">
+Arial
+</option>
+
+<option value="Times New Roman">
+Times New Roman
+</option>
+
+<option value="Georgia">
+Georgia
+</option>
+
+<option value="Verdana">
+Verdana
+</option>
+
+<option value="Segoe UI">
+Segoe UI
+</option>
+
+</select>
+
+
+<select
+id="paragraphSize"
+class="size-select"
+onchange="changeParagraphSize(this.value)">
+
+<option value="18px">18</option>
+<option value="20px">20</option>
+<option value="22px" selected>22</option>
+<option value="24px">24</option>
+<option value="26px">26</option>
+<option value="28px">28</option>
+<option value="30px">30</option>
+<option value="34px">34</option>
+<option value="38px">38</option>
+
+</select>
+
+
+<button
+class="format-btn"
+title="Right Align"
+onclick="formatParagraph('justifyRight')">
+↦
+</button>
+
+<button
+class="format-btn"
+title="Center"
+onclick="formatParagraph('justifyCenter')">
+≡
+</button>
+
+<button
+class="format-btn"
+title="Left Align"
+onclick="formatParagraph('justifyLeft')">
+↤
+</button>
+
+<button
+class="format-btn"
+title="Justify"
+onclick="formatParagraph('justifyFull')">
+☰
+</button>
+
+</div>
+
+
+<div
+id="paragraphWriting"
+class="paragraph-writing urdu-mode"
+contenteditable="true"
+spellcheck="false"
+oninput="updateParagraph()">
+
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<button
+class="btn btn-primary"
+onclick="updateParagraph()">
+🔄 Update Preview
+</button>
+
+<button
+class="btn btn-success"
+onclick="printDocument()">
+🖨 Print / PDF
+</button>
+
+<button
+class="btn btn-warning"
+onclick="downloadParagraph()">
+📥 Download Paragraph
+</button>
+
+<button
+class="btn btn-primary"
+onclick="saveParagraph()">
+💾 Save Paragraph
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="saveDraft()">
+💾 Save Draft
+</button>
+
+<button
+class="btn btn-danger"
+onclick="clearParagraph()">
+🗑 Clear Paragraph
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel preview-panel">
+
+<div class="preview-tools">
+
+<h2>👁 Paragraph Preview</h2>
+
+<div>
+
+<button
+class="btn btn-primary"
+onclick="printDocument()">
+🖨 Print A4
+</button>
+
+<button
+class="btn btn-warning"
+onclick="downloadParagraph()">
+📥 Download PNG
+</button>
+
+</div>
+
+</div>
+
+
+<div class="paper-stage">
+
+<div id="paragraphPrintArea">
+
+<div
+id="paragraphPreview"
+class="a4 paragraph-preview urdu">
+
+</div>
 
 </div>
 
@@ -1250,6 +1663,21 @@ textarea{
 
 </section>
 
+
+<!-- ================= SAVED PARAGRAPHS ================= -->
+
+<section id="savedParagraphsSection" class="hidden">
+
+<div class="panel">
+
+<h2 class="panel-title">📚 Saved Paragraphs</h2>
+
+<div id="savedParagraphsList"></div>
+
+</div>
+
+</section>
+
 </main>
 
 </div>
@@ -1272,6 +1700,9 @@ let currentTab="paper";
 let logoData="";
 let editingPaperId=null;
 let editingNotesId=null;
+let editingParagraphId=null;
+
+let paragraphMode="urdu";
 
 
 /* =====================================================
@@ -1294,9 +1725,7 @@ return String(value)
 }
 
 function nl2br(value){
-
 return escapeHTML(value || "").replace(/\n/g,"<br>");
-
 }
 
 function get(id){
@@ -1312,38 +1741,81 @@ function showTab(tab){
 
 currentTab=tab;
 
-get("paperSection").classList.add("hidden");
-get("notesSection").classList.add("hidden");
-get("savedPapersSection").classList.add("hidden");
-get("savedNotesSection").classList.add("hidden");
+[
+"paperSection",
+"notesSection",
+"paragraphSection",
+"savedPapersSection",
+"savedNotesSection",
+"savedParagraphsSection"
+].forEach(id=>{
+get(id).classList.add("hidden");
+});
 
-get("paperTab").classList.remove("active");
-get("notesTab").classList.remove("active");
-get("savedPapersTab").classList.remove("active");
-get("savedNotesTab").classList.remove("active");
+[
+"paperTab",
+"notesTab",
+"paragraphTab",
+"savedPapersTab",
+"savedNotesTab",
+"savedParagraphsTab"
+].forEach(id=>{
+get(id).classList.remove("active");
+});
+
 
 if(tab==="paper"){
+
 get("paperSection").classList.remove("hidden");
 get("paperTab").classList.add("active");
+
 updatePaper();
+
 }
 
 if(tab==="notes"){
+
 get("notesSection").classList.remove("hidden");
 get("notesTab").classList.add("active");
+
 updateNotes();
+
+}
+
+if(tab==="paragraph"){
+
+get("paragraphSection").classList.remove("hidden");
+get("paragraphTab").classList.add("active");
+
+updateParagraph();
+
 }
 
 if(tab==="savedPapers"){
+
 get("savedPapersSection").classList.remove("hidden");
 get("savedPapersTab").classList.add("active");
+
 renderSavedPapers();
+
 }
 
 if(tab==="savedNotes"){
+
 get("savedNotesSection").classList.remove("hidden");
 get("savedNotesTab").classList.add("active");
+
 renderSavedNotes();
+
+}
+
+if(tab==="savedParagraphs"){
+
+get("savedParagraphsSection").classList.remove("hidden");
+get("savedParagraphsTab").classList.add("active");
+
+renderSavedParagraphs();
+
 }
 
 }
@@ -1398,7 +1870,6 @@ updatePaper();
 function removeMCQ(index){
 
 mcqs.splice(index,1);
-
 renderMCQs();
 updatePaper();
 
@@ -1560,7 +2031,7 @@ box.appendChild(div);
 
 
 /* =====================================================
-LONG QUESTIONS + TABLE
+LONG QUESTIONS
 ===================================================== */
 
 function createAnswerTable(rows,cols){
@@ -1586,11 +2057,13 @@ return cells;
 function ensureLongTable(item){
 
 if(!item.answerTable){
+
 item.answerTable={
 rows:3,
 cols:3,
 cells:createAnswerTable(3,3)
 };
+
 }
 
 const rows=item.answerTable.rows || 3;
@@ -1677,9 +2150,7 @@ function removeLongTableRow(index){
 
 const table=ensureLongTable(longs[index]);
 
-if(table.rows<=1){
-return;
-}
+if(table.rows<=1)return;
 
 table.cells.pop();
 table.rows=table.cells.length;
@@ -1694,7 +2165,6 @@ function addLongTableCol(index){
 const table=ensureLongTable(longs[index]);
 
 table.cells.forEach(row=>row.push(""));
-
 table.cols++;
 
 renderLongs();
@@ -1706,12 +2176,9 @@ function removeLongTableCol(index){
 
 const table=ensureLongTable(longs[index]);
 
-if(table.cols<=1){
-return;
-}
+if(table.cols<=1)return;
 
 table.cells.forEach(row=>row.pop());
-
 table.cols--;
 
 renderLongs();
@@ -1733,20 +2200,14 @@ function renderLongTableEditor(index){
 
 const item=longs[index];
 
-if(!item.useTable){
-return "";
-}
+if(!item.useTable)return "";
 
 const table=ensureLongTable(item);
 
 let html=`
-
 <div class="table-editor">
-
 <table class="editor-table">
-
 <tbody>
-
 `;
 
 for(let r=0;r<table.rows;r++){
@@ -1756,17 +2217,13 @@ html+=`<tr>`;
 for(let c=0;c<table.cols;c++){
 
 html+=`
-
 <td>
-
 <input
 class="urdu-input"
 value="${escapeHTML(table.cells[r][c] || "")}"
 placeholder="خانہ"
 oninput="updateLongTableCell(${index},${r},${c},this.value)">
-
 </td>
-
 `;
 
 }
@@ -1776,11 +2233,8 @@ html+=`</tr>`;
 }
 
 html+=`
-
 </tbody>
-
 </table>
-
 </div>
 
 <div class="table-controls">
@@ -1802,7 +2256,6 @@ html+=`
 </button>
 
 </div>
-
 `;
 
 return html;
@@ -1946,7 +2399,7 @@ box.appendChild(div);
 
 
 /* =====================================================
-TRUE / FALSE
+TRUE FALSE
 ===================================================== */
 
 function addTF(data){
@@ -2036,7 +2489,7 @@ box.appendChild(div);
 
 
 /* =====================================================
-PAPER PREVIEW
+PAPER TABLE
 ===================================================== */
 
 function renderPaperTable(table){
@@ -2046,11 +2499,8 @@ return "";
 }
 
 let html=`
-
 <table class="table-preview">
-
 <tbody>
-
 `;
 
 table.cells.forEach((row,rowIndex)=>{
@@ -2076,16 +2526,18 @@ html+=`</tr>`;
 });
 
 html+=`
-
 </tbody>
-
 </table>
-
 `;
 
 return html;
 
 }
+
+
+/* =====================================================
+PAPER PREVIEW
+===================================================== */
 
 function updatePaper(){
 
@@ -2166,9 +2618,6 @@ ${escapeHTML(chapter)}
 
 `;
 
-
-/* ================= PAPER MCQS ================= */
-
 if(mcqs.length){
 
 html+=`
@@ -2193,15 +2642,11 @@ html+=`
 <div class="mcq-preview-item">
 
 <div>
-
 <strong>${index+1}۔</strong>
-
 ${nl2br(mcq.question)}
-
 </div>
 
 <div class="mcq-options-preview">
-
 `;
 
 for(let i=0;i<4;i++){
@@ -2223,27 +2668,18 @@ ${escapeHTML(mcq.options[i] || "")}
 }
 
 html+=`
-
 </div>
-
 </div>
-
 `;
 
 });
 
 html+=`
-
 </div>
-
 </div>
-
 `;
 
 }
-
-
-/* ================= SHORT ================= */
 
 if(shorts.length){
 
@@ -2276,9 +2712,6 @@ html+=`
 html+=`</div>`;
 
 }
-
-
-/* ================= LONG ================= */
 
 if(longs.length){
 
@@ -2330,9 +2763,6 @@ html+=`</div>`;
 
 }
 
-
-/* ================= FILL ================= */
-
 if(fills.length){
 
 html+=`
@@ -2360,9 +2790,6 @@ ${index+1}۔ ${nl2br(item.question)}
 html+=`</div>`;
 
 }
-
-
-/* ================= TRUE FALSE ================= */
 
 if(tfs.length){
 
@@ -2406,7 +2833,6 @@ ${falseCorrect?"☑":"☐"} غلط
 html+=`</div>`;
 
 }
-
 
 if(
 !mcqs.length &&
@@ -2457,7 +2883,7 @@ get("paperPreview").innerHTML=html;
 
 
 /* =====================================================
-NOTES TABLE HELPERS
+NOTES TABLE
 ===================================================== */
 
 function createNoteTable(rows,cols){
@@ -2483,11 +2909,13 @@ return cells;
 function ensureNoteTable(note){
 
 if(!note.table){
+
 note.table={
 rows:3,
 cols:3,
 cells:createNoteTable(3,3)
 };
+
 }
 
 const rows=note.table.rows || 3;
@@ -2552,9 +2980,7 @@ function removeNoteTableRow(index){
 
 const table=ensureNoteTable(noteBlocks[index]);
 
-if(table.rows<=1){
-return;
-}
+if(table.rows<=1)return;
 
 table.cells.pop();
 table.rows=table.cells.length;
@@ -2580,9 +3006,7 @@ function removeNoteTableCol(index){
 
 const table=ensureNoteTable(noteBlocks[index]);
 
-if(table.cols<=1){
-return;
-}
+if(table.cols<=1)return;
 
 table.cells.forEach(row=>row.pop());
 table.cols--;
@@ -2675,11 +3099,6 @@ updateNotes();
 
 }
 
-
-/* =====================================================
-NOTES EDITOR
-===================================================== */
-
 function renderNotesTableEditor(index){
 
 const table=ensureNoteTable(noteBlocks[index]);
@@ -2770,7 +3189,7 @@ box.innerHTML=`
 
 <button
 class="add-btn"
-onclick="addTableNoteBlock()">
+onclick="addTableNoteBlock">
 
 + Add Table / جدول
 
@@ -2792,7 +3211,6 @@ div.className="item";
 
 let fields="";
 
-
 if(note.type==="heading"){
 
 fields=`
@@ -2806,7 +3224,6 @@ oninput="noteBlocks[${index}].heading=this.value;updateNotes()">
 `;
 
 }
-
 
 if(note.type==="qa"){
 
@@ -2826,7 +3243,6 @@ oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note
 `;
 
 }
-
 
 if(note.type==="definition"){
 
@@ -2848,7 +3264,6 @@ oninput="noteBlocks[${index}].definition=this.value;updateNotes()">${escapeHTML(
 
 }
 
-
 if(note.type==="points"){
 
 fields=`
@@ -2869,7 +3284,6 @@ oninput="noteBlocks[${index}].points=this.value;updateNotes()">${escapeHTML(note
 
 }
 
-
 if(note.type==="text"){
 
 fields=`
@@ -2882,7 +3296,6 @@ oninput="noteBlocks[${index}].answer=this.value;updateNotes()">${escapeHTML(note
 `;
 
 }
-
 
 if(note.type==="mcq"){
 
@@ -2934,7 +3347,6 @@ oninput="noteBlocks[${index}].options[${i}]=this.value;updateNotes()">
 
 }
 
-
 if(note.type==="table"){
 
 if(!note.heading){
@@ -2955,7 +3367,6 @@ ${renderNotesTableEditor(index)}
 
 }
 
-
 div.innerHTML=`
 
 <div class="item-top">
@@ -2971,7 +3382,6 @@ onclick="removeNoteBlock(${index})">
 </button>
 
 </div>
-
 
 <select onchange="changeNoteType(${index},this.value)">
 
@@ -3015,17 +3425,11 @@ box.appendChild(div);
 
 });
 
-
-/* Add direct Table button at bottom */
-
 const addTableButton=document.createElement("button");
 
 addTableButton.className="add-btn";
-
 addTableButton.style.marginTop="8px";
-
 addTableButton.textContent="+ Add Table / جدول";
-
 addTableButton.onclick=addTableNoteBlock;
 
 box.appendChild(addTableButton);
@@ -3172,7 +3576,6 @@ ${escapeHTML(note.heading)}
 
 }
 
-
 if(note.type==="qa"){
 
 html+=`
@@ -3197,7 +3600,6 @@ ${nl2br(note.answer)}
 
 }
 
-
 if(note.type==="definition"){
 
 html+=`
@@ -3217,7 +3619,6 @@ ${nl2br(note.definition)}
 `;
 
 }
-
 
 if(note.type==="points"){
 
@@ -3251,7 +3652,6 @@ ${i+1}۔ ${escapeHTML(p)}
 
 }
 
-
 if(note.type==="text"){
 
 html+=`
@@ -3267,9 +3667,6 @@ ${nl2br(note.answer)}
 `;
 
 }
-
-
-/* NOTES MCQ */
 
 if(note.type==="mcq"){
 
@@ -3320,9 +3717,6 @@ ${optionsHTML}
 
 }
 
-
-/* NOTES TABLE */
-
 if(note.type==="table"){
 
 html+=renderNotesTable(note);
@@ -3330,7 +3724,6 @@ html+=renderNotesTable(note);
 }
 
 });
-
 
 if(notesMCQHTML){
 
@@ -3349,7 +3742,6 @@ ${notesMCQHTML}
 `;
 
 }
-
 
 if(noteBlocks.length===0){
 
@@ -3387,9 +3779,7 @@ function uploadLogo(event){
 
 const file=event.target.files[0];
 
-if(!file){
-return;
-}
+if(!file)return;
 
 const reader=new FileReader();
 
@@ -3398,14 +3788,702 @@ reader.onload=function(e){
 logoData=e.target.result;
 
 get("headerLogo").src=logoData;
-
 get("headerLogo").classList.remove("hidden");
-
 get("logoPlaceholder").classList.add("hidden");
 
 };
 
 reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+PARAGRAPH MODE
+===================================================== */
+
+function setParagraphMode(mode){
+
+paragraphMode=mode;
+
+const editor=get("paragraphWriting");
+
+if(mode==="urdu"){
+
+get("urduModeBtn").classList.add("active");
+get("englishModeBtn").classList.remove("active");
+
+editor.classList.remove("english-mode");
+editor.classList.add("urdu-mode");
+
+editor.style.direction="rtl";
+editor.style.textAlign="right";
+editor.style.fontFamily=
+'"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif';
+
+get("paragraphFont").value="Jameel Noori Nastaleeq";
+
+}else{
+
+get("englishModeBtn").classList.add("active");
+get("urduModeBtn").classList.remove("active");
+
+editor.classList.remove("urdu-mode");
+editor.classList.add("english-mode");
+
+editor.style.direction="ltr";
+editor.style.textAlign="left";
+editor.style.fontFamily='"Segoe UI",Arial,sans-serif';
+
+get("paragraphFont").value="Segoe UI";
+
+}
+
+updateParagraph();
+
+}
+
+
+function formatParagraph(command){
+
+get("paragraphWriting").focus();
+
+try{
+
+document.execCommand(command,false,null);
+
+}catch(e){
+
+console.log(e);
+
+}
+
+updateParagraph();
+
+}
+
+
+function changeParagraphFont(font){
+
+const editor=get("paragraphWriting");
+
+editor.focus();
+
+document.execCommand(
+"fontName",
+false,
+font
+);
+
+editor.style.fontFamily=font;
+
+updateParagraph();
+
+}
+
+
+function changeParagraphSize(size){
+
+const editor=get("paragraphWriting");
+
+editor.focus();
+
+document.execCommand(
+"fontSize",
+false,
+"7"
+);
+
+const fonts=editor.querySelectorAll('font[size="7"]');
+
+fonts.forEach(el=>{
+el.removeAttribute("size");
+el.style.fontSize=size;
+});
+
+editor.style.fontSize=size;
+
+updateParagraph();
+
+}
+
+
+/* =====================================================
+PARAGRAPH PREVIEW
+===================================================== */
+
+function updateParagraph(){
+
+const title=get("paragraphTitle").value || "";
+
+const editor=get("paragraphWriting");
+
+const content=editor.innerHTML || "";
+
+const preview=get("paragraphPreview");
+
+const safeContent=
+content.trim()
+?content
+:`<span style="color:#aaa">یہاں Paragraph کا Preview نظر آئے گا۔</span>`;
+
+preview.classList.remove("urdu","english");
+
+if(paragraphMode==="urdu"){
+
+preview.classList.add("urdu");
+
+preview.innerHTML=`
+
+${title ? `
+<div class="paragraph-preview-heading">
+${escapeHTML(title)}
+</div>
+`:""}
+
+<div class="paragraph-preview-content">
+${safeContent}
+</div>
+
+<div class="paragraph-footer">
+The Risen High School
+</div>
+
+`;
+
+}else{
+
+preview.classList.add("english");
+
+preview.innerHTML=`
+
+${title ? `
+<div class="paragraph-preview-heading">
+${escapeHTML(title)}
+</div>
+`:""}
+
+<div class="paragraph-preview-content">
+${safeContent}
+</div>
+
+<div class="paragraph-footer">
+The Risen High School
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =====================================================
+CLEAR PARAGRAPH
+===================================================== */
+
+function clearParagraph(){
+
+if(!confirm("کیا آپ Paragraph صاف کرنا چاہتے ہیں؟")){
+return;
+}
+
+get("paragraphTitle").value="";
+get("paragraphWriting").innerHTML="";
+
+editingParagraphId=null;
+
+setParagraphMode("urdu");
+
+updateParagraph();
+
+}
+
+
+/* =====================================================
+SAVED PARAGRAPHS
+===================================================== */
+
+function getSavedParagraphs(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem("risenSavedParagraphs") || "[]"
+);
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function saveParagraph(){
+
+let oldTitle="";
+
+if(editingParagraphId){
+
+const old=getSavedParagraphs().find(
+x=>String(x.id)===String(editingParagraphId)
+);
+
+if(old){
+oldTitle=old.title;
+}
+
+}
+
+const title=prompt(
+"Paragraph کا نام لکھیں:",
+oldTitle ||
+get("paragraphTitle").value ||
+"New Paragraph"
+);
+
+if(title===null){
+return;
+}
+
+const paragraphData={
+
+paragraphTitle:get("paragraphTitle").value,
+
+paragraphContent:get("paragraphWriting").innerHTML,
+
+paragraphMode:paragraphMode,
+
+paragraphFont:get("paragraphFont").value,
+
+paragraphSize:get("paragraphSize").value
+
+};
+
+let saved=getSavedParagraphs();
+
+if(!Array.isArray(saved)){
+saved=[];
+}
+
+
+if(editingParagraphId){
+
+const index=saved.findIndex(
+x=>String(x.id)===String(editingParagraphId)
+);
+
+if(index!==-1){
+
+saved[index].title=title;
+saved[index].data=paragraphData;
+saved[index].savedAt=new Date().toLocaleString();
+
+localStorage.setItem(
+"risenSavedParagraphs",
+JSON.stringify(saved)
+);
+
+alert("Paragraph update ہو گیا ہے۔");
+
+renderSavedParagraphs();
+
+return;
+
+}
+
+}
+
+
+const newParagraph={
+
+id:
+Date.now().toString()+
+Math.random().toString(36).slice(2),
+
+title:title,
+
+savedAt:new Date().toLocaleString(),
+
+data:paragraphData
+
+};
+
+saved.unshift(newParagraph);
+
+localStorage.setItem(
+"risenSavedParagraphs",
+JSON.stringify(saved)
+);
+
+editingParagraphId=newParagraph.id;
+
+alert("Paragraph محفوظ ہو گیا ہے۔");
+
+renderSavedParagraphs();
+
+}
+
+
+function openSavedParagraph(id){
+
+const saved=getSavedParagraphs();
+
+const item=saved.find(
+x=>String(x.id)===String(id)
+);
+
+if(!item){
+
+alert("Paragraph نہیں ملا۔");
+return;
+
+}
+
+const p=item.data || {};
+
+get("paragraphTitle").value=
+p.paragraphTitle || "";
+
+get("paragraphWriting").innerHTML=
+p.paragraphContent || "";
+
+editingParagraphId=item.id;
+
+setParagraphMode(
+p.paragraphMode==="english"
+?"english"
+:"urdu"
+);
+
+if(p.paragraphFont){
+
+get("paragraphFont").value=p.paragraphFont;
+
+get("paragraphWriting").style.fontFamily=
+p.paragraphFont;
+
+}
+
+if(p.paragraphSize){
+
+get("paragraphSize").value=p.paragraphSize;
+
+get("paragraphWriting").style.fontSize=
+p.paragraphSize;
+
+}
+
+updateParagraph();
+
+showTab("paragraph");
+
+alert(
+"Paragraph کھل گیا ہے۔ Edit کرکے دوبارہ Save Paragraph دبائیں۔"
+);
+
+}
+
+
+function deleteSavedParagraph(id){
+
+if(!confirm(
+"کیا آپ یہ محفوظ Paragraph حذف کرنا چاہتے ہیں؟"
+)){
+return;
+}
+
+let saved=getSavedParagraphs();
+
+saved=saved.filter(
+x=>String(x.id)!==String(id)
+);
+
+localStorage.setItem(
+"risenSavedParagraphs",
+JSON.stringify(saved)
+);
+
+if(String(editingParagraphId)===String(id)){
+editingParagraphId=null;
+}
+
+renderSavedParagraphs();
+
+}
+
+
+function renderSavedParagraphs(){
+
+const box=get("savedParagraphsList");
+
+const saved=getSavedParagraphs();
+
+if(saved.length===0){
+
+box.innerHTML=`
+
+<div class="empty-message">
+
+ابھی کوئی Paragraph محفوظ نہیں ہے۔
+
+<br>
+
+Paragraph Maker میں Paragraph بنائیں اور
+<b>Save Paragraph</b> دبائیں۔
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML=saved.map(item=>{
+
+const d=item.data || {};
+
+const mode=
+d.paragraphMode==="english"
+?"English"
+:"Urdu";
+
+return `
+
+<div class="saved-card">
+
+<div class="saved-card-title">
+
+📝 ${escapeHTML(item.title)}
+
+</div>
+
+<div class="saved-card-info">
+
+Language:
+${mode}
+
+<br>
+
+محفوظ کیا گیا:
+${escapeHTML(item.savedAt || "")}
+
+</div>
+
+<div class="saved-card-actions">
+
+<button
+class="btn btn-primary"
+onclick="openSavedParagraph('${item.id}')">
+
+✏️ Open & Edit
+
+</button>
+
+<button
+class="btn btn-warning"
+onclick="downloadSavedParagraph('${item.id}')">
+
+📥 Download
+
+</button>
+
+<button
+class="btn btn-danger"
+onclick="deleteSavedParagraph('${item.id}')">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function downloadSavedParagraph(id){
+
+const saved=getSavedParagraphs();
+
+const item=saved.find(
+x=>String(x.id)===String(id)
+);
+
+if(!item){
+
+alert("Paragraph نہیں ملا۔");
+return;
+
+}
+
+const p=item.data || {};
+
+get("paragraphTitle").value=
+p.paragraphTitle || "";
+
+get("paragraphWriting").innerHTML=
+p.paragraphContent || "";
+
+setParagraphMode(
+p.paragraphMode==="english"
+?"english"
+:"urdu"
+);
+
+if(p.paragraphFont){
+
+get("paragraphFont").value=p.paragraphFont;
+
+get("paragraphWriting").style.fontFamily=
+p.paragraphFont;
+
+}
+
+if(p.paragraphSize){
+
+get("paragraphSize").value=p.paragraphSize;
+
+get("paragraphWriting").style.fontSize=
+p.paragraphSize;
+
+}
+
+updateParagraph();
+
+setTimeout(
+()=>downloadParagraph(),
+500
+);
+
+}
+
+
+/* =====================================================
+DOWNLOAD PARAGRAPH
+===================================================== */
+
+async function downloadParagraph(){
+
+updateParagraph();
+
+if(typeof html2canvas==="undefined"){
+
+alert(
+"Download system load نہیں ہوا۔ Internet ON کرکے صفحہ دوبارہ کھولیں۔"
+);
+
+return;
+
+}
+
+try{
+
+if(document.fonts && document.fonts.ready){
+await document.fonts.ready;
+}
+
+await new Promise(resolve=>setTimeout(resolve,700));
+
+const element=get("paragraphPreview");
+
+const canvas=await html2canvas(
+element,
+{
+scale:2,
+useCORS:true,
+allowTaint:false,
+backgroundColor:"#ffffff",
+logging:false,
+
+onclone:function(clonedDocument){
+
+const cloned=
+clonedDocument.getElementById("paragraphPreview");
+
+if(cloned){
+
+cloned.style.width="210mm";
+cloned.style.minHeight="297mm";
+cloned.style.height="auto";
+cloned.style.boxShadow="none";
+cloned.style.margin="0 auto";
+
+}
+
+}
+
+}
+);
+
+canvas.toBlob(function(blob){
+
+if(!blob){
+
+alert("Paragraph image نہیں بن سکی۔");
+return;
+
+}
+
+const url=URL.createObjectURL(blob);
+
+let title=
+get("paragraphTitle").value ||
+"Paragraph";
+
+title=title.replace(
+/[\\/:*?"<>|]/g,
+"-"
+);
+
+const language=
+paragraphMode==="english"
+?"English"
+:"Urdu";
+
+const link=document.createElement("a");
+
+link.href=url;
+
+link.download=
+"The Risen High School - "+
+title+
+" - "+
+language+
+".png";
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+setTimeout(
+()=>URL.revokeObjectURL(url),
+3000
+);
+
+alert("Paragraph PNG download ہو گیا ہے۔");
+
+},"image/png");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Paragraph download کرتے وقت مسئلہ آیا۔ دوبارہ کوشش کریں۔"
+);
+
+}
 
 }
 
@@ -3454,9 +4532,7 @@ get("examName").value ||
 "New Paper"
 );
 
-if(title===null){
-return;
-}
+if(title===null)return;
 
 const paperData={
 
@@ -3775,9 +4851,7 @@ get("notesTopic").value ||
 "New Notes"
 );
 
-if(title===null){
-return;
-}
+if(title===null)return;
 
 const notesData={
 
@@ -3794,9 +4868,7 @@ JSON.parse(JSON.stringify(noteBlocks))
 
 let saved=getSavedNotes();
 
-if(!Array.isArray(saved)){
-saved=[];
-}
+if(!Array.isArray(saved))saved=[];
 
 if(editingNotesId){
 
@@ -4053,6 +5125,16 @@ notesTopic:get("notesTopic").value
 
 },
 
+paragraphInputs:{
+
+paragraphTitle:get("paragraphTitle").value,
+paragraphContent:get("paragraphWriting").innerHTML,
+paragraphMode:paragraphMode,
+paragraphFont:get("paragraphFont").value,
+paragraphSize:get("paragraphSize").value
+
+},
+
 mcqs,
 shorts,
 longs,
@@ -4064,6 +5146,7 @@ logoData
 };
 
 }
+
 
 function saveDraft(){
 
@@ -4116,6 +5199,43 @@ get(id).value=n[id];
 
 });
 
+
+const para=data.paragraphInputs || {};
+
+if(para.paragraphTitle!==undefined){
+
+get("paragraphTitle").value=
+para.paragraphTitle || "";
+
+}
+
+if(para.paragraphContent!==undefined){
+
+get("paragraphWriting").innerHTML=
+para.paragraphContent || "";
+
+}
+
+if(para.paragraphFont){
+
+get("paragraphFont").value=
+para.paragraphFont;
+
+}
+
+if(para.paragraphSize){
+
+get("paragraphSize").value=
+para.paragraphSize;
+
+}
+
+paragraphMode=
+para.paragraphMode==="english"
+?"english"
+:"urdu";
+
+
 mcqs=data.mcqs || [];
 shorts=data.shorts || [];
 longs=data.longs || [];
@@ -4126,6 +5246,7 @@ logoData=data.logoData || "";
 
 editingPaperId=null;
 editingNotesId=null;
+editingParagraphId=null;
 
 if(logoData){
 
@@ -4147,13 +5268,24 @@ renderFills();
 renderTF();
 renderNotesEditor();
 
+setParagraphMode(paragraphMode);
+
 updatePaper();
 updateNotes();
+updateParagraph();
 
-if(data.currentTab==="paper" || data.currentTab==="notes"){
+if(
+data.currentTab==="paper" ||
+data.currentTab==="notes" ||
+data.currentTab==="paragraph"
+){
+
 showTab(data.currentTab);
+
 }else{
+
 showTab("paper");
+
 }
 
 alert("Draft load ہو گیا ہے۔");
@@ -4175,7 +5307,7 @@ CLEAR
 function clearAll(){
 
 if(!confirm(
-"کیا آپ واقعی تمام سوالات اور نوٹس صاف کرنا چاہتے ہیں؟"
+"کیا آپ واقعی تمام سوالات، نوٹس اور Paragraph صاف کرنا چاہتے ہیں؟"
 )){
 return;
 }
@@ -4191,6 +5323,7 @@ logoData="";
 
 editingPaperId=null;
 editingNotesId=null;
+editingParagraphId=null;
 
 get("examName").value="Monthly Test";
 get("paperSubject").value="";
@@ -4206,6 +5339,9 @@ get("notesSubject").value="";
 get("notesChapter").value="";
 get("notesTopic").value="";
 
+get("paragraphTitle").value="";
+get("paragraphWriting").innerHTML="";
+
 get("headerLogo").classList.add("hidden");
 get("logoPlaceholder").classList.remove("hidden");
 
@@ -4216,8 +5352,11 @@ renderFills();
 renderTF();
 renderNotesEditor();
 
+setParagraphMode("urdu");
+
 updatePaper();
 updateNotes();
+updateParagraph();
 
 }
 
@@ -4461,12 +5600,30 @@ updatePaper();
 document.title=
 "The Risen High School - Paper";
 
-}else if(currentTab==="notes"){
+}
+
+else if(currentTab==="notes"){
 
 updateNotes();
 
 document.title=
 "The Risen High School - Notes";
+
+}
+
+else if(currentTab==="paragraph"){
+
+updateParagraph();
+
+document.title=
+"The Risen High School - Paragraph";
+
+}
+
+else{
+
+alert("براہ کرم پہلے Paper، Notes یا Paragraph کھولیں۔");
+return;
 
 }
 
@@ -4490,11 +5647,15 @@ renderFills();
 renderTF();
 renderNotesEditor();
 
+setParagraphMode("urdu");
+
 updatePaper();
 updateNotes();
+updateParagraph();
 
 renderSavedPapers();
 renderSavedNotes();
+renderSavedParagraphs();
 
 
 /* =====================================================
