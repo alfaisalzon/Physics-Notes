@@ -7934,7 +7934,33 @@ function RISEN_START(){
 
     };
 
+#dateSheetSection{
+    display:none;
+}
 
+.date-sheet-layout{
+    display:grid;
+    grid-template-columns:minmax(320px,480px) minmax(500px,1fr);
+    gap:20px;
+    align-items:start;
+}
+
+.date-sheet-preview-wrap{
+    position:sticky;
+    top:10px;
+}
+
+.date-sheet-paper{
+    width:210mm;
+    min-height:297mm;
+    max-width:100%;
+    margin:auto;
+    background:#fff;
+    padding:15mm;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    color:#111;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
     /* =====================================================
        13. SAVE ORIGINAL showTab
        ===================================================== */
