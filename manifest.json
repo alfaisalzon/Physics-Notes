@@ -1,0 +1,14 @@
+{
+  "name": "The Risen High School Paper and Notes",
+  "short_name": "Risen Paper",
+  "description": "The Risen High School Paper, Notes and Paragraph Maker",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fb",
+  "theme_color": "#1457d9",
+  "orientation": "portrait",
+  "lang": "ur",
+  "dir": "rtl"
+}
