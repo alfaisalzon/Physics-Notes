@@ -6465,43 +6465,5 @@ if ("serviceWorker" in navigator) {
     });
 }
 </script>
-    <script>
-function loginUser() {
-    let name = prompt("Apna naam likhein:");
-
-    if (name && name.trim() !== "") {
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("userName", name.trim());
-        updateAuth();
-    }
-}
-
-function logoutUser() {
-    localStorage.removeItem("loggedIn");
-    localStorage.removeItem("userName");
-    updateAuth();
-}
-
-function updateAuth() {
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const userName = document.getElementById("userName");
-
-    const loggedIn = localStorage.getItem("loggedIn");
-    const name = localStorage.getItem("userName");
-
-    if (loggedIn === "true") {
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
-        userName.textContent = "Welcome, " + name;
-    } else {
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-        userName.textContent = "";
-    }
-}
-
-updateAuth();
-</script>
 </body>
 </html>
