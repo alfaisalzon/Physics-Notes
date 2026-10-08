@@ -5726,5 +5726,610 @@ printDocument();
 
 </script>
 
+    <!-- =========================================================
+     THE RISEN HIGH SCHOOL
+     APP + LOGIN + PASSWORD + OFFLINE PWA
+     ========================================================= -->
+
+<style>
+
+/* ================= LOGIN SCREEN ================= */
+
+#risenLoginScreen{
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    box-sizing:border-box;
+    background:linear-gradient(135deg,#1457d9,#0b2f75);
+}
+
+#risenLoginBox{
+    width:100%;
+    max-width:390px;
+    background:#fff;
+    border-radius:22px;
+    padding:30px 24px;
+    box-sizing:border-box;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.30);
+}
+
+.risen-login-logo{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    margin:0 auto 15px;
+    background:#1457d9;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    font-weight:bold;
+}
+
+#risenLoginBox h2{
+    margin:5px 0;
+    color:#1457d9;
+}
+
+#risenLoginBox p{
+    margin:5px 0 20px;
+    color:#777;
+}
+
+#risenLoginBox input{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    margin:6px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+#risenLoginBox input:focus{
+    border-color:#1457d9;
+}
+
+.risen-password-wrap{
+    position:relative;
+}
+
+.risen-password-wrap input{
+    padding-right:50px !important;
+}
+
+.risen-eye{
+    position:absolute;
+    right:4px;
+    top:7px;
+    width:42px;
+    height:40px;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#risenLoginButton{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#1457d9;
+    color:#fff;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#risenLoginMessage{
+    margin-top:12px;
+    min-height:20px;
+    font-size:14px;
+}
+
+
+/* ================= CHANGE PASSWORD ================= */
+
+#risenPasswordModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    box-sizing:border-box;
+    background:rgba(0,0,0,.60);
+}
+
+#risenPasswordBox{
+    width:100%;
+    max-width:390px;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-sizing:border-box;
+}
+
+#risenPasswordBox h3{
+    margin-top:0;
+    color:#1457d9;
+}
+
+#risenPasswordBox input{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    margin:6px 0;
+    border:1px solid #ddd;
+    border-radius:9px;
+    font-size:15px;
+}
+
+.risen-modal-btn{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:0;
+    border-radius:9px;
+    background:#1457d9;
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.risen-modal-cancel{
+    background:#777;
+}
+
+#risenPasswordMessage{
+    margin-top:10px;
+    text-align:center;
+    min-height:20px;
+}
+
+
+/* ================= APP INSTALL BUTTON ================= */
+
+#risenInstallButton{
+    display:none;
+}
+
+</style>
+
+
+<!-- =========================================================
+     LOGIN SCREEN
+     ========================================================= -->
+
+<div id="risenLoginScreen">
+
+    <div id="risenLoginBox">
+
+        <div class="risen-login-logo">
+            R
+        </div>
+
+        <h2>The Risen High School</h2>
+
+        <p>Paper and Notes Maker</p>
+
+        <input
+            type="text"
+            id="risenUsername"
+            placeholder="Username"
+            autocomplete="username"
+        >
+
+        <div class="risen-password-wrap">
+
+            <input
+                type="password"
+                id="risenPassword"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+            <button
+                type="button"
+                class="risen-eye"
+                onclick="risenTogglePassword()"
+            >
+                👁
+            </button>
+
+        </div>
+
+        <button
+            type="button"
+            id="risenLoginButton"
+            onclick="risenLogin()"
+        >
+            Login
+        </button>
+
+        <div id="risenLoginMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CHANGE PASSWORD MODAL
+     ========================================================= -->
+
+<div id="risenPasswordModal">
+
+    <div id="risenPasswordBox">
+
+        <h3>Change Password</h3>
+
+        <input
+            type="password"
+            id="risenOldPassword"
+            placeholder="Current Password"
+        >
+
+        <input
+            type="password"
+            id="risenNewPassword"
+            placeholder="New Password"
+        >
+
+        <input
+            type="password"
+            id="risenConfirmPassword"
+            placeholder="Confirm New Password"
+        >
+
+        <button
+            class="risen-modal-btn"
+            onclick="risenChangePassword()"
+        >
+            Change Password
+        </button>
+
+        <button
+            class="risen-modal-btn risen-modal-cancel"
+            onclick="risenClosePassword()"
+        >
+            Cancel
+        </button>
+
+        <div id="risenPasswordMessage"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   RISEN LOGIN SYSTEM
+   ========================================================= */
+
+const RISEN_DEFAULT_USERNAME = "admin";
+const RISEN_DEFAULT_PASSWORD = "12345";
+
+
+function risenGetUsername(){
+
+    return localStorage.getItem("risenUsername")
+        || RISEN_DEFAULT_USERNAME;
+
+}
+
+
+function risenGetPassword(){
+
+    return localStorage.getItem("risenPassword")
+        || RISEN_DEFAULT_PASSWORD;
+
+}
+
+
+/* ================= LOGIN ================= */
+
+function risenLogin(){
+
+    const username =
+        document.getElementById("risenUsername").value.trim();
+
+    const password =
+        document.getElementById("risenPassword").value;
+
+    const message =
+        document.getElementById("risenLoginMessage");
+
+
+    if(
+        username === risenGetUsername() &&
+        password === risenGetPassword()
+    ){
+
+        localStorage.setItem(
+            "risenLoggedIn",
+            "true"
+        );
+
+        document.getElementById(
+            "risenLoginScreen"
+        ).style.display = "none";
+
+        message.innerHTML = "";
+
+    }
+    else{
+
+        message.innerHTML =
+            '<span style="color:red;">Wrong username or password</span>';
+
+    }
+
+}
+
+
+/* ================= SHOW / HIDE PASSWORD ================= */
+
+function risenTogglePassword(){
+
+    const password =
+        document.getElementById("risenPassword");
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+    }
+    else{
+
+        password.type = "password";
+
+    }
+
+}
+
+
+/* ================= CHANGE PASSWORD ================= */
+
+function risenOpenPassword(){
+
+    document.getElementById(
+        "risenPasswordModal"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "risenOldPassword"
+    ).value = "";
+
+    document.getElementById(
+        "risenNewPassword"
+    ).value = "";
+
+    document.getElementById(
+        "risenConfirmPassword"
+    ).value = "";
+
+    document.getElementById(
+        "risenPasswordMessage"
+    ).innerHTML = "";
+
+}
+
+
+function risenClosePassword(){
+
+    document.getElementById(
+        "risenPasswordModal"
+    ).style.display = "none";
+
+}
+
+
+function risenChangePassword(){
+
+    const oldPassword =
+        document.getElementById(
+            "risenOldPassword"
+        ).value;
+
+    const newPassword =
+        document.getElementById(
+            "risenNewPassword"
+        ).value;
+
+    const confirmPassword =
+        document.getElementById(
+            "risenConfirmPassword"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "risenPasswordMessage"
+        );
+
+
+    if(oldPassword !== risenGetPassword()){
+
+        message.innerHTML =
+            '<span style="color:red;">Current password is incorrect.</span>';
+
+        return;
+
+    }
+
+
+    if(newPassword.length < 4){
+
+        message.innerHTML =
+            '<span style="color:red;">Password must be at least 4 characters.</span>';
+
+        return;
+
+    }
+
+
+    if(newPassword !== confirmPassword){
+
+        message.innerHTML =
+            '<span style="color:red;">Passwords do not match.</span>';
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "risenPassword",
+        newPassword
+    );
+
+
+    message.innerHTML =
+        '<span style="color:green;">Password changed successfully.</span>';
+
+
+    setTimeout(function(){
+
+        risenClosePassword();
+
+    },1200);
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function risenLogout(){
+
+    localStorage.removeItem(
+        "risenLoggedIn"
+    );
+
+    document.getElementById(
+        "risenLoginScreen"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "risenPassword"
+    ).value = "";
+
+}
+
+
+/* ================= LOGIN CHECK ================= */
+
+function risenCheckLogin(){
+
+    const loggedIn =
+        localStorage.getItem(
+            "risenLoggedIn"
+        );
+
+
+    if(loggedIn === "true"){
+
+        document.getElementById(
+            "risenLoginScreen"
+        ).style.display = "none";
+
+    }
+    else{
+
+        document.getElementById(
+            "risenLoginScreen"
+        ).style.display = "flex";
+
+    }
+
+}
+
+
+/* ================= ENTER KEY LOGIN ================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" &&
+            document.activeElement &&
+            (
+                document.activeElement.id ===
+                "risenUsername" ||
+
+                document.activeElement.id ===
+                "risenPassword"
+            )
+        ){
+
+            risenLogin();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PWA SERVICE WORKER REGISTRATION
+   ========================================================= */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener(
+        "load",
+        function(){
+
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(function(){
+
+                    console.log(
+                        "The Risen High School App is ready."
+                    );
+
+                })
+                .catch(function(error){
+
+                    console.error(
+                        "PWA Error:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHECK LOGIN WHEN PAGE LOADS
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        risenCheckLogin();
+
+    }
+);
+
+</script>
+
 </body>
 </html>
