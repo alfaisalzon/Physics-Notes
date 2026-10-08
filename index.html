@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+to<!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -8444,5 +8444,33 @@ if(document.readyState==="loading"){
 <!-- =========================================================
      END FINAL UPGRADE
      ========================================================= -->
+    <script>
+function loginRisen(){
+
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const error = document.getElementById("loginError");
+
+    if(username === "admin" && password === "12345"){
+
+        localStorage.setItem("risenLoggedIn", "true");
+
+        document.getElementById("loginScreen").style.display = "none";
+
+        if(error){
+            error.style.display = "none";
+            error.innerHTML = "";
+        }
+
+    }else{
+
+        if(error){
+            error.style.display = "block";
+            error.innerHTML = "Wrong username or password";
+        }
+
+    }
+}
+</script>
 </body>
 </html>
