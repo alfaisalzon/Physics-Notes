@@ -6366,29 +6366,19 @@ function risenLogout(){
 
 function risenCheckLogin(){
 
-    const loggedIn =
-        localStorage.getItem(
-            "risenLoggedIn"
-        );
+    const screen = document.getElementById("risenLoginScreen");
 
+    if(!screen) return;
+
+    const loggedIn =
+        localStorage.getItem("risenLoggedIn");
 
     if(loggedIn === "true"){
-
-        document.getElementById(
-            "risenLoginScreen"
-        ).style.display = "none";
-
+        screen.style.display = "none";
+    }else{
+        screen.style.display = "flex";
     }
-    else{
-
-        document.getElementById(
-            "risenLoginScreen"
-        ).style.display = "flex";
-
-    }
-
 }
-
 
 /* ================= ENTER KEY LOGIN ================= */
 
@@ -8473,5 +8463,175 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 </script> 
+    <script>
+/* =========================================================
+   RISEN FINAL FIX
+   English / Urdu + Short Questions 2 per row
+   ========================================================= */
+
+function getPaperLanguage(){
+    const el = document.getElementById("paperLanguage");
+    return el ? el.value : "urdu";
+}
+
+function setPaperLanguage(lang){
+    const paper = document.getElementById("printArea");
+    if(!paper) return;
+
+    if(lang === "english"){
+        paper.setAttribute("dir","ltr");
+        paper.style.direction = "ltr";
+        paper.style.textAlign = "left";
+        paper.style.fontFamily = '"Segoe UI", Arial, sans-serif';
+    }else{
+        paper.setAttribute("dir","rtl");
+        paper.style.direction = "rtl";
+        paper.style.textAlign = "right";
+        paper.style.fontFamily =
+            '"Jameel Noori Nastaleeq","Noto Nastaliq Urdu",serif';
+    }
+
+    updatePaper();
+}
+
+
+/* ---------- SHORT QUESTIONS ---------- */
+
+function renderShortQuestionsFinal(){
+
+    const box = document.getElementById("shortEditor");
+    if(!box || typeof shorts === "undefined") return;
+
+    box.innerHTML = "";
+
+    if(shorts.length === 0){
+        box.innerHTML =
+        '<div class="empty-message">ابھی کوئی مختصر سوال شامل نہیں کیا گیا۔</div>';
+        return;
+    }
+
+    shorts.forEach(function(item,index){
+
+        const div = document.createElement("div");
+        div.className = "item";
+
+        div.innerHTML = `
+        <div class="item-top">
+            <span class="item-number">سوال ${index+1}</span>
+
+            <button class="remove-btn"
+                onclick="removeShort(${index})">
+                حذف کریں
+            </button>
+        </div>
+
+        <textarea
+            class="urdu-input"
+            placeholder="مختصر سوال لکھیں..."
+            oninput="shorts[${index}].question=this.value;updatePaper()">${escapeHTML(item.question || "")}</textarea>
+        `;
+
+        box.appendChild(div);
+    });
+}
+
+
+/* ---------- ADD LANGUAGE SELECTOR ---------- */
+
+function addPaperLanguageSelector(){
+
+    const paperMaker =
+        document.getElementById("paperSection");
+
+    if(!paperMaker) return;
+
+    if(document.getElementById("paperLanguage"))
+        return;
+
+    const title =
+        paperMaker.querySelector(".panel-title");
+
+    if(!title) return;
+
+    const wrap = document.createElement("div");
+
+    wrap.className = "form-group";
+
+    wrap.innerHTML = `
+        <label>Paper Language / پیپر کی زبان</label>
+
+        <select id="paperLanguage"
+            onchange="setPaperLanguage(this.value)">
+
+            <option value="urdu">اردو</option>
+            <option value="english">English</option>
+
+        </select>
+    `;
+
+    title.parentNode.insertBefore(
+        wrap,
+        title.nextSibling
+    );
+}
+
+
+/* ---------- SHORT QUESTIONS PREVIEW ---------- */
+
+function renderShortPreviewFinal(items){
+
+    if(!items || !items.length)
+        return "";
+
+    const lang = getPaperLanguage();
+
+    let html = `
+    <div class="paper-section">
+
+        <div class="paper-section-title">
+            ${lang === "english"
+                ? "Part II: Short Questions"
+                : "حصہ دوم: مختصر سوالات"}
+        </div>
+
+        <div class="short-question-grid">
+    `;
+
+    items.forEach(function(item,index){
+
+        html += `
+            <div class="short-question-item">
+                <span class="short-question-number">
+                    ${index+1}.
+                </span>
+
+                <span>
+                    ${nl2br(item.question || "")}
+                </span>
+            </div>
+        `;
+    });
+
+    html += `
+        </div>
+    </div>
+    `;
+
+    return html;
+}
+
+
+/* ---------- STARTUP ---------- */
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    addPaperLanguageSelector();
+
+    setTimeout(function(){
+        addPaperLanguageSelector();
+    },500);
+
+});
+</script>
 </body>
 </html>
