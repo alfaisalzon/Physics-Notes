@@ -1,4 +1,4 @@
-const CACHE_NAME = "risen-paper-v1";
+const CACHE_NAME = "risen-paper-v2";
 
 const FILES_TO_CACHE = [
     "./",
