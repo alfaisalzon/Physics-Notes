@@ -6773,6 +6773,1670 @@ if ("serviceWorker" in navigator) {
 }
 
 </style>
-    
+    <!-- =========================================================
+     RISEN PAPER MAKER FINAL UPGRADE
+     English / Urdu + Short Questions 2 Columns + Date Sheet
+     ========================================================= -->
+
+<style>
+
+/* ---------- LANGUAGE BOX ---------- */
+
+#risenPaperLanguageBox{
+    width:100%;
+    margin:12px 0;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#f8f9fa;
+    box-sizing:border-box;
+}
+
+#risenPaperLanguageBox label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+#risenPaperLanguage{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    font-size:16px;
+    background:white;
+}
+
+
+/* ---------- ENGLISH / URDU PAPER ---------- */
+
+#paperPreview.risen-paper-english{
+    direction:ltr !important;
+    text-align:left !important;
+}
+
+#paperPreview.risen-paper-urdu{
+    direction:rtl !important;
+    text-align:right !important;
+}
+
+
+/* ---------- SHORT QUESTIONS GRID ---------- */
+
+.risen-short-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:0 25px !important;
+    width:100% !important;
+}
+
+.risen-short-grid .q-row{
+    width:100% !important;
+    box-sizing:border-box;
+}
+
+
+/* English:
+   1 left / 2 right
+*/
+
+#paperPreview.risen-paper-english .risen-short-grid{
+    direction:ltr !important;
+}
+
+
+/* Urdu:
+   1 right / 2 left
+*/
+
+#paperPreview.risen-paper-urdu .risen-short-grid{
+    direction:rtl !important;
+}
+
+
+/* ---------- ENGLISH PAPER ---------- */
+
+#paperPreview.risen-paper-english,
+#paperPreview.risen-paper-english *{
+    font-family:Arial,"Segoe UI",sans-serif;
+}
+
+#paperPreview.risen-paper-english .paper-section-title{
+    text-align:left !important;
+}
+
+
+/* ---------- DATE SHEET ---------- */
+
+#dateSheetSection{
+    display:none;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.risen-date-layout{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:20px;
+    align-items:start;
+}
+
+.risen-date-editor{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#fff;
+}
+
+.risen-date-editor h2{
+    margin-top:0;
+}
+
+.risen-date-field{
+    margin-bottom:12px;
+}
+
+.risen-date-field label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.risen-date-field input{
+    width:100%;
+    box-sizing:border-box;
+    padding:9px;
+    border:1px solid #ccc;
+    border-radius:7px;
+}
+
+.risen-date-row{
+    display:grid;
+    grid-template-columns:110px 1fr 100px 75px 35px;
+    gap:5px;
+    margin-bottom:7px;
+}
+
+.risen-date-row input{
+    width:100%;
+    box-sizing:border-box;
+    padding:7px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.risen-date-delete{
+    border:0;
+    border-radius:5px;
+    background:#ffe5e5;
+    color:#c00;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.risen-date-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.risen-date-buttons button{
+    padding:9px 14px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.risen-add-btn{
+    background:#198754;
+    color:white;
+}
+
+.risen-print-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.risen-date-preview-box{
+    overflow:auto;
+}
+
+.risen-date-paper{
+    background:#fff;
+    color:#111;
+    width:210mm;
+    min-height:297mm;
+    max-width:100%;
+    margin:auto;
+    padding:15mm;
+    box-sizing:border-box;
+    box-shadow:0 3px 20px rgba(0,0,0,.15);
+    font-family:Arial,"Segoe UI",sans-serif;
+}
+
+.risen-date-header{
+    text-align:center;
+    border-bottom:2px solid #111;
+    padding-bottom:10px;
+    margin-bottom:15px;
+}
+
+.risen-date-school{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.risen-date-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.risen-date-exam{
+    margin-top:5px;
+    font-size:16px;
+}
+
+.risen-date-info{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    border:1px solid #111;
+    margin-bottom:15px;
+}
+
+.risen-date-info div{
+    text-align:center;
+    padding:7px;
+    border-right:1px solid #111;
+}
+
+.risen-date-info div:last-child{
+    border-right:0;
+}
+
+.risen-date-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.risen-date-table th,
+.risen-date-table td{
+    border:1px solid #111;
+    padding:9px 6px;
+    text-align:center;
+}
+
+.risen-date-table th{
+    background:#eee;
+}
+
+.risen-date-footer{
+    display:flex;
+    justify-content:space-between;
+    margin-top:50px;
+    font-size:13px;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:850px){
+
+    .risen-date-layout{
+        grid-template-columns:1fr;
+    }
+
+    .risen-date-paper{
+        width:100%;
+        min-height:auto;
+        padding:20px;
+    }
+
+    .risen-date-row{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .risen-date-delete{
+        grid-column:1/-1;
+    }
+
+    .risen-short-grid{
+        gap:0 10px !important;
+    }
+
+}
+
+
+/* ---------- PRINT DATE SHEET ---------- */
+
+@media print{
+
+    body.risen-printing-date-sheet *{
+        visibility:hidden !important;
+    }
+
+    body.risen-printing-date-sheet #dateSheetSection,
+    body.risen-printing-date-sheet #dateSheetSection *{
+        visibility:visible !important;
+    }
+
+    body.risen-printing-date-sheet #dateSheetSection{
+        display:block !important;
+        position:absolute !important;
+        left:0 !important;
+        top:0 !important;
+        width:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    body.risen-printing-date-sheet .risen-date-editor{
+        display:none !important;
+    }
+
+    body.risen-printing-date-sheet .risen-date-paper{
+        box-shadow:none !important;
+        width:210mm !important;
+        max-width:none !important;
+        min-height:297mm !important;
+        margin:auto !important;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+(function(){
+
+"use strict";
+
+
+/* =========================================================
+   START AFTER PAGE LOAD
+   ========================================================= */
+
+function RISEN_START(){
+
+    if(window.RISEN_FINAL_UPGRADE_LOADED){
+        return;
+    }
+
+    window.RISEN_FINAL_UPGRADE_LOADED=true;
+
+
+    /* =====================================================
+       1. PAPER LANGUAGE OPTION
+       ===================================================== */
+
+    var paperSection=
+        document.getElementById("paperSection");
+
+    if(
+        paperSection &&
+        !document.getElementById("risenPaperLanguageBox")
+    ){
+
+        var languageBox=
+            document.createElement("div");
+
+        languageBox.id=
+            "risenPaperLanguageBox";
+
+        languageBox.innerHTML=`
+
+            <label>
+                🌐 Paper Language / پرچے کی زبان
+            </label>
+
+            <select id="risenPaperLanguage">
+
+                <option value="urdu">
+                    اردو
+                </option>
+
+                <option value="english">
+                    English
+                </option>
+
+            </select>
+
+        `;
+
+
+        /*
+          paperChapter ke form-group ke baad
+          language option insert karein.
+        */
+
+        var chapterInput=
+            document.getElementById("paperChapter");
+
+
+        if(chapterInput){
+
+            var chapterGroup=
+                chapterInput.closest(".form-group");
+
+
+            if(chapterGroup &&
+               chapterGroup.parentNode){
+
+                chapterGroup.parentNode.insertBefore(
+                    languageBox,
+                    chapterGroup.nextSibling
+                );
+
+            }else{
+
+                paperSection.insertBefore(
+                    languageBox,
+                    paperSection.firstChild
+                );
+
+            }
+
+        }else{
+
+            paperSection.insertBefore(
+                languageBox,
+                paperSection.firstChild
+            );
+
+        }
+
+
+        var savedLanguage=
+            localStorage.getItem(
+                "RISEN_PAPER_LANGUAGE"
+            );
+
+
+        if(
+            savedLanguage==="english" ||
+            savedLanguage==="urdu"
+        ){
+
+            document.getElementById(
+                "risenPaperLanguage"
+            ).value=savedLanguage;
+
+        }
+
+
+        document.getElementById(
+            "risenPaperLanguage"
+        ).addEventListener(
+            "change",
+            function(){
+
+                localStorage.setItem(
+                    "RISEN_PAPER_LANGUAGE",
+                    this.value
+                );
+
+                if(typeof window.updatePaper==="function"){
+                    window.updatePaper();
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       2. DATE SHEET TAB
+       ===================================================== */
+
+    var tabs=
+        document.querySelector(".tabs");
+
+
+    if(
+        tabs &&
+        !document.getElementById("dateSheetTab")
+    ){
+
+        var dateTab=
+            document.createElement("button");
+
+        dateTab.type="button";
+
+        dateTab.className="tab";
+
+        dateTab.id="dateSheetTab";
+
+        dateTab.innerHTML=
+            "📅 Date Sheet Maker";
+
+
+        dateTab.onclick=function(){
+
+            window.showTab("dateSheet");
+
+        };
+
+
+        tabs.appendChild(dateTab);
+
+    }
+
+
+    /* =====================================================
+       3. DATE SHEET SECTION
+       ===================================================== */
+
+    if(!document.getElementById("dateSheetSection")){
+
+        var dateSection=
+            document.createElement("section");
+
+        dateSection.id=
+            "dateSheetSection";
+
+
+        dateSection.innerHTML=`
+
+            <div class="risen-date-layout">
+
+                <!-- EDITOR -->
+
+                <div class="risen-date-editor">
+
+                    <h2>
+                        📅 Date Sheet Maker
+                    </h2>
+
+
+                    <div class="risen-date-field">
+
+                        <label>
+                            School Name
+                        </label>
+
+                        <input
+                            id="risenDSschool"
+                            type="text"
+                            value="The Risen High School"
+                            oninput="RISEN_UPDATE_DATE_SHEET()"
+                        >
+
+                    </div>
+
+
+                    <div class="risen-date-field">
+
+                        <label>
+                            Exam / Test
+                        </label>
+
+                        <input
+                            id="risenDSexam"
+                            type="text"
+                            value="Annual Examination"
+                            oninput="RISEN_UPDATE_DATE_SHEET()"
+                        >
+
+                    </div>
+
+
+                    <div class="risen-date-field">
+
+                        <label>
+                            Class
+                        </label>
+
+                        <input
+                            id="risenDSclass"
+                            type="text"
+                            placeholder="9th"
+                            oninput="RISEN_UPDATE_DATE_SHEET()"
+                        >
+
+                    </div>
+
+
+                    <div class="risen-date-field">
+
+                        <label>
+                            Session
+                        </label>
+
+                        <input
+                            id="risenDSsession"
+                            type="text"
+                            placeholder="2026"
+                            oninput="RISEN_UPDATE_DATE_SHEET()"
+                        >
+
+                    </div>
+
+
+                    <div class="risen-date-field">
+
+                        <label>
+                            Title
+                        </label>
+
+                        <input
+                            id="risenDStitle"
+                            type="text"
+                            value="Date Sheet"
+                            oninput="RISEN_UPDATE_DATE_SHEET()"
+                        >
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <h3>
+                        Examination Schedule
+                    </h3>
+
+
+                    <div
+                        id="risenDateRows"
+                    ></div>
+
+
+                    <div class="risen-date-buttons">
+
+                        <button
+                            type="button"
+                            class="risen-add-btn"
+                            onclick="RISEN_ADD_DATE_ROW()"
+                        >
+                            + Add Subject
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="risen-print-btn"
+                            onclick="RISEN_PRINT_DATE_SHEET()"
+                        >
+                            🖨️ Print
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PREVIEW -->
+
+                <div class="risen-date-preview-box">
+
+                    <div
+                        id="risenDatePreview"
+                        class="risen-date-paper"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        /*
+          Existing main ke end mein add.
+        */
+
+        var main=
+            document.querySelector("main");
+
+
+        if(main){
+
+            main.appendChild(dateSection);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       4. DATE SHEET DATA
+       ===================================================== */
+
+    if(!window.RISEN_DATE_ROWS){
+
+        window.RISEN_DATE_ROWS=[
+
+            {
+                date:"",
+                subject:"",
+                time:"",
+                marks:""
+            }
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       5. ADD DATE ROW
+       ===================================================== */
+
+    window.RISEN_ADD_DATE_ROW=function(data){
+
+        if(!data){
+
+            data={
+                date:"",
+                subject:"",
+                time:"",
+                marks:""
+            };
+
+        }
+
+
+        window.RISEN_DATE_ROWS.push(data);
+
+        RISEN_RENDER_DATE_ROWS();
+
+        RISEN_UPDATE_DATE_SHEET();
+
+    };
+
+
+    /* =====================================================
+       6. DELETE DATE ROW
+       ===================================================== */
+
+    window.RISEN_DELETE_DATE_ROW=function(index){
+
+        window.RISEN_DATE_ROWS.splice(
+            index,
+            1
+        );
+
+        RISEN_RENDER_DATE_ROWS();
+
+        RISEN_UPDATE_DATE_SHEET();
+
+    };
+
+
+    /* =====================================================
+       7. DAY
+       ===================================================== */
+
+    window.RISEN_DAY=function(date){
+
+        if(!date){
+            return "";
+        }
+
+        var d=
+            new Date(
+                date+"T00:00:00"
+            );
+
+        if(isNaN(d.getTime())){
+            return "";
+        }
+
+        return d.toLocaleDateString(
+            "en-US",
+            {
+                weekday:"long"
+            }
+        );
+
+    };
+
+
+    /* =====================================================
+       8. RENDER DATE ROWS
+       ===================================================== */
+
+    window.RISEN_RENDER_DATE_ROWS=function(){
+
+        var box=
+            document.getElementById(
+                "risenDateRows"
+            );
+
+
+        if(!box){
+            return;
+        }
+
+
+        box.innerHTML="";
+
+
+        window.RISEN_DATE_ROWS.forEach(
+            function(row,index){
+
+                var div=
+                    document.createElement("div");
+
+                div.className=
+                    "risen-date-row";
+
+
+                div.innerHTML=`
+
+                    <input
+                        type="date"
+                        value="${RISEN_ATTR(row.date)}"
+                        onchange="
+                            RISEN_DATE_ROWS[${index}].date=this.value;
+                            RISEN_RENDER_DATE_ROWS();
+                            RISEN_UPDATE_DATE_SHEET();
+                        "
+                    >
+
+
+                    <input
+                        type="text"
+                        readonly
+                        placeholder="Day"
+                        value="${RISEN_ATTR(
+                            RISEN_DAY(row.date)
+                        )}"
+                    >
+
+
+                    <input
+                        type="text"
+                        placeholder="Subject"
+                        value="${RISEN_ATTR(row.subject)}"
+                        oninput="
+                            RISEN_DATE_ROWS[${index}].subject=this.value;
+                            RISEN_UPDATE_DATE_SHEET();
+                        "
+                    >
+
+
+                    <input
+                        type="text"
+                        placeholder="Time"
+                        value="${RISEN_ATTR(row.time)}"
+                        oninput="
+                            RISEN_DATE_ROWS[${index}].time=this.value;
+                            RISEN_UPDATE_DATE_SHEET();
+                        "
+                    >
+
+
+                    <input
+                        type="text"
+                        placeholder="Marks"
+                        value="${RISEN_ATTR(row.marks)}"
+                        oninput="
+                            RISEN_DATE_ROWS[${index}].marks=this.value;
+                            RISEN_UPDATE_DATE_SHEET();
+                        "
+                    >
+
+
+                    <button
+                        type="button"
+                        class="risen-date-delete"
+                        onclick="
+                            RISEN_DELETE_DATE_ROW(${index})
+                        "
+                    >
+                        ×
+                    </button>
+
+                `;
+
+
+                box.appendChild(div);
+
+            }
+        );
+
+    };
+
+
+    /* =====================================================
+       9. ATTRIBUTE ESCAPE
+       ===================================================== */
+
+    window.RISEN_ATTR=function(value){
+
+        return String(value || "")
+            .replace(/&/g,"&amp;")
+            .replace(/"/g,"&quot;")
+            .replace(/</g,"&lt;")
+            .replace(/>/g,"&gt;");
+
+    };
+
+
+    /* =====================================================
+       10. TEXT ESCAPE
+       ===================================================== */
+
+    window.RISEN_TEXT=function(value){
+
+        var div=
+            document.createElement("div");
+
+        div.textContent=
+            value || "";
+
+        return div.innerHTML;
+
+    };
+
+
+    /* =====================================================
+       11. UPDATE DATE SHEET
+       ===================================================== */
+
+    window.RISEN_UPDATE_DATE_SHEET=function(){
+
+        var preview=
+            document.getElementById(
+                "risenDatePreview"
+            );
+
+
+        if(!preview){
+            return;
+        }
+
+
+        var school=
+            document.getElementById(
+                "risenDSschool"
+            ).value;
+
+
+        var exam=
+            document.getElementById(
+                "risenDSexam"
+            ).value;
+
+
+        var cls=
+            document.getElementById(
+                "risenDSclass"
+            ).value;
+
+
+        var session=
+            document.getElementById(
+                "risenDSsession"
+            ).value;
+
+
+        var title=
+            document.getElementById(
+                "risenDStitle"
+            ).value;
+
+
+        var rows="";
+
+
+        window.RISEN_DATE_ROWS.forEach(
+            function(row,index){
+
+                var dateText="";
+
+
+                if(row.date){
+
+                    var d=
+                        new Date(
+                            row.date+"T00:00:00"
+                        );
+
+
+                    dateText=
+                        d.toLocaleDateString(
+                            "en-GB"
+                        );
+
+                }
+
+
+                rows+=`
+
+                    <tr>
+
+                        <td>
+                            ${index+1}
+                        </td>
+
+                        <td>
+                            ${RISEN_TEXT(dateText)}
+                        </td>
+
+                        <td>
+                            ${RISEN_TEXT(
+                                RISEN_DAY(row.date)
+                            )}
+                        </td>
+
+                        <td>
+                            ${RISEN_TEXT(
+                                row.subject
+                            )}
+                        </td>
+
+                        <td>
+                            ${RISEN_TEXT(
+                                row.time
+                            )}
+                        </td>
+
+                        <td>
+                            ${RISEN_TEXT(
+                                row.marks
+                            )}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+        preview.innerHTML=`
+
+            <div class="risen-date-header">
+
+                <div class="risen-date-school">
+                    ${RISEN_TEXT(school)}
+                </div>
+
+                <div class="risen-date-title">
+                    ${RISEN_TEXT(title)}
+                </div>
+
+                <div class="risen-date-exam">
+                    ${RISEN_TEXT(exam)}
+                </div>
+
+            </div>
+
+
+            <div class="risen-date-info">
+
+                <div>
+                    <b>Class</b><br>
+                    ${RISEN_TEXT(cls)}
+                </div>
+
+                <div>
+                    <b>Session</b><br>
+                    ${RISEN_TEXT(session)}
+                </div>
+
+                <div>
+                    <b>Total Papers</b><br>
+                    ${window.RISEN_DATE_ROWS.length}
+                </div>
+
+            </div>
+
+
+            <table class="risen-date-table">
+
+                <thead>
+
+                    <tr>
+                        <th>No.</th>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Subject</th>
+                        <th>Time</th>
+                        <th>Marks</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${
+                        rows ||
+                        `
+                        <tr>
+                            <td colspan="6">
+                                No subjects added
+                            </td>
+                        </tr>
+                        `
+                    }
+
+                </tbody>
+
+            </table>
+
+
+            <div class="risen-date-footer">
+
+                <span>
+                    Controller of Examinations
+                </span>
+
+                <span>
+                    Principal Signature: __________
+                </span>
+
+            </div>
+
+        `;
+
+    };
+
+
+    /* =====================================================
+       12. PRINT DATE SHEET
+       ===================================================== */
+
+    window.RISEN_PRINT_DATE_SHEET=function(){
+
+        RISEN_UPDATE_DATE_SHEET();
+
+
+        document.body.classList.add(
+            "risen-printing-date-sheet"
+        );
+
+
+        setTimeout(
+            function(){
+
+                window.print();
+
+
+                setTimeout(
+                    function(){
+
+                        document.body.classList.remove(
+                            "risen-printing-date-sheet"
+                        );
+
+                    },
+                    700
+                );
+
+            },
+            150
+        );
+
+    };
+
+
+    /* =====================================================
+       13. SAVE ORIGINAL showTab
+       ===================================================== */
+
+    var ORIGINAL_SHOW_TAB=
+        window.showTab;
+
+
+    /*
+      Date Sheet ke liye existing tab system ko extend
+      kar rahe hain.
+    */
+
+    window.showTab=function(tab){
+
+        if(tab==="dateSheet"){
+
+            var sections=[
+
+                "paperSection",
+                "notesSection",
+                "paragraphSection",
+                "savedPapersSection",
+                "savedNotesSection",
+                "savedParagraphsSection"
+
+            ];
+
+
+            sections.forEach(
+                function(id){
+
+                    var el=
+                        document.getElementById(id);
+
+
+                    if(el){
+
+                        el.style.display="none";
+
+                    }
+
+                }
+            );
+
+
+            document
+            .querySelectorAll(".tabs .tab")
+            .forEach(
+                function(t){
+
+                    t.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            var dateSection=
+                document.getElementById(
+                    "dateSheetSection"
+                );
+
+
+            if(dateSection){
+
+                dateSection.style.display=
+                    "block";
+
+            }
+
+
+            var dateTab=
+                document.getElementById(
+                    "dateSheetTab"
+                );
+
+
+            if(dateTab){
+
+                dateTab.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            RISEN_UPDATE_DATE_SHEET();
+
+            return;
+
+        }
+
+
+        /*
+          Date Sheet hide.
+        */
+
+        var ds=
+            document.getElementById(
+                "dateSheetSection"
+            );
+
+
+        if(ds){
+
+            ds.style.display="none";
+
+        }
+
+
+        /*
+          Existing application ka original
+          showTab function.
+        */
+
+        if(typeof ORIGINAL_SHOW_TAB==="function"){
+
+            ORIGINAL_SHOW_TAB(tab);
+
+        }
+
+    };
+
+
+    /* =====================================================
+       14. PAPER LANGUAGE FUNCTIONS
+       ===================================================== */
+
+    window.RISEN_APPLY_LANGUAGE=function(){
+
+        var preview=
+            document.getElementById(
+                "paperPreview"
+            );
+
+
+        if(!preview){
+            return;
+        }
+
+
+        var select=
+            document.getElementById(
+                "risenPaperLanguage"
+            );
+
+
+        var language=
+            select
+            ? select.value
+            : "urdu";
+
+
+        /*
+          Remove old language.
+        */
+
+        preview.classList.remove(
+            "risen-paper-urdu",
+            "risen-paper-english"
+        );
+
+
+        /* ================= URDU ================= */
+
+        if(language==="urdu"){
+
+            preview.classList.add(
+                "risen-paper-urdu"
+            );
+
+            preview.setAttribute(
+                "dir",
+                "rtl"
+            );
+
+        }
+
+
+        /* ================= ENGLISH ================= */
+
+        else{
+
+            preview.classList.add(
+                "risen-paper-english"
+            );
+
+            preview.setAttribute(
+                "dir",
+                "ltr"
+            );
+
+
+            /*
+              Section headings translate.
+            */
+
+            preview
+            .querySelectorAll(
+                ".paper-section-title"
+            )
+            .forEach(
+                function(title){
+
+                    var text=
+                        title.textContent.trim();
+
+
+                    if(
+                        text.indexOf(
+                            "کثیر الانتخابی"
+                        )!==-1
+                    ){
+
+                        title.textContent=
+                            "Part I: Multiple Choice Questions (MCQs)";
+
+                    }
+
+                    else if(
+                        text.indexOf(
+                            "مختصر سوالات"
+                        )!==-1
+                    ){
+
+                        title.textContent=
+                            "Part II: Short Questions";
+
+                    }
+
+                    else if(
+                        text.indexOf(
+                            "تفصیلی سوالات"
+                        )!==-1
+                    ){
+
+                        title.textContent=
+                            "Part III: Long Questions";
+
+                    }
+
+                    else if(
+                        text.indexOf(
+                            "خالی جگہیں"
+                        )!==-1
+                    ){
+
+                        title.textContent=
+                            "Fill in the Blanks";
+
+                    }
+
+                    else if(
+                        text.indexOf(
+                            "درست / غلط"
+                        )!==-1
+                    ){
+
+                        title.textContent=
+                            "True / False";
+
+                    }
+
+                }
+            );
+
+
+            /*
+              True / False text.
+            */
+
+            preview
+            .querySelectorAll(
+                ".tf-options"
+            )
+            .forEach(
+                function(el){
+
+                    el.innerHTML=
+                        el.innerHTML
+                        .replace(
+                            /درست/g,
+                            "True"
+                        )
+                        .replace(
+                            /غلط/g,
+                            "False"
+                        );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           SHORT QUESTIONS
+           ================================================= */
+
+        var paperSections=
+            preview.querySelectorAll(
+                ".paper-section"
+            );
+
+
+        paperSections.forEach(
+            function(section){
+
+                var title=
+                    section.querySelector(
+                        ".paper-section-title"
+                    );
+
+
+                if(!title){
+                    return;
+                }
+
+
+                var titleText=
+                    title.textContent;
+
+
+                var isShort=
+                    titleText.indexOf(
+                        "مختصر سوالات"
+                    )!==-1
+                    ||
+                    titleText.indexOf(
+                        "Short Questions"
+                    )!==-1;
+
+
+                if(!isShort){
+                    return;
+                }
+
+
+                /*
+                  Har updatePaper par preview naya
+                  banta hai, is liye wrapper fresh
+                  create hoga.
+                */
+
+                var grid=
+                    document.createElement(
+                        "div"
+                    );
+
+
+                grid.className=
+                    "risen-short-grid";
+
+
+                var rows=
+                    section.querySelectorAll(
+                        ":scope > .q-row"
+                    );
+
+
+                rows.forEach(
+                    function(row){
+
+                        grid.appendChild(row);
+
+                    }
+                );
+
+
+                section.appendChild(grid);
+
+
+                /*
+                  Urdu = first question right
+                  English = first question left
+                */
+
+                grid.style.direction=
+                    language==="urdu"
+                    ? "rtl"
+                    : "ltr";
+
+            }
+        );
+
+    };
+
+
+    /* =====================================================
+       15. OVERRIDE UPDATE PAPER
+       ===================================================== */
+
+    var ORIGINAL_UPDATE_PAPER=
+        window.updatePaper;
+
+
+    if(typeof ORIGINAL_UPDATE_PAPER==="function"){
+
+        window.updatePaper=function(){
+
+            ORIGINAL_UPDATE_PAPER.apply(
+                this,
+                arguments
+            );
+
+
+            /*
+              Preview banne ke baad language
+              apply karein.
+            */
+
+            window.RISEN_APPLY_LANGUAGE();
+
+        };
+
+    }
+
+
+    /* =====================================================
+       16. INITIAL DATE SHEET
+       ===================================================== */
+
+    RISEN_RENDER_DATE_ROWS();
+
+    RISEN_UPDATE_DATE_SHEET();
+
+
+    /* =====================================================
+       17. INITIAL PAPER LANGUAGE
+       ===================================================== */
+
+    setTimeout(
+        function(){
+
+            var select=
+                document.getElementById(
+                    "risenPaperLanguage"
+                );
+
+
+            if(select){
+
+                var saved=
+                    localStorage.getItem(
+                        "RISEN_PAPER_LANGUAGE"
+                    );
+
+
+                if(
+                    saved==="english" ||
+                    saved==="urdu"
+                ){
+
+                    select.value=saved;
+
+                }
+
+            }
+
+
+            if(typeof window.updatePaper==="function"){
+
+                window.updatePaper();
+
+            }
+
+        },
+        500
+    );
+
+}
+
+
+/* =========================================================
+   RUN
+   ========================================================= */
+
+if(document.readyState==="loading"){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        RISEN_START
+    );
+
+}else{
+
+    RISEN_START();
+
+}
+
+})();
+
+</script>
+
+<!-- =========================================================
+     END FINAL UPGRADE
+     ========================================================= -->
 </body>
 </html>
