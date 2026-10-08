@@ -996,6 +996,100 @@ body *{
 </head>
 
 <body>
+    <!-- LOGIN SCREEN -->
+<div id="loginScreen" style="
+    position:fixed;
+    inset:0;
+    background:#f4f6f8;
+    z-index:999999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+">
+
+    <div style="
+        width:100%;
+        max-width:380px;
+        background:white;
+        padding:30px;
+        border-radius:18px;
+        box-shadow:0 10px 35px rgba(0,0,0,.15);
+        text-align:center;
+    ">
+
+        <div style="
+            width:70px;
+            height:70px;
+            margin:0 auto 15px;
+            border-radius:50%;
+            background:#1d4ed8;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:32px;
+            font-weight:bold;
+        ">R</div>
+
+        <h2 style="margin:0 0 5px;">The Risen High School</h2>
+        <p style="margin:0 0 25px;color:#666;">
+            Paper & Notes Maker
+        </p>
+
+        <input
+            type="text"
+            id="loginUsername"
+            placeholder="Username"
+            style="
+                width:100%;
+                box-sizing:border-box;
+                padding:13px;
+                margin-bottom:12px;
+                border:1px solid #ddd;
+                border-radius:10px;
+                font-size:16px;
+            "
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+            style="
+                width:100%;
+                box-sizing:border-box;
+                padding:13px;
+                margin-bottom:15px;
+                border:1px solid #ddd;
+                border-radius:10px;
+                font-size:16px;
+            "
+        >
+
+        <button
+            onclick="loginRisen()"
+            style="
+                width:100%;
+                padding:13px;
+                border:0;
+                border-radius:10px;
+                background:#1d4ed8;
+                color:white;
+                font-size:16px;
+                font-weight:bold;
+                cursor:pointer;
+            "
+        >
+            🔐 Login
+        </button>
+
+        <p id="loginError"
+           style="color:red;margin:12px 0 0;display:none;">
+        </p>
+
+    </div>
+</div>
     
 <div class="app">
 
