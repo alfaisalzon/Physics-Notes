@@ -10,5 +10,13 @@
   "theme_color": "#1457d9",
   "orientation": "portrait",
   "lang": "ur",
-  "dir": "rtl"
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "file_000000007574821088b2eb83486c4b24.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
