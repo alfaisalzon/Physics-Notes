@@ -8444,6 +8444,34 @@ if(document.readyState==="loading"){
 <!-- =========================================================
      END FINAL UPGRADE
      ========================================================= -->
-    
+   <script>
+/* FIX OLD LOGIN + NEW LOGIN */
+
+function loginRisen(){
+    if(typeof risenLogin === "function"){
+        risenLogin();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const oldLogin = document.getElementById("loginScreen");
+
+    if(oldLogin){
+        oldLogin.style.display = "none";
+    }
+
+    const loggedIn = localStorage.getItem("risenLoggedIn");
+
+    if(loggedIn === "true"){
+        const newLogin = document.getElementById("risenLoginScreen");
+
+        if(newLogin){
+            newLogin.style.display = "none";
+        }
+    }
+
+});
+</script> 
 </body>
 </html>
