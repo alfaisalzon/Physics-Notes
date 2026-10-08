@@ -8656,5 +8656,789 @@ document.addEventListener("DOMContentLoaded",function(){
 
 });
 </script>
+    <script>
+(function(){
+
+/* ================= DATE SHEET MAKER ================= */
+
+var tab = document.getElementById("dateSheetTab");
+var section = document.getElementById("dateSheetSection");
+
+if(!tab){
+    var tabs = document.querySelector(".tabs");
+
+    if(tabs){
+        tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "tab";
+        tab.id = "dateSheetTab";
+        tab.innerHTML = "📅 Date Sheet Maker";
+        tabs.appendChild(tab);
+    }
+}
+
+if(!section){
+    section = document.createElement("div");
+    section.id = "dateSheetSection";
+
+    var main = document.querySelector("main");
+
+    if(main){
+        main.appendChild(section);
+    }
+}
+
+/* CSS */
+
+if(!document.getElementById("RISEN_DATE_SHEET_STYLE")){
+
+    var style = document.createElement("style");
+    style.id = "RISEN_DATE_SHEET_STYLE";
+
+    style.innerHTML = `
+    #dateSheetSection{
+        display:none;
+        direction:ltr;
+        width:100%;
+    }
+
+    #dateSheetSection *{
+        box-sizing:border-box;
+    }
+
+    .RISEN_DS_LAYOUT{
+        display:grid;
+        grid-template-columns:380px 1fr;
+        gap:20px;
+        align-items:start;
+    }
+
+    .RISEN_DS_EDITOR{
+        background:white;
+        padding:20px;
+        border-radius:15px;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .RISEN_DS_EDITOR h2{
+        margin-top:0;
+        color:#1457d9;
+    }
+
+    .RISEN_DS_FIELD{
+        margin-bottom:12px;
+    }
+
+    .RISEN_DS_FIELD label{
+        display:block;
+        font-weight:bold;
+        margin-bottom:5px;
+    }
+
+    .RISEN_DS_FIELD input{
+        width:100%;
+        padding:10px;
+        border:1px solid #ccd3df;
+        border-radius:8px;
+        font-size:15px;
+    }
+
+    .RISEN_DS_ROW{
+        display:grid;
+        grid-template-columns:1fr 1.5fr 1fr 80px 50px;
+        gap:6px;
+        margin-bottom:8px;
+    }
+
+    .RISEN_DS_ROW input{
+        width:100%;
+        padding:8px;
+        border:1px solid #ccd3df;
+        border-radius:6px;
+    }
+
+    .RISEN_DS_BTN{
+        border:0;
+        border-radius:8px;
+        padding:10px 13px;
+        margin:4px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .RISEN_DS_ADD{
+        background:#138a4b;
+        color:white;
+    }
+
+    .RISEN_DS_PRINT{
+        background:#1457d9;
+        color:white;
+    }
+
+    .RISEN_DS_PNG{
+        background:#7b3fe4;
+        color:white;
+    }
+
+    .RISEN_DS_DEL{
+        background:#d93636;
+        color:white;
+        padding:8px;
+        border:0;
+        border-radius:6px;
+    }
+
+    .RISEN_DS_PREVIEW_WRAP{
+        overflow:auto;
+        background:#dce2eb;
+        padding:15px;
+        border-radius:12px;
+    }
+
+    .RISEN_DS_PAPER{
+        width:210mm;
+        min-height:297mm;
+        background:white;
+        margin:auto;
+        padding:15mm;
+        color:#111;
+        font-family:Arial,"Segoe UI",sans-serif;
+    }
+
+    .RISEN_DS_HEADER{
+        text-align:center;
+        border-bottom:2px solid #111;
+        padding-bottom:10px;
+        margin-bottom:15px;
+    }
+
+    .RISEN_DS_SCHOOL{
+        font-size:25px;
+        font-weight:bold;
+    }
+
+    .RISEN_DS_TITLE{
+        font-size:22px;
+        font-weight:bold;
+        margin-top:5px;
+    }
+
+    .RISEN_DS_EXAM{
+        font-size:16px;
+        margin-top:5px;
+    }
+
+    .RISEN_DS_INFO{
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+        border:1px solid #111;
+        margin-bottom:15px;
+    }
+
+    .RISEN_DS_INFO div{
+        text-align:center;
+        padding:7px;
+        border-right:1px solid #111;
+    }
+
+    .RISEN_DS_INFO div:last-child{
+        border-right:0;
+    }
+
+    .RISEN_DS_TABLE{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    .RISEN_DS_TABLE th,
+    .RISEN_DS_TABLE td{
+        border:1px solid #111;
+        padding:9px 6px;
+        text-align:center;
+    }
+
+    .RISEN_DS_TABLE th{
+        background:#eee;
+    }
+
+    .RISEN_DS_FOOTER{
+        display:flex;
+        justify-content:space-between;
+        margin-top:50px;
+        font-size:13px;
+    }
+
+    @media(max-width:850px){
+        .RISEN_DS_LAYOUT{
+            grid-template-columns:1fr;
+        }
+
+        .RISEN_DS_ROW{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .RISEN_DS_PAPER{
+            width:100%;
+            min-height:auto;
+        }
+    }
+    `;
+
+    document.head.appendChild(style);
+}
+
+/* ================= HTML ================= */
+
+section.classList.remove("hidden");
+
+section.innerHTML = `
+<div class="RISEN_DS_LAYOUT">
+
+<div class="RISEN_DS_EDITOR">
+
+<h2>📅 Date Sheet Maker</h2>
+
+<div class="RISEN_DS_FIELD">
+<label>School Name</label>
+<input id="RDS_school" value="The Risen High School">
+</div>
+
+<div class="RISEN_DS_FIELD">
+<label>Exam / Test</label>
+<input id="RDS_exam" value="Annual Examination">
+</div>
+
+<div class="RISEN_DS_FIELD">
+<label>Class</label>
+<input id="RDS_class" placeholder="9th">
+</div>
+
+<div class="RISEN_DS_FIELD">
+<label>Session</label>
+<input id="RDS_session" placeholder="2026">
+</div>
+
+<div class="RISEN_DS_FIELD">
+<label>Title</label>
+<input id="RDS_title" value="Date Sheet">
+</div>
+
+<hr>
+
+<h3>Examination Schedule</h3>
+
+<div id="RDS_rows"></div>
+
+<button class="RISEN_DS_BTN RISEN_DS_ADD"
+onclick="RDS_addRow()">
++ Add Subject
+</button>
+
+<button class="RISEN_DS_BTN RISEN_DS_PRINT"
+onclick="RDS_print()">
+🖨️ Print
+</button>
+
+<button class="RISEN_DS_BTN RISEN_DS_PNG"
+onclick="RDS_png()">
+📥 Download PNG
+</button>
+
+</div>
+
+<div class="RISEN_DS_PREVIEW_WRAP">
+<div id="RDS_preview" class="RISEN_DS_PAPER"></div>
+</div>
+
+</div>
+`;
+
+/* ================= DATA ================= */
+
+window.RDS_DATA = [
+    {
+        date:"",
+        subject:"",
+        time:"",
+        marks:""
+    }
+];
+
+/* ================= ADD ROW ================= */
+
+window.RDS_addRow = function(){
+
+    RDS_DATA.push({
+        date:"",
+        subject:"",
+        time:"",
+        marks:""
+    });
+
+    RDS_renderRows();
+    RDS_update();
+
+};
+
+/* ================= DELETE ROW ================= */
+
+window.RDS_deleteRow = function(index){
+
+    RDS_DATA.splice(index,1);
+
+    if(RDS_DATA.length===0){
+
+        RDS_DATA.push({
+            date:"",
+            subject:"",
+            time:"",
+            marks:""
+        });
+
+    }
+
+    RDS_renderRows();
+    RDS_update();
+
+};
+
+/* ================= ROWS ================= */
+
+window.RDS_renderRows = function(){
+
+    var box = document.getElementById("RDS_rows");
+
+    if(!box) return;
+
+    box.innerHTML = "";
+
+    RDS_DATA.forEach(function(row,index){
+
+        var div = document.createElement("div");
+
+        div.className = "RISEN_DS_ROW";
+
+        div.innerHTML = `
+        <input type="date"
+        value="${row.date}"
+        onchange="RDS_DATA[${index}].date=this.value;RDS_update()">
+
+        <input type="text"
+        placeholder="Subject"
+        value="${row.subject}"
+        oninput="RDS_DATA[${index}].subject=this.value;RDS_update()">
+
+        <input type="text"
+        placeholder="Time"
+        value="${row.time}"
+        oninput="RDS_DATA[${index}].time=this.value;RDS_update()">
+
+        <input type="text"
+        placeholder="Marks"
+        value="${row.marks}"
+        oninput="RDS_DATA[${index}].marks=this.value;RDS_update()">
+
+        <button class="RISEN_DS_DEL"
+        onclick="RDS_deleteRow(${index})">
+        ×
+        </button>
+        `;
+
+        box.appendChild(div);
+
+    });
+
+};
+
+/* ================= UPDATE ================= */
+
+window.RDS_update = function(){
+
+    var school =
+        document.getElementById("RDS_school").value;
+
+    var exam =
+        document.getElementById("RDS_exam").value;
+
+    var cls =
+        document.getElementById("RDS_class").value;
+
+    var session =
+        document.getElementById("RDS_session").value;
+
+    var title =
+        document.getElementById("RDS_title").value;
+
+    var html = "";
+
+    RDS_DATA.forEach(function(row,index){
+
+        var date = "";
+
+        if(row.date){
+
+            var d = new Date(row.date + "T00:00:00");
+
+            date = d.toLocaleDateString("en-GB");
+
+        }
+
+        var day = "";
+
+        if(row.date){
+
+            var d2 = new Date(row.date + "T00:00:00");
+
+            day = d2.toLocaleDateString("en-US",{
+                weekday:"long"
+            });
+
+        }
+
+        html += `
+        <tr>
+        <td>${index+1}</td>
+        <td>${date}</td>
+        <td>${day}</td>
+        <td>${RDS_escape(row.subject)}</td>
+        <td>${RDS_escape(row.time)}</td>
+        <td>${RDS_escape(row.marks)}</td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById("RDS_preview").innerHTML = `
+
+    <div class="RISEN_DS_HEADER">
+
+        <div class="RISEN_DS_SCHOOL">
+            ${RDS_escape(school)}
+        </div>
+
+        <div class="RISEN_DS_TITLE">
+            ${RDS_escape(title)}
+        </div>
+
+        <div class="RISEN_DS_EXAM">
+            ${RDS_escape(exam)}
+        </div>
+
+    </div>
+
+    <div class="RISEN_DS_INFO">
+
+        <div>
+            <b>Class</b><br>
+            ${RDS_escape(cls)}
+        </div>
+
+        <div>
+            <b>Session</b><br>
+            ${RDS_escape(session)}
+        </div>
+
+        <div>
+            <b>Total Papers</b><br>
+            ${RDS_DATA.length}
+        </div>
+
+    </div>
+
+    <table class="RISEN_DS_TABLE">
+
+        <thead>
+
+        <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Subject</th>
+            <th>Time</th>
+            <th>Marks</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        ${html}
+
+        </tbody>
+
+    </table>
+
+    <div class="RISEN_DS_FOOTER">
+
+        <span>
+            Controller of Examinations
+        </span>
+
+        <span>
+            Principal Signature: __________
+        </span>
+
+    </div>
+
+    `;
+
+};
+
+/* ================= ESCAPE ================= */
+
+window.RDS_escape = function(text){
+
+    return String(text || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+};
+
+/* ================= PRINT ================= */
+
+window.RDS_print = function(){
+
+    var paper =
+        document.getElementById("RDS_preview");
+
+    if(!paper) return;
+
+    var old = document.body.innerHTML;
+
+    document.body.innerHTML =
+        paper.outerHTML;
+
+    window.print();
+
+    location.reload();
+
+};
+
+/* ================= PNG ================= */
+
+window.RDS_png = function(){
+
+    var paper =
+        document.getElementById("RDS_preview");
+
+    if(!paper) return;
+
+    if(typeof html2canvas === "undefined"){
+
+        var script =
+            document.createElement("script");
+
+        script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+
+        script.onload = function(){
+
+            RDS_makePNG();
+
+        };
+
+        document.head.appendChild(script);
+
+    }else{
+
+        RDS_makePNG();
+
+    }
+
+};
+
+window.RDS_makePNG = function(){
+
+    html2canvas(
+        document.getElementById("RDS_preview"),
+        {
+            scale:2,
+            backgroundColor:"#ffffff"
+        }
+    ).then(function(canvas){
+
+        var link =
+            document.createElement("a");
+
+        link.download =
+            "Date-Sheet.png";
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+        link.click();
+
+    });
+
+};
+
+/* ================= INPUT EVENTS ================= */
+
+[
+"RDS_school",
+"RDS_exam",
+"RDS_class",
+"RDS_session",
+"RDS_title"
+].forEach(function(id){
+
+    var el = document.getElementById(id);
+
+    if(el){
+
+        el.addEventListener(
+            "input",
+            RDS_update
+        );
+
+    }
+
+});
+
+/* ================= TAB ================= */
+
+window.showTab = function(tabName){
+
+    var sections = [
+        "paperSection",
+        "notesSection",
+        "paragraphSection",
+        "savedPapersSection",
+        "savedNotesSection",
+        "savedParagraphsSection"
+    ];
+
+    sections.forEach(function(id){
+
+        var el =
+            document.getElementById(id);
+
+        if(el){
+
+            el.style.display = "none";
+
+        }
+
+    });
+
+    document
+    .querySelectorAll(".tabs .tab")
+    .forEach(function(t){
+
+        t.classList.remove("active");
+
+    });
+
+    if(tabName === "dateSheet"){
+
+        var ds =
+            document.getElementById(
+                "dateSheetSection"
+            );
+
+        if(ds){
+
+            ds.style.display = "block";
+            ds.classList.remove("hidden");
+
+        }
+
+        var dt =
+            document.getElementById(
+                "dateSheetTab"
+            );
+
+        if(dt){
+
+            dt.classList.add("active");
+
+        }
+
+        RDS_update();
+
+        return;
+
+    }
+
+    var ds2 =
+        document.getElementById(
+            "dateSheetSection"
+        );
+
+    if(ds2){
+
+        ds2.style.display = "none";
+
+    }
+
+    /* Original tab system */
+
+    if(tabName === "paper"){
+
+        var p =
+            document.getElementById("paperSection");
+
+        if(p) p.style.display="block";
+
+        var pt =
+            document.getElementById("paperTab");
+
+        if(pt) pt.classList.add("active");
+
+    }
+
+    if(tabName === "notes"){
+
+        var n =
+            document.getElementById("notesSection");
+
+        if(n) n.style.display="block";
+
+        var nt =
+            document.getElementById("notesTab");
+
+        if(nt) nt.classList.add("active");
+
+    }
+
+    if(tabName === "paragraph"){
+
+        var pg =
+            document.getElementById("paragraphSection");
+
+        if(pg) pg.style.display="block";
+
+        var pgt =
+            document.getElementById("paragraphTab");
+
+        if(pgt) pgt.classList.add("active");
+
+    }
+
+};
+
+/* BUTTON */
+
+if(tab){
+
+    tab.onclick = function(){
+
+        showTab("dateSheet");
+
+    };
+
+}
+
+/* START */
+
+RDS_renderRows();
+RDS_update();
+
+})();
+</script>
 </body>
 </html>
