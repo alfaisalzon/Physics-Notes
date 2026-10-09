@@ -6999,43 +6999,6 @@ function RISEN_START(){
     }
 
 
-    /* =====================================================
-       2. DATE SHEET TAB
-       ===================================================== */
-
-    var tabs=
-        document.querySelector(".tabs");
-
-
-    if(
-        tabs &&
-        !document.getElementById("dateSheetTab")
-    ){
-
-        var dateTab=
-            document.createElement("button");
-
-        dateTab.type="button";
-
-        dateTab.className="tab";
-
-        dateTab.id="dateSheetTab";
-
-        dateTab.innerHTML=
-            "📅 Date Sheet Maker";
-
-
-        dateTab.onclick=function(){
-
-            window.showTab("dateSheet");
-
-        };
-
-
-        tabs.appendChild(dateTab);
-
-    }
-
 
     /* =====================================================
        3. DATE SHEET SECTION
