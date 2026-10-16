@@ -6,256 +6,643 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#075985">
 <title>The Risen High School Paper Maker</title>
+
 <style>
-@font-face{font-family:Jameel;src:url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff')}
-*{box-sizing:border-box}
-body{margin:0;background:#eef2f7;color:#172033;font-family:Arial,sans-serif}
-header{background:#075985;color:white;text-align:center;padding:15px}
-main{max-width:1000px;margin:auto;padding:12px}
-.card{background:white;border-radius:10px;padding:15px;margin-bottom:12px}
-h3{color:#075985;margin-top:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{display:block;font-weight:bold;font-size:14px;margin:7px 0}
-input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:15px}
-textarea{min-height:65px}
-button{padding:10px 12px;border:0;border-radius:6px;background:#075985;color:white;margin:3px;cursor:pointer}
-.red{background:#b91c1c}.green{background:#15803d}.gray{background:#475569}.light{background:#e0f2fe;color:#075985}
-.toolbar{display:flex;flex-wrap:wrap;gap:3px}
-.section{background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:10px;margin-top:12px}
-.question{background:white;border:1px solid #ddd;border-radius:7px;padding:10px;margin:10px 0}
-.qhead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-#preview{background:#dbe4ee;padding:10px;overflow:auto}
-.paper{background:white;color:#111;max-width:794px;min-height:900px;margin:auto;padding:30px;font-family:Arial,sans-serif}
-.paper.urdu{font-family:Jameel,Arial,sans-serif}
-.paperhead{text-align:center;border-bottom:2px solid #111;padding-bottom:10px}
-.paperhead h2{margin:5px}
-.logo{max-width:70px;max-height:70px;object-fit:contain}
-.info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
-.info div{padding:5px;border-bottom:1px dotted #555}
-.psection{margin-top:18px}
-.psection h3{color:#111;border-bottom:1px solid #777;padding-bottom:5px}
-.pquestion{margin:12px 0}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:7px 15px}
-.answerline{height:25px;border-bottom:1px dotted #888}
-.signatures{display:flex;justify-content:space-between;gap:30px;margin-top:60px}
-.signatures div{border-top:1px solid #111;text-align:center;padding-top:7px;flex:1}
-.note{font-size:13px;color:#64748b}
-@media(max-width:550px){.grid{grid-template-columns:1fr}.paper{padding:15px;min-height:700px}}
-@media print{
-body{background:white}
-header,.no-print,main>.card:not(.print-card){display:none!important}
-main{padding:0;margin:0;max-width:none}
-#preview{background:white;padding:0;overflow:visible}
-.paper{max-width:none;min-height:0;padding:0}
-@page{size:A4;margin:15mm}
-.pquestion{break-inside:avoid}
+@font-face {
+  font-family: Jameel;
+  src: url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');
+  font-display: swap;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #edf2f7;
+  color: #172033;
+  font-family: Arial, sans-serif;
+}
+header {
+  background: #075985;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+header h2 { margin: 0 0 5px; }
+main { max-width: 1000px; margin: auto; padding: 12px; }
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 7px #00000010;
+}
+h3 { color: #075985; margin-top: 0; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 7px 0;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  background: white;
+  color: #172033;
+}
+textarea { min-height: 65px; resize: vertical; }
+button {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #075985;
+  color: white;
+  margin: 3px;
+  cursor: pointer;
+}
+.green { background: #15803d; }
+.red { background: #b91c1c; }
+.gray { background: #475569; }
+.light { background: #e0f2fe; color: #075985; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 3px; }
+.note { color: #64748b; font-size: 13px; }
+.section {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 12px;
+}
+.question {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.qhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#preview {
+  background: #dbe4ee;
+  padding: 10px;
+  overflow: auto;
+}
+.paper {
+  background: white;
+  color: #111;
+  max-width: 794px;
+  min-height: 1050px;
+  margin: auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+.paper.urdu {
+  font-family: Jameel, serif;
+  direction: rtl;
+}
+.paper.urdu .paperhead,
+.paper.urdu .info,
+.paper.urdu .psection {
+  font-family: Jameel, serif;
+}
+.paperhead {
+  text-align: center;
+  border-bottom: 2px solid #111;
+  padding-bottom: 12px;
+}
+.paperhead h2 { margin: 6px 0; }
+.paperhead h3 { color: #111; margin: 6px 0; }
+.logo {
+  max-width: 75px;
+  max-height: 75px;
+  object-fit: contain;
+}
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 18px;
+  margin: 14px 0;
+}
+.info div {
+  padding: 5px 0;
+  border-bottom: 1px dotted #777;
+}
+.instructions {
+  border: 1px solid #777;
+  padding: 8px;
+  margin: 12px 0;
+}
+.psection { margin-top: 18px; }
+.psection h3 {
+  color: #111;
+  border-bottom: 1px solid #777;
+  padding-bottom: 5px;
+}
+.pquestion { margin: 13px 0; }
+.opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin: 8px 15px;
+}
+.answerline {
+  height: 27px;
+  border-bottom: 1px dotted #888;
+}
+.signatures {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 70px;
+}
+.signatures div {
+  flex: 1;
+  border-top: 1px solid #111;
+  text-align: center;
+  padding-top: 8px;
+}
+@media(max-width:550px) {
+  .grid { grid-template-columns: 1fr; }
+  .paper { padding: 15px; min-height: 700px; }
+}
+@media print {
+  body { background: white; }
+  header, .no-print, main > .card:not(.print-card) {
+    display: none !important;
+  }
+  main { padding: 0; margin: 0; max-width: none; }
+  #preview { background: white; padding: 0; overflow: visible; }
+  .paper {
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .pquestion { break-inside: avoid; }
+  @page { size: A4; margin: 15mm; }
 }
 </style>
 </head>
+
 <body>
 <header>
-<h2>The Risen High School</h2>
-<div>Paper Maker — پیپر بنانے کا آسان طریقہ</div>
+  <h2>The Risen High School</h2>
+  <div>Paper Maker — پیپر بنانے کا آسان طریقہ</div>
 </header>
 
 <main>
-<div class="card no-print">
-<div class="toolbar">
-<button onclick="setLang('ur')">اردو</button>
-<button onclick="setLang('en')">English</button>
-<button class="green" onclick="savePaper()">Save Paper / محفوظ کریں</button>
-<button class="gray" onclick="loadPaper()">Load Paper / کھولیں</button>
-<button onclick="window.print()">Print / PDF</button>
-<button class="red" onclick="clearPaper()">نیا پیپر</button>
-</div>
-<p class="note">سوالات جس ترتیب سے شامل کریں گے، پیپر میں بھی اسی ترتیب سے آئیں گے۔</p>
-</div>
+  <div class="card no-print">
+    <div class="toolbar">
+      <button onclick="setLang('ur')">اردو</button>
+      <button onclick="setLang('en')">English</button>
+      <button class="green" onclick="savePaper()">پیپر محفوظ کریں / Save</button>
+      <button class="gray" onclick="loadPaper()">محفوظ پیپر کھولیں / Load</button>
+      <button onclick="window.print()">Print / PDF</button>
+      <button class="red" onclick="clearPaper()">نیا پیپر / Clear</button>
+    </div>
+    <p class="note">سوالات جس ترتیب سے شامل کریں گے، پیپر میں بھی اسی ترتیب سے آئیں گے۔</p>
+  </div>
 
-<div class="card no-print">
-<h3>پیپر کی معلومات / Paper Details</h3>
-<div class="grid">
-<div><label>اسکول کا نام</label><input id="school" value="The Risen High School" oninput="update()"></div>
-<div><label>امتحان / Exam</label><input id="exam" placeholder="Monthly Test" oninput="update()"></div>
-<div><label>کلاس / Class</label>
-<select id="cls" onchange="update()">
-<option>Playgroup</option><option>Nursery</option><option>Prep</option>
-<option>1st Class</option><option>2nd Class</option><option>3rd Class</option>
-<option>4th Class</option><option>5th Class</option><option>6th Class</option>
-<option>7th Class</option><option>8th Class</option><option>9th Class</option>
-<option>10th Class</option><option>FA Part 1</option><option>FA Part 2</option>
-</select></div>
-<div><label>مضمون / Subject</label><input id="subject" placeholder="Mathematics / ریاضی" oninput="update()"></div>
-<div><label>تاریخ / Date</label><input id="date" type="date" oninput="update()"></div>
-<div><label>وقت / Time</label><input id="time" placeholder="2 Hours" oninput="update()"></div>
-<div><label>کل نمبر / Total Marks</label><input id="marks" type="number" oninput="update()"></div>
-<div><label>پاسنگ نمبر / Passing Marks</label><input id="passing" type="number" oninput="update()"></div>
-<div><label>طالب علم کا نام</label><input id="student" oninput="update()"></div>
-<div><label>رول نمبر</label><input id="roll" oninput="update()"></div>
-<div><label>استاد کا نام / Teacher</label><input id="teacher" oninput="update()"></div>
-<div><label>اسکول کا لوگو</label><input type="file" accept="image/*" onchange="uploadLogo(event)">
-<button class="red" onclick="removeLogo()">لوگو ہٹائیں</button></div>
-</div>
-</div>
+  <div class="card no-print">
+    <h3>پیپر کی معلومات / Paper Details</h3>
+    <div class="grid">
+      <div>
+        <label>اسکول کا نام / School Name</label>
+        <input id="school" value="The Risen High School" oninput="update()">
+      </div>
+      <div>
+        <label>امتحان / Exam</label>
+        <input id="exam" placeholder="ماہانہ امتحان / Monthly Test" oninput="update()">
+      </div>
+      <div>
+        <label>کلاس / Class</label>
+        <select id="cls" onchange="update()">
+          <option>Playgroup</option><option>Nursery</option><option>Prep</option>
+          <option>1st Class</option><option>2nd Class</option>
+          <option>3rd Class</option><option>4th Class</option>
+          <option>5th Class</option><option>6th Class</option>
+          <option>7th Class</option><option>8th Class</option>
+          <option>9th Class</option><option>10th Class</option>
+          <option>FA Part 1</option><option>FA Part 2</option>
+        </select>
+      </div>
+      <div>
+        <label>مضمون / Subject</label>
+        <input id="subject" placeholder="ریاضی / Mathematics" oninput="update()">
+      </div>
+      <div>
+        <label>تاریخ / Date</label>
+        <input id="date" type="date" oninput="update()">
+      </div>
+      <div>
+        <label>وقت / Time</label>
+        <input id="time" placeholder="2 Hours" oninput="update()">
+      </div>
+      <div>
+        <label>کل نمبر / Total Marks</label>
+        <input id="marks" type="number" min="0" oninput="update()">
+      </div>
+      <div>
+        <label>پاسنگ نمبر / Passing Marks</label>
+        <input id="passing" type="number" min="0" oninput="update()">
+      </div>
+      <div>
+        <label>طالب علم کا نام / Student Name</label>
+        <input id="student" oninput="update()">
+      </div>
+      <div>
+        <label>رول نمبر / Roll Number</label>
+        <input id="roll" oninput="update()">
+      </div>
+      <div>
+        <label>استاد کا نام / Teacher Name</label>
+        <input id="teacher" oninput="update()">
+      </div>
+      <div>
+        <label>اسکول کا لوگو / School Logo</label>
+        <input id="logoInput" type="file" accept="image/*" onchange="uploadLogo(event)">
+        <button class="red" onclick="removeLogo()">لوگو ہٹائیں</button>
+      </div>
+    </div>
+  </div>
 
-<div class="card no-print">
-<h3>سوالات کے حصے شامل کریں / Add Sections</h3>
-<div class="toolbar">
-<button onclick="addSection('mcq')">MCQs</button>
-<button onclick="addSection('short')">مختصر سوالات</button>
-<button onclick="addSection('long')">تفصیلی سوالات</button>
-<button onclick="addSection('fill')">خالی جگہیں</button>
-<button onclick="addSection('tf')">درست / غلط</button>
-</div>
-<div id="sections"></div>
-</div>
+  <div class="card no-print">
+    <h3>سوالات کے حصے / Question Sections</h3>
+    <div class="toolbar">
+      <button onclick="addSection('mcq')">MCQs</button>
+      <button onclick="addSection('short')">مختصر سوالات / Short</button>
+      <button onclick="addSection('long')">تفصیلی سوالات / Long</button>
+      <button onclick="addSection('fill')">خالی جگہیں / Fill Blanks</button>
+      <button onclick="addSection('tf')">درست یا غلط / True-False</button>
+    </div>
+    <p class="note">اوپر نیچے کے بٹنوں سے حصوں کی ترتیب تبدیل کر سکتے ہیں۔</p>
+    <div id="sections"></div>
+  </div>
 
-<div class="card no-print">
-<h3>ریاضی کی علامات / Math Symbols</h3>
-<p class="note">پہلے سوال کے متن والے خانے پر ٹیپ کریں، پھر علامت دبائیں۔</p>
-<div id="mathbar" class="toolbar"></div>
-</div>
+  <div class="card no-print">
+    <h3>ریاضی کی علامات / Math Symbols</h3>
+    <p class="note">پہلے سوال کے متن والے خانے پر ٹیپ کریں، پھر علامت دبائیں۔</p>
+    <div id="mathbar" class="toolbar"></div>
+  </div>
 
-<div class="card print-card">
-<h3 class="no-print">پیپر کا پری ویو / Paper Preview</h3>
-<div id="preview">
-<div class="paper" id="paper">
-<div class="paperhead">
-<img id="plogo" class="logo" style="display:none" alt="School Logo">
-<h2 id="pschool">The Risen High School</h2>
-<h3 id="pexam">امتحان</h3>
-<div id="psubject"></div>
-</div>
-<div class="info" id="pinfo"></div>
-<div id="pquestions">ابھی کوئی سوال شامل نہیں کیا گیا۔</div>
-<div class="signatures">
-<div>دستخط استاد / Teacher Signature</div>
-<div>دستخط پرنسپل / Principal Signature</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="card print-card">
+    <h3 class="no-print">مکمل پیپر کا پری ویو / Paper Preview</h3>
+    <div id="preview">
+      <div class="paper urdu" id="paper">
+        <div class="paperhead">
+          <img id="plogo" class="logo" style="display:none" alt="School Logo">
+          <h2 id="pschool">The Risen High School</h2>
+          <h3 id="pexam">امتحان</h3>
+          <div id="psubject">مضمون</div>
+        </div>
+        <div class="info" id="pinfo"></div>
+        <div class="instructions" id="pinstructions">
+          ہدایات: تمام سوالات غور سے پڑھیں اور صاف لکھائی میں جواب دیں۔
+        </div>
+        <div id="pquestions">ابھی کوئی سوال شامل نہیں کیا گیا۔</div>
+        <div class="signatures">
+          <div>دستخط استاد / Teacher Signature</div>
+          <div>دستخط پرنسپل / Principal Signature</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <script>
-let lang='ur',logo='',active=null,sectionNo=0;
-const names={
-mcq:{ur:'کثیر الانتخابی سوالات (MCQs)',en:'Multiple Choice Questions'},
-short:{ur:'مختصر سوالات',en:'Short Questions'},
-long:{ur:'تفصیلی سوالات',en:'Long Questions'},
-fill:{ur:'خالی جگہیں پُر کریں',en:'Fill in the Blanks'},
-tf:{ur:'درست یا غلط',en:'True / False'}
+let lang = 'ur';
+let logo = '';
+let active = null;
+let sectionNo = 0;
+
+const names = {
+  mcq:{ur:'کثیر الانتخابی سوالات (MCQs)',en:'Multiple Choice Questions (MCQs)'},
+  short:{ur:'مختصر سوالات',en:'Short Questions'},
+  long:{ur:'تفصیلی سوالات',en:'Long Questions'},
+  fill:{ur:'خالی جگہیں پُر کریں',en:'Fill in the Blanks'},
+  tf:{ur:'درست یا غلط',en:'True / False'}
 };
-const symbols=['x²','x³','√( )','∛( )','π','θ','α','β','∞','≠','≤','≥','±','×','÷','∑','∠','°','¼','½','¾','+','−','=','( )'];
-document.getElementById('mathbar').innerHTML=symbols.map(s=>'<button class="light" onclick="insertSymbol('+JSON.stringify(s)+')">'+s+'</button>').join('');
 
-function setLang(v){lang=v;document.getElementById('paper').classList.toggle('urdu',v==='ur');update()}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function val(id){return document.getElementById(id).value.trim()}
-function uploadLogo(e){
- const f=e.target.files[0];if(!f)return;
- const r=new FileReader();r.onload=()=>{logo=r.result;update()};r.readAsDataURL(f)
-}
-function removeLogo(){logo='';document.getElementById('plogo').style.display='none';document.getElementById('logoInput')?.value;update()}
+const symbols = [
+  'x²','x³','√( )','∛( )','π','θ','α','β','∞','≠',
+  '≤','≥','±','×','÷','∑','∠','°','¼','½','¾','+','−','=','( )'
+];
 
-function addSection(type,questions){
- let box=[...document.querySelectorAll('.section')].find(x=>x.dataset.type===type);
- if(!box){
-  box=document.createElement('div');box.className='section';box.dataset.type=type;box.dataset.order=sectionNo++;
-  box.innerHTML='<div class="qhead"><strong>'+names[type][lang]+'</strong><div>'+
-   '<button onclick="addQuestion(this.closest(\'.section\'),\''+type+'\')">+ سوال</button>'+
-   '<button class="gray" onclick="moveSection(this,-1)">↑</button>'+
-   '<button class="gray" onclick="moveSection(this,1)">↓</button>'+
-   '<button class="red" onclick="this.closest(\'.section\').remove();update()">حذف حصہ</button></div></div><div class="questions"></div>';
-  document.getElementById('sections').appendChild(box)
- }
- if(questions&&questions.length)questions.forEach(q=>addQuestion(box,type,q));
- else addQuestion(box,type);
- update()
+document.getElementById('mathbar').innerHTML = symbols.map(s =>
+  '<button type="button" class="light" onclick="insertSymbol('+JSON.stringify(s)+')">'+s+'</button>'
+).join('');
+
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[c]));
 }
-function addQuestion(box,type,d={}){
- const q=document.createElement('div');q.className='question';
- let extra='';
- if(type==='mcq'){
-  let opts=d.options||['','','',''];
-  extra='<div class="grid">'+opts.map((o,i)=>'<div><label>Option '+String.fromCharCode(65+i)+'</label><input class="opt" value="'+esc(o)+'" oninput="update()"></div>').join('')+'</div>'
- }
- if(type==='tf')extra='<label>اختیار</label><select><option>درست / True</option><option>غلط / False</option></select>';
- q.innerHTML='<div class="qhead"><strong>سوال / Question</strong><button class="red" onclick="let s=this.closest(\'.section\');this.closest(\'.question\').remove();if(!s.querySelector(\'.question\'))s.remove();update()">حذف</button></div>'+
- '<label>سوال کا متن / Question Text</label><textarea class="qtext" placeholder="یہاں سوال لکھیں..." onfocus="active=this" oninput="update()">'+esc(d.text||'')+'</textarea>'+
- extra+'<label>نمبر / Marks</label><input class="qmarks" type="number" min="0" value="'+esc(d.marks||'')+'" oninput="update()">'+
- (type==='long'?'<label>جواب کی لائنیں</label><select class="lines" onchange="update()">'+[2,3,4,5,6,8,10].map(n=>'<option '+(Number(d.lines||4)===n?'selected':'')+'>'+n+'</option>').join('')+'</select>':'');
- box.querySelector('.questions').appendChild(q);update()
+
+function val(id) {
+  return document.getElementById(id).value.trim();
 }
-function moveSection(b,dir){
- const s=b.closest('.section');
- if(dir<0&&s.previousElementSibling)s.parentNode.insertBefore(s,s.previousElementSibling);
- if(dir>0&&s.nextElementSibling)s.parentNode.insertBefore(s.nextElementSibling,s);
- update()
+
+function setLang(v) {
+  lang = v;
+  document.getElementById('paper').classList.toggle('urdu', v === 'ur');
+  document.getElementById('pinstructions').textContent =
+    v === 'ur'
+      ? 'ہدایات: تمام سوالات غور سے پڑھیں اور صاف لکھائی میں جواب دیں۔'
+      : 'Instructions: Read all questions carefully and write your answers neatly.';
+  update();
 }
-function insertSymbol(s){
- if(!active){alert('پہلے سوال کے متن والے خانے پر ٹیپ کریں۔');return}
- const a=active.selectionStart,b=active.selectionEnd;
- active.setRangeText(s,a,b,'end');active.focus();update()
+
+function uploadLogo(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    logo = reader.result;
+    update();
+  };
+  reader.readAsDataURL(file);
 }
-function update(){
- document.getElementById('pschool').textContent=val('school')||'The Risen High School';
- document.getElementById('pexam').textContent=val('exam')||(lang==='ur'?'امتحان':'Examination');
- document.getElementById('psubject').textContent=val('subject');
- const im=document.getElementById('plogo');
- if(logo){im.src=logo;im.style.display='inline-block'}else im.style.display='none';
- const labels=lang==='ur'?['کلاس','تاریخ','وقت','کل نمبر','پاسنگ نمبر','طالب علم','رول نمبر','استاد']:['Class','Date','Time','Total Marks','Passing Marks','Student','Roll No.','Teacher'];
- const vals=[val('cls'),val('date'),val('time'),val('marks'),val('passing'),val('student'),val('roll'),val('teacher')];
- document.getElementById('pinfo').innerHTML=vals.map((v,i)=>v?'<div><b>'+labels[i]+':</b> '+esc(v)+'</div>':'').join('');
- let html='';
- document.querySelectorAll('#sections .section').forEach(s=>{
-  const type=s.dataset.type,qs=s.querySelectorAll('.question');if(!qs.length)return;
-  html+='<div class="psection"><h3>'+names[type][lang]+'</h3>';
-  qs.forEach((q,i)=>{
-   let t=q.querySelector('.qtext').value,m=q.querySelector('.qmarks').value;
-   html+='<div class="pquestion"><div><b>'+(i+1)+'.</b> '+esc(t).replace(/\n/g,'<br>')+(m?' <b>('+esc(m)+' '+(lang==='ur'?'نمبر':'Marks')+')</b>':'')+'</div>';
-   if(type==='mcq')html+='<div class="opts">'+[...q.querySelectorAll('.opt')].map((o,j)=>'<div>'+String.fromCharCode(65+j)+'. '+esc(o.value)+'</div>').join('')+'</div>';
-   if(type==='tf')html+='<p>☐ درست / True　　☐ غلط / False</p>';
-   if(type==='fill')html+='<div class="answerline"></div>';
-   if(type==='short')html+='<div class="answerline"></div>';
-   if(type==='long')html+=Array.from({length:Number(q.querySelector('.lines').value)},()=>'<div class="answerline"></div>').join('');
-   html+='</div>'
+
+function removeLogo() {
+  logo = '';
+  document.getElementById('logoInput').value = '';
+  update();
+}
+
+function addSection(type, savedQuestions) {
+  let box = [...document.querySelectorAll('.section')]
+    .find(el => el.dataset.type === type);
+
+  if (!box) {
+    box = document.createElement('div');
+    box.className = 'section';
+    box.dataset.type = type;
+    box.dataset.order = sectionNo++;
+
+    box.innerHTML =
+      '<div class="qhead"><strong>'+names[type][lang]+'</strong><div>'+
+      '<button onclick="addQuestion(this.closest(\'.section\'),\''+type+'\')">+ سوال</button>'+
+      '<button class="gray" onclick="moveSection(this,-1)">↑</button>'+
+      '<button class="gray" onclick="moveSection(this,1)">↓</button>'+
+      '<button class="red" onclick="this.closest(\'.section\').remove();update()">حذف حصہ</button>'+
+      '</div></div><div class="questions"></div>';
+
+    document.getElementById('sections').appendChild(box);
+  }
+
+  if (savedQuestions && savedQuestions.length) {
+    savedQuestions.forEach(q => addQuestion(box, type, q));
+  } else {
+    addQuestion(box, type);
+  }
+  update();
+}
+
+function addQuestion(box, type, data = {}) {
+  const q = document.createElement('div');
+  q.className = 'question';
+
+  let extra = '';
+
+  if (type === 'mcq') {
+    const options = data.options || ['', '', '', ''];
+    extra = '<div class="grid">'+options.map((o,i) =>
+      '<div><label>Option '+String.fromCharCode(65+i)+'</label>'+
+      '<input class="opt" value="'+esc(o)+'" oninput="update()"></div>'
+    ).join('')+'</div>';
+  }
+
+  if (type === 'tf') {
+    extra = '<p>☐ درست / True　　☐ غلط / False</p>';
+  }
+
+  q.innerHTML =
+    '<div class="qhead"><strong>سوال / Question</strong>'+
+    '<button class="red" onclick="removeQuestion(this)">حذف سوال</button></div>'+
+    '<label>سوال کا متن / Question Text</label>'+
+    '<textarea class="qtext" placeholder="یہاں سوال لکھیں..." onfocus="active=this" oninput="update()">'+
+    esc(data.text || '')+'</textarea>'+
+    extra+
+    '<label>نمبر / Marks</label>'+
+    '<input class="qmarks" type="number" min="0" value="'+esc(data.marks || '')+'" oninput="update()">'+
+    (type === 'long'
+      ? '<label>جواب کے لیے لائنیں</label><select class="lines" onchange="update()">'+
+        [2,3,4,5,6,8,10].map(n =>
+          '<option value="'+n+'" '+(Number(data.lines || 4) === n ? 'selected' : '')+'>'+n+'</option>'
+        ).join('')+'</select>'
+      : '');
+
+  box.querySelector('.questions').appendChild(q);
+  update();
+}
+
+function removeQuestion(button) {
+  const section = button.closest('.section');
+  button.closest('.question').remove();
+  if (!section.querySelector('.question')) section.remove();
+  update();
+}
+
+function moveSection(button, dir) {
+  const s = button.closest('.section');
+  if (dir < 0 && s.previousElementSibling) {
+    s.parentNode.insertBefore(s, s.previousElementSibling);
+  } else if (dir > 0 && s.nextElementSibling) {
+    s.parentNode.insertBefore(s.nextElementSibling, s);
+  }
+  update();
+}
+
+function insertSymbol(symbol) {
+  if (!active) {
+    alert('پہلے سوال کے متن والے خانے پر ٹیپ کریں۔');
+    return;
+  }
+  const start = active.selectionStart ?? active.value.length;
+  const end = active.selectionEnd ?? active.value.length;
+  active.setRangeText(symbol, start, end, 'end');
+  active.focus();
+  update();
+}
+
+function update() {
+  document.getElementById('pschool').textContent =
+    val('school') || 'The Risen High School';
+  document.getElementById('pexam').textContent =
+    val('exam') || (lang === 'ur' ? 'امتحان' : 'Examination');
+  document.getElementById('psubject').textContent =
+    (lang === 'ur' ? 'مضمون: ' : 'Subject: ') + (val('subject') || '____________');
+
+  const img = document.getElementById('plogo');
+  if (logo) {
+    img.src = logo;
+    img.style.display = 'inline-block';
+  } else {
+    img.style.display = 'none';
+  }
+
+  const fields = [
+    [lang==='ur'?'طالب علم کا نام':'Student Name', val('student')],
+    [lang==='ur'?'رول نمبر':'Roll Number', val('roll')],
+    [lang==='ur'?'کلاس':'Class', val('cls')],
+    [lang==='ur'?'استاد کا نام':'Teacher Name', val('teacher')],
+    [lang==='ur'?'تاریخ':'Date', val('date')],
+    [lang==='ur'?'وقت':'Time', val('time')],
+    [lang==='ur'?'کل نمبر':'Total Marks', val('marks')],
+    [lang==='ur'?'پاسنگ نمبر':'Passing Marks', val('passing')]
+  ];
+
+  document.getElementById('pinfo').innerHTML = fields.map(([label,value]) =>
+    '<div><b>'+esc(label)+':</b> '+esc(value || '____________')+'</div>'
+  ).join('');
+
+  let html = '';
+
+  document.querySelectorAll('#sections .section').forEach(section => {
+    const type = section.dataset.type;
+    const questions = section.querySelectorAll('.question');
+    if (!questions.length) return;
+
+    html += '<div class="psection"><h3>'+esc(names[type][lang])+'</h3>';
+
+    questions.forEach((q,i) => {
+      const text = q.querySelector('.qtext').value;
+      const marks = q.querySelector('.qmarks').value;
+
+      html += '<div class="pquestion"><div><b>'+(i+1)+'.</b> '+
+        esc(text).replace(/\n/g,'<br>')+
+        (marks ? ' <b>('+esc(marks)+' '+(lang==='ur'?'نمبر':'Marks')+')</b>' : '')+
+        '</div>';
+
+      if (type === 'mcq') {
+        html += '<div class="opts">'+
+          [...q.querySelectorAll('.opt')].map((o,j) =>
+            '<div>'+String.fromCharCode(65+j)+'. '+esc(o.value)+'</div>'
+          ).join('')+'</div>';
+      }
+
+      if (type === 'tf') {
+        html += '<p>☐ True / درست　　☐ False / غلط</p>';
+      }
+
+      if (type === 'short' || type === 'fill') {
+        html += '<div class="answerline"></div>';
+      }
+
+      if (type === 'long') {
+        const n = Number(q.querySelector('.lines').value);
+        html += Array.from({length:n}, () => '<div class="answerline"></div>').join('');
+      }
+
+      html += '</div>';
+    });
+
+    html += '</div>';
   });
-  html+='</div>'
- });
- document.getElementById('pquestions').innerHTML=html||'<p>ابھی کوئی سوال شامل نہیں کیا گیا۔</p>'
+
+  document.getElementById('pquestions').innerHTML =
+    html || '<p>ابھی کوئی سوال شامل نہیں کیا گیا۔</p>';
 }
-function collect(){
- const fields={};['school','exam','cls','subject','date','time','marks','passing','student','roll','teacher'].forEach(id=>fields[id]=document.getElementById(id).value);
- const sections=[...document.querySelectorAll('#sections .section')].map(s=>({type:s.dataset.type,questions:[...s.querySelectorAll('.question')].map(q=>({text:q.querySelector('.qtext').value,marks:q.querySelector('.qmarks').value,options:[...q.querySelectorAll('.opt')].map(o=>o.value),lines:q.querySelector('.lines')?.value||4}))}));
- return {fields,sections,logo,lang}
+
+function collectPaper() {
+  const fields = {};
+  ['school','exam','cls','subject','date','time','marks','passing','student','roll','teacher']
+    .forEach(id => fields[id] = document.getElementById(id).value);
+
+  const sections = [...document.querySelectorAll('#sections .section')].map(s => ({
+    type: s.dataset.type,
+    questions: [...s.querySelectorAll('.question')].map(q => ({
+      text: q.querySelector('.qtext').value,
+      marks: q.querySelector('.qmarks').value,
+      options: [...q.querySelectorAll('.opt')].map(o => o.value),
+      lines: q.querySelector('.lines')?.value || 4
+    }))
+  }));
+
+  return {fields, sections, logo, lang};
 }
-function savePaper(){
- const name=prompt('پیپر کا نام لکھیں / Paper name:',val('subject')||'My Paper');if(name===null)return;
- try{
-  const a=JSON.parse(localStorage.getItem('risenPaperMaker')||'[]');
-  a.unshift({name,date:new Date().toLocaleDateString(),data:collect()});
-  localStorage.setItem('risenPaperMaker',JSON.stringify(a.slice(0,30)));
-  alert('پیپر محفوظ ہوگیا۔ / Paper saved.')
- }catch(e){alert('اسٹوریج بھر گئی ہے۔ لوگو ہٹا کر کوشش کریں۔')}
+
+function savePaper() {
+  const name = prompt('پیپر کا نام لکھیں / Paper Name:', val('subject') || 'My Paper');
+  if (name === null) return;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem('risenPaperMaker') || '[]');
+    saved.unshift({
+      name,
+      date: new Date().toLocaleDateString(),
+      data: collectPaper()
+    });
+    localStorage.setItem('risenPaperMaker', JSON.stringify(saved.slice(0,30)));
+    alert('پیپر محفوظ ہوگیا / Paper saved successfully.');
+  } catch (e) {
+    alert('اسٹوریج بھر گئی ہے۔ لوگو ہٹا کر دوبارہ کوشش کریں۔');
+  }
 }
-function loadPaper(){
- const a=JSON.parse(localStorage.getItem('risenPaperMaker')||'[]');
- if(!a.length){alert('کوئی محفوظ پیپر نہیں۔');return}
- const s=a.map((x,i)=>(i+1)+'. '+x.name+' ('+x.date+')').join('\n');
- const n=prompt('پیپر کا نمبر لکھیں:\n'+s,'1');if(n===null)return;
- const p=a[Number(n)-1];if(!p){alert('غلط نمبر');return}
- const d=p.data;
- Object.entries(d.fields).forEach(([k,v])=>{if(document.getElementById(k))document.getElementById(k).value=v});
- logo=d.logo||'';lang=d.lang||'ur';document.getElementById('sections').innerHTML='';sectionNo=0;
- d.sections.forEach(s=>addSection(s.type,s.questions));update()
+
+function loadPaper() {
+  const saved = JSON.parse(localStorage.getItem('risenPaperMaker') || '[]');
+  if (!saved.length) {
+    alert('کوئی محفوظ پیپر موجود نہیں۔');
+    return;
+  }
+
+  const list = saved.map((p,i) =>
+    (i+1)+'. '+p.name+' ('+p.date+')'
+  ).join('\n');
+
+  const choice = prompt('پیپر کا نمبر لکھیں:\n'+list, '1');
+  if (choice === null) return;
+
+  const item = saved[Number(choice)-1];
+  if (!item) {
+    alert('غلط نمبر۔');
+    return;
+  }
+
+  const data = item.data;
+  Object.entries(data.fields).forEach(([id,value]) => {
+    if (document.getElementById(id)) {
+      document.getElementById(id).value = value;
+    }
+  });
+
+  logo = data.logo || '';
+  lang = data.lang || 'ur';
+  document.getElementById('sections').innerHTML = '';
+  sectionNo = 0;
+
+  data.sections.forEach(s => addSection(s.type, s.questions));
+  setLang(lang);
+  update();
 }
-function clearPaper(){
- if(!confirm('نیا پیپر شروع کریں؟'))return;
- ['exam','subject','date','time','marks','passing','student','roll','teacher'].forEach(id=>document.getElementById(id).value='');
- document.getElementById('sections').innerHTML='';document.getElementById('cls').selectedIndex=0;
- logo='';sectionNo=0;update()
+
+function clearPaper() {
+  if (!confirm('کیا نیا پیپر شروع کرنا ہے؟')) return;
+
+  ['exam','subject','date','time','marks','passing','student','roll','teacher']
+    .forEach(id => document.getElementById(id).value = '');
+
+  document.getElementById('cls').selectedIndex = 0;
+  document.getElementById('sections').innerHTML = '';
+  document.getElementById('logoInput').value = '';
+  logo = '';
+  sectionNo = 0;
+  update();
 }
-update();
+
+setLang('ur');
 </script>
 </body>
 </html>
