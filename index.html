@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
@@ -201,6 +202,7 @@ textarea { min-height: 65px; resize: vertical; }
   box-shadow: 0 3px 15px #0002;
 }
 
+/* Header: only the outer border */
 .paper-header {
   border: 2px solid #111;
   text-align: center;
@@ -214,20 +216,21 @@ textarea { min-height: 65px; resize: vertical; }
   font-weight: 900;
   direction: ltr;
   padding: 4px;
-  border-bottom: 1px solid #111;
   overflow-wrap: anywhere;
+  border: none;
 }
 
 .preview-exam {
   font-size: 21px;
   font-weight: bold;
   padding: 4px;
-  border-bottom: 1px solid #111;
+  border: none;
 }
 
 .preview-subject {
   font-size: 17px;
   padding: 4px;
+  border: none;
 }
 
 .preview-meta {
@@ -291,6 +294,7 @@ textarea { min-height: 65px; resize: vertical; }
   grid-template-columns: 1fr 1fr;
   font-size: 14px;
   margin-top: 3px;
+  direction: ltr;
 }
 
 .q-row {
@@ -369,7 +373,11 @@ textarea { min-height: 65px; resize: vertical; }
 
 @media print {
   body * { visibility: hidden !important; }
-  #paperPreview, #paperPreview * { visibility: visible !important; }
+
+  #paperPreview, #paperPreview * {
+    visibility: visible !important;
+  }
+
   #paperPreview {
     position: absolute !important;
     left: 0 !important;
@@ -377,7 +385,11 @@ textarea { min-height: 65px; resize: vertical; }
     margin: 0 !important;
     box-shadow: none !important;
   }
-  .a4 { margin: 0 !important; box-shadow: none !important; }
+
+  .a4 {
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
 }
 </style>
 
@@ -576,11 +588,18 @@ let editingPaperId = null;
 
 const words = {
   ur: {
-    exam: 'امتحان', cls: 'جماعت', subject: 'مضمون',
-    chapter: 'باب / ٹاپک', date: 'تاریخ', time: 'وقت',
-    marks: 'کل نمبر', teacher: 'استاد',
-    student: 'طالب علم کا نام', roll: 'رول نمبر',
-    section: 'سیکشن', name: 'نام',
+    exam: 'امتحان',
+    cls: 'جماعت',
+    subject: 'مضمون',
+    chapter: 'باب / ٹاپک',
+    date: 'تاریخ',
+    time: 'وقت',
+    marks: 'کل نمبر',
+    teacher: 'استاد',
+    student: 'طالب علم کا نام',
+    roll: 'رول نمبر',
+    section: 'سیکشن',
+    name: 'نام',
     mcq: 'حصہ اوّل: کثیر الانتخابی سوالات',
     short: 'حصہ دوم: مختصر سوالات',
     long: 'حصہ سوم: تفصیلی سوالات',
@@ -588,11 +607,18 @@ const words = {
     tf: 'درست / غلط'
   },
   en: {
-    exam: 'Exam', cls: 'Class', subject: 'Subject',
-    chapter: 'Chapter / Topic', date: 'Date', time: 'Time',
-    marks: 'Total Marks', teacher: 'Teacher',
-    student: 'Student Name', roll: 'Roll No',
-    section: 'Section', name: 'Name',
+    exam: 'Exam',
+    cls: 'Class',
+    subject: 'Subject',
+    chapter: 'Chapter / Topic',
+    date: 'Date',
+    time: 'Time',
+    marks: 'Total Marks',
+    teacher: 'Teacher',
+    student: 'Student Name',
+    roll: 'Roll No',
+    section: 'Section',
+    name: 'Name',
     mcq: 'Section I: Multiple Choice Questions',
     short: 'Section II: Short Questions',
     long: 'Section III: Long Questions',
@@ -607,8 +633,11 @@ function lang() {
 
 function escapeHTML(value) {
   return String(value ?? '').replace(/[&<>"']/g, c => ({
-    '&':'&amp;', '<':'&lt;', '>':'&gt;',
-    '"':'&quot;', "'":'&#39;'
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
   }[c]));
 }
 
@@ -645,16 +674,23 @@ function addFill(data = {}) {
 }
 
 function addTF(data = {}) {
-  tfs.push({ statement: data.statement || '', answer: data.answer || '' });
+  tfs.push({
+    statement: data.statement || '',
+    answer: data.answer || ''
+  });
   renderTF();
   updatePaper();
 }
 
 function deleteItem(type, index) {
   const lists = {
-    mcq: mcqs, short: shorts, long: longs,
-    fill: fills, tf: tfs
+    mcq: mcqs,
+    short: shorts,
+    long: longs,
+    fill: fills,
+    tf: tfs
   };
+
   lists[type].splice(index, 1);
 
   if (type === 'mcq') renderMCQs();
@@ -673,14 +709,20 @@ function renderMCQs() {
         <strong>MCQ ${i + 1}</strong>
         <button class="btn red" onclick="deleteItem('mcq',${i})">Delete</button>
       </div>
-      <textarea class="urdu-input" placeholder="سوال لکھیں"
+
+      <textarea class="urdu-input"
+        placeholder="سوال لکھیں"
         oninput="mcqs[${i}].question=this.value;updatePaper()">${escapeHTML(m.question)}</textarea>
+
       <div class="mcq-options">
         ${m.options.map((op, j) => `
-          <input class="urdu-input" placeholder="Option ${'ABCD'[j]}"
-          value="${escapeHTML(op)}"
-          oninput="mcqs[${i}].options[${j}]=this.value;updatePaper()">`).join('')}
+          <input class="urdu-input"
+            placeholder="Option ${'ABCD'[j]}"
+            value="${escapeHTML(op)}"
+            oninput="mcqs[${i}].options[${j}]=this.value;updatePaper()">
+        `).join('')}
       </div>
+
       <div class="field">
         <label>Correct Answer</label>
         <select onchange="mcqs[${i}].answer=this.value;updatePaper()">
@@ -701,8 +743,10 @@ function renderShorts() {
         <strong>Short Question ${i + 1}</strong>
         <button class="btn red" onclick="deleteItem('short',${i})">Delete</button>
       </div>
-      <textarea class="urdu-input" placeholder="مختصر سوال لکھیں"
-      oninput="shorts[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
+
+      <textarea class="urdu-input"
+        placeholder="مختصر سوال لکھیں"
+        oninput="shorts[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
     </div>
   `).join('');
 }
@@ -714,8 +758,10 @@ function renderLongs() {
         <strong>Long Question ${i + 1}</strong>
         <button class="btn red" onclick="deleteItem('long',${i})">Delete</button>
       </div>
-      <textarea class="urdu-input" placeholder="تفصیلی سوال لکھیں"
-      oninput="longs[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
+
+      <textarea class="urdu-input"
+        placeholder="تفصیلی سوال لکھیں"
+        oninput="longs[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
     </div>
   `).join('');
 }
@@ -727,8 +773,10 @@ function renderFills() {
         <strong>Fill Blank ${i + 1}</strong>
         <button class="btn red" onclick="deleteItem('fill',${i})">Delete</button>
       </div>
-      <textarea class="urdu-input" placeholder="خالی جگہ والا سوال لکھیں"
-      oninput="fills[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
+
+      <textarea class="urdu-input"
+        placeholder="خالی جگہ والا سوال لکھیں"
+        oninput="fills[${i}].question=this.value;updatePaper()">${escapeHTML(o.question)}</textarea>
     </div>
   `).join('');
 }
@@ -740,8 +788,11 @@ function renderTF() {
         <strong>Statement ${i + 1}</strong>
         <button class="btn red" onclick="deleteItem('tf',${i})">Delete</button>
       </div>
-      <textarea class="urdu-input" placeholder="جملہ لکھیں"
-      oninput="tfs[${i}].statement=this.value;updatePaper()">${escapeHTML(o.statement)}</textarea>
+
+      <textarea class="urdu-input"
+        placeholder="جملہ لکھیں"
+        oninput="tfs[${i}].statement=this.value;updatePaper()">${escapeHTML(o.statement)}</textarea>
+
       <select onchange="tfs[${i}].answer=this.value;updatePaper()">
         <option value="">Correct answer</option>
         <option value="true" ${o.answer==='true'?'selected':''}>True / درست</option>
@@ -756,124 +807,178 @@ function updatePaper() {
   const get = id => $(id).value.trim();
 
   let dateText = get('paperDate');
+
   if (dateText) {
     const d = new Date(dateText + 'T00:00:00');
     dateText = d.toLocaleDateString('en-GB');
   }
 
+  /* Header labels remain English for BOTH languages */
   let html = `
     <div class="paper-header">
       ${logoData ? `<img class="logo-preview" src="${logoData}">` : ''}
-      <div class="preview-school">${escapeHTML(get('schoolName') || 'The Risen High School')}</div>
-      <div class="preview-exam">${escapeHTML(get('examName') || w.exam)}</div>
-      <div class="preview-subject">${escapeHTML(get('paperSubject'))}</div>
-      ${get('paperChapter') ? `<div>${escapeHTML(get('paperChapter'))}</div>` : ''}
+
+      <div class="preview-school">
+        ${escapeHTML(get('schoolName') || 'The Risen High School')}
+      </div>
+
+      <div class="preview-exam">
+        ${escapeHTML(get('examName') || 'Examination')}
+      </div>
+
+      <div class="preview-subject">
+        Subject: ${escapeHTML(get('paperSubject'))}
+      </div>
+
+      ${get('paperChapter') ? `
+        <div>Chapter / Topic: ${escapeHTML(get('paperChapter'))}</div>
+      ` : ''}
+
       <div class="preview-meta">
-        <div class="meta-cell">${w.cls}: ${escapeHTML(get('paperClass'))}</div>
-        <div class="meta-cell">${w.time}: ${escapeHTML(get('paperTime'))}</div>
-        <div class="meta-cell">${w.marks}: ${escapeHTML(get('totalMarks'))}</div>
-        <div class="meta-cell">${w.date}: ${escapeHTML(dateText)}</div>
-        <div class="meta-cell">${w.teacher}: ${escapeHTML(get('teacherName'))}</div>
-        <div class="meta-cell">${escapeHTML(get('schoolName') || 'The Risen High School')}</div>
+        <div class="meta-cell">Class: ${escapeHTML(get('paperClass'))}</div>
+        <div class="meta-cell">Time: ${escapeHTML(get('paperTime'))}</div>
+        <div class="meta-cell">Total Marks: ${escapeHTML(get('totalMarks'))}</div>
+        <div class="meta-cell">Date: ${escapeHTML(dateText)}</div>
+        <div class="meta-cell">Teacher: ${escapeHTML(get('teacherName'))}</div>
+        <div class="meta-cell">School: ${escapeHTML(get('schoolName') || 'The Risen High School')}</div>
       </div>
     </div>
 
     <div class="student-row">
-      <div class="student-cell">${w.name}: ${escapeHTML(get('studentName'))}</div>
-      <div class="student-cell">${w.roll}: ${escapeHTML(get('rollNumber'))}</div>
-      <div class="student-cell">${w.section}: ${escapeHTML(get('sectionName'))}</div>
-      <div class="student-cell">${lang()==='en'?'Marks':'نمبر'}: ______</div>
+      <div class="student-cell">Name: ${escapeHTML(get('studentName'))}</div>
+      <div class="student-cell">Roll No: ${escapeHTML(get('rollNumber'))}</div>
+      <div class="student-cell">Section: ${escapeHTML(get('sectionName'))}</div>
+      <div class="student-cell">Marks Obtained: ______</div>
     </div>
   `;
 
   if (mcqs.length) {
-    html += `<div class="paper-section">
-      <div class="paper-section-title">${w.mcq}</div>
-      <div class="mcq-preview">`;
+    html += `
+      <div class="paper-section">
+        <div class="paper-section-title">${w.mcq}</div>
+        <div class="mcq-preview">
+    `;
 
     mcqs.forEach((m, i) => {
-      html += `<div class="mcq-preview-item">
-        <div><strong>${i + 1}.</strong> ${formatText(m.question)}</div>
-        <div class="mcq-options-preview">
-          ${m.options.map((o, j) => `
-            <div>${lang()==='en'?'('+ 'ABCD'[j] +')':'('+ 'ا ب پ ت'.split(' ')[j] +')'}
-            ${formatText(o)}</div>
-          `).join('')}
+      html += `
+        <div class="mcq-preview-item">
+          <div>
+            <strong>${i + 1}.</strong>
+            ${formatText(m.question)}
+          </div>
+
+          <div class="mcq-options-preview">
+            ${m.options.map((o, j) => `
+              <div>(${ 'ABCD'[j] }) ${formatText(o)}</div>
+            `).join('')}
+          </div>
         </div>
-      </div>`;
+      `;
     });
 
     html += `</div></div>`;
   }
 
   if (shorts.length) {
-    html += `<div class="paper-section">
-      <div class="paper-section-title">${w.short}</div>`;
+    html += `
+      <div class="paper-section">
+        <div class="paper-section-title">${w.short}</div>
+    `;
 
     shorts.forEach((o, i) => {
-      html += `<div class="q-row"><div class="q-number">${i+1}.</div>
-      <div>${formatText(o.question)}</div></div>`;
+      html += `
+        <div class="q-row">
+          <div class="q-number">${i + 1}.</div>
+          <div>${formatText(o.question)}</div>
+        </div>
+      `;
     });
 
     html += `</div>`;
   }
 
   if (longs.length) {
-    html += `<div class="paper-section">
-      <div class="paper-section-title">${w.long}</div>`;
+    html += `
+      <div class="paper-section">
+        <div class="paper-section-title">${w.long}</div>
+    `;
 
     longs.forEach((o, i) => {
-      html += `<div class="long-answer">
-        <div><strong>${i+1}.</strong> ${formatText(o.question)}</div>
-        <div class="answer-lines"></div>
-      </div>`;
+      html += `
+        <div class="long-answer">
+          <div>
+            <strong>${i + 1}.</strong>
+            ${formatText(o.question)}
+          </div>
+          <div class="answer-lines"></div>
+        </div>
+      `;
     });
 
     html += `</div>`;
   }
 
   if (fills.length) {
-    html += `<div class="paper-section">
-      <div class="paper-section-title">${w.fill}</div>`;
+    html += `
+      <div class="paper-section">
+        <div class="paper-section-title">${w.fill}</div>
+    `;
 
     fills.forEach((o, i) => {
-      html += `<div class="fill-row">${i+1}. ${formatText(o.question)}</div>`;
+      html += `
+        <div class="fill-row">
+          ${i + 1}. ${formatText(o.question)}
+        </div>
+      `;
     });
 
     html += `</div>`;
   }
 
   if (tfs.length) {
-    html += `<div class="paper-section">
-      <div class="paper-section-title">${w.tf}</div>`;
+    html += `
+      <div class="paper-section">
+        <div class="paper-section-title">${w.tf}</div>
+    `;
 
     tfs.forEach((o, i) => {
-      html += `<div class="truefalse">
-        <div>${i+1}. ${formatText(o.statement)}</div>
-        <div>☐ ${lang()==='en'?'True':'درست'} &nbsp; ☐ ${lang()==='en'?'False':'غلط'}</div>
-      </div>`;
+      html += `
+        <div class="truefalse">
+          <div>${i + 1}. ${formatText(o.statement)}</div>
+          <div>
+            ☐ True &nbsp; ☐ False
+          </div>
+        </div>
+      `;
     });
 
     html += `</div>`;
   }
 
   if (!mcqs.length && !shorts.length && !longs.length && !fills.length && !tfs.length) {
-    html += `<div style="padding:45px;text-align:center">
-      ${lang()==='en'?'Add questions to create your paper.':'سوال شامل کریں، آپ کا پرچہ یہاں نظر آئے گا۔'}
-    </div>`;
+    html += `
+      <div style="padding:45px;text-align:center">
+        ${lang()==='en'
+          ? 'Add questions to create your paper.'
+          : 'سوال شامل کریں، آپ کا پرچہ یہاں نظر آئے گا۔'}
+      </div>
+    `;
   }
 
-  html += `<div class="paper-footer">
-    <span>${escapeHTML(get('schoolName'))}</span>
-    <span>${w.teacher}: ${escapeHTML(get('teacherName'))}</span>
-    <span>Signature: __________</span>
-  </div>`;
+  html += `
+    <div class="paper-footer">
+      <span>${escapeHTML(get('schoolName'))}</span>
+      <span>Teacher: ${escapeHTML(get('teacherName'))}</span>
+      <span>Signature: __________</span>
+    </div>
+  `;
 
   $('paperPreview').innerHTML = html;
 }
 
 function changeLanguage() {
   const w = words[lang()];
+
   $('lblExam').textContent = w.exam;
   $('lblClass').textContent = w.cls;
   $('lblSubject').textContent = w.subject;
@@ -888,12 +993,14 @@ function changeLanguage() {
 
   document.documentElement.lang = lang();
   document.documentElement.dir = lang()==='ur' ? 'rtl' : 'ltr';
+
   updatePaper();
 }
 
 function insertSymbol(symbol) {
   const active = document.activeElement;
   const inputs = ['paperSubject','paperChapter','examName'];
+
   let target = inputs.includes(active.id) ? active : null;
 
   if (!target) {
@@ -907,10 +1014,16 @@ function insertSymbol(symbol) {
 
   const start = target.selectionStart ?? target.value.length;
   const end = target.selectionEnd ?? target.value.length;
-  target.value = target.value.slice(0,start) + symbol + target.value.slice(end);
+
+  target.value =
+    target.value.slice(0, start) +
+    symbol +
+    target.value.slice(end);
+
   target.focus();
   target.selectionStart = target.selectionEnd = start + symbol.length;
-  target.dispatchEvent(new Event('input',{bubbles:true}));
+
+  target.dispatchEvent(new Event('input', {bubbles:true}));
 }
 
 function uploadLogo(event) {
@@ -924,11 +1037,13 @@ function uploadLogo(event) {
   }
 
   const reader = new FileReader();
+
   reader.onload = e => {
     logoData = e.target.result;
     updatePaper();
     autoSave();
   };
+
   reader.readAsDataURL(file);
 }
 
@@ -966,7 +1081,9 @@ function loadFormData(d) {
   ];
 
   ids.forEach(id => {
-    if (d[id] !== undefined) $(id).value = d[id];
+    if (d[id] !== undefined) {
+      $(id).value = d[id];
+    }
   });
 
   mcqs = d.mcqs || [];
@@ -1002,6 +1119,7 @@ function savePaper() {
   if (title === null) return;
 
   const saved = getSavedPapers();
+
   const paper = {
     id: Date.now().toString(),
     title,
@@ -1025,7 +1143,8 @@ function renderSavedPapers() {
   const saved = getSavedPapers();
 
   if (!saved.length) {
-    $('savedPapersList').innerHTML = '<p>ابھی کوئی پرچہ محفوظ نہیں ہے۔</p>';
+    $('savedPapersList').innerHTML =
+      '<p>ابھی کوئی پرچہ محفوظ نہیں ہے۔</p>';
     return;
   }
 
@@ -1058,7 +1177,10 @@ function deleteSavedPaper(id) {
 
 function saveDraft() {
   try {
-    localStorage.setItem('risenPaperMakerDraft', JSON.stringify(getFormData()));
+    localStorage.setItem(
+      'risenPaperMakerDraft',
+      JSON.stringify(getFormData())
+    );
     alert('Draft محفوظ ہوگیا۔');
   } catch(e) {
     alert('Draft محفوظ نہیں ہوسکا۔ لوگو کا سائز کم کرکے کوشش کریں۔');
@@ -1068,6 +1190,7 @@ function saveDraft() {
 function loadDraft() {
   try {
     const data = localStorage.getItem('risenPaperMakerDraft');
+
     if (!data) {
       alert('کوئی Draft موجود نہیں۔');
       return;
@@ -1102,6 +1225,7 @@ function clearAll() {
 function showTab(tab) {
   $('paperSection').classList.toggle('hidden', tab !== 'paper');
   $('savedSection').classList.toggle('hidden', tab !== 'saved');
+
   $('paperTab').classList.toggle('active', tab === 'paper');
   $('savedTab').classList.toggle('active', tab === 'saved');
 
@@ -1122,7 +1246,9 @@ async function downloadPaper() {
   }
 
   try {
-    if (document.fonts?.ready) await document.fonts.ready;
+    if (document.fonts?.ready) {
+      await document.fonts.ready;
+    }
 
     const canvas = await html2canvas($('paperPreview'), {
       scale: 2,
@@ -1143,6 +1269,7 @@ let autoTimer;
 
 function autoSave() {
   clearTimeout(autoTimer);
+
   autoTimer = setTimeout(() => {
     try {
       localStorage.setItem(
