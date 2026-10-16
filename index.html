@@ -1,648 +1,696 @@
-
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="ur" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#075985">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Risen High School Paper Maker</title>
-
 <style>
-@font-face {
-  font-family: Jameel;
-  src: url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');
-  font-display: swap;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #edf2f7;
-  color: #172033;
-  font-family: Arial, sans-serif;
-}
-header {
-  background: #075985;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
-header h2 { margin: 0 0 5px; }
-main { max-width: 1000px; margin: auto; padding: 12px; }
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 7px #00000010;
-}
-h3 { color: #075985; margin-top: 0; }
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-label {
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 7px 0;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  font-size: 15px;
-  background: white;
-  color: #172033;
-}
-textarea { min-height: 65px; resize: vertical; }
-button {
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 6px;
-  background: #075985;
-  color: white;
-  margin: 3px;
-  cursor: pointer;
-}
-.green { background: #15803d; }
-.red { background: #b91c1c; }
-.gray { background: #475569; }
-.light { background: #e0f2fe; color: #075985; }
-.toolbar { display: flex; flex-wrap: wrap; gap: 3px; }
-.note { color: #64748b; font-size: 13px; }
-.section {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 12px;
-}
-.question {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 7px;
-  padding: 10px;
-  margin: 10px 0;
-}
-.qhead {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-#preview {
-  background: #dbe4ee;
-  padding: 10px;
-  overflow: auto;
-}
-.paper {
-  background: white;
-  color: #111;
-  max-width: 794px;
-  min-height: 1050px;
-  margin: auto;
-  padding: 30px;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-}
-.paper.urdu {
-  font-family: Jameel, serif;
-  direction: rtl;
-}
-.paper.urdu .paperhead,
-.paper.urdu .info,
-.paper.urdu .psection {
-  font-family: Jameel, serif;
-}
-.paperhead {
-  text-align: center;
-  border-bottom: 2px solid #111;
-  padding-bottom: 12px;
-}
-.paperhead h2 { margin: 6px 0; }
-.paperhead h3 { color: #111; margin: 6px 0; }
-.logo {
-  max-width: 75px;
-  max-height: 75px;
-  object-fit: contain;
-}
-.info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px 18px;
-  margin: 14px 0;
-}
-.info div {
-  padding: 5px 0;
-  border-bottom: 1px dotted #777;
-}
-.instructions {
-  border: 1px solid #777;
-  padding: 8px;
-  margin: 12px 0;
-}
-.psection { margin-top: 18px; }
-.psection h3 {
-  color: #111;
-  border-bottom: 1px solid #777;
-  padding-bottom: 5px;
-}
-.pquestion { margin: 13px 0; }
-.opts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px;
-  margin: 8px 15px;
-}
-.answerline {
-  height: 27px;
-  border-bottom: 1px dotted #888;
-}
-.signatures {
-  display: flex;
-  justify-content: space-between;
-  gap: 35px;
-  margin-top: 70px;
-}
-.signatures div {
-  flex: 1;
-  border-top: 1px solid #111;
-  text-align: center;
-  padding-top: 8px;
-}
-@media(max-width:550px) {
-  .grid { grid-template-columns: 1fr; }
-  .paper { padding: 15px; min-height: 700px; }
-}
-@media print {
-  body { background: white; }
-  header, .no-print, main > .card:not(.print-card) {
-    display: none !important;
-  }
-  main { padding: 0; margin: 0; max-width: none; }
-  #preview { background: white; padding: 0; overflow: visible; }
-  .paper {
-    max-width: none;
-    min-height: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-  .pquestion { break-inside: avoid; }
-  @page { size: A4; margin: 15mm; }
-}
+@font-face{font-family:Jameel;src:url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');font-display:swap}
+:root{--primary:#1457d9;--primary2:#0b3d91;--secondary:#eef4ff;--success:#138a4b;--danger:#d93636;--warning:#e69b00;--dark:#172033;--muted:#6b7280;--border:#d9e0eb;--bg:#f3f6fb;--shadow:0 8px 30px rgba(0,0,0,.08)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--dark);font-family:Jameel,'Noto Nastaliq Urdu','Segoe UI',Arial,sans-serif}input,select,textarea,button{font-family:'Segoe UI',Arial,sans-serif}button{cursor:pointer}.urdu-input{font-family:Jameel,'Noto Nastaliq Urdu',serif!important;direction:rtl;text-align:right;font-size:18px}.topbar{background:linear-gradient(135deg,#0b3d91,#1457d9,#2879ef);color:#fff;padding:18px 20px;box-shadow:0 4px 20px #0002}.topbar-inner{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:15px}.logo-box{width:60px;height:60px;border-radius:15px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:3px solid #ffffffb3;flex:none}.logo-box img{width:100%;height:100%;object-fit:contain}.logo-placeholder{color:#1457d9;font-size:26px;font-weight:900}.brand h1{margin:0;font-size:25px}.brand p{margin:4px 0 0;opacity:.9;font-size:14px}.header-buttons{display:flex;flex-wrap:wrap;gap:8px}.header-buttons button{border:0;border-radius:9px;padding:10px 13px;background:#ffffff29;color:#fff;font-weight:bold}.main{max-width:1500px;margin:auto;padding:20px}.tabs{display:flex;gap:10px;margin-bottom:20px;background:#fff;padding:8px;border-radius:14px;box-shadow:var(--shadow)}.tab{flex:1;border:0;padding:14px;border-radius:10px;background:#f1f4f9;color:#394150;font-size:17px;font-weight:bold}.tab.active{background:var(--primary);color:white}.workspace{display:grid;grid-template-columns:minmax(330px,520px) minmax(500px,1fr);gap:20px;align-items:start}.panel{background:white;border-radius:16px;box-shadow:var(--shadow);padding:18px}.panel-title{margin:0 0 15px;font-size:22px;color:var(--primary2);border-bottom:2px solid var(--secondary);padding-bottom:10px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:12px}.form-group.full{grid-column:1/-1}.form-group label{display:block;font-weight:bold;margin-bottom:5px}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:9px;padding:10px 12px;font-size:15px;outline:none;background:white}textarea{min-height:80px;resize:vertical}.section-box{margin-top:18px;border:1px solid var(--border);border-radius:12px;overflow:hidden}.section-head{background:#f5f8fd;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border)}.section-head h3{margin:0;color:var(--primary2);font-size:18px}.add-btn{background:var(--success);color:#fff;border:0;border-radius:8px;padding:8px 12px;font-weight:bold}.items{padding:10px}.item{border:1px solid #e1e6ef;border-radius:10px;padding:12px;margin-bottom:10px;background:#fff}.item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:10px}.item-number{font-weight:bold;color:var(--primary)}.remove-btn{border:0;background:#fff0f0;color:var(--danger);padding:6px 9px;border-radius:7px;font-weight:bold}.mcq-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.option-wrap{display:flex;gap:6px;align-items:center}.option-letter{width:27px;height:27px;border-radius:50%;background:#eaf1ff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:bold;flex:none}.correct-answer-box{margin-top:10px;padding:9px;background:#f3fbf6;border:1px solid #c9ead6;border-radius:9px}.correct-answer-title{font-weight:bold;color:var(--success);margin-bottom:7px}.answer-choice-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}.answer-choice{display:flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid #dfe8e2;border-radius:7px;cursor:pointer;background:white}.answer-choice input{width:auto;margin:0;accent-color:var(--success)}.answer-choice.selected{background:#e9f8ef;border-color:var(--success);font-weight:bold}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:15px;border-top:1px solid var(--border)}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:bold;font-size:14px}.btn-primary{background:var(--primary);color:white}.btn-success{background:var(--success);color:white}.btn-danger{background:var(--danger);color:white}.btn-secondary{background:#e9eef6;color:#273449}.btn-warning{background:#fff2cc;color:#825f00}.preview-panel{position:sticky;top:10px}
+  .preview-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.preview-tools h2{margin:0;color:var(--primary2)}.paper-stage{background:#dce2eb;padding:25px 10px;border-radius:12px;overflow:auto;min-height:500px}.a4{width:210mm;min-height:297mm;background:#fff;margin:0 auto;padding:14mm;color:#111;box-shadow:0 5px 25px #0002;position:relative;font-family:Jameel,'Noto Nastaliq Urdu',serif}.paper-header{text-align:center;border-bottom:2px solid #111;padding-bottom:7px;margin-bottom:8px}.preview-school{font-family:'Segoe UI',Arial,sans-serif;font-weight:900;font-size:22px;direction:ltr}.preview-exam{font-size:21px;font-weight:bold}.preview-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-family:'Segoe UI',Arial,sans-serif;direction:ltr;font-size:12px;margin-top:7px}.meta-cell{border:1px solid #111;padding:4px 5px;min-height:25px}.student-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;direction:ltr;margin:8px 0;border:1px solid #111}.student-cell{min-height:29px;padding:5px;border-right:1px solid #111;font-family:'Segoe UI',Arial,sans-serif;font-size:12px}.student-cell:last-child{border-right:0}.paper-section{margin-top:13px}.paper-section-title{font-size:18px;font-weight:bold;border-bottom:1px solid #111;padding-bottom:2px;margin-bottom:5px}.mcq-preview{display:grid;grid-template-columns:1fr 1fr;gap:7px 20px}.mcq-preview-item{break-inside:avoid}.mcq-options-preview{display:grid;grid-template-columns:1fr 1fr;font-size:14px;margin-top:2px}.q-row{display:flex;gap:7px;margin-bottom:8px;line-height:1.8;break-inside:avoid}.q-number{font-weight:bold;min-width:25px}.long-answer{margin-bottom:12px;break-inside:avoid}.answer-lines{height:65px;margin-top:4px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 22px,#999 23px)}.fill-row{margin-bottom:8px;line-height:1.8}.truefalse{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:7px}.tf-options{font-family:'Segoe UI',Arial,sans-serif;white-space:nowrap}.paper-footer{position:absolute;bottom:7mm;left:14mm;right:14mm;border-top:1px solid #555;padding-top:3px;display:flex;justify-content:space-between;font-family:'Segoe UI',Arial,sans-serif;font-size:10px}.hidden{display:none!important}.empty-message{text-align:center;color:#888;padding:20px}.saved-card{border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:12px;background:#fff;box-shadow:0 3px 12px #0000000d}.saved-card-title{font-size:20px;font-weight:bold;color:var(--primary2);margin-bottom:6px}.saved-card-info{color:#555;line-height:1.8;font-size:15px;margin-bottom:10px}.saved-card-actions{display:flex;flex-wrap:wrap;gap:8px}.math-toolbar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;padding:9px;background:#f5f8fd;border:1px solid var(--border);border-radius:9px}.math-toolbar button{border:1px solid #cbd7eb;background:white;border-radius:6px;padding:7px 10px;font-size:16px;min-width:38px}.math-toolbar button:active{background:#dce8ff}.lang-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}.lang-row select{max-width:180px}.signature-note{font-size:12px;color:#555}@media(max-width:1000px){.workspace{grid-template-columns:1fr}.preview-panel{position:relative;top:auto}}@media(max-width:650px){.main{padding:10px}.topbar-inner{flex-direction:column}.brand{justify-content:center;text-align:center}.tabs{flex-direction:column}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}.mcq-options{grid-template-columns:1fr}.answer-choice-row{grid-template-columns:1fr}.preview-tools{flex-direction:column;align-items:stretch}.paper-stage{padding:10px 0}.header-buttons{justify-content:center}.header-buttons button{flex:1;min-width:100px}.saved-card-actions{flex-direction:column}.saved-card-actions .btn{width:100%}}@page{size:A4;margin:0}@media print{body *{visibility:hidden!important}#printArea,#printArea *{visibility:visible!important}#printArea{position:absolute!important;left:0!important;top:0!important;width:100%!important;display:block!important}.a4{box-shadow:none!important;margin:0 auto!important}.topbar.no-print{display:none!important}.main.no-print{display:block!important}}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
-
 <body>
-<header>
-  <h2>The Risen High School</h2>
-  <div>Paper Maker — پیپر بنانے کا آسان طریقہ</div>
+<header class="topbar no-print">
+<div class="topbar-inner">
+<div class="brand">
+<div class="logo-box">
+<img id="headerLogo" class="hidden" alt="School Logo">
+<div id="logoPlaceholder" class="logo-placeholder">R</div>
+</div>
+<div><h1>The Risen High School</h1><p>Paper Maker</p></div>
+</div>
+<div class="header-buttons">
+<button onclick="savePaper()">📄 Save Paper</button>
+<button onclick="saveDraft()">💾 Save Draft</button>
+<button onclick="loadDraft()">📂 Load Draft</button>
+<button onclick="clearAll()">🗑 Clear</button>
+<button onclick="printDocument()">🖨 Print / PDF</button>
+</div>
+</div>
 </header>
+<main class="main no-print">
+<div class="tabs">
+<button class="tab active" id="paperTab" onclick="showTab('paper')">📄 Paper Maker</button>
+<button class="tab" id="savedPapersTab" onclick="showTab('savedPapers')">💾 Saved Papers</button>
+</div>
 
-<main>
-  <div class="card no-print">
-    <div class="toolbar">
-      <button onclick="setLang('ur')">اردو</button>
-      <button onclick="setLang('en')">English</button>
-      <button class="green" onclick="savePaper()">پیپر محفوظ کریں / Save</button>
-      <button class="gray" onclick="loadPaper()">محفوظ پیپر کھولیں / Load</button>
-      <button onclick="window.print()">Print / PDF</button>
-      <button class="red" onclick="clearPaper()">نیا پیپر / Clear</button>
-    </div>
-    <p class="note">سوالات جس ترتیب سے شامل کریں گے، پیپر میں بھی اسی ترتیب سے آئیں گے۔</p>
-  </div>
+<section id="paperSection">
+<div class="workspace">
+<div class="panel">
+<h2 class="panel-title">📄 Paper Settings</h2>
+<div class="lang-row">
+<label for="paperLanguage"><b>Paper Language / پرچے کی زبان</b></label>
+<select id="paperLanguage" onchange="changeLanguage()">
+<option value="ur">اردو</option>
+<option value="en">English</option>
+</select>
+</div>
 
-  <div class="card no-print">
-    <h3>پیپر کی معلومات / Paper Details</h3>
-    <div class="grid">
-      <div>
-        <label>اسکول کا نام / School Name</label>
-        <input id="school" value="The Risen High School" oninput="update()">
-      </div>
-      <div>
-        <label>امتحان / Exam</label>
-        <input id="exam" placeholder="ماہانہ امتحان / Monthly Test" oninput="update()">
-      </div>
-      <div>
-        <label>کلاس / Class</label>
-        <select id="cls" onchange="update()">
-          <option>Playgroup</option><option>Nursery</option><option>Prep</option>
-          <option>1st Class</option><option>2nd Class</option>
-          <option>3rd Class</option><option>4th Class</option>
-          <option>5th Class</option><option>6th Class</option>
-          <option>7th Class</option><option>8th Class</option>
-          <option>9th Class</option><option>10th Class</option>
-          <option>FA Part 1</option><option>FA Part 2</option>
-        </select>
-      </div>
-      <div>
-        <label>مضمون / Subject</label>
-        <input id="subject" placeholder="ریاضی / Mathematics" oninput="update()">
-      </div>
-      <div>
-        <label>تاریخ / Date</label>
-        <input id="date" type="date" oninput="update()">
-      </div>
-      <div>
-        <label>وقت / Time</label>
-        <input id="time" placeholder="2 Hours" oninput="update()">
-      </div>
-      <div>
-        <label>کل نمبر / Total Marks</label>
-        <input id="marks" type="number" min="0" oninput="update()">
-      </div>
-      <div>
-        <label>پاسنگ نمبر / Passing Marks</label>
-        <input id="passing" type="number" min="0" oninput="update()">
-      </div>
-      <div>
-        <label>طالب علم کا نام / Student Name</label>
-        <input id="student" oninput="update()">
-      </div>
-      <div>
-        <label>رول نمبر / Roll Number</label>
-        <input id="roll" oninput="update()">
-      </div>
-      <div>
-        <label>استاد کا نام / Teacher Name</label>
-        <input id="teacher" oninput="update()">
-      </div>
-      <div>
-        <label>اسکول کا لوگو / School Logo</label>
-        <input id="logoInput" type="file" accept="image/*" onchange="uploadLogo(event)">
-        <button class="red" onclick="removeLogo()">لوگو ہٹائیں</button>
-      </div>
-    </div>
-  </div>
+<div class="form-grid">
+<div class="form-group full">
+<label data-ur="اسکول کا نام" data-en="School Name">اسکول کا نام</label>
+<input id="schoolName" value="The Risen High School" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="امتحان / ٹیسٹ" data-en="Exam / Test">امتحان / ٹیسٹ</label>
+<input id="examName" value="Monthly Test" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="جماعت" data-en="Class">جماعت</label>
+<select id="paperClass" onchange="updatePaper()">
+<option>Playgroup</option><option>Nursery</option><option>Prep</option>
+<option>1st</option><option>2nd</option><option>3rd</option>
+<option>4th</option><option>5th</option><option>6th</option>
+<option>7th</option><option>8th</option><option selected>9th</option>
+<option>10th</option><option>11th / FA Part 1</option>
+<option>12th / FA Part 2</option>
+</select>
+</div>
+<div class="form-group">
+<label data-ur="مضمون" data-en="Subject">مضمون</label>
+<input id="paperSubject" class="urdu-input" placeholder="مثلاً طبیعیات" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="باب / یونٹ" data-en="Chapter / Unit">باب / یونٹ</label>
+<input id="paperChapter" placeholder="Chapter 1" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="تاریخ" data-en="Date">تاریخ</label>
+<input type="date" id="paperDate" onchange="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="وقت" data-en="Time">وقت</label>
+<input id="paperTime" value="2 Hours" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="کل نمبر" data-en="Total Marks">کل نمبر</label>
+<input type="number" id="totalMarks" value="50" oninput="updatePaper()">
+</div>
+</div>
 
-  <div class="card no-print">
-    <h3>سوالات کے حصے / Question Sections</h3>
-    <div class="toolbar">
-      <button onclick="addSection('mcq')">MCQs</button>
-      <button onclick="addSection('short')">مختصر سوالات / Short</button>
-      <button onclick="addSection('long')">تفصیلی سوالات / Long</button>
-      <button onclick="addSection('fill')">خالی جگہیں / Fill Blanks</button>
-      <button onclick="addSection('tf')">درست یا غلط / True-False</button>
-    </div>
-    <p class="note">اوپر نیچے کے بٹنوں سے حصوں کی ترتیب تبدیل کر سکتے ہیں۔</p>
-    <div id="sections"></div>
-  </div>
+<div class="section-box">
+<div class="section-head">
+<h3>👨‍🎓 Student Information / طالب علم کی معلومات</h3>
+</div>
+<div class="items">
+<div class="form-grid">
+<div class="form-group">
+<label data-ur="طالب علم کا نام" data-en="Student Name">طالب علم کا نام</label>
+<input id="studentName" class="urdu-input" placeholder="نام طالب علم" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="رول نمبر" data-en="Roll Number">رول نمبر</label>
+<input id="rollNumber" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="سیکشن" data-en="Section">سیکشن</label>
+<input id="sectionName" oninput="updatePaper()">
+</div>
+<div class="form-group">
+<label data-ur="استاد" data-en="Teacher">استاد</label>
+<input id="teacherName" value="Sir Rana Faisal" oninput="updatePaper()">
+</div>
+</div>
+</div>
+</div>
 
-  <div class="card no-print">
-    <h3>ریاضی کی علامات / Math Symbols</h3>
-    <p class="note">پہلے سوال کے متن والے خانے پر ٹیپ کریں، پھر علامت دبائیں۔</p>
-    <div id="mathbar" class="toolbar"></div>
-  </div>
+<div class="section-box">
+<div class="section-head"><h3>🏫 School Logo</h3></div>
+<div class="items">
+<input type="file" id="logoUpload" accept="image/*" onchange="uploadLogo(event)">
+</div>
+</div>
 
-  <div class="card print-card">
-    <h3 class="no-print">مکمل پیپر کا پری ویو / Paper Preview</h3>
-    <div id="preview">
-      <div class="paper urdu" id="paper">
-        <div class="paperhead">
-          <img id="plogo" class="logo" style="display:none" alt="School Logo">
-          <h2 id="pschool">The Risen High School</h2>
-          <h3 id="pexam">امتحان</h3>
-          <div id="psubject">مضمون</div>
-        </div>
-        <div class="info" id="pinfo"></div>
-        <div class="instructions" id="pinstructions">
-          ہدایات: تمام سوالات غور سے پڑھیں اور صاف لکھائی میں جواب دیں۔
-        </div>
-        <div id="pquestions">ابھی کوئی سوال شامل نہیں کیا گیا۔</div>
-        <div class="signatures">
-          <div>دستخط استاد / Teacher Signature</div>
-          <div>دستخط پرنسپل / Principal Signature</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section-box">
+<div class="section-head">
+<h3 id="mcqHeading">① کثیر الانتخابی سوالات (MCQs)</h3>
+<button class="add-btn" onclick="addMCQ()" id="addMcqBtn">+ MCQ شامل کریں</button>
+</div>
+<div class="items">
+<div class="math-toolbar" aria-label="Math symbols">
+<button onclick="insertSymbol('+')">+</button>
+<button onclick="insertSymbol('−')">−</button>
+<button onclick="insertSymbol('×')">×</button>
+<button onclick="insertSymbol('÷')">÷</button>
+<button onclick="insertSymbol('=')">=</button>
+<button onclick="insertSymbol('≠')">≠</button>
+<button onclick="insertSymbol('≤')">≤</button>
+<button onclick="insertSymbol('≥')">≥</button>
+<button onclick="insertSymbol('±')">±</button>
+<button onclick="insertSymbol('√')">√</button>
+<button onclick="insertSymbol('∛')">∛</button>
+<button onclick="insertSymbol('π')">π</button>
+<button onclick="insertSymbol('θ')">θ</button>
+<button onclick="insertSymbol('∞')">∞</button>
+<button onclick="insertSymbol('²')">x²</button>
+<button onclick="insertSymbol('³')">x³</button>
+<button onclick="insertSymbol('ⁿ')">xⁿ</button>
+<button onclick="insertSymbol('½')">½</button>
+<button onclick="insertSymbol('¼')">¼</button>
+<button onclick="insertSymbol('¾')">¾</button>
+<button onclick="insertSymbol('∑')">∑</button>
+<button onclick="insertSymbol('∫')">∫</button>
+<button onclick="insertSymbol('°')">°</button>
+<button onclick="insertSymbol('∠')">∠</button>
+<button onclick="insertSymbol('α')">α</button>
+<button onclick="insertSymbol('β')">β</button>
+<button onclick="insertSymbol('Δ')">Δ</button>
+<button onclick="insertSymbol('μ')">μ</button>
+</div>
+<div id="mcqItems"></div>
+</div>
+</div>
+
+<div class="section-box">
+<div class="section-head">
+<h3 id="shortHeading">② مختصر سوالات</h3>
+<button class="add-btn" onclick="addShort()" id="addShortBtn">+ سوال شامل کریں</button>
+</div>
+<div class="items"><div id="shortItems"></div></div>
+</div>
+
+<div class="section-box">
+<div class="section-head">
+<h3 id="longHeading">③ تفصیلی سوالات</h3>
+<button class="add-btn" onclick="addLong()" id="addLongBtn">+ سوال شامل کریں</button>
+</div>
+<div class="items"><div id="longItems"></div></div>
+</div>
+
+<div class="section-box">
+<div class="section-head">
+<h3 id="fillHeading">④ خالی جگہیں پُر کریں</h3>
+<button class="add-btn" onclick="addFill()" id="addFillBtn">+ سوال شامل کریں</button>
+</div>
+<div class="items"><div id="fillItems"></div></div>
+</div>
+
+<div class="section-box">
+<div class="section-head">
+<h3 id="tfHeading">⑤ درست / غلط</h3>
+<button class="add-btn" onclick="addTF()" id="addTfBtn">+ سوال شامل کریں</button>
+</div>
+<div class="items"><div id="tfItems"></div></div>
+</div>
+
+<div class="toolbar">
+<button class="btn btn-primary" onclick="savePaper()">💾 Save Paper</button>
+<button class="btn btn-success" onclick="saveDraft()">Save Draft</button>
+<button class="btn btn-secondary" onclick="loadDraft()">Load Draft</button>
+<button class="btn btn-warning" onclick="downloadPaper()">Download PNG</button>
+<button class="btn btn-primary" onclick="printDocument()">Print / PDF</button>
+<button class="btn btn-danger" onclick="clearAll()">Clear All</button>
+</div>
+</div>
+
+<div class="panel preview-panel">
+<div class="preview-tools">
+<h2>Paper Preview / پیپر کا نمونہ</h2>
+<button class="btn btn-secondary" onclick="updatePaper()">🔄 Refresh</button>
+</div>
+<div class="paper-stage" id="printArea">
+<div class="a4" id="paperPreview"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="savedPapersSection" class="panel hidden">
+<h2 class="panel-title">💾 Saved Papers</h2>
+<div id="savedPapersList"></div>
+</section>
 </main>
+  <script>
+let mcqs=[],shorts=[],longs=[],fills=[],tfs=[];
+let logoData='',editingPaperId=null,lastFocused=null;
 
-<script>
-let lang = 'ur';
-let logo = '';
-let active = null;
-let sectionNo = 0;
+const $=id=>document.getElementById(id);
+const lang=()=> $('paperLanguage').value;
 
-const names = {
-  mcq:{ur:'کثیر الانتخابی سوالات (MCQs)',en:'Multiple Choice Questions (MCQs)'},
-  short:{ur:'مختصر سوالات',en:'Short Questions'},
-  long:{ur:'تفصیلی سوالات',en:'Long Questions'},
-  fill:{ur:'خالی جگہیں پُر کریں',en:'Fill in the Blanks'},
-  tf:{ur:'درست یا غلط',en:'True / False'}
-};
+function esc(v){
+ return String(v??'').replace(/&/g,'&amp;')
+ .replace(/</g,'&lt;').replace(/>/g,'&gt;')
+ .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+function nl(v){return esc(v||'').replace(/\n/g,'<br>');}
 
-const symbols = [
-  'x²','x³','√( )','∛( )','π','θ','α','β','∞','≠',
-  '≤','≥','±','×','÷','∑','∠','°','¼','½','¾','+','−','=','( )'
-];
+function showTab(t){
+ $('paperSection').classList.toggle('hidden',t!=='paper');
+ $('savedPapersSection').classList.toggle('hidden',t!=='savedPapers');
+ $('paperTab').classList.toggle('active',t==='paper');
+ $('savedPapersTab').classList.toggle('active',t==='savedPapers');
+ if(t==='paper')updatePaper();else renderSavedPapers();
+}
 
-document.getElementById('mathbar').innerHTML = symbols.map(s =>
-  '<button type="button" class="light" onclick="insertSymbol('+JSON.stringify(s)+')">'+s+'</button>'
-).join('');
+function changeLanguage(){
+ const en=lang()==='en';
+ document.documentElement.lang=en?'en':'ur';
+ document.documentElement.dir=en?'ltr':'rtl';
 
-function esc(v) {
-  return String(v ?? '').replace(/[&<>"']/g, c => ({
-    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+ document.querySelectorAll('[data-ur][data-en]').forEach(el=>{
+  el.textContent=en?el.dataset.en:el.dataset.ur;
+ });
+
+ $('mcqHeading').textContent=en?'① MCQs':'① کثیر الانتخابی سوالات (MCQs)';
+ $('shortHeading').textContent=en?'② Short Questions':'② مختصر سوالات';
+ $('longHeading').textContent=en?'③ Long Questions':'③ تفصیلی سوالات';
+ $('fillHeading').textContent=en?'④ Fill in the Blanks':'④ خالی جگہیں پُر کریں';
+ $('tfHeading').textContent=en?'⑤ True / False':'⑤ درست / غلط';
+
+ $('addMcqBtn').textContent=en?'+ Add MCQ':'+ MCQ شامل کریں';
+ $('addShortBtn').textContent=en?'+ Add Question':'+ سوال شامل کریں';
+ $('addLongBtn').textContent=en?'+ Add Question':'+ سوال شامل کریں';
+ $('addFillBtn').textContent=en?'+ Add Question':'+ سوال شامل کریں';
+ $('addTfBtn').textContent=en?'+ Add Question':'+ سوال شامل کریں';
+
+ renderMCQs();renderShorts();renderLongs();renderFills();renderTF();
+ updatePaper();
+}
+
+function addMCQ(d){
+ d=d||{question:'',options:['','','',''],answer:''};
+ d.options=Array.isArray(d.options)?d.options:['','','',''];
+ while(d.options.length<4)d.options.push('');
+ mcqs.push(d);renderMCQs();updatePaper();
+}
+function removeMCQ(i){mcqs.splice(i,1);renderMCQs();updatePaper();}
+
+function renderMCQs(){
+ const b=$('mcqItems');b.innerHTML='';
+ if(!mcqs.length){
+  b.innerHTML='<div class="empty-message">ابھی کوئی MCQ شامل نہیں کیا گیا۔</div>';
+  return;
+ }
+ mcqs.forEach((m,i)=>{
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML=`
+   <div class="item-top">
+    <span class="item-number">MCQ ${i+1}</span>
+    <button class="remove-btn" onclick="removeMCQ(${i})">حذف کریں</button>
+   </div>
+   <textarea class="urdu-input" placeholder="MCQ سوال لکھیں..."
+   onfocus="lastFocused=this"
+   oninput="mcqs[${i}].question=this.value;updatePaper()">${esc(m.question)}</textarea>
+   <div class="mcq-options">
+    ${['A','B','C','D'].map((l,j)=>`
+     <div class="option-wrap">
+      <span class="option-letter">${l}</span>
+      <input class="urdu-input" placeholder="Option ${l}"
+      value="${esc(m.options[j]||'')}"
+      onfocus="lastFocused=this"
+      oninput="mcqs[${i}].options[${j}]=this.value;updatePaper()">
+     </div>`).join('')}
+   </div>
+   <div class="correct-answer-box">
+    <div class="correct-answer-title">✓ صحیح جواب منتخب کریں</div>
+    <div class="answer-choice-row">
+     ${['A','B','C','D'].map(l=>`
+      <label class="answer-choice ${m.answer===l?'selected':''}">
+       <input type="radio" name="ans${i}" value="${l}"
+       ${m.answer===l?'checked':''}
+       onchange="mcqs[${i}].answer=this.value;renderMCQs();updatePaper()">
+       <span>${l} — درست جواب</span>
+      </label>`).join('')}
+    </div>
+   </div>`;
+  b.appendChild(d);
+ });
+}
+
+function addShort(d){shorts.push(d||{question:''});renderShorts();updatePaper();}
+function removeShort(i){shorts.splice(i,1);renderShorts();updatePaper();}
+function renderShorts(){renderSimple('shortItems',shorts,'short','سوال');}
+
+function addLong(d){longs.push(d||{question:''});renderLongs();updatePaper();}
+function removeLong(i){longs.splice(i,1);renderLongs();updatePaper();}
+function renderLongs(){renderSimple('longItems',longs,'long','طویل سوال');}
+
+function addFill(d){fills.push(d||{question:''});renderFills();updatePaper();}
+function removeFill(i){fills.splice(i,1);renderFills();updatePaper();}
+function renderFills(){renderSimple('fillItems',fills,'fill','خالی جگہ والا سوال');}
+
+function renderSimple(id,arr,type,placeholder){
+ const b=$(id);b.innerHTML='';
+ if(!arr.length){
+  b.innerHTML='<div class="empty-message">ابھی کوئی سوال شامل نہیں کیا گیا۔</div>';
+  return;
+ }
+ arr.forEach((o,i)=>{
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML=`
+   <div class="item-top">
+    <span class="item-number">${i+1}</span>
+    <button class="remove-btn" onclick="remove${type[0].toUpperCase()+type.slice(1)}(${i})">حذف کریں</button>
+   </div>
+   <textarea class="urdu-input" placeholder="${placeholder} لکھیں..."
+   onfocus="lastFocused=this"
+   oninput="${type}s[${i}].question=this.value;updatePaper()">${esc(o.question)}</textarea>`;
+  b.appendChild(d);
+ });
+}
+
+function addTF(d){tfs.push(d||{statement:'',answer:''});renderTF();updatePaper();}
+function removeTF(i){tfs.splice(i,1);renderTF();updatePaper();}
+
+function renderTF(){
+ const b=$('tfItems');b.innerHTML='';
+ if(!tfs.length){
+  b.innerHTML='<div class="empty-message">ابھی کوئی سوال شامل نہیں کیا گیا۔</div>';
+  return;
+ }
+ tfs.forEach((o,i)=>{
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML=`
+   <div class="item-top">
+    <span class="item-number">${i+1}</span>
+    <button class="remove-btn" onclick="removeTF(${i})">حذف کریں</button>
+   </div>
+   <textarea class="urdu-input" placeholder="Statement لکھیں..."
+   onfocus="lastFocused=this"
+   oninput="tfs[${i}].statement=this.value;updatePaper()">${esc(o.statement)}</textarea>
+   <select style="margin-top:8px" onchange="tfs[${i}].answer=this.value;updatePaper()">
+    <option value="">جواب منتخب کریں</option>
+    <option value="True" ${o.answer==='True'?'selected':''}>True / درست</option>
+    <option value="False" ${o.answer==='False'?'selected':''}>False / غلط</option>
+   </select>`;
+  b.appendChild(d);
+ });
+}
+
+function insertSymbol(s){
+ let el=lastFocused;
+ if(!el||!document.body.contains(el)){
+  el=document.querySelector('#mcqItems textarea');
+ }
+ if(!el){alert('پہلے کسی سوال کے خانے پر کلک کریں۔');return;}
+ const start=el.selectionStart??el.value.length;
+ const end=el.selectionEnd??start;
+ el.setRangeText(s,start,end,'end');
+ el.dispatchEvent(new Event('input',{bubbles:true}));
+ el.focus();
+}
+    function updatePaper(){
+  const get = id => document.getElementById(id);
+  const val = id => get(id)?.value || '';
+  const esc = text => String(text ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[c]));
+
+  const lang = val('paperLanguage');
+  const urdu = lang === 'ur';
+
+  const mcqHTML = mcqs.map((q,i)=>`
+    <div class="question">
+      <b>${i+1}. ${esc(q.question)}</b>
+      <div class="options">
+        ${[q.a,q.b,q.c,q.d].filter(Boolean).map((a,j)=>
+          `<span>${String.fromCharCode(65+j)}. ${esc(a)}</span>`
+        ).join('　')}
+      </div>
+    </div>`).join('');
+
+  const shortHTML = shorts.map((q,i)=>`
+    <div class="question">
+      <b>${i+1}. ${esc(q.question)}</b>
+      <div class="answer-lines"></div>
+    </div>`).join('');
+
+  const longHTML = longs.map((q,i)=>`
+    <div class="question">
+      <b>${i+1}. ${esc(q.question)}</b>
+      <div class="answer-lines long-lines"></div>
+    </div>`).join('');
+
+  const fillHTML = fills.map((q,i)=>`
+    <div class="question">
+      <b>${i+1}. ${esc(q.question)}</b>
+    </div>`).join('');
+
+  const tfHTML = tfs.map((q,i)=>`
+    <div class="question">
+      ${i+1}. ${esc(q.question)}
+      <span class="tf-options">(${urdu?'درست / غلط':'True / False'})</span>
+    </div>`).join('');
+
+  get('paperPreview').innerHTML = `
+    <div class="paper-heading">
+      <h2>${esc(val('schoolName') || 'The Risen High School')}</h2>
+      <h3>${esc(val('examName') || (urdu?'امتحانی پرچہ':'Examination Paper'))}</h3>
+      <div>${urdu?'جماعت':'Class'}: ${esc(val('paperClass'))}
+      &nbsp; | &nbsp; ${urdu?'مضمون':'Subject'}: ${esc(val('paperSubject'))}</div>
+      <div>${urdu?'باب':'Chapter'}: ${esc(val('paperChapter'))}</div>
+    </div>
+
+    <div class="paper-info">
+      <span>${urdu?'طالب علم':'Student'}: ${esc(val('studentName'))}</span>
+      <span>${urdu?'رول نمبر':'Roll No.'}: ${esc(val('rollNumber'))}</span>
+      <span>${urdu?'سیکشن':'Section'}: ${esc(val('sectionName'))}</span>
+    </div>
+
+    <div class="paper-info">
+      <span>${urdu?'تاریخ':'Date'}: ${esc(val('paperDate'))}</span>
+      <span>${urdu?'وقت':'Time'}: ${esc(val('paperTime'))}</span>
+      <span>${urdu?'کل نمبر':'Total Marks'}: ${esc(val('totalMarks'))}</span>
+    </div>
+
+    ${mcqs.length?`<h3>${urdu?'حصہ اول: کثیر الانتخابی سوالات':'Part I: Multiple Choice Questions'}</h3>${mcqHTML}`:''}
+    ${shorts.length?`<h3>${urdu?'مختصر سوالات':'Short Questions'}</h3>${shortHTML}`:''}
+    ${longs.length?`<h3>${urdu?'تفصیلی سوالات':'Long Questions'}</h3>${longHTML}`:''}
+    ${fills.length?`<h3>${urdu?'خالی جگہیں پُر کریں':'Fill in the Blanks'}</h3>${fillHTML}`:''}
+    ${tfs.length?`<h3>${urdu?'درست یا غلط':'True / False'}</h3>${tfHTML}`:''}
+
+    <div class="paper-footer">
+      <span>${urdu?'دستخط:':'Signature:'} __________________</span>
+      <span>${esc(val('teacherName'))}</span>
+    </div>
+  `;
 }
 
-function val(id) {
-  return document.getElementById(id).value.trim();
+function paperData(){
+  const ids = [
+    'schoolName','examName','paperClass','paperSubject',
+    'paperChapter','paperDate','paperTime','totalMarks',
+    'studentName','rollNumber','sectionName','teacherName',
+    'paperLanguage'
+  ];
+
+  const fields = {};
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) fields[id] = el.value;
+  });
+
+  return {
+    fields,
+    mcqs,shorts,longs,fills,tfs,
+    logoData: window.logoData || ''
+  };
 }
 
-function setLang(v) {
-  lang = v;
-  document.getElementById('paper').classList.toggle('urdu', v === 'ur');
-  document.getElementById('pinstructions').textContent =
-    v === 'ur'
-      ? 'ہدایات: تمام سوالات غور سے پڑھیں اور صاف لکھائی میں جواب دیں۔'
-      : 'Instructions: Read all questions carefully and write your answers neatly.';
-  update();
+function applyData(data){
+  if(!data) return;
+
+  Object.entries(data.fields || {}).forEach(([id,value])=>{
+    const el = document.getElementById(id);
+    if(el) el.value = value;
+  });
+
+  mcqs = data.mcqs || [];
+  shorts = data.shorts || [];
+  longs = data.longs || [];
+  fills = data.fills || [];
+  tfs = data.tfs || [];
+  window.logoData = data.logoData || '';
+
+  renderMcqs();
+  renderShorts();
+  renderLongs();
+  renderFills();
+  renderTfs();
+  updatePaper();
 }
 
-function uploadLogo(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+function saveDraft(){
+  try{
+    localStorage.setItem('risenPaperDraft',JSON.stringify(paperData()));
+    alert('Draft محفوظ ہوگیا۔');
+  }catch(e){
+    alert('Draft محفوظ نہیں ہو سکا۔ سوالات یا لوگو کا سائز کم کرکے دوبارہ کوشش کریں۔');
+  }
+}
+
+function loadDraft(){
+  try{
+    const saved = localStorage.getItem('risenPaperDraft');
+    if(!saved){
+      alert('کوئی محفوظ Draft نہیں ملا۔');
+      return;
+    }
+    applyData(JSON.parse(saved));
+    alert('Draft کھل گیا۔');
+  }catch(e){
+    alert('Draft کھولنے میں مسئلہ پیش آیا۔');
+  }
+}
+
+function savePaper(){
+  const title = prompt('اس پرچے کا نام لکھیں:',document.getElementById('examName')?.value || 'New Paper');
+  if(title === null) return;
+
+  try{
+    const papers = JSON.parse(localStorage.getItem('risenSavedPapers') || '[]');
+    papers.unshift({
+      id:Date.now(),
+      title,
+      data:paperData()
+    });
+    localStorage.setItem('risenSavedPapers',JSON.stringify(papers));
+    renderSavedPapers();
+    alert('پرچہ محفوظ ہوگیا۔');
+  }catch(e){
+    alert('محفوظ کرنے میں مسئلہ آیا۔ براہِ کرم کچھ پرانے محفوظ پرچے حذف کریں۔');
+  }
+}
+
+function renderSavedPapers(){
+  const box = document.getElementById('savedPapersList');
+  if(!box) return;
+
+  const papers = JSON.parse(localStorage.getItem('risenSavedPapers') || '[]');
+
+  if(!papers.length){
+    box.innerHTML = '<p>ابھی کوئی پرچہ محفوظ نہیں۔</p>';
+    return;
+  }
+
+  box.innerHTML = papers.map(p=>`
+    <div class="saved-paper">
+      <strong>${String(p.title).replace(/[&<>"]/g,'')}</strong>
+      <button onclick="openPaper(${Number(p.id)})">Open</button>
+      <button onclick="deletePaper(${Number(p.id)})">Delete</button>
+    </div>
+  `).join('');
+}
+
+function openPaper(id){
+  const papers = JSON.parse(localStorage.getItem('risenSavedPapers') || '[]');
+  const paper = papers.find(p=>p.id === id);
+  if(!paper) return alert('پرچہ نہیں ملا۔');
+
+  applyData(paper.data);
+  showSection('paperSection');
+}
+
+function deletePaper(id){
+  if(!confirm('کیا آپ یہ محفوظ پرچہ حذف کرنا چاہتے ہیں؟')) return;
+
+  const papers = JSON.parse(localStorage.getItem('risenSavedPapers') || '[]')
+    .filter(p=>p.id !== id);
+
+  localStorage.setItem('risenSavedPapers',JSON.stringify(papers));
+  renderSavedPapers();
+}
+
+function clearAll(){
+  if(!confirm('کیا آپ موجودہ پرچہ صاف کرنا چاہتے ہیں؟')) return;
+
+  mcqs = [];
+  shorts = [];
+  longs = [];
+  fills = [];
+  tfs = [];
+  window.logoData = '';
+
+  [
+    'examName','paperChapter','studentName','rollNumber',
+    'sectionName','teacherName'
+  ].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+
+  renderMcqs();
+  renderShorts();
+  renderLongs();
+  renderFills();
+  renderTfs();
+  updatePaper();
+}
+
+function uploadLogo(event){
+  const file = event.target.files?.[0];
+  if(!file) return;
+
+  if(!file.type.startsWith('image/')){
+    alert('براہِ کرم تصویر منتخب کریں۔');
+    return;
+  }
+
   const reader = new FileReader();
-  reader.onload = () => {
-    logo = reader.result;
-    update();
+  reader.onload = ()=>{
+    window.logoData = reader.result;
+    updatePaper();
   };
   reader.readAsDataURL(file);
 }
 
-function removeLogo() {
-  logo = '';
-  document.getElementById('logoInput').value = '';
-  update();
-}
+async function downloadPaper(){
+  const paper = document.getElementById('paperPreview');
 
-function addSection(type, savedQuestions) {
-  let box = [...document.querySelectorAll('.section')]
-    .find(el => el.dataset.type === type);
-
-  if (!box) {
-    box = document.createElement('div');
-    box.className = 'section';
-    box.dataset.type = type;
-    box.dataset.order = sectionNo++;
-
-    box.innerHTML =
-      '<div class="qhead"><strong>'+names[type][lang]+'</strong><div>'+
-      '<button onclick="addQuestion(this.closest(\'.section\'),\''+type+'\')">+ سوال</button>'+
-      '<button class="gray" onclick="moveSection(this,-1)">↑</button>'+
-      '<button class="gray" onclick="moveSection(this,1)">↓</button>'+
-      '<button class="red" onclick="this.closest(\'.section\').remove();update()">حذف حصہ</button>'+
-      '</div></div><div class="questions"></div>';
-
-    document.getElementById('sections').appendChild(box);
-  }
-
-  if (savedQuestions && savedQuestions.length) {
-    savedQuestions.forEach(q => addQuestion(box, type, q));
-  } else {
-    addQuestion(box, type);
-  }
-  update();
-}
-
-function addQuestion(box, type, data = {}) {
-  const q = document.createElement('div');
-  q.className = 'question';
-
-  let extra = '';
-
-  if (type === 'mcq') {
-    const options = data.options || ['', '', '', ''];
-    extra = '<div class="grid">'+options.map((o,i) =>
-      '<div><label>Option '+String.fromCharCode(65+i)+'</label>'+
-      '<input class="opt" value="'+esc(o)+'" oninput="update()"></div>'
-    ).join('')+'</div>';
-  }
-
-  if (type === 'tf') {
-    extra = '<p>☐ درست / True　　☐ غلط / False</p>';
-  }
-
-  q.innerHTML =
-    '<div class="qhead"><strong>سوال / Question</strong>'+
-    '<button class="red" onclick="removeQuestion(this)">حذف سوال</button></div>'+
-    '<label>سوال کا متن / Question Text</label>'+
-    '<textarea class="qtext" placeholder="یہاں سوال لکھیں..." onfocus="active=this" oninput="update()">'+
-    esc(data.text || '')+'</textarea>'+
-    extra+
-    '<label>نمبر / Marks</label>'+
-    '<input class="qmarks" type="number" min="0" value="'+esc(data.marks || '')+'" oninput="update()">'+
-    (type === 'long'
-      ? '<label>جواب کے لیے لائنیں</label><select class="lines" onchange="update()">'+
-        [2,3,4,5,6,8,10].map(n =>
-          '<option value="'+n+'" '+(Number(data.lines || 4) === n ? 'selected' : '')+'>'+n+'</option>'
-        ).join('')+'</select>'
-      : '');
-
-  box.querySelector('.questions').appendChild(q);
-  update();
-}
-
-function removeQuestion(button) {
-  const section = button.closest('.section');
-  button.closest('.question').remove();
-  if (!section.querySelector('.question')) section.remove();
-  update();
-}
-
-function moveSection(button, dir) {
-  const s = button.closest('.section');
-  if (dir < 0 && s.previousElementSibling) {
-    s.parentNode.insertBefore(s, s.previousElementSibling);
-  } else if (dir > 0 && s.nextElementSibling) {
-    s.parentNode.insertBefore(s.nextElementSibling, s);
-  }
-  update();
-}
-
-function insertSymbol(symbol) {
-  if (!active) {
-    alert('پہلے سوال کے متن والے خانے پر ٹیپ کریں۔');
+  if(typeof html2canvas === 'undefined'){
+    alert('PNG بنانے کے لیے انٹرنیٹ سے html2canvas لوڈ ہونا ضروری ہے۔');
     return;
   }
-  const start = active.selectionStart ?? active.value.length;
-  const end = active.selectionEnd ?? active.value.length;
-  active.setRangeText(symbol, start, end, 'end');
-  active.focus();
-  update();
-}
 
-function update() {
-  document.getElementById('pschool').textContent =
-    val('school') || 'The Risen High School';
-  document.getElementById('pexam').textContent =
-    val('exam') || (lang === 'ur' ? 'امتحان' : 'Examination');
-  document.getElementById('psubject').textContent =
-    (lang === 'ur' ? 'مضمون: ' : 'Subject: ') + (val('subject') || '____________');
-
-  const img = document.getElementById('plogo');
-  if (logo) {
-    img.src = logo;
-    img.style.display = 'inline-block';
-  } else {
-    img.style.display = 'none';
-  }
-
-  const fields = [
-    [lang==='ur'?'طالب علم کا نام':'Student Name', val('student')],
-    [lang==='ur'?'رول نمبر':'Roll Number', val('roll')],
-    [lang==='ur'?'کلاس':'Class', val('cls')],
-    [lang==='ur'?'استاد کا نام':'Teacher Name', val('teacher')],
-    [lang==='ur'?'تاریخ':'Date', val('date')],
-    [lang==='ur'?'وقت':'Time', val('time')],
-    [lang==='ur'?'کل نمبر':'Total Marks', val('marks')],
-    [lang==='ur'?'پاسنگ نمبر':'Passing Marks', val('passing')]
-  ];
-
-  document.getElementById('pinfo').innerHTML = fields.map(([label,value]) =>
-    '<div><b>'+esc(label)+':</b> '+esc(value || '____________')+'</div>'
-  ).join('');
-
-  let html = '';
-
-  document.querySelectorAll('#sections .section').forEach(section => {
-    const type = section.dataset.type;
-    const questions = section.querySelectorAll('.question');
-    if (!questions.length) return;
-
-    html += '<div class="psection"><h3>'+esc(names[type][lang])+'</h3>';
-
-    questions.forEach((q,i) => {
-      const text = q.querySelector('.qtext').value;
-      const marks = q.querySelector('.qmarks').value;
-
-      html += '<div class="pquestion"><div><b>'+(i+1)+'.</b> '+
-        esc(text).replace(/\n/g,'<br>')+
-        (marks ? ' <b>('+esc(marks)+' '+(lang==='ur'?'نمبر':'Marks')+')</b>' : '')+
-        '</div>';
-
-      if (type === 'mcq') {
-        html += '<div class="opts">'+
-          [...q.querySelectorAll('.opt')].map((o,j) =>
-            '<div>'+String.fromCharCode(65+j)+'. '+esc(o.value)+'</div>'
-          ).join('')+'</div>';
-      }
-
-      if (type === 'tf') {
-        html += '<p>☐ True / درست　　☐ False / غلط</p>';
-      }
-
-      if (type === 'short' || type === 'fill') {
-        html += '<div class="answerline"></div>';
-      }
-
-      if (type === 'long') {
-        const n = Number(q.querySelector('.lines').value);
-        html += Array.from({length:n}, () => '<div class="answerline"></div>').join('');
-      }
-
-      html += '</div>';
+  try{
+    const canvas = await html2canvas(paper,{
+      scale:2,
+      backgroundColor:'#ffffff'
     });
 
-    html += '</div>';
-  });
-
-  document.getElementById('pquestions').innerHTML =
-    html || '<p>ابھی کوئی سوال شامل نہیں کیا گیا۔</p>';
-}
-
-function collectPaper() {
-  const fields = {};
-  ['school','exam','cls','subject','date','time','marks','passing','student','roll','teacher']
-    .forEach(id => fields[id] = document.getElementById(id).value);
-
-  const sections = [...document.querySelectorAll('#sections .section')].map(s => ({
-    type: s.dataset.type,
-    questions: [...s.querySelectorAll('.question')].map(q => ({
-      text: q.querySelector('.qtext').value,
-      marks: q.querySelector('.qmarks').value,
-      options: [...q.querySelectorAll('.opt')].map(o => o.value),
-      lines: q.querySelector('.lines')?.value || 4
-    }))
-  }));
-
-  return {fields, sections, logo, lang};
-}
-
-function savePaper() {
-  const name = prompt('پیپر کا نام لکھیں / Paper Name:', val('subject') || 'My Paper');
-  if (name === null) return;
-
-  try {
-    const saved = JSON.parse(localStorage.getItem('risenPaperMaker') || '[]');
-    saved.unshift({
-      name,
-      date: new Date().toLocaleDateString(),
-      data: collectPaper()
-    });
-    localStorage.setItem('risenPaperMaker', JSON.stringify(saved.slice(0,30)));
-    alert('پیپر محفوظ ہوگیا / Paper saved successfully.');
-  } catch (e) {
-    alert('اسٹوریج بھر گئی ہے۔ لوگو ہٹا کر دوبارہ کوشش کریں۔');
+    const link = document.createElement('a');
+    link.download = 'Risen-Paper.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }catch(e){
+    alert('PNG بنانے میں مسئلہ آیا۔ دوبارہ کوشش کریں۔');
   }
 }
 
-function loadPaper() {
-  const saved = JSON.parse(localStorage.getItem('risenPaperMaker') || '[]');
-  if (!saved.length) {
-    alert('کوئی محفوظ پیپر موجود نہیں۔');
-    return;
-  }
-
-  const list = saved.map((p,i) =>
-    (i+1)+'. '+p.name+' ('+p.date+')'
-  ).join('\n');
-
-  const choice = prompt('پیپر کا نمبر لکھیں:\n'+list, '1');
-  if (choice === null) return;
-
-  const item = saved[Number(choice)-1];
-  if (!item) {
-    alert('غلط نمبر۔');
-    return;
-  }
-
-  const data = item.data;
-  Object.entries(data.fields).forEach(([id,value]) => {
-    if (document.getElementById(id)) {
-      document.getElementById(id).value = value;
-    }
-  });
-
-  logo = data.logo || '';
-  lang = data.lang || 'ur';
-  document.getElementById('sections').innerHTML = '';
-  sectionNo = 0;
-
-  data.sections.forEach(s => addSection(s.type, s.questions));
-  setLang(lang);
-  update();
+function printDocument(){
+  window.print();
 }
 
-function clearPaper() {
-  if (!confirm('کیا نیا پیپر شروع کرنا ہے؟')) return;
+/* تمام سوالات اور معلومات میں تبدیلی پر Preview اپ ڈیٹ کریں */
+document.addEventListener('input',event=>{
+  if(event.target.closest('.editor') ||
+     event.target.matches('input,select,textarea')){
+    updatePaper();
+  }
+});
 
-  ['exam','subject','date','time','marks','passing','student','roll','teacher']
-    .forEach(id => document.getElementById(id).value = '');
+/* ابتدائی حالت */
+renderMcqs();
+renderShorts();
+renderLongs();
+renderFills();
+renderTfs();
+renderSavedPapers();
+updatePaper();
 
-  document.getElementById('cls').selectedIndex = 0;
-  document.getElementById('sections').innerHTML = '';
-  document.getElementById('logoInput').value = '';
-  logo = '';
-  sectionNo = 0;
-  update();
-}
+/* کی بورڈ شارٹ کٹس */
+document.addEventListener('keydown',event=>{
+  if((event.ctrlKey || event.metaKey) && event.key.toLowerCase()==='s'){
+    event.preventDefault();
+    saveDraft();
+  }
 
-setLang('ur');
+  if((event.ctrlKey || event.metaKey) && event.key.toLowerCase()==='p'){
+    event.preventDefault();
+    printDocument();
+  }
+});
 </script>
 </body>
 </html>
