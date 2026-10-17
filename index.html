@@ -202,7 +202,7 @@ textarea { min-height: 65px; resize: vertical; }
   box-shadow: 0 3px 15px #0002;
 }
 
-/* Header: only the outer border */
+/* Paper header: outer border only */
 .paper-header {
   border: 2px solid #111;
   text-align: center;
@@ -228,9 +228,11 @@ textarea { min-height: 65px; resize: vertical; }
 }
 
 .preview-subject {
-  font-size: 17px;
+  font-size: 19px;
+  font-weight: bold;
   padding: 4px;
   border: none;
+  direction: inherit;
 }
 
 .preview-meta {
@@ -271,7 +273,11 @@ textarea { min-height: 65px; resize: vertical; }
   overflow-wrap: anywhere;
 }
 
-.paper-section { margin-top: 13px; }
+.paper-section {
+  margin-top: 13px;
+  direction: inherit;
+  text-align: start;
+}
 
 .paper-section-title {
   font-weight: bold;
@@ -281,52 +287,80 @@ textarea { min-height: 65px; resize: vertical; }
   padding-bottom: 3px;
 }
 
+/* Each MCQ appears on its own line */
 .mcq-preview {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 18px;
+  display: block;
 }
 
-.mcq-preview-item { break-inside: avoid; }
+.mcq-preview-item {
+  display: block;
+  margin-bottom: 10px;
+  break-inside: avoid;
+  line-height: 1.8;
+}
+
+.question-text {
+  direction: inherit;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
 
 .mcq-options-preview {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 3px 12px;
   font-size: 14px;
-  margin-top: 3px;
+  margin-top: 4px;
   direction: ltr;
+  text-align: left;
+  line-height: 1.7;
 }
 
+.option-text {
+  display: inline;
+}
+
+/* Short questions appear in two columns */
 .q-row {
-  display: flex;
-  gap: 7px;
-  margin-bottom: 9px;
+  display: inline-flex;
+  vertical-align: top;
+  width: 49%;
+  gap: 5px;
+  margin: 0 0 10px;
   line-height: 1.8;
   break-inside: avoid;
+  text-align: start;
+  align-items: flex-start;
+  overflow-wrap: anywhere;
 }
 
-.q-number { min-width: 25px; font-weight: bold; }
-
-.long-answer { margin-bottom: 12px; break-inside: avoid; }
-
-.answer-lines {
-  height: 65px;
-  margin-top: 4px;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 22px,
-    #999 23px
-  );
+.q-number {
+  flex: 0 0 auto;
+  min-width: 22px;
+  font-weight: bold;
 }
 
-.fill-row { margin-bottom: 8px; line-height: 1.8; }
+.long-answer {
+  margin-bottom: 12px;
+  break-inside: avoid;
+  line-height: 1.8;
+}
+
+.answer-lines { display: none !important; }
+
+.fill-row {
+  margin-bottom: 8px;
+  line-height: 1.8;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
 
 .truefalse {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 8px;
   margin-bottom: 8px;
+  line-height: 1.8;
 }
 
 .paper-footer {
@@ -805,6 +839,8 @@ function renderTF() {
 function updatePaper() {
   const w = words[lang()];
   const get = id => $(id).value.trim();
+  const direction = lang() === 'en' ? 'ltr' : 'rtl';
+  const alignment = lang() === 'en' ? 'left' : 'right';
 
   let dateText = get('paperDate');
 
@@ -813,10 +849,9 @@ function updatePaper() {
     dateText = d.toLocaleDateString('en-GB');
   }
 
-  /* Header labels remain English for BOTH languages */
   let html = `
-    <div class="paper-header">
-      ${logoData ? `<img class="logo-preview" src="${logoData}">` : ''}
+    <div class="paper-header" dir="${direction}">
+      ${logoData ? `<img class="logo-preview" src="${logoData}" alt="School Logo">` : ''}
 
       <div class="preview-school">
         ${escapeHTML(get('schoolName') || 'The Risen High School')}
@@ -826,12 +861,16 @@ function updatePaper() {
         ${escapeHTML(get('examName') || 'Examination')}
       </div>
 
-      <div class="preview-subject">
-        Subject: ${escapeHTML(get('paperSubject'))}
-      </div>
+      ${get('paperSubject') ? `
+        <div class="preview-subject" dir="${direction}">
+          ${escapeHTML(get('paperSubject'))}
+        </div>
+      ` : ''}
 
       ${get('paperChapter') ? `
-        <div>Chapter / Topic: ${escapeHTML(get('paperChapter'))}</div>
+        <div dir="${direction}" style="text-align:${alignment}">
+          Chapter / Topic: ${escapeHTML(get('paperChapter'))}
+        </div>
       ` : ''}
 
       <div class="preview-meta">
@@ -854,7 +893,7 @@ function updatePaper() {
 
   if (mcqs.length) {
     html += `
-      <div class="paper-section">
+      <div class="paper-section" dir="${direction}">
         <div class="paper-section-title">${w.mcq}</div>
         <div class="mcq-preview">
     `;
@@ -862,14 +901,17 @@ function updatePaper() {
     mcqs.forEach((m, i) => {
       html += `
         <div class="mcq-preview-item">
-          <div>
+          <div class="question-text" dir="${direction}">
             <strong>${i + 1}.</strong>
             ${formatText(m.question)}
           </div>
 
           <div class="mcq-options-preview">
             ${m.options.map((o, j) => `
-              <div>(${ 'ABCD'[j] }) ${formatText(o)}</div>
+              <div>
+                (${ 'ABCD'[j] })
+                <span class="option-text" dir="${direction}">${formatText(o)}</span>
+              </div>
             `).join('')}
           </div>
         </div>
@@ -881,15 +923,17 @@ function updatePaper() {
 
   if (shorts.length) {
     html += `
-      <div class="paper-section">
+      <div class="paper-section" dir="${direction}">
         <div class="paper-section-title">${w.short}</div>
     `;
 
     shorts.forEach((o, i) => {
       html += `
-        <div class="q-row">
+        <div class="q-row" dir="${direction}">
           <div class="q-number">${i + 1}.</div>
-          <div>${formatText(o.question)}</div>
+          <div class="question-text" dir="${direction}">
+            ${formatText(o.question)}
+          </div>
         </div>
       `;
     });
@@ -899,18 +943,17 @@ function updatePaper() {
 
   if (longs.length) {
     html += `
-      <div class="paper-section">
+      <div class="paper-section" dir="${direction}">
         <div class="paper-section-title">${w.long}</div>
     `;
 
     longs.forEach((o, i) => {
       html += `
-        <div class="long-answer">
-          <div>
+        <div class="long-answer" dir="${direction}">
+          <div class="question-text">
             <strong>${i + 1}.</strong>
             ${formatText(o.question)}
           </div>
-          <div class="answer-lines"></div>
         </div>
       `;
     });
@@ -920,13 +963,13 @@ function updatePaper() {
 
   if (fills.length) {
     html += `
-      <div class="paper-section">
+      <div class="paper-section" dir="${direction}">
         <div class="paper-section-title">${w.fill}</div>
     `;
 
     fills.forEach((o, i) => {
       html += `
-        <div class="fill-row">
+        <div class="fill-row" dir="${direction}">
           ${i + 1}. ${formatText(o.question)}
         </div>
       `;
@@ -937,15 +980,17 @@ function updatePaper() {
 
   if (tfs.length) {
     html += `
-      <div class="paper-section">
+      <div class="paper-section" dir="${direction}">
         <div class="paper-section-title">${w.tf}</div>
     `;
 
     tfs.forEach((o, i) => {
       html += `
-        <div class="truefalse">
-          <div>${i + 1}. ${formatText(o.statement)}</div>
-          <div>
+        <div class="truefalse" dir="${direction}">
+          <div class="question-text">
+            ${i + 1}. ${formatText(o.statement)}
+          </div>
+          <div dir="ltr">
             ☐ True &nbsp; ☐ False
           </div>
         </div>
@@ -957,7 +1002,7 @@ function updatePaper() {
 
   if (!mcqs.length && !shorts.length && !longs.length && !fills.length && !tfs.length) {
     html += `
-      <div style="padding:45px;text-align:center">
+      <div style="padding:45px;text-align:center" dir="${direction}">
         ${lang()==='en'
           ? 'Add questions to create your paper.'
           : 'سوال شامل کریں، آپ کا پرچہ یہاں نظر آئے گا۔'}
@@ -974,6 +1019,9 @@ function updatePaper() {
   `;
 
   $('paperPreview').innerHTML = html;
+  $('paperPreview').dir = direction;
+  $('paperPreview').style.direction = direction;
+  $('paperPreview').style.textAlign = alignment;
 }
 
 function changeLanguage() {
@@ -992,7 +1040,7 @@ function changeLanguage() {
   $('lblSection').textContent = w.section;
 
   document.documentElement.lang = lang();
-  document.documentElement.dir = lang()==='ur' ? 'rtl' : 'ltr';
+  document.documentElement.dir = lang() === 'ur' ? 'rtl' : 'ltr';
 
   updatePaper();
 }
@@ -1051,6 +1099,7 @@ function removeLogo() {
   logoData = '';
   $('logoUpload').value = '';
   updatePaper();
+  autoSave();
 }
 
 function getFormData() {
@@ -1220,6 +1269,7 @@ function clearAll() {
   renderTF();
 
   updatePaper();
+  autoSave();
 }
 
 function showTab(tab) {
@@ -1300,6 +1350,7 @@ renderShorts();
 renderLongs();
 renderFills();
 renderTF();
+changeLanguage();
 updatePaper();
 renderSavedPapers();
 </script>
