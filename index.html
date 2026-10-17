@@ -202,7 +202,6 @@ textarea { min-height: 65px; resize: vertical; }
   box-shadow: 0 3px 15px #0002;
 }
 
-/* Paper header: outer border only */
 .paper-header {
   border: 2px solid #111;
   text-align: center;
@@ -232,7 +231,6 @@ textarea { min-height: 65px; resize: vertical; }
   font-weight: bold;
   padding: 4px;
   border: none;
-  direction: inherit;
 }
 
 .preview-meta {
@@ -267,7 +265,6 @@ textarea { min-height: 65px; resize: vertical; }
 .student-cell {
   border-right: 1px solid #111;
   border-bottom: 1px solid #111;
-  border-top: 0;
   padding: 8px 4px;
   min-height: 32px;
   overflow-wrap: anywhere;
@@ -287,28 +284,36 @@ textarea { min-height: 65px; resize: vertical; }
   padding-bottom: 3px;
 }
 
-/* Each MCQ appears on its own line */
+/* MCQs: two questions per row */
 .mcq-preview {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  align-items: start;
 }
 
 .mcq-preview-item {
   display: block;
-  margin-bottom: 10px;
+  min-width: 0;
+  margin-bottom: 4px;
   break-inside: avoid;
+  page-break-inside: avoid;
   line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
 .question-text {
   direction: inherit;
   text-align: start;
   overflow-wrap: anywhere;
+  min-width: 0;
 }
 
+/* Options remain directly below their own MCQ */
 .mcq-options-preview {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px 8px;
   font-size: 14px;
   margin-top: 4px;
   direction: ltr;
@@ -316,11 +321,16 @@ textarea { min-height: 65px; resize: vertical; }
   line-height: 1.7;
 }
 
+.mcq-options-preview > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .option-text {
   display: inline;
 }
 
-/* Short questions appear in two columns */
+/* Short questions: two columns */
 .q-row {
   display: inline-flex;
   vertical-align: top;
@@ -329,6 +339,7 @@ textarea { min-height: 65px; resize: vertical; }
   margin: 0 0 10px;
   line-height: 1.8;
   break-inside: avoid;
+  page-break-inside: avoid;
   text-align: start;
   align-items: flex-start;
   overflow-wrap: anywhere;
@@ -343,6 +354,7 @@ textarea { min-height: 65px; resize: vertical; }
 .long-answer {
   margin-bottom: 12px;
   break-inside: avoid;
+  page-break-inside: avoid;
   line-height: 1.8;
 }
 
@@ -862,14 +874,15 @@ function updatePaper() {
       </div>
 
       ${get('paperSubject') ? `
-        <div class="preview-subject" dir="${direction}">
+        <div class="preview-subject" dir="${direction}" style="text-align:${alignment}">
           ${escapeHTML(get('paperSubject'))}
         </div>
       ` : ''}
 
       ${get('paperChapter') ? `
         <div dir="${direction}" style="text-align:${alignment}">
-          Chapter / Topic: ${escapeHTML(get('paperChapter'))}
+          ${lang() === 'en' ? 'Chapter / Topic:' : 'باب / ٹاپک:'}
+          ${escapeHTML(get('paperChapter'))}
         </div>
       ` : ''}
 
